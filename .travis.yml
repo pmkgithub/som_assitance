@@ -1,0 +1,9 @@
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Nk6GAUtwP+ZfkrFh1+bmsoL1niTlIZAufNROogJzAqlmQPLB6m0IabnyAc9Rncsp6/dphSkOHzQYvLXT/YB1USu93oPQ1/2KAUjwImmyjXzSxZKSNlhDonRCuG1B4gKuPq0UVTxj+BbVQzQwLmOCPp+dQJW7XruPNSZr6tqIn/QozXa6+FxkKw4ZTnkFG+FOPUd/WyvE9MewbYVm+s3d36srJeLsCzpZzyA2zf1hfegWk7XXJCrawjzh9/CiswMfBQ88rHv3uY2f0mH6b9MPtKUDA0Bym5HXLufs8RmL+Z/Va/jAUPestI6tltq9eRgcFeDtgBVM7xfyUDAbZcSiRtlbB7WJnuk2zF6BTqZTPeFnGuzAVwfaZjS5fO9PNZspdWV/8Bx5171vejgLdqsuFqO3I7iX3h+fPNAfqaco6pmekVfoeaxyabRnv7BomolqYbWsFWStJmSkA7EfVhqhGeZg3IMoXiHxi3VS/f+yA/GvKEQpTVpv9aDu5S9+mb/OZH/1TitUk3U5NVMR1WY6TeMpb8Q6GoWCoQHGzZniEbZ5kjdTlwGJYkfPIlOhblW6Y70pxZ9Cu3xfmBLk/L3ClZit8CPSfsuE4xsqE2iEIA6+TT63dAmzxIMf0FdRJUBf7o0EzX0M2XPHX0ZTl4U9LAkDC+7iZtuwkj8VyTdyyiE=
+  app: nameless-caverns-65235
+  on:
+    repo: pmkgithub/som_assitance
