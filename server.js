@@ -4,9 +4,6 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
-// import router
-
-// import controllers
 const AuthController = require('./controllers/authentication');
 
 // middlewares
@@ -15,10 +12,6 @@ app.use(morgan('common'));
 
 // WAY 1 - all HTML files in /views/xxx.html - BEGIN
 app.use(express.static('public'));
-
-// // router here
-// app.use('/events', routerViews);
-// app.use('/api', routerApi);
 
 // signin, signup.
 app.get('/signup', (req, res) => {
@@ -41,8 +34,10 @@ app.post('/signin', (req, res) => {
     "lastName": "Dirt"
   });
 });
-// events lists
-app.get('/api/events', (req, res) => {
+// events
+// TESTING CODE - BEGIN
+app.get('/', (req, res) => {
+  // res.sendFile(__dirname + '/views/events_index.html');
   res.json({
     "events": [
       {
@@ -72,38 +67,40 @@ app.get('/api/events', (req, res) => {
       },
     ]
   });
+
 });
+// TESTING CODE - END
 app.get('/events', (req, res) => {
-  res.sendFile(__dirname + '/views/events_index.html');
-  // res.json({
-  //   "events": [
-  //     {
-  //       "id": "1",
-  //       "timestamp": 1470016976601,
-  //       "date": "1-1-18",
-  //       "eventDesc": "Tuesday Tasting"
-  //     },
-  //     {
-  //       "id": "2",
-  //       "timestamp": 1470016976602,
-  //       "date": "1-1-18",
-  //       "eventDesc": "Wednesday Tasting"
-  //     },
-  //     {
-  //       "id": "3",
-  //       "timestamp": 1470016976603,
-  //       "date": "1-1-18",
-  //       "eventDesc": "Tuesday Tasting"
-  //     },
-  //     {
-  //       "id": "4",
-  //       "timestamp": 1470016976604,
-  //       "date": "1-1-18",
-  //       "eventHost": "Avant Partir",
-  //       "eventDesc": "RHN Tasting"
-  //     },
-  //   ]
-  // });
+  // res.sendFile(__dirname + '/views/events_index.html');
+  res.json({
+    "events": [
+      {
+        "id": "1",
+        "timestamp": 1470016976601,
+        "date": "1-1-18",
+        "eventDesc": "Tuesday Tasting"
+      },
+      {
+        "id": "2",
+        "timestamp": 1470016976602,
+        "date": "1-1-18",
+        "eventDesc": "Wednesday Tasting"
+      },
+      {
+        "id": "3",
+        "timestamp": 1470016976603,
+        "date": "1-1-18",
+        "eventDesc": "Tuesday Tasting"
+      },
+      {
+        "id": "4",
+        "timestamp": 1470016976604,
+        "date": "1-1-18",
+        "eventHost": "Avant Partir",
+        "eventDesc": "RHN Tasting"
+      },
+    ]
+  });
 });
 app.get('/events/new', (req, res) => {
   res.sendFile(__dirname + '/views/event_form.html');
