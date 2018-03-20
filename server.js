@@ -4,7 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
-const AuthController = require('./controllers/authentication');
+// const AuthController = require('./controllers/authentication');
+const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('./testData/test_data');
 
 // middlewares
 app.use(morgan('common'));
@@ -35,81 +36,23 @@ app.post('/signin', (req, res) => {
   });
 });
 // events
-// TESTING CODE - BEGIN
-app.get('/', (req, res) => {
+app.get('/api/events', (req, res) => {
   // res.sendFile(__dirname + '/views/events_index.html');
-  res.json({
-    "events": [
-      {
-        "id": "1",
-        "timestamp": 1470016976601,
-        "date": "1-1-18",
-        "eventDesc": "Tuesday Tasting"
-      },
-      {
-        "id": "2",
-        "timestamp": 1470016976602,
-        "date": "1-1-18",
-        "eventDesc": "Wednesday Tasting"
-      },
-      {
-        "id": "3",
-        "timestamp": 1470016976603,
-        "date": "1-1-18",
-        "eventDesc": "Tuesday Tasting"
-      },
-      {
-        "id": "4",
-        "timestamp": 1470016976604,
-        "date": "1-1-18",
-        "eventHost": "Avant Partir",
-        "eventDesc": "RHN Tasting"
-      },
-    ]
-  });
-
+  res.json(EVENTS_DATA);
 });
-// TESTING CODE - END
 app.get('/events', (req, res) => {
-  // res.sendFile(__dirname + '/views/events_index.html');
-  res.json({
-    "events": [
-      {
-        "id": "1",
-        "timestamp": 1470016976601,
-        "date": "1-1-18",
-        "eventDesc": "Tuesday Tasting"
-      },
-      {
-        "id": "2",
-        "timestamp": 1470016976602,
-        "date": "1-1-18",
-        "eventDesc": "Wednesday Tasting"
-      },
-      {
-        "id": "3",
-        "timestamp": 1470016976603,
-        "date": "1-1-18",
-        "eventDesc": "Tuesday Tasting"
-      },
-      {
-        "id": "4",
-        "timestamp": 1470016976604,
-        "date": "1-1-18",
-        "eventHost": "Avant Partir",
-        "eventDesc": "RHN Tasting"
-      },
-    ]
-  });
+  res.sendFile(__dirname + '/public/views/events_index.html');
 });
+
 app.get('/events/new', (req, res) => {
-  res.sendFile(__dirname + '/views/event_form.html');
+  res.sendFile(__dirname + '/public/views/event_form.html');
 });
-app.get('/events/:eventId', (req, res) => {
-  res.sendFile(__dirname + '/views/events_expanded.html');
+app.get('/api/events/:eventId', (req, res) => {
+  // res.sendFile(__dirname + '/public/views/events_expanded.html');
+  res.json(TASTINGS_DATA);
 });
 app.get('/events/:eventId/edit', (req, res) => {
-  res.sendFile(__dirname + '/views/event_form.html');
+  res.sendFile(__dirname + 'public//views/event_form.html');
 });
 app.post('/events', (req, res) => {
   // res.send('new event posted');

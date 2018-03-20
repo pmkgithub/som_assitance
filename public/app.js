@@ -1,28 +1,4 @@
-const {events, tastings, tasting_detail} = require('../testData/test_data');
-
-
-// EVENTS List /////// - BEGIN
-// function getEventsData(callbackFn) {
-//   setTimeout(function(){ callbackFn(MOCK_EVENTS_DATA)}, 100);
-// }
-
-// this function stays the same when we connect
-// to real API later
-function renderEventsList(data) {
-  console.log(data);
-  // for (let i = 0; i < data.events.length ; i++) {
-  //   $('body').append(
-  //     // '<p>' + data.events[i].eventDesc + '</p>');
-  //     `<p>${data.events[i].date} - ${data.events[i].eventDesc}</p>`);
-  // }
-}
-
-// this function can stay the same even when we
-// are connecting to real API
-function getAndDisplayEventsData() {
-  getDataFromApi(renderEventsList);
-}
-///// EVENTS List /////// - END
+'use strict';
 
 // TASTINGS Lists /////// - BEGIN
 function getTastingsData(callbackFn) {
@@ -97,7 +73,4 @@ $(function() {
   // getAndDisplayTastingsData();
   // getAndDisplayTastingDetail()
 
-  let url = `http://localhost:8080`;
-  let options = {};
-  getDataFromApi(url, options, renderEventsList);
 });
