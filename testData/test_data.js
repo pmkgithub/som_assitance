@@ -7,70 +7,70 @@ const EVENTS_DATA = {
         "timestamp": 1470016976601,
         "date": "1-2-18",
         "eventHost": "Sour Grapes",
-        "eventDesc": "Tuesday Tasting"
+        "eventName": "Tuesday Tasting"
       },
       {
         "id": "2",
         "timestamp": 1470016976602,
         "date": "1-2-18",
         "eventHost": "Quality",
-        "eventDesc": "Tuesday Tasting"
+        "eventName": "Tuesday Tasting"
       },
       {
         "id": "3",
         "timestamp": 1470016976603,
         "date": "1-2-18",
         "eventHost": "Avant Partir",
-        "eventDesc": "Tuesday Tasting"
+        "eventName": "Tuesday Tasting"
       },
       {
         "id": "4",
         "timestamp": 1470016976604,
         "date": "1-3-18",
         "eventHost": "United",
-        "eventDesc": "Wednesday Tasting"
+        "eventName": "Wednesday Tasting"
       },
       {
         "id": "5",
         "timestamp": 1470016976605,
         "date": "1-3-18",
         "eventHost": "Northeast",
-        "eventDesc": "Wednesday Tasting"
+        "eventName": "Wednesday Tasting"
       },
       {
         "id": "6",
         "timestamp": 1470016976606,
         "date": "1-9-18",
         "eventHost": "Sour Grapes",
-        "eventDesc": "Tuesday Tasting"
+        "eventName": "Tuesday Tasting"
       },
       {
         "id": "7",
         "timestamp": 1470016976607,
         "date": "1-10-18",
         "eventHost": "United",
-        "eventDesc": "Wednesday Tasting"
+        "eventName": "Wednesday Tasting"
       },
       {
         "id": "8",
         "timestamp": 1470016976608,
         "date": "1-16-18",
         "eventHost": "Avant Partir",
-        "eventDesc": "RHN Tasting"
+        "eventName": "RHN Tasting"
       },
       {
         "id": "9",
         "timestamp": 1470016976609,
         "date": "1-17-18",
         "eventHost": "United",
-        "eventDesc": "Wednesday Tasting"
+        "eventName": "Wednesday Tasting"
       },
       {
         "id": "10",
         "timestamp": 1470016976610,
         "date": "1-17-18",
         "eventHost": "Northeast",
-        "eventDesc": "Wednesday Tasting"
+        "eventName": "Wednesday Tasting"
       },
     ]
 };

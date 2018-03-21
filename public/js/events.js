@@ -2,6 +2,8 @@
 
 let STATE = {
   tastingsFetched: {
+    "1": false,
+    "2": false
   },
   tastingDetailFetched: {
   }
@@ -35,11 +37,13 @@ function renderEventsList(data) {
   for (let i = 0; i < data.events.length ; i++) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[data.events[i].id] = false;
+    //
+    // const date = moment(data.events[i].date).format('MMMM Do YYYY, h:mm:ss a');
 
     // render EVENTS.
     $('.js-events').append(
       `<li class="event js-event" data-eventid="${data.events[i].id}">
-        <span class="event-span">${data.events[i].date} - ${data.events[i].eventDesc} - ${data.events[i].eventHost}</span>
+        <span class="event-span">${data.events[i].date} - ${data.events[i].eventName} - ${data.events[i].eventHost}</span>
         <ul class="tastings js-tastings"></ul>
        </li>`);
   }

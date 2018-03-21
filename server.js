@@ -1,6 +1,8 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
@@ -64,12 +66,15 @@ app.get('/events/new', (req, res) => {
 app.get('/events/:eventId/edit', (req, res) => {
   res.sendFile(__dirname + 'public/views/event_form.html');
 });
-app.post('/events/new', (req, res) => {
-  // res.send('new event posted');
-  res.json({
-    "date": "1-1-18",
-    "eventName": "Tuesday Tasting",
-  });
+app.post('/events/new', jsonParser, (req, res) => {
+  console.log('req.body = ', req.body);
+  // console.log('req.params = ', req.params);
+  res.send('new event posted').status(201);
+  // res.json({
+  //   "message": "Event saved"
+  //   // "date": "1-1-18",
+  //   // "eventName": "Tuesday Tasting",
+  // }).status(201);
 });
 app.put('/events/:eventId', (req, res) => {
   res.send('event updated');
