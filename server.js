@@ -10,10 +10,11 @@ const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('./testData/te
 // middlewares
 app.use(morgan('common'));
 // app.use(cors);
-
-// WAY 1 - all HTML files in /views/xxx.html - BEGIN
 app.use(express.static('public'));
 
+// ************************************************************************* //
+// SIGNUP / SIGNIN - BEGIN
+// ************************************************************************* //
 // signin, signup.
 app.get('/signup', (req, res) => {
   res.sendFile(__dirname + '/views/signup_form.html');
@@ -35,11 +36,23 @@ app.post('/signin', (req, res) => {
     "lastName": "Dirt"
   });
 });
-// events
+// ************************************************************************* //
+// SIGNUP / SIGNIN - BEGIN
+// ************************************************************************* //
+
+
+// ************************************************************************* //
+// TASTINGS EVENTS - BEGIN
+// ************************************************************************* //
+// api routes
 app.get('/api/events', (req, res) => {
   // res.sendFile(__dirname + '/views/events_index.html');
   res.json(EVENTS_DATA);
 });
+app.get('/api/events/:eventId', (req, res) => {
+  res.json(TASTINGS_DATA);
+});
+// tasting events routes
 app.get('/events', (req, res) => {
   res.sendFile(__dirname + '/public/views/events_index.html');
 });
@@ -47,14 +60,11 @@ app.get('/events', (req, res) => {
 app.get('/events/new', (req, res) => {
   res.sendFile(__dirname + '/public/views/event_form.html');
 });
-app.get('/api/events/:eventId', (req, res) => {
-  // res.sendFile(__dirname + '/public/views/events_expanded.html');
-  res.json(TASTINGS_DATA);
-});
+
 app.get('/events/:eventId/edit', (req, res) => {
-  res.sendFile(__dirname + 'public//views/event_form.html');
+  res.sendFile(__dirname + 'public/views/event_form.html');
 });
-app.post('/events', (req, res) => {
+app.post('/events/new', (req, res) => {
   // res.send('new event posted');
   res.json({
     "date": "1-1-18",
@@ -67,13 +77,22 @@ app.put('/events/:eventId', (req, res) => {
 app.delete('/events/:eventId', (req, res) => {
   res.send('event deleted');
 });
+// ************************************************************************* //
+// TASTINGS EVENTS - END
+// ************************************************************************* //
 
-// tastings
+// ************************************************************************* //
+// TASTINGS - BEGIN
+// ************************************************************************* //
+// api routes
+app.get('/api/tastings/:tastingId', (req, res) => {
+  console.log('app.get(/api/tastings/:tastingId ran');
+  res.json(TASTING_DETAIL_DATA)
+});
+
+// tastings routes
 app.get('/events/:eventId/tastings/new', (req, res) => {
   res.sendFile(__dirname + '/views/tasting_form.html');
-});
-app.get('/events/:eventId/tastings/:tastingId', (req, res) => {
-  res.sendFile(__dirname + '/views/tasting_detail.html');
 });
 app.get('/events/:eventId/tastings/:tastingId/edit', (req, res) => {
   res.sendFile(__dirname + '/views/tasting_form.html');
@@ -87,7 +106,9 @@ app.put('/events/:eventsId/tastings/:tastingId', (req, res) => {
 app.delete('/events/:eventsId/tastings/:tastingId', (req, res) => {
   res.send('tasting note deleted');
 });
-
+// ************************************************************************* //
+// TASTINGS - END
+// ************************************************************************* //
 // search
 app.get('/search/:tastingId', (req, res) => {
   res.sendFile(__dirname + '/views/tasting_detail.html');
