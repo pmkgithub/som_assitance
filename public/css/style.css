@@ -1,0 +1,30 @@
+.events-link {
+  padding-left: 20px;
+}
+
+li.event {
+  list-style: none;
+}
+.event-span {
+  cursor: pointer;
+}
+
+li.tasting {
+  list-style: none;
+}
+.tasting-span {
+  cursor: pointer;
+}
+.country-span {
+  cursor: pointer;
+}
+.country-map-wrapper {
+  display: none;
+}
+
+.appellation-primary-span {
+  cursor: pointer;
+}
+.appellation-primary-map-wrapper {
+  display: none;
+}
