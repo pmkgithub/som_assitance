@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Form</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div>Event Form - for creating New Event, or editting Existing Event</div>
+    <div class="nav-wrapper">
+        <!-- import an HTML fragment -->
+    </div>
+    <form class="event-form" >
+        <fieldset>
+            <legend>New Tasting Event</legend>
+            <p>
+                <label for="event-name">Event Name</label>
+                <input id="event-name" class="js-event-name" type="text" name="event-name" required />
+            </p>
+            <p>
+                <label for="event-host">Event Host (Optional)</label>
+                <input id="event-host" class="js-event-host" type="text" name="event-host" />
+            </p>
+
+            <div class="buttons">
+                <div class="button-cancel">
+                    <button type="button" class="cancel js-button-cancel" >Cancel</button>
+                    <!--<input type="button" class="cancel js-button-cancel" value="Cancel"/>-->
+                    <!--<a href="/events" class="cancel js-button-cancel">Cancel</a>-->
+                </div>
+                <div class="button-save">
+                    <button type="submit" class="save js-button-save">Save</button>
+                    <!--<input type="submit" class="save js-button-save" value="Submit"/>-->
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <!--<form action="something.php">-->
+        <!---->
+        <!--Username: <input type="text" name="usrname" required>-->
+        <!--<input type="submit">-->
+    <!--</form>-->
+
+
+
+    <!-- DENTER and required works -->
+    <!--<form action="something.php">-->
+    <!--<form>-->
+        <!--First name: <input type="text" name="fname" required ><br>-->
+        <!--Last name: <input type="text" name="lname"><br>-->
+        <!--<button type="submit" value="Submit">Submit</button>-->
+        <!--<button type="reset" value="Reset">Reset</button>-->
+    <!--</form>-->
+
+    <!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_button_form -->
+    <!-- hitting ENTER works, "required" works -->
+    <!--<form action="/action_page.php" method="get" id="nameform">-->
+    <!--<form id="nameform">-->
+        <!--First name: <input type="text" name="fname" required ><br>-->
+        <!--Last name: <input type="text" name="lname"><br>-->
+    <!--</form>-->
+
+    <!--<p>The button below is outside the form element, but still part of the form.</p>-->
+    <!--<button type="reset" value="Reset">Reset</button>-->
+    <!--<button type="submit" form="nameform" value="Submit">Submit</button>-->
+
+
+    <!-- variation of form above - hitting ENTER works, "required" works -->
+    <!--<form action="/action_page.php" method="get" id="nameform">-->
+        <!--First name: <input type="text" name="fname" required ><br>-->
+        <!--Last name: <input type="text" name="lname"><br>-->
+        <!--<button type="submit" value="Submit">Submit</button>-->
+    <!--</form>-->
+
+
+
+
+
+
+
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous">
+    </script>
+    <script></script>
+    <script src="/js/tasting_event_form.js"></script>
+</body>
+</html>

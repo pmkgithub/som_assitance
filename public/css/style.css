@@ -155,12 +155,10 @@ li.tasting {
   text-align: right;
 }
 .event-form button {
-  /*width: 10rem;*/
-  /*height: 4.5rem;*/
+  background: #ccc;
+  color: white;
   padding: 0.5rem;
-  /*font-size:  2em;*/
-  font-size:  2rem;
-  /*background: #eee;*/
+  font-size:  1rem;
   border: none;
   font-weight: bold;
   margin-top: 1em;
@@ -171,33 +169,38 @@ li.tasting {
   display: inline-block;
 }
 .event-form button.cancel {
-  cursor: pointer;
-  color: white;
-  font-size: 1em;
+  margin-right: 10px;
+}
+
+.event-form button.cancel:hover {
   background-color: red;
 }
-/*.event-form button.cancel a {*/
-  /*font-size: 1em;*/
-  /*color: white;*/
-  /*text-decoration: none;*/
+/*.event-form button.save {*/
+  /*background: green;*/
 /*}*/
-.event-form button.cancel:hover {
-  background: red;
-}
-.event-form button.save {
-  cursor: pointer;
-  /*font-size: 2em;*/
-  /*padding: 0;*/
-  color: white;
-  background: green;
-}
 .event-form button.save:hover {
   background: green;
 }
 .event-form button:hover {
-  background: #ccc;
   cursor: pointer;
 }
+
+/*.event-form input[type=button],*/
+/*.event-form input[type=submit] {*/
+  /*color: white;*/
+  /*padding: 0.5rem;*/
+  /*font-size:  1rem;*/
+  /*border: none;*/
+  /*font-weight: bold;*/
+  /*cursor: pointer;*/
+  /*margin-top: 1em;*/
+/*}*/
+/*.event-form input[type=button] {*/
+  /*background-color: red;*/
+/*}*/
+/*.event-form input[type=submit] {*/
+  /*background-color: green;*/
+/*}*/
 /******************************************************************************/
 /*  ADD EVENT FORM  - END */
 /******************************************************************************/

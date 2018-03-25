@@ -33,8 +33,11 @@ dist/
 hold/
 
 # Environmental Variables
+# Application Options
 #########################
 .env
+config.js
+
 
 # Other - Bower Directories #
 #############################
