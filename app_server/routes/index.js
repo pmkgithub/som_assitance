@@ -24,9 +24,15 @@ router.get('/events/:eventId/tastings/new', (req, res) => {
   res.sendFile('tasting_note_form.html', {"root": "./app_server/views"}); // works
 });
 
+// TODO
+router.get('/events/:eventId/tastings/:tastingId/edit', (req, res) => {
+  res.sendFile(__dirname + '/views/tasting_note_form.html');
+});
+
+
 // search
-// WIP - search will have its own form if I decide to go with MODAL.
-// WIP - or search will be part of the EVENTS LISTINGS page (preferred).
+// TODO WIP - search will have its own form if I decide to go with MODAL.
+// TODO WIP - or search will be part of the EVENTS LISTINGS page (preferred).
 router.get('/search/:tastingId', (req, res) => {
   res.sendFile(__dirname + '/views/tasting_detail.html');
 });

@@ -107,7 +107,7 @@ function getTastingNotesListData(event) {
     //   `<button class="js-add-new-tasting-note">Add Tasting Note</button>`
     // );
     $tastingEventSpan.siblings('ul.js-tastings').append(
-      `<a href="/tasting-events/${eventId}/tastings/new" class="add-new-tasting-note">Add Tasting Note</a>`
+      `<a href="/events/${eventId}/tastings/new" class="add-new-tasting-note">Add Tasting Note</a>`
     );
   }
 

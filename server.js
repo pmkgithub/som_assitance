@@ -40,15 +40,15 @@ app.use('/', routes);
 //   console.log('req.params', req.params);
 //   res.json(TASTING_DETAIL_DATA)
 // });
-app.post('/events/:eventsId/tastings', (req, res) => {
-  res.send('new tasting note posted');
-});
-app.put('/events/:eventsId/tastings/:tastingId', (req, res) => {
-  res.send('tasting note updated');
-});
-app.delete('/events/:eventsId/tastings/:tastingId', (req, res) => {
-  res.send('tasting note deleted');
-});
+// app.post('/events/:eventsId/tastings', (req, res) => {
+//   res.send('new tasting note posted');
+// });
+// app.put('/events/:eventsId/tastings/:tastingId', (req, res) => {
+//   res.send('tasting note updated');
+// });
+// app.delete('/events/:eventsId/tastings/:tastingId', (req, res) => {
+//   res.send('tasting note deleted');
+// });
 
 // tastings content server routes
 // moved to CONTER SERVER router
