@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('dir refactored version client.js loaded');
+
 // TASTINGS Lists /////// - BEGIN
 function getTastingsData(callbackFn) {
   setTimeout(function(){ callbackFn(MOCK_TASTINGS_DATA)}, 100);

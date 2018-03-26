@@ -1,6 +1,16 @@
 'use strict';
 
-const TASTING_EVENTS_URL = `http://localhost:8080/api/tasting-events`;
+// API URL's below used to:
+// 1) fetch TASTING EVENTS list:
+//    e.g. /api/tasting-events/
+// 2) fetch TASTING EVENT's TASTING NOTES list, when a TASTING EVENT list item is clicked:
+//    e.g. /api/tasting-events/:eventId
+const TASTING_EVENTS_API_URL = `/api/events/`;
+
+// url below used to:
+// 1) fetch TASTING NOTE DETAIL when a TASTING NOTE LIST ITEM is clicked:
+//    e.g. /api/tasting-note-detail/:tastingId
+const TASTING_NOTE_DETAIL_API_URL = `/api/tasting-note-detail/`;
 
 let STATE = {
   tastingsFetched: {
@@ -34,7 +44,7 @@ function getDataFromApi(url, options, callback) {
 // TASTING EVENTS LIST - BEGIN
 // ************************************************************************* //
 
-function renderEventsList(data) {
+function renderTastingEventsList(data) {
   for (let i = 0; i < data.events.length ; i++) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[data.events[i].id] = false;
@@ -64,7 +74,8 @@ function getTastingNotesListData(event) {
 
   if( !STATE.tastingsFetched[eventId] ) {
     // if first time clicking a TASTING EVENT, fetch TASTING NOTE for a particular TASTING EVENT.
-    getDataFromApi(`/api/events/${eventId}`, {}, renderTastingsList);
+    // getDataFromApi(`/api/tasting-events/${eventId}`, {}, renderTastingsList); // working
+    getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}`, {}, renderTastingsList); // what I want.
   } else {
     // If TASTING NOTES already been fetched for a particular TASTING EVENT,
     // keep TASTING NOTES in DOM and show/hide on future TASTING EVENT clicks.
@@ -83,13 +94,21 @@ function getTastingNotesListData(event) {
       // populate STATE object "tastingDetailFetched" object for each TASTING NOTE.
       STATE.tastingDetailFetched[data.tastings[i].id] = false;
 
-      // Render and append DOM.
+      // Render Tasting Note Header and append DOM.
       $tastingEventSpan.siblings('ul.js-tastings').append(
         `<li class="tasting js-tasting">
             <span data-tastingid="${data.tastings[i].id}" class="tasting-span js-tasting-span">${data.tastings[i].wineName} - (${data.tastings[i].distributor} -  ${data.tastings[i].date})</span>
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper"></div>
          </li>`);
     }
+
+    // append ADD NEW TASTING NOTE button to DOM
+    // $tastingEventSpan.siblings('ul.js-tastings').append(
+    //   `<button class="js-add-new-tasting-note">Add Tasting Note</button>`
+    // );
+    $tastingEventSpan.siblings('ul.js-tastings').append(
+      `<a href="/tasting-events/${eventId}/tastings/new" class="add-new-tasting-note">Add Tasting Note</a>`
+    );
   }
 
 }
@@ -110,7 +129,8 @@ function getTastingNotesDetailData(event) {
 
   if ( !STATE.tastingDetailFetched[tastingId] ) {
     // if first time clicking a TASTINGS NOTE, fetch TASTING DETAIL for a particular TASTING NOTE.
-    getDataFromApi(`/api/tastings/${tastingId}`, {}, renderTastingDetail);
+    // getDataFromApi(`/api/tasting-note-detail/${tastingId}`, {}, renderTastingDetail);
+    getDataFromApi(`${TASTING_NOTE_DETAIL_API_URL}${tastingId}`, {}, renderTastingDetail);
   } else {
     // If TASTING DETAIL already been fetched for a particular TASTING NOTE,
     // keep TASTING DETAIL in DOM and show/hide on future TASTING NOTE clicks.
@@ -184,12 +204,12 @@ $(function() {
 
   // get data for events view when events list loads.
   let options = {};
-  getDataFromApi(TASTING_EVENTS_URL, options, renderEventsList);
+  getDataFromApi(TASTING_EVENTS_API_URL, options, renderTastingEventsList);
 
   // listeners
-  const $eventsWrapper = $('.js-events-wrapper');
-  $eventsWrapper.on('click', '.js-event-span', getTastingNotesListData);
-  $eventsWrapper.on('click', '.js-tasting-span', getTastingNotesDetailData);
-  $eventsWrapper.on('click', '.js-country-span', toggleCountryMap);
-  $eventsWrapper.on('click', '.js-appellation-primary-span', toggleAppellationPrimaryMap);
+  const $tastingEventsAndTastingNotesWrapper = $('.js-events-wrapper');
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-span', getTastingNotesListData);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-span', getTastingNotesDetailData);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-span', toggleCountryMap);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-appellation-primary-span', toggleAppellationPrimaryMap);
 });

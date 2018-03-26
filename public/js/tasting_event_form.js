@@ -1,7 +1,7 @@
 'use strict';
 
-const TASTING_EVENTS_URL = `/tasting-events`;
-const TASTING_EVENT_POST_URL = `/api/tasting-events/new`;
+const TASTING_EVENTS_URL = `/events`;
+const TASTING_EVENT_POST_URL = `/api/events/new`;
 
 // ************************************************************************* //
 // API POST - BEGIN
@@ -48,7 +48,6 @@ function handleFormSubmit(event) {
 
 function redirectToEventsListOnCancel(event) {
   event.preventDefault();
-  // on form cancel, navigate the user back to TASTING EVENTS LIST.
   window.location = TASTING_EVENTS_URL;
 }
 
@@ -58,7 +57,6 @@ function redirectToEventsListOnSave(data) {
   // on AJAX success, navigate the user back to TASTING EVENTS LIST.
   window.location = TASTING_EVENTS_URL;
 }
-
 
 
 $(function() {
