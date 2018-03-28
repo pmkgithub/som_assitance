@@ -3,8 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>New Tasting</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div>Tasting Form - for creating New Tasting, or editting Existing Tasting</div>
+    <form class="tasting-form" >
+        <fieldset>
+            <legend>New Tasting Note for EVENT NAME goes here...</legend>
+            <p>
+                <label for="wine-name">Wine Name (Required)</label>
+                <input id="wine-name" class="js-wine-name" type="text" name="wine-name" required autofocus="true"/>
+            </p>
+            <p>
+                <label for="js-country">Country</label>
+                <select id="js-country" class="" ></select>
+                <div class="country-map-wrapper js-country-map-wrapper">Country Map</div>
+            </p>
+            <p>
+                <label for="js-primary-appellation">Primary Appellation - (disabled until country selected)</label>
+                <select id="js-primary-appellation" class="" disabled></select>
+                <div class="primary-appellation-map-wrapper js-primary-app-map-wrapper">Primary Appellation Map</div>
+            </p>
+            <p>
+                <label for="js-secondary-appellation">Secondary Appellation - (disabled until country selected)</label>
+                <select id="js-secondary-appellation" class="" disabled></select>
+            <div class="primary-appellation-map-wrapper js-primary-app-map-wrapper">Secondary Appellation Map</div>
+            </p>
+            <p>
+                <label for="js-primary-grape">Primary Grape / Style</label>
+                <select id="js-primary-grape" class="" disabled></select>
+            </p>
+            <p>
+                <label for="event-host">Event Host (Optional)</label>
+                <input id="event-host" class="js-event-host" type="text" name="event-host" />
+            </p>
+            <p>
+                <label for="event-host">Event Host (Optional)</label>
+                <input id="event-host" class="js-event-host" type="text" name="event-host" />
+            </p>
+            <p>
+                <label for="event-host">Event Host (Optional)</label>
+                <input id="event-host" class="js-event-host" type="text" name="event-host" />
+            </p>
+            <div class="buttons">
+                <div class="button-cancel">
+                    <button type="button" class="cancel js-button-cancel" >Cancel</button>
+                    <!--<input type="button" class="cancel js-button-cancel" value="Cancel"/>-->
+                    <!--<a href="/events" class="cancel js-button-cancel">Cancel</a>-->
+                </div>
+                <div class="button-save">
+                    <button type="submit" class="save js-button-save">Save</button>
+                    <!--<input type="submit" class="save js-button-save" value="Submit"/>-->
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous">
+    </script>
+    <script></script>
+    <script src="/js/tasting_note_form.js"></script>
+    <script src="/js/tasting_note_form_submit.js"></script>
+    <!--<script src="/js/mappings/mappings_countries_grapes.js"></script>-->
 </body>
 </html>

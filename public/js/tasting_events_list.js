@@ -10,7 +10,8 @@ const TASTING_EVENTS_API_URL = `/api/events/`;
 // url below used to:
 // 1) fetch TASTING NOTE DETAIL when a TASTING NOTE LIST ITEM is clicked:
 //    e.g. /api/tasting-note-detail/:tastingId
-const TASTING_NOTE_DETAIL_API_URL = `/api/tasting-note-detail/`;
+// const TASTING_NOTE_DETAIL_API_URL = `/api/tasting-note-detail/`; // old
+const TASTING_NOTE_DETAIL_API_URL = `/api/events/:eventsId/tasting/:tastingId/`;
 
 let STATE = {
   tastingsFetched: {
@@ -54,7 +55,7 @@ function renderTastingEventsList(data) {
     // render EVENTS.
     $('.js-events').append(
       `<li class="event js-event">
-        <span data-eventid="${data.events[i].id}" class="event-span js-event-span">${data.events[i].date} - ${data.events[i].eventName} - ${data.events[i].eventHost}</span>
+        <span data-eventid="${data.events[i].id}" data-eventhost="${data.events[i].eventHost}" class="event-span js-event-span">${data.events[i].date} - ${data.events[i].eventName} - ${data.events[i].eventHost}</span>
         <ul class="tastings js-tastings"></ul>
        </li>`);
   }
@@ -67,9 +68,9 @@ function renderTastingEventsList(data) {
 // ************************************************************************* //
 // TASTING NOTES LIST - BEGIN
 // ************************************************************************* //
-function getTastingNotesListData(event) {
-  event.stopPropagation();
-  const $tastingEventSpan = $(event.target);  // span being clicked on.
+function getTastingNotesListData(e) {
+  e.stopPropagation();
+  const $tastingEventSpan = $(e.target);  // span being clicked on.
   const eventId = $tastingEventSpan.attr("data-eventid"); // parent of clicked span, contains the "eventId"
 
   if( !STATE.tastingsFetched[eventId] ) {
@@ -85,7 +86,7 @@ function getTastingNotesListData(event) {
   // helper function.
   function renderTastingsList(data) {
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
-
+    const { tastingDetail } = data;
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
     STATE.tastingsFetched[eventId] = true;
@@ -97,7 +98,7 @@ function getTastingNotesListData(event) {
       // Render Tasting Note Header and append DOM.
       $tastingEventSpan.siblings('ul.js-tastings').append(
         `<li class="tasting js-tasting">
-            <span data-tastingid="${data.tastings[i].id}" class="tasting-span js-tasting-span">${data.tastings[i].wineName} - (${data.tastings[i].distributor} -  ${data.tastings[i].date})</span>
+            <span data-eventid="${data.tastings[i].eventId}" data-tastingid="${data.tastings[i].id}" class="tasting-span js-tasting-span">${data.tastings[i].wineName} - (${data.tastings[i].distributor} -  ${data.tastings[i].date})</span>
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper"></div>
          </li>`);
     }
@@ -121,16 +122,19 @@ function getTastingNotesListData(event) {
 // TASTING NOTE DETAIL - BEGIN
 // ************************************************************************* //
 
-function getTastingNotesDetailData(event) {
-  event.stopPropagation();
+function getTastingNotesDetailData(e) {
+  e.stopPropagation();
   // NOTE: event.target = span.tasting-span, event.currentTarget = li.js-tasting
-  const $tastingSpan = $(event.currentTarget);
+  const $tastingSpan = $(e.currentTarget);
   const tastingId = $tastingSpan.attr("data-tastingid");
+
+  // const eventId = $tastingSpan.attr("data-eventid");
+  const eventId = "1000";
 
   if ( !STATE.tastingDetailFetched[tastingId] ) {
     // if first time clicking a TASTINGS NOTE, fetch TASTING DETAIL for a particular TASTING NOTE.
     // getDataFromApi(`/api/tasting-note-detail/${tastingId}`, {}, renderTastingDetail);
-    getDataFromApi(`${TASTING_NOTE_DETAIL_API_URL}${tastingId}`, {}, renderTastingDetail);
+    getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}/tastings/${tastingId}`, {}, renderTastingDetail);
   } else {
     // If TASTING DETAIL already been fetched for a particular TASTING NOTE,
     // keep TASTING DETAIL in DOM and show/hide on future TASTING NOTE clicks.

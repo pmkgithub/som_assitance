@@ -9,10 +9,7 @@ const eventSchema = Schema({
   // date: {type: String, default: new Date()},    // mm-dd-yyyy
   eventName: {type: String, required: true},
   eventHost: {type: String},
-  tastingNotes: [{
-    type: Schema.Types.ObjectId,
-    ref: 'tasting_event'
-  }]
+
 });
 
 // eventSchema.virtual('addressString').get(function() {
