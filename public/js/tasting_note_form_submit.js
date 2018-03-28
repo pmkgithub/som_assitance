@@ -1,11 +1,12 @@
 'use strict';
 
-const TASTING_EVENTS_URL = `/events`;
-const TASTING_EVENT_POST_URL = `/api/events/new`;
-
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
+
+const TASTING_EVENTS_URL = `/events`;
+// events/:eventsId/tastings
+const TASTING_EVENT_POST_URL = `/api/events/new`;
 
 function postDataToApi(url, options, callback) {
   console.log('options inside postDataToApi() = ', options);
@@ -25,8 +26,8 @@ function postDataToApi(url, options, callback) {
 // API POST - END
 // ************************************************************************* //
 
-function handleFormSubmit(event) {
-  event.preventDefault();
+function handleFormSubmit(e) {
+  e.preventDefault();
 
   const eventName = $('.js-event-name').val();
   const eventHost = $('.js-event-host').val();
@@ -63,7 +64,7 @@ $(function() {
 
   // listeners
   const $cancelButton = $('.js-button-cancel');
-  const $newTastingEventForm = $('.event-form');
+  const newTastingNoteForm = $('.tasting-form');
   $cancelButton.on('click', redirectToEventsListOnCancel);
-  $newTastingEventForm.on('submit', handleFormSubmit);
+  newTastingNoteForm.on('submit', handleFormSubmit);
 });

@@ -111,6 +111,7 @@ const TASTINGS_DATA = {
 const TASTING_DETAIL_DATA = {
     "tastingDetail": {
       "id": "101",
+      "timestamp": 1470016976603,
       "date": "xx-xx-xxxx",
       "eventHost": "Avant Partir",
       "wineName": "La La La Gamay",

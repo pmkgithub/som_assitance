@@ -4,7 +4,7 @@
 // https://medium.com/@iaincollins/how-not-to-create-a-singleton-in-node-js-bd7fde5361f5
 
 
-module.exports = function Country() {
+module.exports = function CountryMaps() {
   return {
     argentina: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_1024x1024.jpg?v=1504901310',
     australia: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Australia-wine-map2_1024x1024.jpg?v=1504901327',
@@ -16,7 +16,7 @@ module.exports = function Country() {
     portugal: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Portugal-wine-map2.jpg?v=1504901609',
     spain: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Spain-wine-map2.jpg?v=1504901137',
     southAfrica: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-South-Africa-wine-map2_1024x1024.jpg?v=1504901109',
-    usCalifornia: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-California-wine-map2_1024x1024.jpg?v=1504901645',
+    // usCalifornia: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-California-wine-map2_1024x1024.jpg?v=1504901645',
 
 
   }

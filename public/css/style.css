@@ -118,20 +118,24 @@ li.tasting {
 /******************************************************************************/
 
 /******************************************************************************/
-/*  ADD EVENT FORM  - BEGIN */
+/*  ADD EVENT / TASTING FORM  - BEGIN */
 /******************************************************************************/
-.event-form {
+.event-form,
+.tasting-form {
   margin: 30px auto 30px auto;
   width: 50%;
 }
 
-.event-form fieldset {
+.event-form fieldset,
+.tasting-form fieldset {
   border: none;
   padding: 0;
 }
 
 .event-form legend,
-.event-form label {
+.event-form label,
+.tasting-form legend,
+.tasting-form label {
   font-size: 1.3em;
   font-weight: bold;
   padding: 0;
@@ -139,7 +143,10 @@ li.tasting {
 
 .event-form input[type="text"],
 .event-form select,
-.event-form textarea {
+.event-form textarea,
+.tasting-form input[type="text"],
+.tasting-form select,
+.tasting-form textarea {
   display: block;
   width: 100%;
   border: 1px solid #ccc;
@@ -147,14 +154,17 @@ li.tasting {
   padding: 0.4em;
 }
 
-.event-form textarea {
+.event-form textarea,
+.tasting-form textarea {
   height: 100px;
 }
 
-.event-form .buttons {
+.event-form .buttons,
+.tasting-form .buttons {
   text-align: right;
 }
-.event-form button {
+.event-form button,
+.tasting-form button {
   background: #ccc;
   color: white;
   padding: 0.5rem;
@@ -165,23 +175,39 @@ li.tasting {
 }
 
 .event-form .button-cancel,
-.event-form .button-save {
+.event-form .button-save,
+.tasting-form .button-cancel,
+.tasting-form .button-save{
   display: inline-block;
 }
-.event-form button.cancel {
+.event-form button.cancel,
+.tasting-form button.cancel {
   margin-right: 10px;
 }
 
-.event-form button.cancel:hover {
+.event-form button.cancel:hover,
+.tasting-form button.cancel:hover {
   background-color: red;
 }
 /*.event-form button.save {*/
   /*background: green;*/
 /*}*/
-.event-form button.save:hover {
+.event-form button.save:hover,
+.tasting-form button.save:hover {
   background: green;
 }
-.event-form button:hover {
+.event-form button:hover,
+.tasting-form button:hover {
+  cursor: pointer;
+}
+
+.tasting-form .country-map-wrapper {
+  display: none;
+}
+.tasting-form .country-map {
+  width: 100%;
+}
+.tasting-form .show-hide-country-map {
   cursor: pointer;
 }
 
@@ -202,5 +228,5 @@ li.tasting {
   /*background-color: green;*/
 /*}*/
 /******************************************************************************/
-/*  ADD EVENT FORM  - END */
+/*  ADD EVENT / TASTING FORM  - END */
 /******************************************************************************/

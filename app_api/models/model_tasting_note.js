@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const tastingSchema = Schema({
+const tastingNoteSchema = Schema({
   timestamp: {type: String, default: Date.now},
   wineName: {type: String, required: true},
   eventHost: {type: String},
@@ -17,14 +17,13 @@ const tastingSchema = Schema({
   pricing3: {type: Number},
   pricing4: {type: Number},
   notes: {type: String},
-
-  tastingNotes: [{
+  eventId: {
     type: Schema.Types.ObjectId,
     ref: 'tasting_event'
-  }]
+  },
 });
 
 
-const Tasting = mongoose.model('tasting_note', eventSchema);
+const TastingNote = mongoose.model('tasting_note', tastingNoteSchema);
 
-module.exports = {Tasting};
+module.exports = {TastingNote};

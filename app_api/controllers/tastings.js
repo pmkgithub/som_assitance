@@ -7,6 +7,7 @@
 const config = require('../../config');
 const mongoose = require('mongoose');
 const {Event} = require('../models/model_tasting_event'); // mongo(ose) data.
+const {TastingNote} = require('../models/model_tasting_note');
 const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testData/test_data'); // static test data.
 mongoose.connect(config.localdb);
 
@@ -55,9 +56,22 @@ module.exports.postTastingEventsData = (req, res) => {
 module.exports.getTastingNotesList = (req, res) => {
   console.log('API controller getTastingNotesList ran');
   console.log('req.params eventId', req.params);
+  const eventId = req.params.eventId;
   res.json(TASTINGS_DATA);
+  TastingNote
+    .find({eventId: eventId})
+    .then(tastings => {
+      res.status(200).json(tastings);
+    })
+    .catch();
 };
-
+module.exports.postTastingNote = (req, res) => {
+  const eventId = req.params.eventId;
+  TastingNote
+    .create({
+      // stuff
+    });
+};
 // ************************************************************************* //
 // TASTINGS NOTES - END
 // ************************************************************************* //
