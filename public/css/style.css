@@ -209,8 +209,10 @@ li.tasting {
 }
 .tasting-form .show-hide-country-map {
   cursor: pointer;
-}
-
+}.tasting-note-ta {
+  width: 100%;
+  height: 200px;
+ }
 /*.event-form input[type=button],*/
 /*.event-form input[type=submit] {*/
   /*color: white;*/

@@ -58,7 +58,7 @@ const PRIMARY_GRAPES = {
     grapeName: "USA Champagne",
     wineType: "Sparkling Wine",
     countries: [
-      COUNTRIES.usa
+      COUNTRIES.united_states
     ]
   },
   lambrusco: {
@@ -81,7 +81,7 @@ const PRIMARY_GRAPES = {
     countries: [
       COUNTRIES.spain,
       COUNTRIES.portugal,
-      COUNTRIES.usa
+      COUNTRIES.united_states
     ]
   },
   gruener_veltliner: {
@@ -106,7 +106,7 @@ const PRIMARY_GRAPES = {
     wineType: 'Light-Bodied White Wine',
     countries: [
       COUNTRIES.italy,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.germany,
       COUNTRIES.australia,
       COUNTRIES.france,
@@ -123,7 +123,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.chile,
       COUNTRIES.south_africa,
       COUNTRIES.moldova,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.australia,
       COUNTRIES.romania,
       COUNTRIES.spain,
@@ -153,7 +153,7 @@ const PRIMARY_GRAPES = {
     wineType: 'Full-Bodied White Wine',
     countries: [
       COUNTRIES.france,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.australia,
       COUNTRIES.italy,
       COUNTRIES.chile,
@@ -180,7 +180,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.chile,
       COUNTRIES.south_africa,
       COUNTRIES.argentina,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.turkey
     ]
   },
@@ -190,7 +190,7 @@ const PRIMARY_GRAPES = {
     countries: [
       COUNTRIES.france,
       COUNTRIES.australia,
-      COUNTRIES.usa
+      COUNTRIES.united_states
     ]
   },
   chenin_blanc: {
@@ -200,7 +200,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.south_africa,
       COUNTRIES.france,
       COUNTRIES.argentina,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.turkey
     ]
   },
@@ -213,7 +213,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.ukraine,
       COUNTRIES.australia,
       COUNTRIES.germany,
-      COUNTRIES.usa
+      COUNTRIES.united_states
     ]
   },
   muscat_blanc: {
@@ -225,7 +225,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.greece,
       COUNTRIES.spain,
       COUNTRIES.brazil,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.portugal
     ]
   },
@@ -234,7 +234,7 @@ const PRIMARY_GRAPES = {
     wineType: "Aromatic White Wine",
     countries: [
       COUNTRIES.germany,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.australia,
       COUNTRIES.france,
       COUNTRIES.ukraine,
@@ -255,7 +255,7 @@ const PRIMARY_GRAPES = {
     countries: [
       COUNTRIES.france,
       COUNTRIES.italy,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.spain
     ]
   },
@@ -274,7 +274,7 @@ const PRIMARY_GRAPES = {
     wineType: "Light-Bodied Red Wine",
     countries: [
       COUNTRIES.france,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.germany,
       COUNTRIES.moldova,
       COUNTRIES.italy,
@@ -288,7 +288,7 @@ const PRIMARY_GRAPES = {
     wineType: "Medium-Bodied Red Wine",
     countries: [
       COUNTRIES.italy,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.argentina
     ]
   },
@@ -298,7 +298,7 @@ const PRIMARY_GRAPES = {
     countries: [
       COUNTRIES.france,
       COUNTRIES.italy,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.hungary,
       COUNTRIES.chile,
       COUNTRIES.south_africa
@@ -309,7 +309,7 @@ const PRIMARY_GRAPES = {
     wineType: "Medium-Bodied Red Wine",
     countries: [
       COUNTRIES.italy,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.argentina
     ]
   },
@@ -330,7 +330,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.spain,
       COUNTRIES.italy,
       COUNTRIES.algeria,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.australia
     ]
   },
@@ -347,7 +347,7 @@ const PRIMARY_GRAPES = {
     wineType: "Medium-Bodied Red Wine",
     countries: [
       COUNTRIES.france,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.spain,
       COUNTRIES.italy,
       COUNTRIES.romania,
@@ -386,7 +386,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.argentina,
       COUNTRIES.france,
       COUNTRIES.tunisia,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.australia
     ]
   },
@@ -401,7 +401,7 @@ const PRIMARY_GRAPES = {
     grapeName: "Zinfandel",
     wineType: "Medium-Bodied Red Wine",
     countries: [
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.italy
     ]
   },
@@ -425,7 +425,7 @@ const PRIMARY_GRAPES = {
     countries: [
       COUNTRIES.france,
       COUNTRIES.chile,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.australia,
       COUNTRIES.spain,
       COUNTRIES.china,
@@ -441,7 +441,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.argentina,
       COUNTRIES.france,
       COUNTRIES.chile,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.south_africa,
       COUNTRIES.australia,
       COUNTRIES.italy
@@ -454,7 +454,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.spain,
       COUNTRIES.france,
       COUNTRIES.australia,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.south_africa
     ]
   },
@@ -466,7 +466,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.mexico,
       COUNTRIES.argentina,
       COUNTRIES.australia,
-      COUNTRIES.usa
+      COUNTRIES.united_states
     ]
   },
   nero_davola: {
@@ -483,7 +483,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.spain,
       COUNTRIES.france,
       COUNTRIES.australia,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.south_africa,
       COUNTRIES.chile,
       COUNTRIES.argentina
@@ -493,7 +493,7 @@ const PRIMARY_GRAPES = {
     grapeName: "Petite Sirah",
     wineType: "Full-Bodied Red Wine",
     countries: [
-      COUNTRIES.usa
+      COUNTRIES.united_states
     ]
   },
   pinotage: {
@@ -512,7 +512,7 @@ const PRIMARY_GRAPES = {
       COUNTRIES.spain,
       COUNTRIES.argentina,
       COUNTRIES.south_africa,
-      COUNTRIES.usa,
+      COUNTRIES.united_states,
       COUNTRIES.italy,
       COUNTRIES.chile,
       COUNTRIES.portugal
@@ -589,6 +589,7 @@ const APPELLATIONS = {
       name: "Tucuman",
       secondary_appellations: null,
     },
+    // TODO - 1apl crash
     catamarca: {
       name: "Catamarca",
       secondary_appellations: null,
@@ -702,7 +703,7 @@ const APPELLATIONS = {
       secondary_appellations: null,
     },
     languedoc_roussilion: {
-      name: "Languedoc - Roussilion",
+      name: "Languedoc Roussilion",
       secondary_appellations: null,
     },
     south_west: {
@@ -833,7 +834,7 @@ const APPELLATIONS = {
   },
   italy: {
     valle_daosta: {
-      name: "Valle d'Aosta",
+      name: "Valle dAosta",
       secondary_appellations: null,
     },
     lombardy: {
@@ -841,11 +842,11 @@ const APPELLATIONS = {
       secondary_appellations: null,
     },
     trentino_alto_adige: {
-      name: "Trentino Alte Adige",
+      name: "Trentino Alto Adige",
       secondary_appellations: null,
     },
     friuli_venezia_giulia: {
-      name: "Triuli Venezia Giulia",
+      name: "Friuli Venezia Giulia",
       secondary_appellations: null,
     },
     veneto: {
@@ -860,7 +861,7 @@ const APPELLATIONS = {
       name: "Liguria",
       secondary_appellations: null,
     },
-    emilia_romagna: {
+    emilio_romagna: {
       name: "Emilio Romagna",
       secondary_appellations: null,
     },
@@ -908,7 +909,7 @@ const APPELLATIONS = {
       secondary_appellations: null,
     },
     hawkes_bay: {
-      name: "Hawk's Bay",
+      name: "Hawkes Bay",
       secondary_appellations: null,
     },
     wairarapa: {
@@ -1088,11 +1089,11 @@ const APPELLATIONS = {
       secondary_appellations: null,
     },
     southeast: {
-      name: "Southeast USA",
+      name: "Southeast",
       secondary_appellations: null,
     },
     midwest: {
-      name: "midwest",
+      name: "Midwest",
       secondary_appellations: null,
     },
     texas: {
@@ -1100,7 +1101,7 @@ const APPELLATIONS = {
       secondary_appellations: null,
     },
     southwest: {
-      name: "Southwest USA",
+      name: "Southwest",
       secondary_appellations: null,
     },
     california: {
@@ -1200,674 +1201,7 @@ const APPELLATIONS = {
     }
   }
 };
-const AppellationsArgentina = {
-  salta: {
-    name: "Salta",
-    secondary_appellations: null,
-  },
-  tucuman: {
-    name: "Tucuman",
-    secondary_appellations: null,
-  },
-  catamarca: {
-    name: "Catamarca",
-    secondary_appellations: null,
-  },
-  la_rioja: {
-    name: "La Rioja",
-    secondary_appellations: null,
-  },
-  san_juan: {
-    name: "San Juan",
-    secondary_appellations: null,
-  },
-  mendoza: {
-    name: "Mendoza",
-    secondary_appellations: null,
-  },
-  patagonia: {
-    name: "Patagonia",
-    secondary_appellations: null,
-  },
-};
-const AppellationsAustralia = {
-  western_australia: {
-    name: "Western Australia",
-    secondary_appellations: null,
-  },
-  south_australia: {
-    name: "South Australia",
-    secondary_appellations: null,
-  },
-  new_south_wales: {
-    name: "New South Wales",
-    secondary_appellations: null,
-  },
-  queesnland: {
-    name: "Queensland",
-    secondary_appellations: null,
-  },
-  victoria: {
-    name: "Victoria",
-    secondary_appellations: null,
-  },
-  tasmania: {
-    name: "Tasmania",
-    secondary_appellations: null,
-  },
-};
-const AppellationsAustria = {
-  burgenland: {
-    name: "Bergenland",
-    secondary_appellations: null,
-  },
-  niederosterreich: {
-    name: "Niederosterreich",
-    secondary_appellations: null,
-  },
-  steiermark: {
-    name: "Steiermark",
-    secondary_appellations: null,
-  },
-  wien: {
-    name: "Wien",
-    secondary_appellations: null,
-  },
-};
-const AppellationsChile = {
-  atacama: {
-    name: "Atacama",
-    secondary_appellations: null,
-  },
-  coquimbo_region: {
-    name: "Coquimbo Region",
-    secondary_appellations: null,
-  },
-  aconcagua_region: {
-    name: "Aconcagua Region",
-    secondary_appellations: null,
-  },
-  central_valley_region: {
-    name: "Central Valley Region",
-    secondary_appellations: null,
-  },
-  south_region: {
-    name: "South Region",
-    secondary_appellations: null,
-  },
-  austral_region: {
-    name: "Austral Region",
-    secondary_appellations: null,
-  },
-};
-const AppellationsFrance = {
-  loire_valley: {
-    name: "Loire Valley",
-    secondary_appellations: null,
-  },
-  champagne: {
-    name: "Champagne",
-    secondary_appellations: null,
-  },
-  alsace: {
-    name: "Alsace",
-    secondary_appellations: null,
-  },
-  beaujolais: {
-    name: "Beaujolais",
-    secondary_appellations: null,
-  },
-  provence: {
-    name: "Provence",
-    secondary_appellations: null,
-  },
-  languedoc_roussilion: {
-    name: "Languedoc - Roussilion",
-    secondary_appellations: null,
-  },
-  south_west: {
-    name: "South West",
-    secondary_appellations: null,
-  },
-  bordeaux: {
-    name: "Bordeaux",
-    secondary_appellations: {
-      medoc: {
-        name: "Medoc",
-        tertiary_appellations: null,
-      },
-      graves: {
-        name: "Graves",
-        tertiary_appellations: null,
-      },
-      sauternais: {
-        name: "Sauternais",
-        tertiary_appellations: null,
-      },
-      langon: {
-        name: "Langon",
-        tertiary_appellations: null,
-      },
-      cotes_de_bordeaus: {
-        name: "Cotes de Bordeaux",
-        tertiary_appellations: null,
-      },
-      libournais: {
-        name: "Libournais",
-        tertiary_appellations: null,
-      },
-      entre_deaux_more: {
-        name: "Entre-Deaux-Mere",
-        tertiary_appellations: null,
-      },
-    }
-  },
-  burgundy: {
-    name: "Burgundy",
-    secondary_appellations: {
-      chablis: {
-        name: "Chablis",
-        tertiary_appellations: null,
-      },
-      cote_de_nuits: {
-        name: "Cote de Nuits (Cote d'Or",
-        tertiary_appellations: null,
-      },
-      cote_chalonnaise: {
-        name: "Cote Chalonnaise",
-        tertiary_appellations: null,
-      },
-      maconnais: {
-        name: "Maconanais",
-        tertiary_appellations: null,
-      },
-    }
-  },
-  rhone: {
-    name: "Rhone Valley",
-    secondary_appellations: {
-      northern_rhone: {
-        name: "Northern Rhone",
-        tertiary_appellations: null,
-      },
-      southern_rhone: {
-        name: "Southern Rhone",
-        tertiary_appellations: null,
-      }
-    }
-  }
-};
-const AppellationsGermany = {
-  ahr: {
-    name: "Ahr",
-    secondary_appellations: null,
-  },
-  mittelrhein: {
-    name: "Mittelrhein",
-    secondary_appellations: null,
-  },
-  rheingau: {
-    name: "Rheingau",
-    secondary_appellations: null,
-  },
-  rheinhessen: {
-    name: "Rheinhessen",
-    secondary_appellations: null,
-  },
-  hessische_bergstrasse: {
-    name: "Hessische Bergstrasse",
-    secondary_appellations: null,
-  },
-  franken: {
-    name: "Franken",
-    secondary_appellations: null,
-  },
-  wurttemberg: {
-    name: "Wurttemberg",
-    secondary_appellations: null,
-  },
-  baden: {
-    name: "Baden",
-    secondary_appellations: null,
-  },
-  pfalz: {
-    name: "Phalz",
-    secondary_appellations: null,
-  },
-  nahe: {
-    name: "Nahe",
-    secondary_appellations: null,
-  },
-  mosel: {
-    name: "Mosel",
-    secondary_appellations: null,
-  },
-  saale_untrut: {
-    name: "Saale-Unstrut",
-    secondary_appellations: null,
-  },
-  sacheen: {
-    name: "Sacheen",
-    secondary_appellations: null,
-  }
-};
-const AppellationsItaly = {
-  valle_daosta: {
-    name: "Valle d'Aosta",
-    secondary_appellations: null,
-  },
-  lombardy: {
-    name: "Lombardy",
-    secondary_appellations: null,
-  },
-  trentino_alto_adige: {
-    name: "Trentino Alte Adige",
-    secondary_appellations: null,
-  },
-  friuli_venezia_giulia: {
-    name: "Triuli Venezia Giulia",
-    secondary_appellations: null,
-  },
-  veneto: {
-    name: "Veneto",
-    secondary_appellations: null,
-  },
-  piedmont: {
-    name: "Piedmont",
-    secondary_appellations: null,
-  },
-  liguria: {
-    name: "Liguria",
-    secondary_appellations: null,
-  },
-  emilia_romagna: {
-    name: "Emilio Romagna",
-    secondary_appellations: null,
-  },
-  tuscany: {
-    name: "Tuscany",
-    secondary_appellations: {
-      massa_carrara: {
-        name: "Massa Carrara",
-        tertiary_appellations: null,
-      },
-      lucca: {
-        name: "Lucca",
-        tertiary_appellations: null,
-      },
-      chianti: {
-        name: "Chianti",
-        tertiary_appellations: null,
-      },
-      grosseto: {
-        name: "Grosseto",
-        tertiary_appellations: null,
-      },
-      livorno: {
-        name: "Livorno",
-        tertiary_appellations: null,
-      },
-    }
-  },
-  umbria: {
-    name: "Umbria",
-    secondary_appellations: null,
-  },
-  lazio: {
-    name: "Lazio",
-    secondary_appellations: null,
-  },
-  campania: {
-    name: "Campania",
-    secondary_appellations: null,
-  },
-  basilicata: {
-    name: "Basilicata",
-    secondary_appellations: null,
-  },
-  calabria: {
-    name: "Calabria",
-    secondary_appellations: null,
-  },
-  marche: {
-    name: "Marche",
-    secondary_appellations: null,
-  },
-  abruzzo: {
-    name: "Abruzzo",
-    secondary_appellations: null,
-  },
-  molise: {
-    name: "Molise",
-    secondary_appellations: null,
-  },
-  puglia: {
-    name: "Pulia",
-    secondary_appellations: null,
-  },
-  corsica: {
-    name: "Corsica",
-    secondary_appellations: null,
-  },
-  sardegna: {
-    name: "Sardegna",
-    secondary_appellations: null,
-  },
-  sicily: {
-    name: "Sicily",
-    secondary_appellations: null,
-  },
-};
-const AppellationsNewZealand = {
-  northland: {
-    name: "Northland",
-    secondary_appellations: null,
-  },
-  aukalnd: {
-    name: "Aukland",
-    secondary_appellations: null,
-  },
-  waikatao_bay_of_planty: {
-    name: "Waikato Bay of Plenty",
-    secondary_appellations: null,
-  },
-  gisborne: {
-    name: "Gisborne",
-    secondary_appellations: null,
-  },
-  hawkes_bay: {
-    name: "Hawk's Bay",
-    secondary_appellations: null,
-  },
-  wairarapa: {
-    name: "Wairarapa",
-    secondary_appellations: null,
-  },
-  nelson: {
-    name: "Nelson",
-    secondary_appellations: null,
-  },
-  marlborough: {
-    name: "Marlborough",
-    secondary_appellations: null,
-  },
-  canterbury_waipara_valley: {
-    name: "Canterbury Waipara Valley",
-    secondary_appellations: null,
-  },
-  central_otago: {
-    name: "Central Otago",
-    secondary_appellations: null,
-  }
-};
-const AppellationsPortugal = {
-  minho: {
-    name: "Minho",
-    secondary_appellations: null,
-  },
-  transmontano: {
-    name: "Transmontano",
-    secondary_appellations: null,
-  },
-  douro_valley: {
-    name: "Douro Valley",
-    secondary_appellations: null,
-  },
-  terras_de_cister: {
-    name: "Terras de Cister",
-    secondary_appellations: null,
-  },
-  beira_interior: {
-    name: "Beira Interior",
-    secondary_appellations: null,
-  },
-  tejo_ribatejo: {
-    name: "Tejo Ribatejo",
-    secondary_appellations: null,
-  },
-  alentejo: {
-    name: "Alentejo",
-    secondary_appellations: null,
-  },
-  algarve: {
-    name: "Algarve",
-    secondary_appellations: null,
-  },
-  madeira: {
-    name: "Madeira",
-    secondary_appellations: null,
-  },
-  setubal: {
-    name: "Setubal",
-    secondary_appellations: null,
-  },
-  Lisboa: {
-    name: "Lisboa",
-    secondary_appellations: null,
-  },
-  beira_atlantico: {
-    name: "Beira Atlantico",
-    secondary_appellations: null,
-  },
-  dao: {
-    name: "Dao",
-    secondary_appellations: null,
-  },
-};
-const AppellationsSouthAfrica = {
-  orange_river_valley: {
-    name: "Orange River Valley",
-    secondary_appellations: null,
-  },
-  olifants_river_valley: {
-    name: "Olifants River Valley",
-    secondary_appellations: null,
-  },
-  swartland_Malmesbury: {
-    name: "Swartland Malmesbury",
-    secondary_appellations: null,
-  },
-  Breedekloof: {
-    name: "Breedekloof",
-    secondary_appellations: null,
-  },
-  worcester: {
-    name: "Worcester",
-    secondary_appellations: null,
-  },
-  klein_karoo: {
-    name: "Klein Karoo",
-    secondary_appellations: null,
-  },
-  robertson: {
-    name: "Robertson",
-    secondary_appellations: null,
-  },
-  walker_bay_cape_agulhas: {
-    name: "Walker Bay Cape Agulhas",
-    secondary_appellations: null,
-  },
-  stellenbosch: {
-    name: "Stellenbosch",
-    secondary_appellations: null,
-  },
-  paarl: {
-    name: "Paarl",
-    secondary_appellations: null,
-  },
-};
-const AppellationsSpain = {
-  galicia: {
-    name: "Galicia",
-    secondary_appellations: null,
-  },
-  castilla_yleon: {
-    name: "Castilla yLeon",
-    secondary_appellations: null,
-  },
-  pais_vasco: {
-    name: "Pais Vasco",
-    secondary_appellations: null,
-  },
-  rioja_navarra: {
-    name: "Rioja Navarra",
-    secondary_appellations: null,
-  },
-  aragon: {
-    name: "Aragon",
-    secondary_appellations: null,
-  },
-  catalania: {
-    name: "Catalania",
-    secondary_appellations: null,
-  },
-  valencia: {
-    name: "Valencia",
-    secondary_appellations: null,
-  },
-  castilla_la_mancha: {
-    name: "Castilla La Mancha",
-    secondary_appellations: null,
-  },
-  andalucia: {
-    name: "Andalucia",
-    secondary_appellations: null,
-  },
-  extremadura: {
-    name: "Extremandura",
-    secondary_appellations: null,
-  },
-  canary_islands: {
-    name: "Canary Islands",
-    secondary_appellations: null,
-  },
-};
-const AppellationsUnitedStates = {
-  michigan: {
-    name: "Michigan",
-    secondary_appellations: null,
-  },
-  new_york: {
-    name: "New York",
-    secondary_appellations: null,
-  },
-  virginia: {
-    name: "Virginia",
-    secondary_appellations: null,
-  },
-  southeast: {
-    name: "Southeast USA",
-    secondary_appellations: null,
-  },
-  midwest: {
-    name: "midwest",
-    secondary_appellations: null,
-  },
-  texas: {
-    name: "Texas",
-    secondary_appellations: null,
-  },
-  southwest: {
-    name: "Southwest USA",
-    secondary_appellations: null,
-  },
-  california: {
-    name: "California",
-    secondary_appellations: {
-      mendocino_county: {
-        name: "Mendocino County",
-        tertiary_appellations: null,
-      },
-      lake_county: {
-        name: "Lake County",
-        tertiary_appellations: null,
-      },
-      napa_valley: {
-        name: "Napa Valley",
-        tertiary_appellations: null,
-      },
-      sonoma_county: {
-        name: "Sonoma County",
-        tertiary_appellations: null,
-      },
-      sierra_foothills: {
-        name: "Sierra Foothills",
-        tertiary_appellations: null,
-      },
-      lodi: {
-        name: "Lodi",
-        tertiary_appellations: null,
-      },
-      madera: {
-        name: "Madera",
-        tertiary_appellations: null,
-      },
-      moterey: {
-        name: "Monterey",
-        tertiary_appellations: null,
-      },
-      paso_robles: {
-        name: "Paso Robles",
-        tertiary_appellations: null,
-      },
-      santa_barbara: {
-        name: "Santa Barbara",
-        tertiary_appellations: null,
-      },
-      temecula_valley: {
-        name: "Temecula Valley",
-        tertiary_appellations: null,
-      }
-    }
-  },
-  washington: {
-    name: "Washington",
-    secondary_appellations: {
-      yakima_valley: {
-        name: "Yakima Valley",
-        tertiary_appellations: null,
-      },
-      horse_heaven_hills: {
-        name: "Horse Heaven Hills",
-        tertiary_appellations: null,
-      },
-      columbia_valley: {
-        name: "Columbia Valley",
-        tertiary_appellations: null,
-      },
-      walla_walla: {
-        name: "Walla Walla",
-        tertiary_appellations: null,
-      }
-    }
-  },
-  oregon: {
-    name: "Oregon",
-    secondary_appellations: {
-      willamette_valley: {
-        name: "Willamette Valley",
-        tertiary_appellations: null,
-      },
-      umqua_valley: {
-        name: "Umqua Valley",
-        tertiary_appellations: null,
-      },
-      southern_oregon: {
-        name: "Southern Oregon",
-        tertiary_appellations: null,
-      },
-      columbia_valley: {
-        name: "Columbia Valley",
-        tertiary_appellations: null,
-      },
-      puget_sound: {
-        name: "Puget Sound",
-        tertiary_appellations: null,
-      },
-    }
-  },
-};
-const CountryMaps = {
+const COUNTRY_MAPS = {
   argentina: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_1024x1024.jpg?v=1504901310',
   australia: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Australia-wine-map2_1024x1024.jpg?v=1504901327',
   chile: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Chile-wine-map2_1024x1024.jpg?v=1504901370',
@@ -1883,7 +1217,6 @@ const CountryMaps = {
   south_africa: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-South-Africa-wine-map2_1024x1024.jpg?v=1504901109',
   // usCalifornia: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-California-wine-map2_1024x1024.jpg?v=1504901645',
 };
-
 
 const FranceAppellationPrimaryMaps = {
   alsace: 'http://winefolly.wpengine.netdna-cdn.com/wp-content/uploads/2016/08/France-Alsace-Wine-Map-WineFolly2016-sml.jpg',
@@ -1935,7 +1268,8 @@ const getCountries = () => {
     countries.push(COUNTRIES[country]);
   });
   countries.sort();
-  countries.unshift("Don't Know");
+  countries.push("Other");
+  countries.push("Don't Know");
   return countries;
 };
 
@@ -1949,82 +1283,83 @@ const populateCountrySelectInput = () => {
 
   $countySelectInput.append(html);
 };
-
-const getCountryMapAndDisplay = () => {
-  const $countrySelectInput = $('#js-country');
-  const $countryMap = $('.js-country-map-wrapper');
-  const countryWithCapitalLetters = $countrySelectInput.val();
-  const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
-  const src = CountryMaps[countryKey];
-  let html = '';
-
-  if ( !src ) {
-    html = `No Country Map for ${countryWithCapitalLetters}`;
-  } else {
-    html = `<p class="show-hide-country-map js-show-hide-country-map">Show/Hide Country Map</p><img class="country-map js-country-map" src="${src}">`;
-  }
-
-  $countryMap.html(html);
-  $countryMap.show();
-
-};
-
-const showHideCountryMap = () => {
-  const $countryMapImage = $('.js-country-map');
-  $countryMapImage.toggle();
-};
-
 // ************************************************************************* //
 // Country Select Input - END
 // ************************************************************************* //
 
-
 // ************************************************************************* //
-// Primary Appellation Select Input - BEGIN
+// Appellation Labels/Map Text - BEGIN
 // ************************************************************************* //
-const getPrimaryAppellations = () => {
-  let primaryAppellations = [];
-  const $countySelectInput = $('#js-country');
-  const country = $countySelectInput.val().toLowerCase().split(' ').join('_');
+// helper functions for Primary Appellation Select Input Section.
+const displayPrimaryAppellationText = (text) => {
+  const $label = $("label[for='js-primary-appellation']");
+  const $Map = $('.js-primary-app-map-wrapper');
 
-  // const countryAppellations = APPELLATIONS[country];
-  // console.log(APPELLATIONS[country]);
+  $label.html(text.label);
+  $Map.html(text.map);
+};
+const displaySecondaryAppellationText = (text) => {
+  const $label = $("label[for='js-secondary-appellation']");
+  const $Map = $('.js-secondary-app-map-wrapper');
 
-  Object.keys(APPELLATIONS[country]).forEach((primaryApplelation) => {
-    console.log('key =', primaryApplelation);
-    console.log('Appellation Object =', APPELLATIONS[primaryApplelation]);
-    console.log('Appellation Name =', APPELLATIONS[country][primaryApplelation].name);
-    primaryAppellations.push(APPELLATIONS[country][primaryApplelation].name);
-  });
-  primaryAppellations.sort();
-  primaryAppellations.unshift("Don't Know");
-  console.log('primaryAppellations', primaryAppellations);
-  return primaryAppellations;
+  $label.html(text.label);
+  $Map.html(text.map);
+};
+const setPrimaryAppellationText = (country) => {
+
+  let text = {
+    label: `Primary Appellations for ${country}`,
+    map: `Primary Appellation Maps`
+  };
+  displayPrimaryAppellationText(text);
+
+};
+const resetPrimaryAppellationText = () => {
+
+  let text = {
+    label: `Primary Appellations`,
+    map: `Primary Appellation Map`
+  };
+  displayPrimaryAppellationText(text);
+};
+const doNoPrimaryAppellationsText = (country) => {
+
+  let text = {
+    label: `Currently no Primary Appellations Information for ${country}`,
+    map: `Currently no Primary Appellation Maps for ${country}`
+  };
+  displayPrimaryAppellationText(text);
+};
+const setSecondaryAppellationText = (country) => {
+
+  let text = {
+    label: `Secondary Appellation`,
+    map: `Secondary Appellation Map`
+  };
+  displaySecondaryAppellationText(text);
+
+};
+const resetSecondaryAppellationText = () => {
+
+  let text = {
+    label: `Secondary Appellation (disabled until Primary Appellation selected)`,
+    map: `Secondary Appellation Map`
+  };
+  displaySecondaryAppellationText(text);
 };
 
-const populatePriamryAppellationSelectInput = () => {
-  console.log('populatePriamryAppellationSelectInput ran');
-  // TODO - current WIP
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  const appellations = getPrimaryAppellations();
-  let html = `<option value="" disabled selected>Select a Primary Appellation</option>`;
+const doNoSecondaryAppellationsText = (country) => {
 
-  $primaryAppellationSelectInput.empty();
-
-  if ( appellations ) {
-    console.log('if ran');
-    appellations.forEach((appellation) => {
-      html += `<option value="${appellation}">${appellation}</option>`;
-    });
-    $primaryAppellationSelectInput.removeAttr('disabled');
-  } else {
-
-  }
-  $primaryAppellationSelectInput.html(html);
+  let text = {
+    label: `Currently no Secondary Appellations Information for ${country}`,
+    map: `Currently no Secondary Appellation Maps for ${country}`
+  };
+  displaySecondaryAppellationText(text);
 };
 // ************************************************************************* //
-// Primary Appellation Select Input - BEGIN
+// Appellation Labels/Map Text - END
 // ************************************************************************* //
+
 
 
 // ************************************************************************* //
@@ -2037,7 +1372,7 @@ const getGrapesByCountry = (country) => {
   // all grapes.
   let grapes = [];
 
-  if ( country === "Don't Know" ) {
+  if ( country === "Don't Know" || country === "Other") {
     // get all grapes.
     Object.keys(PRIMARY_GRAPES).forEach((grape) => {
       grapes.push(PRIMARY_GRAPES[grape].grapeName);
@@ -2052,7 +1387,8 @@ const getGrapesByCountry = (country) => {
     });
   }
   grapes.sort();
-  grapes.unshift("Don't Know");
+  grapes.push("Other");
+  grapes.push("Don't Know");
   return grapes;
 
 };
@@ -2102,6 +1438,257 @@ const addWineTypeText = () => {
 // Primary Grape Select Input - END
 // ************************************************************************* //
 
+// ************************************************************************* //
+// Country Map - BEGIN
+// ************************************************************************* //
+const getCountryMapAndDisplay = () => {
+  const $countrySelectInput = $('#js-country');
+  const $countryMap = $('.js-country-map-wrapper');
+  const countryWithCapitalLetters = $countrySelectInput.val();
+  const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
+  const src = COUNTRY_MAPS[countryKey];
+  let html = '';
+
+  if ( !src ) {
+    html = `No Country Map for ${countryWithCapitalLetters}`;
+  } else {
+    html = `<p class="show-hide-country-map js-show-hide-country-map">Show/Hide Country Map</p><img class="country-map js-country-map" src="${src}">`;
+  }
+
+  $countryMap.html(html);
+  $countryMap.show();
+
+};
+
+const showHideCountryMap = () => {
+  const $countryMapImage = $('.js-country-map');
+  $countryMapImage.toggle();
+};
+// ************************************************************************* //
+// Country Map - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Handle Country Selection - BEGIN
+// ************************************************************************* //
+const handleCountrySelection = () => {
+  getCountryMapAndDisplay(); // good
+  populatePriamryAppellationSelectInput(); // good
+  populatePrimaryGrapesSelectInput(); // god
+};
+
+const handlePrimaryAppellationSelection = () =>{
+  showPrimaryAppellationMap();
+  populateSecondaryAppellationSelectInput();
+};
+// ************************************************************************* //
+// Handle Country Selection - END
+// ************************************************************************* //
+
+
+
+// ************************************************************************* //
+// Primary Appellation Select Input - BEGIN
+// ************************************************************************* //
+const populatePriamryAppellationSelectInput = () => {
+  const $primaryAppellationSelectInput = $('#js-primary-appellation');
+  const appellations = getPrimaryAppellations();
+
+  $primaryAppellationSelectInput.empty();
+
+  if ( appellations ) {
+    let html = `<option value="" disabled selected>Select a Primary Appellation</option>`;
+    appellations.forEach((appellation) => {
+      html += `<option value="${appellation}">${appellation}</option>`;
+    });
+    $primaryAppellationSelectInput.removeAttr('disabled');
+    $primaryAppellationSelectInput.html(html);
+  }
+
+};
+
+const getPrimaryAppellations = () => {
+  let primaryAppellations = [];
+  const $countySelectInput = $('#js-country');
+  const countryWithCapitalLetters = $countySelectInput.val();
+  const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
+
+  if ( !APPELLATIONS[countryKey] ) {
+    // handles case when there is no PRIMARY APPELLATIONS.
+    doNoPrimaryAppellationsText(countryWithCapitalLetters);
+    doNoSecondaryAppellationsText(countryWithCapitalLetters);
+
+  } else if (countryKey === "Other" || countryKey === "Don't Know") {
+    // handles cases when "Other" and "Don't Know" selected.
+    doNoPrimaryAppellationsText(countryWithCapitalLetters);
+    doNoSecondaryAppellationsText(countryWithCapitalLetters);
+
+  } else {
+    Object.keys(APPELLATIONS[countryKey]).forEach((primaryAppellation) => {
+      primaryAppellations.push(APPELLATIONS[countryKey][primaryAppellation].name);
+    });
+    primaryAppellations.sort();
+    primaryAppellations.push("Other");
+    primaryAppellations.push("Don't Know");
+
+    setPrimaryAppellationText(countryWithCapitalLetters);
+    resetSecondaryAppellationText();
+    return primaryAppellations;
+  }
+};
+
+const showPrimaryAppellationMap = () => {
+  // console.log('showPrimaryAppellationMap ran');
+};
+
+
+// ************************************************************************* //
+// Primary Appellation Select Input - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Pricing Select Inputs - BEGIN
+// ************************************************************************* //
+const handlePricing1Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing1 = $('#js-pricing-1');
+  const $pricing1SelectValue = $pricing1.val();
+  const $pricing1TextInput = $('#js-pricing-1-price');
+
+  console.log('$pricing1SelectValue = ', $pricing1SelectValue);
+
+  if ( $pricing1SelectValue === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing1TextInput.attr('disabled');
+
+  } else {
+    $pricing1TextInput.removeAttr('disabled');
+  }
+};
+const handlePricing2Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing2 = $('#js-pricing-2');
+  const $pricing2SelectValue = $pricing2.val();
+  const $pricing2TextInput = $('#js-pricing-2-price');
+
+  console.log('$pricing2SelectValue = ', $pricing2SelectValue);
+
+  if ( $pricing2SelectValue === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing2TextInput.attr('disabled');
+
+  } else {
+    $pricing2TextInput.removeAttr('disabled');
+  }
+};
+const handlePricing3Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing3 = $('#js-pricing-3');
+  const $pricing3SelectValue = $pricing3.val();
+  const $pricing3TextInput = $('#js-pricing-3-price');
+
+  console.log('$pricing3SelectValue = ', $pricing3SelectValue);
+
+  if ( $pricing3SelectValue === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing3TextInput.attr('disabled');
+
+  } else {
+    $pricing3TextInput.removeAttr('disabled');
+  }
+};
+const handlePricing4Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing4 = $('#js-pricing-4');
+  const $pricing4SelectValue = $pricing4.val();
+  const $pricing4TextInput = $('#js-pricing-4-price');
+
+  console.log('$pricing4SelectValue = ', $pricing4SelectValue);
+
+  if ( $pricing4SelectValue === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing4TextInput.attr('disabled');
+
+  } else {
+    $pricing4TextInput.removeAttr('disabled');
+  }
+};
+// ************************************************************************* //
+// Pricing Select Inputs - BEGIN
+// ************************************************************************* //
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+// ************************************************************************* //
+// Secondary Appellation Select Input - BEGIN
+// ************************************************************************* //
+const getSecondaryAppellations = () => {
+  console.log('getSecondaryAppellations ran');
+  let secondaryAppellations = [];
+  const $countySelectInput = $('#js-country');
+  const countryWithCapitalLetters = $countySelectInput.val();
+  const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
+  const $primaryAppellationSelectInput = $('#js-primary-appellation');
+  const primaryAppellationCapitalized = $primaryAppellationSelectInput.val();
+  const primAppKey = $primaryAppellationSelectInput.val().toLowerCase().split(' ').join('_');
+  let appsObj;
+
+  console.log('countryKey = ', countryKey);
+  console.log('primAppKey = ', primAppKey);
+
+  // console.log('APPELLATIONS[countryKey][primAppKey] = ', APPELLATIONS[countryKey][primAppKey]);
+  // console.log('APPELLATIONS[countryKey][primAppKey].second_appellation = ', APPELLATIONS[countryKey][primAppKey].secondary_appellations);
+
+  if ( !APPELLATIONS[countryKey][primAppKey].secondary_appellations ) {
+    // Secondary Appellations don't exist.
+    // TODO - add code.
+    doNoSecondaryAppellationsText(countryWithCapitalLetters);
+
+  } else if (primAppKey === "Other" || primAppKey === "Don't Know") {
+    // TODO - add code when tertiary appellations functionality added.
+  } else {
+    // secondary appellations exist.
+    appsObj = APPELLATIONS[countryKey][primAppKey].secondary_appellations;
+    Object.keys(appsObj).forEach((appelationKey) => {
+      secondaryAppellations.push(appsObj[appelationKey].name);
+    });
+
+    secondaryAppellations.sort();
+    return secondaryAppellations;
+  }
+
+};
+
+const populateSecondaryAppellationSelectInput = () => {
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
+  const appellations = getSecondaryAppellations();
+
+  $secondaryAppellationSelectInput.empty();
+
+  if ( !appellations ) {
+    // do nothing.
+  } else {
+
+    let html = `<option value="" disabled selected>Select a Secondary Appellation</option>`;
+    appellations.forEach((appellation) => {
+      html += `<option value="${appellation}">${appellation}</option>`;
+    });
+    $secondaryAppellationSelectInput.removeAttr('disabled');
+    $secondaryAppellationSelectInput.html(html);
+  }
+};
+// ************************************************************************* //
+// Secondary Appellation Select Input - END
+// ************************************************************************* //
+
+
+
 
 $(function() {
   populateCountrySelectInput();
@@ -2110,12 +1697,22 @@ $(function() {
   const $cancelButton = $('.js-button-cancel');
   const $newTastingNoteForm = $('.tasting-form');
   const $countrySelectInput = $('#js-country');
+  const $primaryAppellationSelectInput = $('#js-primary-appellation');
+  // const $secondaryAppellationSelectInput = $('#js-secondary-appellation'); // TODO - wire up.
   const $primaryGrapeSelectInput = $('#js-primary-grape');
+  const $pricing1 = $('#js-pricing-1');
+  const $pricing2 = $('#js-pricing-2');
+  const $pricing3 = $('#js-pricing-3');
+  const $pricing4 = $('#js-pricing-4');
+
+  $countrySelectInput.change(handleCountrySelection);
+  $primaryAppellationSelectInput.change(handlePrimaryAppellationSelection);
+  $pricing1.change(handlePricing1Selection);
+  $pricing2.change(handlePricing2Selection);
+  $pricing3.change(handlePricing3Selection);
+  $pricing4.change(handlePricing4Selection);
 
   $newTastingNoteForm.on('click', '.js-show-hide-country-map', showHideCountryMap);
-  $countrySelectInput.change(populatePrimaryGrapesSelectInput);
-  $countrySelectInput.change(getCountryMapAndDisplay);
-  $countrySelectInput.change(populatePriamryAppellationSelectInput);
   $primaryGrapeSelectInput.change(addWineTypeText);
 
 });
