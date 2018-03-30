@@ -1458,7 +1458,6 @@ const setSecondaryAppellationText = (country) => {
   displaySecondaryAppellationText(text);
 
 };
-// TODO - WIP - fix resetSecondaryAppellationText on Country Selection.
 const resetSecondaryAppellationText = () => {
   const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
 
