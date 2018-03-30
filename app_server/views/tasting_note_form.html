@@ -15,10 +15,19 @@
                 <input id="js-wine-name" class="wine-name" type="text" name="wine-name" required autofocus="true"/>
             </p>
             <p>
+                <!-- TODO current WIP-->
                 <label for="js-country">Country</label>
                 <select id="js-country" class="country" ></select>
                 <div class="country-map-wrapper js-country-map-wrapper">Country Map</div>
             </p>
+            <div class="country js-country">
+                <span class="country-span js-country-span">Country: ${tastingDetail.country}</span>
+                <div class="country-map-wrapper js-country-map-wrapper">
+                    <img class="js-country-map" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-All-wine-map2_1024x1024.jpg?v=1504901393">
+                </div>
+            </div>
+
+
             <p>
                 <label for="js-primary-appellation">Primary Appellation (disabled until Country selected)</label>
                 <select id="js-primary-appellation" class="primary-appellation" disabled></select>
@@ -27,26 +36,62 @@
             <p>
                 <label for="js-secondary-appellation">Secondary Appellation (disabled until Primary Appellation selected)</label>
                 <select id="js-secondary-appellation" class="secondary-appellation" disabled></select>
-            <div class="secondary-appellation-map-wrapper js-secondary-app-map-wrapper">Secondary Appellation Map</div>
+                <div class="secondary-appellation-map-wrapper js-secondary-app-map-wrapper">Secondary Appellation Map</div>
             </p>
             <p>
                 <label for="js-primary-grape">Primary Grape / Style</label>
                 <select id="js-primary-grape" class="primary-grape" disabled></select>
             </p>
             <p>
+                <label for="js-tasting-note-ta">Tasting Notes</label>
+                <textarea id="js-tasting-note-ta" class="tasting-note-ta" type="text-area" name="tasting-note-ta">
+NOSE - Primary Aromas - from the grape (e.g. dark cherry, spice, wet gravel, etc.):
+
+
+NOSE - Secondary Aromas - from wine making process, yeast, bacteria (e.g. buttery, etc.):
+
+
+NOSE - Tertiary Aromas - from aging and oxidation (e.g. nutty, etc.):
+
+
+NOSE - Faults (corked, reduction, oxidized, UV-damage, heat-damage, spritzed):
+
+
+TASTE - Attack:
+
+
+TASTE - Mid-Palate:
+
+
+TASTE - Finish:
+
+
+SWEETNESS (bone-dry, dry, off-dry, sweet, very sweet):
+
+ACIDITY (low, medium-low, average, sour, very sour):
+
+TANNIN (low, medium-low, average, astringent, very astringent):
+
+ALCOHOL(low, medium-low, average, medium-high, high:
+
+BODY (very light, light-bodied, average, medium-full, full-bodied):
+
+                </textarea>
+            </p>
+            <p>
                 <label for="js-rating">Rating</label>
                 <select id="js-rating" class="rating" >
                     <option value="" disabled selected>Choose Rating</option>
-                    <option value="1">1 - Exceptional</option>
-                    <option value="2">2 - Excellent</option>
+                    <option value="5">5 - Exceptional</option>
+                    <option value="4">4 - Excellent</option>
                     <option value="3">3 - Very Good</option>
-                    <option value="4">4 - Good</option>
-                    <option value="5">5 - OK</option>
+                    <option value="2">2 - Good</option>
+                    <option value="1">1 - OK</option>
                 </select>
             </p>
             <p>
-                <label for="js-pricing-1">Pricing 1</label>
-                <select id="js-pricing-1" class="pricing" >
+                <label for="js-pricing-1-desc">Pricing 1</label>
+                <select id="js-pricing-1-desc" class="pricing-desc" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -61,8 +106,8 @@
                 <input id="js-pricing-1-price" class="pricing-1-price" type="text" name="pricing-1-price" disabled/>
             </p>
             <p>
-                <label for="js-pricing-2">Pricing 2</label>
-                <select id="js-pricing-2" class="pricing" >
+                <label for="js-pricing-2-desc">Pricing 2</label>
+                <select id="js-pricing-2-desc" class="pricing-desc" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -77,8 +122,8 @@
                 <input id="js-pricing-2-price" class="pricing-2-price" type="text" name="pricing-2-price" disabled/>
             </p>
             <p>
-                <label for="js-pricing-3">Pricing 3</label>
-                <select id="js-pricing-3" class="pricing" >
+                <label for="js-pricing-3-desc">Pricing 3</label>
+                <select id="js-pricing-3-desc" class="pricing-desc" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -93,8 +138,8 @@
                 <input id="js-pricing-3-price" class="pricing-3-price" type="text" name="pricing-3-price" disabled/>
             </p>
             <p>
-                <label for="js-pricing-4">Pricing 4</label>
-                <select id="js-pricing-4" class="pricing" >
+                <label for="js-pricing-4-desc">Pricing 4</label>
+                <select id="js-pricing-4-desc" class="pricing-desc" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -107,10 +152,6 @@
                     <option value="case_3_plus">Case 3 +</option>
                 </select>
                 <input id="js-pricing-4-price" class="pricing-4-price" type="text" name="pricing-4-price" disabled/>
-            </p>
-            <p>
-                <label for="js-tasting-note-ta">Tasting Notes</label>
-                <input id="js-tasting-note-ta" class="tasting-note-ta" type="text-area" name="tasting-note-ta" />
             </p>
             <div class="buttons">
                 <div class="button-cancel">

@@ -5,8 +5,8 @@
 // ************************************************************************* //
 
 const TASTING_EVENTS_URL = `/events`;
-// events/:eventsId/tastings
-const TASTING_EVENT_POST_URL = `/api/events/new`;
+// const TASTING_EVENT_POST_URL = `/api/events/:eventId/tastings`; // url for production
+const TASTING_NOTE_POST_URL = `/api/events/5/tastings`; // temp url for testing
 
 function postDataToApi(url, options, callback) {
   console.log('options inside postDataToApi() = ', options);
@@ -27,11 +27,45 @@ function postDataToApi(url, options, callback) {
 // ************************************************************************* //
 
 function handleFormSubmit(e) {
+  console.log('handleFormSubmit ran');
   e.preventDefault();
 
-  const eventName = $('.js-event-name').val();
-  const eventHost = $('.js-event-host').val();
+  // FOR PRODUCTION
+  // const eventHost = $('js-event-host.').val();
+  // const wineName = $('#js-wine-name').val();
+  // const country = $('#js-country').val();
+  // const primaryAppellation = $('#js-primary-appellation').val();
+  // const secondaryAppellation = $('#js-secondary-appellation').val();
+  // const primaryGrape = $('#js-primary-grape').val();
+  // const rating = $('#js-rating').val();
+  // const pricing1 = $('#js-pricing-1').val();
+  // const pricing1Price = $('#js-pricing-1-price').val();
+  // const pricing2 = $('#js-pricing-2').val();
+  // const pricing2Price = $('#js-pricing-2-price').val();
+  // const pricing3 = $('#js-pricing-3').val();
+  // const pricing3Price = $('#js-pricing-3-price').val();
+  // const pricing4 = $('#js-pricing-4').val();
+  // const pricing4Price = $('#js-pricing-4-price').val();
+  // const tastingNotes = $('#js-tasting-note-ta').val();
 
+  // FOR TESTING
+  const eventHost = 'Avant Partir';
+  const wineName = 'Wow Wine';
+  const country = 'France';
+  const primaryAppellation = 'Bordeaux';
+  const secondaryAppellation = 'Langon';
+  const primaryGrape = 'Bordeaux Blend';
+  const rating = '2';
+  const pricing1 = 'btl_1';
+  const pricing1Price = '20.00';
+  const pricing2 = 'btl_2';
+  const pricing2Price = '19.00';
+  const pricing3 = 'btl_3_plus';
+  const pricing3Price = '18.00';
+  const pricing4 = 'case_2';
+  const pricing4Price = '17.00';
+  const tastingNotes = 'blah blah blah';
+  const eventId = '5';
 
   // Server-side Validation
   // if ( !eventName ) {
@@ -40,11 +74,36 @@ function handleFormSubmit(e) {
   // }
 
   const options = {
-    eventName,
-    eventHost
+    eventHost,
+    wineName,
+    country,
+    primaryAppellation,
+    secondaryAppellation,
+    primaryGrape,
+    rating,
+    pricing1: {
+      desc: pricing1,
+      price: pricing1Price
+    },
+    pricing2: {
+      desc: pricing2,
+      price: pricing2Price
+    },
+    pricing3: {
+      desc: pricing3,
+      price: pricing3Price
+    },
+    pricing4: {
+      desc: pricing4,
+      price: pricing4Price
+    },
+    tastingNotes,
+    eventId
   };
 
-  postDataToApi(TASTING_EVENT_POST_URL, options, redirectToEventsListOnSave);
+  console.log('options', options);
+  // return false;
+  postDataToApi(TASTING_NOTE_POST_URL, options, redirectToEventsListOnSave);
 }
 
 function redirectToEventsListOnCancel(event) {

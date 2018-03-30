@@ -589,7 +589,6 @@ const APPELLATIONS = {
       name: "Tucuman",
       secondary_appellations: null,
     },
-    // TODO - 1apl crash
     catamarca: {
       name: "Catamarca",
       secondary_appellations: null,
@@ -751,7 +750,7 @@ const APPELLATIONS = {
           tertiary_appellations: null,
         },
         cote_de_nuits: {
-          name: "Cote de Nuits (Cote d'Or",
+          name: "Cote de Nuits (Cote d'Or)",
           tertiary_appellations: null,
         },
         cote_chalonnaise: {
@@ -1339,13 +1338,17 @@ const setSecondaryAppellationText = (country) => {
   displaySecondaryAppellationText(text);
 
 };
+// TODO - WIP - fix resetSecondaryAppellationText on Country Selection.
 const resetSecondaryAppellationText = () => {
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
 
   let text = {
     label: `Secondary Appellation (disabled until Primary Appellation selected)`,
     map: `Secondary Appellation Map`
   };
   displaySecondaryAppellationText(text);
+  $secondaryAppellationSelectInput.empty();
+  $secondaryAppellationSelectInput.attr('disabled');
 };
 
 const doNoSecondaryAppellationsText = (country) => {
@@ -1452,7 +1455,7 @@ const getCountryMapAndDisplay = () => {
   if ( !src ) {
     html = `No Country Map for ${countryWithCapitalLetters}`;
   } else {
-    html = `<p class="show-hide-country-map js-show-hide-country-map">Show/Hide Country Map</p><img class="country-map js-country-map" src="${src}">`;
+    html = `<div class="show-hide-country-map js-show-hide-country-map"><span></span>Show/Hide Country Map</span></div><img class="country-map js-country-map" src="${src}">`;
   }
 
   $countryMap.html(html);
@@ -1474,7 +1477,7 @@ const showHideCountryMap = () => {
 const handleCountrySelection = () => {
   getCountryMapAndDisplay(); // good
   populatePriamryAppellationSelectInput(); // good
-  populatePrimaryGrapesSelectInput(); // god
+  populatePrimaryGrapesSelectInput(); // good
 };
 
 const handlePrimaryAppellationSelection = () =>{
@@ -1485,28 +1488,80 @@ const handlePrimaryAppellationSelection = () =>{
 // Handle Country Selection - END
 // ************************************************************************* //
 
+// ************************************************************************* //
+// Pricing Select Inputs - BEGIN
+// ************************************************************************* //
+const handlePricing1Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing1Desc = $('#js-pricing-1-desc');
+  const $pricing1DescVal = $pricing1Desc.val();
+  const $pricing1PriceInput = $('#js-pricing-1-price');
 
+  console.log('$pricing1DescVal = ', $pricing1DescVal);
+
+  if ( $pricing1DescVal === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing1PriceInput.attr('disabled');
+
+  } else {
+    $pricing1PriceInput.removeAttr('disabled');
+  }
+};
+const handlePricing2Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing2Desc = $('#js-pricing-2-desc');
+  const $pricing2DescVal = $pricing2Desc.val();
+  const $pricing2PriceInput = $('#js-pricing-2-price');
+
+  console.log('$pricing2DescVal = ', $pricing2DescVal);
+
+  if ( $pricing2DescVal === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing2PriceInput.attr('disabled');
+
+  } else {
+    $pricing2PriceInput.removeAttr('disabled');
+  }
+};
+const handlePricing3Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing3Desc = $('#js-pricing-3-desc');
+  const $pricing3DescVal = $pricing3Desc.val();
+  const $pricing3PriceInput = $('#js-pricing-3-price');
+
+  console.log('$pricing3DescVal = ', $pricing3DescVal);
+
+  if ( $pricing3DescVal === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing3PriceInput.attr('disabled');
+
+  } else {
+    $pricing3PriceInput.removeAttr('disabled');
+  }
+};
+const handlePricing4Selection = () => {
+  console.log('handlePricing1Selection ran');
+  const $pricing4Desc = $('#js-pricing-4-desc');
+  const $pricing4DescVal = $pricing4Desc.val();
+  const $pricing4PriceInput = $('#js-pricing-4-price');
+
+  console.log('$pricing4DescVal = ', $pricing4DescVal);
+
+  if ( $pricing4DescVal === "not_applicable" ) {
+    // disable pricing text input.
+    $pricing4PriceInput.attr('disabled');
+
+  } else {
+    $pricing4PriceInput.removeAttr('disabled');
+  }
+};
+// ************************************************************************* //
+// Pricing Select Inputs - BEGIN
+// ************************************************************************* //
 
 // ************************************************************************* //
 // Primary Appellation Select Input - BEGIN
 // ************************************************************************* //
-const populatePriamryAppellationSelectInput = () => {
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  const appellations = getPrimaryAppellations();
-
-  $primaryAppellationSelectInput.empty();
-
-  if ( appellations ) {
-    let html = `<option value="" disabled selected>Select a Primary Appellation</option>`;
-    appellations.forEach((appellation) => {
-      html += `<option value="${appellation}">${appellation}</option>`;
-    });
-    $primaryAppellationSelectInput.removeAttr('disabled');
-    $primaryAppellationSelectInput.html(html);
-  }
-
-};
-
 const getPrimaryAppellations = () => {
   let primaryAppellations = [];
   const $countySelectInput = $('#js-country');
@@ -1537,6 +1592,27 @@ const getPrimaryAppellations = () => {
   }
 };
 
+const populatePriamryAppellationSelectInput = () => {
+  const $primaryAppellationSelectInput = $('#js-primary-appellation');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
+  const appellations = getPrimaryAppellations();
+
+  $primaryAppellationSelectInput.empty();
+  $secondaryAppellationSelectInput.empty();
+
+  if ( appellations ) {
+    let html = `<option value="" disabled selected>Select a Primary Appellation</option>`;
+    appellations.forEach((appellation) => {
+      html += `<option value="${appellation}">${appellation}</option>`;
+    });
+    $primaryAppellationSelectInput.removeAttr('disabled');
+    $primaryAppellationSelectInput.html(html);
+  }
+
+};
+
+
+
 const showPrimaryAppellationMap = () => {
   // console.log('showPrimaryAppellationMap ran');
 };
@@ -1546,76 +1622,7 @@ const showPrimaryAppellationMap = () => {
 // Primary Appellation Select Input - END
 // ************************************************************************* //
 
-// ************************************************************************* //
-// Pricing Select Inputs - BEGIN
-// ************************************************************************* //
-const handlePricing1Selection = () => {
-  console.log('handlePricing1Selection ran');
-  const $pricing1 = $('#js-pricing-1');
-  const $pricing1SelectValue = $pricing1.val();
-  const $pricing1TextInput = $('#js-pricing-1-price');
 
-  console.log('$pricing1SelectValue = ', $pricing1SelectValue);
-
-  if ( $pricing1SelectValue === "not_applicable" ) {
-    // disable pricing text input.
-    $pricing1TextInput.attr('disabled');
-
-  } else {
-    $pricing1TextInput.removeAttr('disabled');
-  }
-};
-const handlePricing2Selection = () => {
-  console.log('handlePricing1Selection ran');
-  const $pricing2 = $('#js-pricing-2');
-  const $pricing2SelectValue = $pricing2.val();
-  const $pricing2TextInput = $('#js-pricing-2-price');
-
-  console.log('$pricing2SelectValue = ', $pricing2SelectValue);
-
-  if ( $pricing2SelectValue === "not_applicable" ) {
-    // disable pricing text input.
-    $pricing2TextInput.attr('disabled');
-
-  } else {
-    $pricing2TextInput.removeAttr('disabled');
-  }
-};
-const handlePricing3Selection = () => {
-  console.log('handlePricing1Selection ran');
-  const $pricing3 = $('#js-pricing-3');
-  const $pricing3SelectValue = $pricing3.val();
-  const $pricing3TextInput = $('#js-pricing-3-price');
-
-  console.log('$pricing3SelectValue = ', $pricing3SelectValue);
-
-  if ( $pricing3SelectValue === "not_applicable" ) {
-    // disable pricing text input.
-    $pricing3TextInput.attr('disabled');
-
-  } else {
-    $pricing3TextInput.removeAttr('disabled');
-  }
-};
-const handlePricing4Selection = () => {
-  console.log('handlePricing1Selection ran');
-  const $pricing4 = $('#js-pricing-4');
-  const $pricing4SelectValue = $pricing4.val();
-  const $pricing4TextInput = $('#js-pricing-4-price');
-
-  console.log('$pricing4SelectValue = ', $pricing4SelectValue);
-
-  if ( $pricing4SelectValue === "not_applicable" ) {
-    // disable pricing text input.
-    $pricing4TextInput.attr('disabled');
-
-  } else {
-    $pricing4TextInput.removeAttr('disabled');
-  }
-};
-// ************************************************************************* //
-// Pricing Select Inputs - BEGIN
-// ************************************************************************* //
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1635,7 +1642,6 @@ const getSecondaryAppellations = () => {
   const countryWithCapitalLetters = $countySelectInput.val();
   const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
   const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  const primaryAppellationCapitalized = $primaryAppellationSelectInput.val();
   const primAppKey = $primaryAppellationSelectInput.val().toLowerCase().split(' ').join('_');
   let appsObj;
 
@@ -1647,7 +1653,6 @@ const getSecondaryAppellations = () => {
 
   if ( !APPELLATIONS[countryKey][primAppKey].secondary_appellations ) {
     // Secondary Appellations don't exist.
-    // TODO - add code.
     doNoSecondaryAppellationsText(countryWithCapitalLetters);
 
   } else if (primAppKey === "Other" || primAppKey === "Don't Know") {
@@ -1660,6 +1665,8 @@ const getSecondaryAppellations = () => {
     });
 
     secondaryAppellations.sort();
+    secondaryAppellations.push("Other");
+    secondaryAppellations.push("Don't Know");
     return secondaryAppellations;
   }
 
