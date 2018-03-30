@@ -211,7 +211,7 @@ $(function() {
   getDataFromApi(TASTING_EVENTS_API_URL, options, renderTastingEventsList);
 
   // listeners
-  const $tastingEventsAndTastingNotesWrapper = $('.js-events-wrapper');
+  const $tastingEventsAndTastingNotesWrapper = $('.js-events-list-wrapper');
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-span', getTastingNotesListData);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-span', getTastingNotesDetailData);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);

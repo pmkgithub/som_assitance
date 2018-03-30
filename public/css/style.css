@@ -91,26 +91,26 @@
 li.event-li {
   list-style: none;
 }
-.event-span {
+.events-list-wrapper .event-span {
   cursor: pointer;
 }
 
 li.tasting-li {
   list-style: none;
 }
-.tasting-span {
+.events-list-wrapper .tasting-span {
   cursor: pointer;
 }
-.country-map-span {
+.events-list-wrapper .country-map-span {
   cursor: pointer;
 }
-.country-map {
+.events-list-wrapper .country-map {
   display: none;
 }
-.primary-appellation-map-span {
+.events-list-wrapper .primary-appellation-map-span {
   cursor: pointer;
 }
-.primary-appellation-map {
+.events-list-wrapper .primary-appellation-map {
   display: none;
 }
 /******************************************************************************/
@@ -203,8 +203,11 @@ li.tasting-li {
 .tasting-form .country-map {
   width: 100%;
 }
-.tasting-form .show-hide-country-map {
+.tasting-form .country-map-span {
   cursor: pointer;
+}
+.tasting-form .country-map-img {
+  width: 100%;
 }
 .tasting-form textarea {
   height: 300px;

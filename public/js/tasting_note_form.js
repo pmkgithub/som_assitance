@@ -1309,7 +1309,7 @@ const populateCountrySelectInput = () => {
 // ************************************************************************* //
 const getCountryMapAndDisplay = () => {
   const $countrySelectInput = $('#js-country-select');
-  const $countryMap = $('.js-country-map-wrapper');
+  const $countryMapWrapper = $('.js-country-map-wrapper');
   const countryWithCapitalLetters = $countrySelectInput.val();
   const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
   const src = COUNTRY_MAPS[countryKey];
@@ -1318,17 +1318,26 @@ const getCountryMapAndDisplay = () => {
   if ( !src ) {
     html = `No Country Map for ${countryWithCapitalLetters}`;
   } else {
-    html = `<div class="show-hide-country-map js-show-hide-country-map"><span></span>Show/Hide Country Map</span></div><img class="country-map js-country-map" src="${src}">`;
+    html = `<div class="country-map js-country-map"><span class="country-map-span js-country-map-span">Show/Hide Country Map</span><img class="country-map-img js-country-map-img" src="${src}"></div>`;
   }
 
-  $countryMap.html(html);
-  $countryMap.show();
+  $countryMapWrapper.html(html);
+  $countryMapWrapper.show();
 
 };
+// TODO - current WIP
+// function toggleCountryMap(e) {
+//   e.stopPropagation();
+//   const $countrySpan = $(e.target);
+//   $countrySpan.siblings('.js-country-map').toggle();
+// }
 
-const showHideCountryMap = () => {
-  const $countryMapImage = $('.js-country-map');
-  $countryMapImage.toggle();
+const toggleCountryMap = (e) => {
+  console.log('toggleCountryMap ran');
+  console.log('e.target = ', e.target);
+  e.stopPropagation();
+  const $countryMapSpan = $(e.target);
+  $countryMapSpan.siblings('.js-country-map-img').toggle();
 };
 // ************************************************************************* //
 // Country Map - END
@@ -1694,7 +1703,7 @@ $(function() {
 
   // listeners
   const $cancelButton = $('.js-button-cancel');
-  const $newTastingNoteForm = $('.tasting-form');
+  const $tastingNoteForm = $('.tasting-form');
   const $countrySelectInput = $('#js-country-select');
   const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
   // const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select'); // TODO - wire up.
@@ -1711,7 +1720,9 @@ $(function() {
   $pricing3.change(handlePricing3Selection);
   $pricing4.change(handlePricing4Selection);
 
-  $newTastingNoteForm.on('click', '.js-show-hide-country-map', showHideCountryMap);
+  // $newTastingNoteForm.on('click', '.js-country-map', showHideCountryMap);
+  $tastingNoteForm.on('click', '.js-country-map-span', toggleCountryMap);
+  // $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $primaryGrapeSelectInput.change(addWineTypeText);
 
 });
