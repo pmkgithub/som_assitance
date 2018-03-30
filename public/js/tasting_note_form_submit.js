@@ -32,20 +32,20 @@ function handleFormSubmit(e) {
 
   // FOR PRODUCTION
   // const eventHost = $('js-event-host.').val();
-  // const wineName = $('#js-wine-name').val();
-  // const country = $('#js-country').val();
-  // const primaryAppellation = $('#js-primary-appellation').val();
-  // const secondaryAppellation = $('#js-secondary-appellation').val();
-  // const primaryGrape = $('#js-primary-grape').val();
-  // const rating = $('#js-rating').val();
-  // const pricing1 = $('#js-pricing-1').val();
-  // const pricing1Price = $('#js-pricing-1-price').val();
-  // const pricing2 = $('#js-pricing-2').val();
-  // const pricing2Price = $('#js-pricing-2-price').val();
-  // const pricing3 = $('#js-pricing-3').val();
-  // const pricing3Price = $('#js-pricing-3-price').val();
-  // const pricing4 = $('#js-pricing-4').val();
-  // const pricing4Price = $('#js-pricing-4-price').val();
+  // const wineName = $('#js-wine-name-input').val();
+  // const country = $('#js-country-select').val();
+  // const primaryAppellation = $('#js-primary-appellation-select').val();
+  // const secondaryAppellation = $('#js-secondary-appellation-select').val();
+  // const primaryGrape = $('#js-primary-grape-select').val();
+  // const rating = $('#js-rating-select').val();
+  // const pricing1 = $('#js-pricing-1-select').val();
+  // const pricing1Price = $('#js-pricing-1-price-input').val();
+  // const pricing2 = $('#js-pricing-2-select').val();
+  // const pricing2Price = $('#js-pricing-2-price-input').val();
+  // const pricing3 = $('#js-pricing-3-select').val();
+  // const pricing3Price = $('#js-pricing-3-price-input').val();
+  // const pricing4 = $('#js-pricing-4-select').val();
+  // const pricing4Price = $('#js-pricing-4-price-input').val();
   // const tastingNotes = $('#js-tasting-note-ta').val();
 
   // FOR TESTING

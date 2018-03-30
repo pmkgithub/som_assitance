@@ -1274,7 +1274,7 @@ const getCountries = () => {
 
 const populateCountrySelectInput = () => {
   let html = `<option value="" disabled selected>Select a country</option>`;
-  const $countySelectInput = $('#js-country');
+  const $countySelectInput = $('#js-country-select');
 
   getCountries().forEach((country) => {
     html += `<option value="${country}">${country}</option>`;
@@ -1291,14 +1291,14 @@ const populateCountrySelectInput = () => {
 // ************************************************************************* //
 // helper functions for Primary Appellation Select Input Section.
 const displayPrimaryAppellationText = (text) => {
-  const $label = $("label[for='js-primary-appellation']");
+  const $label = $("label[for='js-primary-appellation-select']");
   const $Map = $('.js-primary-app-map-wrapper');
 
   $label.html(text.label);
   $Map.html(text.map);
 };
 const displaySecondaryAppellationText = (text) => {
-  const $label = $("label[for='js-secondary-appellation']");
+  const $label = $("label[for='js-secondary-appellation-select']");
   const $Map = $('.js-secondary-app-map-wrapper');
 
   $label.html(text.label);
@@ -1340,7 +1340,7 @@ const setSecondaryAppellationText = (country) => {
 };
 // TODO - WIP - fix resetSecondaryAppellationText on Country Selection.
 const resetSecondaryAppellationText = () => {
-  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
 
   let text = {
     label: `Secondary Appellation (disabled until Primary Appellation selected)`,
@@ -1397,8 +1397,8 @@ const getGrapesByCountry = (country) => {
 };
 
 const populatePrimaryGrapesSelectInput = () => {
-  const $countrySelectInput = $('#js-country');
-  const $primaryGrapeSelectInput = $('#js-primary-grape');
+  const $countrySelectInput = $('#js-country-select');
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   const country = $countrySelectInput.val();
   const primaryGrapes = getGrapesByCountry(country);
   let html = `<option value="" disabled selected>Select a Primary Grape</option>`;
@@ -1412,8 +1412,8 @@ const populatePrimaryGrapesSelectInput = () => {
 };
 
 const addWineTypeText = () => {
-  const $primaryGrapeLabel = $("label[for='js-primary-grape']");
-  const $primaryGrapeSelectInput = $('#js-primary-grape');
+  const $primaryGrapeLabel = $("label[for='js-primary-grape-select']");
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   const selectedGrape = $primaryGrapeSelectInput.val();
   let wineType = '';
   let html = '';
@@ -1445,7 +1445,7 @@ const addWineTypeText = () => {
 // Country Map - BEGIN
 // ************************************************************************* //
 const getCountryMapAndDisplay = () => {
-  const $countrySelectInput = $('#js-country');
+  const $countrySelectInput = $('#js-country-select');
   const $countryMap = $('.js-country-map-wrapper');
   const countryWithCapitalLetters = $countrySelectInput.val();
   const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
@@ -1564,7 +1564,7 @@ const handlePricing4Selection = () => {
 // ************************************************************************* //
 const getPrimaryAppellations = () => {
   let primaryAppellations = [];
-  const $countySelectInput = $('#js-country');
+  const $countySelectInput = $('#js-country-select');
   const countryWithCapitalLetters = $countySelectInput.val();
   const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
 
@@ -1593,8 +1593,8 @@ const getPrimaryAppellations = () => {
 };
 
 const populatePriamryAppellationSelectInput = () => {
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
+  const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
   const appellations = getPrimaryAppellations();
 
   $primaryAppellationSelectInput.empty();
@@ -1638,10 +1638,10 @@ const showPrimaryAppellationMap = () => {
 const getSecondaryAppellations = () => {
   console.log('getSecondaryAppellations ran');
   let secondaryAppellations = [];
-  const $countySelectInput = $('#js-country');
+  const $countySelectInput = $('#js-country-select');
   const countryWithCapitalLetters = $countySelectInput.val();
   const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
+  const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
   const primAppKey = $primaryAppellationSelectInput.val().toLowerCase().split(' ').join('_');
   let appsObj;
 
@@ -1673,7 +1673,7 @@ const getSecondaryAppellations = () => {
 };
 
 const populateSecondaryAppellationSelectInput = () => {
-  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
   const appellations = getSecondaryAppellations();
 
   $secondaryAppellationSelectInput.empty();
@@ -1703,10 +1703,10 @@ $(function() {
   // listeners
   const $cancelButton = $('.js-button-cancel');
   const $newTastingNoteForm = $('.tasting-form');
-  const $countrySelectInput = $('#js-country');
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  // const $secondaryAppellationSelectInput = $('#js-secondary-appellation'); // TODO - wire up.
-  const $primaryGrapeSelectInput = $('#js-primary-grape');
+  const $countrySelectInput = $('#js-country-select');
+  const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
+  // const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select'); // TODO - wire up.
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   const $pricing1 = $('#js-pricing-1');
   const $pricing2 = $('#js-pricing-2');
   const $pricing3 = $('#js-pricing-3');

@@ -10,37 +10,29 @@
     <form class="tasting-form" >
         <fieldset>
             <legend>New Tasting Note for EVENT NAME goes here...</legend>
+            <!-- TODO current WIP-->
             <p>
-                <label for="js-wine-name">Wine Name (Required)</label>
-                <input id="js-wine-name" class="wine-name" type="text" name="wine-name" required autofocus="true"/>
+                <label for="js-wine-name-input">Wine Name (Required)</label>
+                <input id="js-wine-name-input" class="wine-name-input" type="text" name="wine-name-input" required autofocus="true"/>
             </p>
             <p>
-                <!-- TODO current WIP-->
-                <label for="js-country">Country</label>
-                <select id="js-country" class="country" ></select>
+                <label for="js-country-select">Country</label>
+                <select id="js-country-select" class="country-select" ></select>
                 <div class="country-map-wrapper js-country-map-wrapper">Country Map</div>
             </p>
-            <div class="country js-country">
-                <span class="country-span js-country-span">Country: ${tastingDetail.country}</span>
-                <div class="country-map-wrapper js-country-map-wrapper">
-                    <img class="js-country-map" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-All-wine-map2_1024x1024.jpg?v=1504901393">
-                </div>
-            </div>
-
-
             <p>
-                <label for="js-primary-appellation">Primary Appellation (disabled until Country selected)</label>
-                <select id="js-primary-appellation" class="primary-appellation" disabled></select>
+                <label for="js-primary-appellation-select">Primary Appellation (disabled until Country selected)</label>
+                <select id="js-primary-appellation-select" class="primary-appellation-select" disabled></select>
                 <div class="primary-appellation-map-wrapper js-primary-app-map-wrapper">Primary Appellation Map</div>
             </p>
             <p>
-                <label for="js-secondary-appellation">Secondary Appellation (disabled until Primary Appellation selected)</label>
-                <select id="js-secondary-appellation" class="secondary-appellation" disabled></select>
+                <label for="js-secondary-appellation-select">Secondary Appellation (disabled until Primary Appellation selected)</label>
+                <select id="js-secondary-appellation-select" class="secondary-appellation-select" disabled></select>
                 <div class="secondary-appellation-map-wrapper js-secondary-app-map-wrapper">Secondary Appellation Map</div>
             </p>
             <p>
-                <label for="js-primary-grape">Primary Grape / Style</label>
-                <select id="js-primary-grape" class="primary-grape" disabled></select>
+                <label for="js-primary-grape-select">Primary Grape / Style</label>
+                <select id="js-primary-grape-select" class="primary-grape-select" disabled></select>
             </p>
             <p>
                 <label for="js-tasting-note-ta">Tasting Notes</label>
@@ -79,8 +71,8 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                 </textarea>
             </p>
             <p>
-                <label for="js-rating">Rating</label>
-                <select id="js-rating" class="rating" >
+                <label for="js-rating-select">Rating</label>
+                <select id="js-rating-select" class="rating-select" >
                     <option value="" disabled selected>Choose Rating</option>
                     <option value="5">5 - Exceptional</option>
                     <option value="4">4 - Excellent</option>
@@ -90,8 +82,8 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                 </select>
             </p>
             <p>
-                <label for="js-pricing-1-desc">Pricing 1</label>
-                <select id="js-pricing-1-desc" class="pricing-desc" >
+                <label for="js-pricing-1-desc-select">Pricing 1</label>
+                <select id="js-pricing-1-desc-select" class="pricing-desc-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -103,11 +95,11 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                     <option value="case_3">Case 3</option>
                     <option value="case_3_plus">Case 3 +</option>
                 </select>
-                <input id="js-pricing-1-price" class="pricing-1-price" type="text" name="pricing-1-price" disabled/>
+                <input id="js-pricing-1-price-input" class="pricing-1-price-input" type="text" name="pricing-1-price-input" disabled/>
             </p>
             <p>
-                <label for="js-pricing-2-desc">Pricing 2</label>
-                <select id="js-pricing-2-desc" class="pricing-desc" >
+                <label for="js-pricing-2-desc-select">Pricing 2</label>
+                <select id="js-pricing-2-desc-select" class="pricing-desc-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -119,11 +111,11 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                     <option value="case_3">Case 3</option>
                     <option value="case_3_plus">Case 3 +</option>
                 </select>
-                <input id="js-pricing-2-price" class="pricing-2-price" type="text" name="pricing-2-price" disabled/>
+                <input id="js-pricing-2-price-input" class="pricing-2-price-input" type="text" name="pricing-2-price-input" disabled/>
             </p>
             <p>
-                <label for="js-pricing-3-desc">Pricing 3</label>
-                <select id="js-pricing-3-desc" class="pricing-desc" >
+                <label for="js-pricing-3-desc-select">Pricing 3</label>
+                <select id="js-pricing-3-desc-select" class="pricing-desc-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -135,11 +127,11 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                     <option value="case_3">Case 3</option>
                     <option value="case_3_plus">Case 3 +</option>
                 </select>
-                <input id="js-pricing-3-price" class="pricing-3-price" type="text" name="pricing-3-price" disabled/>
+                <input id="js-pricing-3-price-input" class="pricing-3-price-input" type="text" name="pricing-3-price-input" disabled/>
             </p>
             <p>
-                <label for="js-pricing-4-desc">Pricing 4</label>
-                <select id="js-pricing-4-desc" class="pricing-desc" >
+                <label for="js-pricing-4-desc-select">Pricing 4</label>
+                <select id="js-pricing-4-desc-select" class="pricing-desc-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="not_applicable">Not Applicable</option>
                     <option value="btl_1">Btl 1</option>
@@ -151,7 +143,7 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                     <option value="case_3">Case 3</option>
                     <option value="case_3_plus">Case 3 +</option>
                 </select>
-                <input id="js-pricing-4-price" class="pricing-4-price" type="text" name="pricing-4-price" disabled/>
+                <input id="js-pricing-4-price-input" class="pricing-4-price-input" type="text" name="pricing-4-price-input" disabled/>
             </p>
             <div class="buttons">
                 <div class="button-cancel">
