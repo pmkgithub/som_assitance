@@ -23,14 +23,18 @@ router.get('/events/:eventsId/tastings/:tastingId', ctrlTastings.getTastingNoteD
 
 
 // TODO = routes need to be built / coded.
-router.post('/events/:eventsId/tastings', (req, res) => {
-  res.send('new tasting note posted');
-});
+// router.post for testing...
+// router.post('/events/:eventsId/tastings', jsonParser, (req, res) => {
+//   console.log('req.body = ', req.body);
+//   res.send({"msg": "new tasting note posted"});
+// });
+router.post('/events/:eventsId/tastings', jsonParser, ctrlTastings.postTastingNoteData);
+
 router.put('/events/:eventsId/tastings/:tastingId', jsonParser, (req, res) => {
-  res.send('tasting note updated');
+  res.send({"msg": "tasting note updated"});
 });
 router.delete('/events/:eventsId/tastings/:tastingId', (req, res) => {
-  res.send('tasting note deleted');
+  res.send({"msg": "tasting note deleted"});
 });
 
 // search

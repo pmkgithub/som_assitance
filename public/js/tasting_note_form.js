@@ -589,7 +589,6 @@ const APPELLATIONS = {
       name: "Tucuman",
       secondary_appellations: null,
     },
-    // TODO - 1apl crash
     catamarca: {
       name: "Catamarca",
       secondary_appellations: null,
@@ -751,7 +750,7 @@ const APPELLATIONS = {
           tertiary_appellations: null,
         },
         cote_de_nuits: {
-          name: "Cote de Nuits (Cote d'Or",
+          name: "Cote de Nuits (Cote d'Or)",
           tertiary_appellations: null,
         },
         cote_chalonnaise: {
@@ -1259,6 +1258,24 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 // ************************************************************************* //
+// BLAH - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Handle Country Selection - BEGIN
+// ************************************************************************* //
+const handleCountrySelection = () => {
+  getCountryMapAndDisplay(); // good
+  populatePriamryAppellationSelectInput(); // good
+  populatePrimaryGrapesSelectInput(); // good
+};
+
+// ************************************************************************* //
+// Handle Country Selection - END
+// ************************************************************************* //
+
+
+// ************************************************************************* //
 // Country Select Input - BEGIN
 // ************************************************************************* //
 const getCountries = () => {
@@ -1275,7 +1292,7 @@ const getCountries = () => {
 
 const populateCountrySelectInput = () => {
   let html = `<option value="" disabled selected>Select a country</option>`;
-  const $countySelectInput = $('#js-country');
+  const $countySelectInput = $('#js-country-select');
 
   getCountries().forEach((country) => {
     html += `<option value="${country}">${country}</option>`;
@@ -1288,18 +1305,129 @@ const populateCountrySelectInput = () => {
 // ************************************************************************* //
 
 // ************************************************************************* //
+// Country Map - BEGIN
+// ************************************************************************* //
+const getCountryMapAndDisplay = () => {
+  const $countrySelectInput = $('#js-country-select');
+  const $countryMapWrapper = $('.js-country-map-wrapper');
+  const countryWithCapitalLetters = $countrySelectInput.val();
+  const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
+  const src = COUNTRY_MAPS[countryKey];
+  let html = '';
+
+  if ( !src ) {
+    html = `No Country Map for ${countryWithCapitalLetters}`;
+  } else {
+    html = `<div class="country-map js-country-map"><span class="country-map-span js-country-map-span">Show/Hide Country Map</span><img class="country-map-img js-country-map-img" src="${src}"></div>`;
+  }
+
+  $countryMapWrapper.html(html);
+  $countryMapWrapper.show();
+
+};
+// TODO - current WIP
+// function toggleCountryMap(e) {
+//   e.stopPropagation();
+//   const $countrySpan = $(e.target);
+//   $countrySpan.siblings('.js-country-map').toggle();
+// }
+
+const toggleCountryMap = (e) => {
+  console.log('toggleCountryMap ran');
+  console.log('e.target = ', e.target);
+  e.stopPropagation();
+  const $countryMapSpan = $(e.target);
+  $countryMapSpan.siblings('.js-country-map-img').toggle();
+};
+// ************************************************************************* //
+// Country Map - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Handle Primary Appellation Selection - BEGIN
+// ************************************************************************* //
+
+const handlePrimaryAppellationSelection = () =>{
+  showPrimaryAppellationMap();
+  populateSecondaryAppellationSelectInput();
+};
+// ************************************************************************* //
+// Handle Primary Appellation Selection - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Primary Appellation Select Input - BEGIN
+// ************************************************************************* //
+const getPrimaryAppellations = () => {
+  let primaryAppellations = [];
+  const $countySelectInput = $('#js-country-select');
+  const countryWithCapitalLetters = $countySelectInput.val();
+  const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
+
+  if ( !APPELLATIONS[countryKey] ) {
+    // handles case when there is no PRIMARY APPELLATIONS.
+    doNoPrimaryAppellationsText(countryWithCapitalLetters);
+    doNoSecondaryAppellationsText(countryWithCapitalLetters);
+
+  } else if (countryKey === "Other" || countryKey === "Don't Know") {
+    // handles cases when "Other" and "Don't Know" selected.
+    doNoPrimaryAppellationsText(countryWithCapitalLetters);
+    doNoSecondaryAppellationsText(countryWithCapitalLetters);
+
+  } else {
+    Object.keys(APPELLATIONS[countryKey]).forEach((primaryAppellation) => {
+      primaryAppellations.push(APPELLATIONS[countryKey][primaryAppellation].name);
+    });
+    primaryAppellations.sort();
+    primaryAppellations.push("Other");
+    primaryAppellations.push("Don't Know");
+
+    setPrimaryAppellationText(countryWithCapitalLetters);
+    resetSecondaryAppellationText();
+    return primaryAppellations;
+  }
+};
+
+const populatePriamryAppellationSelectInput = () => {
+  const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
+  const appellations = getPrimaryAppellations();
+
+  $primaryAppellationSelectInput.empty();
+  $secondaryAppellationSelectInput.empty();
+
+  if ( appellations ) {
+    let html = `<option value="" disabled selected>Select a Primary Appellation</option>`;
+    appellations.forEach((appellation) => {
+      html += `<option value="${appellation}">${appellation}</option>`;
+    });
+    $primaryAppellationSelectInput.removeAttr('disabled');
+    $primaryAppellationSelectInput.html(html);
+  }
+
+};
+
+const showPrimaryAppellationMap = () => {
+  // console.log('showPrimaryAppellationMap ran');
+};
+
+// ************************************************************************* //
+// Primary Appellation Select Input - END
+// ************************************************************************* //
+
+// ************************************************************************* //
 // Appellation Labels/Map Text - BEGIN
 // ************************************************************************* //
 // helper functions for Primary Appellation Select Input Section.
 const displayPrimaryAppellationText = (text) => {
-  const $label = $("label[for='js-primary-appellation']");
+  const $label = $("label[for='js-primary-appellation-select']");
   const $Map = $('.js-primary-app-map-wrapper');
 
   $label.html(text.label);
   $Map.html(text.map);
 };
 const displaySecondaryAppellationText = (text) => {
-  const $label = $("label[for='js-secondary-appellation']");
+  const $label = $("label[for='js-secondary-appellation-select']");
   const $Map = $('.js-secondary-app-map-wrapper');
 
   $label.html(text.label);
@@ -1340,12 +1468,15 @@ const setSecondaryAppellationText = (country) => {
 
 };
 const resetSecondaryAppellationText = () => {
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
 
   let text = {
     label: `Secondary Appellation (disabled until Primary Appellation selected)`,
     map: `Secondary Appellation Map`
   };
   displaySecondaryAppellationText(text);
+  $secondaryAppellationSelectInput.empty();
+  $secondaryAppellationSelectInput.attr('disabled');
 };
 
 const doNoSecondaryAppellationsText = (country) => {
@@ -1359,8 +1490,6 @@ const doNoSecondaryAppellationsText = (country) => {
 // ************************************************************************* //
 // Appellation Labels/Map Text - END
 // ************************************************************************* //
-
-
 
 // ************************************************************************* //
 // Primary Grape Select Input - BEGIN
@@ -1394,8 +1523,8 @@ const getGrapesByCountry = (country) => {
 };
 
 const populatePrimaryGrapesSelectInput = () => {
-  const $countrySelectInput = $('#js-country');
-  const $primaryGrapeSelectInput = $('#js-primary-grape');
+  const $countrySelectInput = $('#js-country-select');
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   const country = $countrySelectInput.val();
   const primaryGrapes = getGrapesByCountry(country);
   let html = `<option value="" disabled selected>Select a Primary Grape</option>`;
@@ -1409,8 +1538,8 @@ const populatePrimaryGrapesSelectInput = () => {
 };
 
 const addWineTypeText = () => {
-  const $primaryGrapeLabel = $("label[for='js-primary-grape']");
-  const $primaryGrapeSelectInput = $('#js-primary-grape');
+  const $primaryGrapeLabel = $("label[for='js-primary-grape-select']");
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   const selectedGrape = $primaryGrapeSelectInput.val();
   let wineType = '';
   let html = '';
@@ -1439,183 +1568,62 @@ const addWineTypeText = () => {
 // ************************************************************************* //
 
 // ************************************************************************* //
-// Country Map - BEGIN
-// ************************************************************************* //
-const getCountryMapAndDisplay = () => {
-  const $countrySelectInput = $('#js-country');
-  const $countryMap = $('.js-country-map-wrapper');
-  const countryWithCapitalLetters = $countrySelectInput.val();
-  const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
-  const src = COUNTRY_MAPS[countryKey];
-  let html = '';
-
-  if ( !src ) {
-    html = `No Country Map for ${countryWithCapitalLetters}`;
-  } else {
-    html = `<p class="show-hide-country-map js-show-hide-country-map">Show/Hide Country Map</p><img class="country-map js-country-map" src="${src}">`;
-  }
-
-  $countryMap.html(html);
-  $countryMap.show();
-
-};
-
-const showHideCountryMap = () => {
-  const $countryMapImage = $('.js-country-map');
-  $countryMapImage.toggle();
-};
-// ************************************************************************* //
-// Country Map - END
-// ************************************************************************* //
-
-// ************************************************************************* //
-// Handle Country Selection - BEGIN
-// ************************************************************************* //
-const handleCountrySelection = () => {
-  getCountryMapAndDisplay(); // good
-  populatePriamryAppellationSelectInput(); // good
-  populatePrimaryGrapesSelectInput(); // god
-};
-
-const handlePrimaryAppellationSelection = () =>{
-  showPrimaryAppellationMap();
-  populateSecondaryAppellationSelectInput();
-};
-// ************************************************************************* //
-// Handle Country Selection - END
-// ************************************************************************* //
-
-
-
-// ************************************************************************* //
-// Primary Appellation Select Input - BEGIN
-// ************************************************************************* //
-const populatePriamryAppellationSelectInput = () => {
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  const appellations = getPrimaryAppellations();
-
-  $primaryAppellationSelectInput.empty();
-
-  if ( appellations ) {
-    let html = `<option value="" disabled selected>Select a Primary Appellation</option>`;
-    appellations.forEach((appellation) => {
-      html += `<option value="${appellation}">${appellation}</option>`;
-    });
-    $primaryAppellationSelectInput.removeAttr('disabled');
-    $primaryAppellationSelectInput.html(html);
-  }
-
-};
-
-const getPrimaryAppellations = () => {
-  let primaryAppellations = [];
-  const $countySelectInput = $('#js-country');
-  const countryWithCapitalLetters = $countySelectInput.val();
-  const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
-
-  if ( !APPELLATIONS[countryKey] ) {
-    // handles case when there is no PRIMARY APPELLATIONS.
-    doNoPrimaryAppellationsText(countryWithCapitalLetters);
-    doNoSecondaryAppellationsText(countryWithCapitalLetters);
-
-  } else if (countryKey === "Other" || countryKey === "Don't Know") {
-    // handles cases when "Other" and "Don't Know" selected.
-    doNoPrimaryAppellationsText(countryWithCapitalLetters);
-    doNoSecondaryAppellationsText(countryWithCapitalLetters);
-
-  } else {
-    Object.keys(APPELLATIONS[countryKey]).forEach((primaryAppellation) => {
-      primaryAppellations.push(APPELLATIONS[countryKey][primaryAppellation].name);
-    });
-    primaryAppellations.sort();
-    primaryAppellations.push("Other");
-    primaryAppellations.push("Don't Know");
-
-    setPrimaryAppellationText(countryWithCapitalLetters);
-    resetSecondaryAppellationText();
-    return primaryAppellations;
-  }
-};
-
-const showPrimaryAppellationMap = () => {
-  // console.log('showPrimaryAppellationMap ran');
-};
-
-
-// ************************************************************************* //
-// Primary Appellation Select Input - END
-// ************************************************************************* //
-
-// ************************************************************************* //
 // Pricing Select Inputs - BEGIN
 // ************************************************************************* //
 const handlePricing1Selection = () => {
   console.log('handlePricing1Selection ran');
-  const $pricing1 = $('#js-pricing-1');
-  const $pricing1SelectValue = $pricing1.val();
-  const $pricing1TextInput = $('#js-pricing-1-price');
+  const $pricing1SelectVal = $('#js-pricing1-select').val();
+  const $pricing1PriceInput = $('#js-pricing1-input');
 
-  console.log('$pricing1SelectValue = ', $pricing1SelectValue);
-
-  if ( $pricing1SelectValue === "not_applicable" ) {
+  if ( $pricing1SelectVal === "not_applicable" ) {
     // disable pricing text input.
-    $pricing1TextInput.attr('disabled');
-
+    $pricing1PriceInput.attr({'disabled': true});
   } else {
-    $pricing1TextInput.removeAttr('disabled');
+    $pricing1PriceInput.removeAttr('disabled');
   }
 };
 const handlePricing2Selection = () => {
   console.log('handlePricing1Selection ran');
-  const $pricing2 = $('#js-pricing-2');
-  const $pricing2SelectValue = $pricing2.val();
-  const $pricing2TextInput = $('#js-pricing-2-price');
+  const $pricing2SelectVal = $('#js-pricing2-select').val();
+  const $pricing2PriceInput = $('#js-pricing2-input');
 
-  console.log('$pricing2SelectValue = ', $pricing2SelectValue);
-
-  if ( $pricing2SelectValue === "not_applicable" ) {
+  if ( $pricing2SelectVal === "not_applicable" ) {
     // disable pricing text input.
-    $pricing2TextInput.attr('disabled');
-
+    $pricing2PriceInput.attr({'disabled': true});
   } else {
-    $pricing2TextInput.removeAttr('disabled');
+    $pricing2PriceInput.removeAttr('disabled');
   }
 };
 const handlePricing3Selection = () => {
   console.log('handlePricing1Selection ran');
-  const $pricing3 = $('#js-pricing-3');
-  const $pricing3SelectValue = $pricing3.val();
-  const $pricing3TextInput = $('#js-pricing-3-price');
+  const $pricing3SelectVal = $('#js-pricing3-select').val();
+  const $pricing3PriceInput = $('#js-pricing3-input');
 
-  console.log('$pricing3SelectValue = ', $pricing3SelectValue);
-
-  if ( $pricing3SelectValue === "not_applicable" ) {
+  if ( $pricing3SelectVal === "not_applicable" ) {
     // disable pricing text input.
-    $pricing3TextInput.attr('disabled');
-
+    $pricing3PriceInput.attr({'disabled': true});
   } else {
-    $pricing3TextInput.removeAttr('disabled');
+    $pricing3PriceInput.removeAttr('disabled');
   }
 };
 const handlePricing4Selection = () => {
   console.log('handlePricing1Selection ran');
-  const $pricing4 = $('#js-pricing-4');
-  const $pricing4SelectValue = $pricing4.val();
-  const $pricing4TextInput = $('#js-pricing-4-price');
+  const $pricing4SelectVal = $('#js-pricing4-select').val();
+  const $pricing4PriceInput = $('#js-pricing4-input');
 
-  console.log('$pricing4SelectValue = ', $pricing4SelectValue);
-
-  if ( $pricing4SelectValue === "not_applicable" ) {
+  if ( $pricing4SelectVal === "not_applicable" ) {
     // disable pricing text input.
-    $pricing4TextInput.attr('disabled');
-
+    $pricing4PriceInput.attr({'disabled': true});
   } else {
-    $pricing4TextInput.removeAttr('disabled');
+    $pricing4PriceInput.removeAttr('disabled');
   }
 };
 // ************************************************************************* //
 // Pricing Select Inputs - BEGIN
 // ************************************************************************* //
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1631,11 +1639,10 @@ const handlePricing4Selection = () => {
 const getSecondaryAppellations = () => {
   console.log('getSecondaryAppellations ran');
   let secondaryAppellations = [];
-  const $countySelectInput = $('#js-country');
+  const $countySelectInput = $('#js-country-select');
   const countryWithCapitalLetters = $countySelectInput.val();
   const countryKey = $countySelectInput.val().toLowerCase().split(' ').join('_');
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  const primaryAppellationCapitalized = $primaryAppellationSelectInput.val();
+  const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
   const primAppKey = $primaryAppellationSelectInput.val().toLowerCase().split(' ').join('_');
   let appsObj;
 
@@ -1647,7 +1654,6 @@ const getSecondaryAppellations = () => {
 
   if ( !APPELLATIONS[countryKey][primAppKey].secondary_appellations ) {
     // Secondary Appellations don't exist.
-    // TODO - add code.
     doNoSecondaryAppellationsText(countryWithCapitalLetters);
 
   } else if (primAppKey === "Other" || primAppKey === "Don't Know") {
@@ -1660,13 +1666,15 @@ const getSecondaryAppellations = () => {
     });
 
     secondaryAppellations.sort();
+    secondaryAppellations.push("Other");
+    secondaryAppellations.push("Don't Know");
     return secondaryAppellations;
   }
 
 };
 
 const populateSecondaryAppellationSelectInput = () => {
-  const $secondaryAppellationSelectInput = $('#js-secondary-appellation');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
   const appellations = getSecondaryAppellations();
 
   $secondaryAppellationSelectInput.empty();
@@ -1695,15 +1703,15 @@ $(function() {
 
   // listeners
   const $cancelButton = $('.js-button-cancel');
-  const $newTastingNoteForm = $('.tasting-form');
-  const $countrySelectInput = $('#js-country');
-  const $primaryAppellationSelectInput = $('#js-primary-appellation');
-  // const $secondaryAppellationSelectInput = $('#js-secondary-appellation'); // TODO - wire up.
-  const $primaryGrapeSelectInput = $('#js-primary-grape');
-  const $pricing1 = $('#js-pricing-1');
-  const $pricing2 = $('#js-pricing-2');
-  const $pricing3 = $('#js-pricing-3');
-  const $pricing4 = $('#js-pricing-4');
+  const $tastingNoteForm = $('.tasting-form');
+  const $countrySelectInput = $('#js-country-select');
+  const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
+  // const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select'); // TODO - wire up.
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
+  const $pricing1 = $('#js-pricing1-select');
+  const $pricing2 = $('#js-pricing2-select');
+  const $pricing3 = $('#js-pricing3-select');
+  const $pricing4 = $('#js-pricing4-select');
 
   $countrySelectInput.change(handleCountrySelection);
   $primaryAppellationSelectInput.change(handlePrimaryAppellationSelection);
@@ -1712,7 +1720,9 @@ $(function() {
   $pricing3.change(handlePricing3Selection);
   $pricing4.change(handlePricing4Selection);
 
-  $newTastingNoteForm.on('click', '.js-show-hide-country-map', showHideCountryMap);
+  // $newTastingNoteForm.on('click', '.js-country-map', showHideCountryMap);
+  $tastingNoteForm.on('click', '.js-country-map-span', toggleCountryMap);
+  // $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $primaryGrapeSelectInput.change(addWineTypeText);
 
 });

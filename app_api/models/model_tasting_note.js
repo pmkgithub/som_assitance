@@ -9,20 +9,41 @@ const tastingNoteSchema = Schema({
   eventHost: {type: String},
   grapePrimary: {type: String, required: true},
   country: {type: String, required: true},
-  appellationPriamry: {type: String, required: true},
-  appellationSecondary: {type: String, required: true},
+  primaryAppellation: {type: String},
+  secondaryAppellation: {type: String},
   rating: {type: Number},
-  pricing1: {type: Number},
-  pricing2: {type: Number},
-  pricing3: {type: Number},
-  pricing4: {type: Number},
-  notes: {type: String},
+  pricing1: {
+    desc: {type: String},
+    price: {type: String}
+  },
+  pricing2: {
+    desc: {type: String},
+    price: {type: String}
+  },
+  pricing3: {
+    desc: {type: String},
+    price: {type: String}
+  },
+  pricing4: {
+    desc: {type: String},
+    price: {type: String}
+  },
+  tastingNotes: {type: String},
   eventId: {
     type: Schema.Types.ObjectId,
-    ref: 'tasting_event'
+    // type: {type: String},
+    ref: 'tasting_events'
   },
 });
 
+tastingNoteSchema.methods.serialize = function() {
+
+  return {
+    id: this._id,
+    timestamp: this.timestamp,
+    wineName: this.wineName,
+  };
+};
 
 const TastingNote = mongoose.model('tasting_note', tastingNoteSchema);
 
