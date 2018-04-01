@@ -118,7 +118,7 @@ li.tasting-li {
 /******************************************************************************/
 
 /******************************************************************************/
-/*  ADD EVENT / TASTING FORM  - BEGIN */
+/*  EVENT / TASTING FORM  - BEGIN */
 /******************************************************************************/
 .event-form,
 .tasting-form {
@@ -195,13 +195,15 @@ li.tasting-li {
 .tasting-form button:hover {
   cursor: pointer;
 }
+/******************************************************************************/
+/*  EVENT / TASTING FORM  - END */
+/******************************************************************************/
 
-/* Tasting Note Form Only - BEGIN */
+/******************************************************************************/
+/*  TASTING FORM ONLY - BEGIN */
+/******************************************************************************/
 .tasting-form .country-map-wrapper {
   display: none;
-}
-.tasting-form .country-map {
-  width: 100%;
 }
 .tasting-form .country-map-span {
   cursor: pointer;
@@ -212,8 +214,28 @@ li.tasting-li {
 .tasting-form textarea {
   height: 300px;
 }
-
-/* Tasting Note Form Only - END */
+.tasting-form .primary-app-map-wrapper {
+  display: none;
+}
+.tasting-form .primary-app-map-span {
+  cursor: pointer;
+}
+.tasting-form .primary-app-map-img {
+  width: 100%;
+}
+/* TODO - pa - css*/
+.tasting-form .secondary-app-map-wrapper {
+  display: none;
+}
+.tasting-form .secondary-app-map-span {
+  cursor: pointer;
+}
+.tasting-form .secondary-app-map-img {
+  width: 100%;
+}
+/******************************************************************************/
+/*  TASTING FORM ONLY - BEGIN */
+/******************************************************************************/
 
 /* Misc Hold - BEGIN */
 /*.event-form input[type=button],*/
@@ -234,6 +256,3 @@ li.tasting-li {
 /*}*/
 
 /* Misc Hold - END */
-/******************************************************************************/
-/*  ADD EVENT / TASTING FORM  - END */
-/******************************************************************************/
