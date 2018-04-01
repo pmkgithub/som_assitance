@@ -214,7 +214,16 @@ li.tasting-li {
 .tasting-form textarea {
   height: 300px;
 }
-
+/* TODO - pa - css*/
+.tasting-form .primary-app-map-wrapper {
+  display: none;
+}
+.tasting-form .primary-app-map-span {
+  cursor: pointer;
+}
+.tasting-form .primary-app-map-img {
+  width: 100%;
+}
 /******************************************************************************/
 /*  TASTING FORM ONLY - BEGIN */
 /******************************************************************************/
