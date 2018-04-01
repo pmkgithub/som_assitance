@@ -727,7 +727,7 @@ const PRIMARY_GRAPES = {
 //           name: "Langon",
 //           tertiary_appellations: null,
 //         },
-//         cotes_de_bordeaus: {
+//         cotes_de_bordeaux: {
 //           name: "Cotes de Bordeaux",
 //           tertiary_appellations: null,
 //         },
@@ -1406,7 +1406,7 @@ const APPS = {
             map: null,
             tertiary_appellations: null,
           },
-          cotes_de_bordeaus: {
+          cotes_de_bordeaux: {
             name: "Cotes de Bordeaux",
             map: null,
             tertiary_appellations: null,
@@ -1416,8 +1416,8 @@ const APPS = {
             map: null,
             tertiary_appellations: null,
           },
-          entre_deaux_more: {
-            name: "Entre-Deaux-Mere",
+          entre_deaux_mers: {
+            name: "Entre Deaux Mers",
             map: null,
             tertiary_appellations: null,
           },
@@ -1432,8 +1432,8 @@ const APPS = {
             map: null,
             tertiary_appellations: null,
           },
-          cote_de_nuits: {
-            name: "Cote de Nuits (Cote d'Or)",
+          cote_de_nuits_cote_de_or: {
+            name: "Cote de Nuits Cote de Or",
             map: null,
             tertiary_appellations: null,
           },
@@ -2521,8 +2521,10 @@ const populatePrimaryAppellationSelectInput = () => {
 // ************************************************************************* //
 // TODO - sa map - getPrimaryAppellationMapAndDisplay
 const getPrimaryAppellationMapAndDisplay = () => {
+  // Country
   const $countrySelectInput = $('#js-country-select');
   const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
+  // Primary Appellation
   const $primAppSelectInput = $('#js-primary-appellation-select');
   const $primAppMapWrapper = $('.js-primary-app-map-wrapper');
   const primAppWithCapitalLetters = $primAppSelectInput.val();
@@ -2545,7 +2547,7 @@ const getPrimaryAppellationMapAndDisplay = () => {
 
   if (!APPS[countryKey].primary_appellations[primAppKey]) {
     // handles "Other", "Don't Know", bogus Primary Appellations.
-    html = `No Primary Map for ${primAppWithCapitalLetters}`;
+    html = `No Primary Appellation Map for ${primAppWithCapitalLetters}`;
     $primAppMapWrapper.html(html);
     $primAppMapWrapper.show();
     return false;
@@ -2559,13 +2561,12 @@ const getPrimaryAppellationMapAndDisplay = () => {
   } else {
     // country exists in data object, and it has a map.
     html = `<div class="primary-app-map js-primary-app-map">
-              <span class="primary-app-map-span js-primary-app-map-span">Show/Hide Primary Appellation Map</span>
+              <span class="primary-app-map-span js-primary-app-map-span">Show/Hide Primary Appellation Map for ${primAppWithCapitalLetters}</span>
               <img class="primary-app-map-img js-primary-app-map-img" src="${APPS[countryKey].primary_appellations[primAppKey].map}">
             </div>`;
+    $primAppMapWrapper.html(html);
+    $primAppMapWrapper.show();
   }
-
-  $primAppMapWrapper.html(html);
-  $primAppMapWrapper.show();
 
 };
 
@@ -2578,10 +2579,23 @@ const togglePrimAppMap = (e) => {
 // Primary Appellation Map - END
 // ************************************************************************* //
 
+// ************************************************************************* //
+// Handle Primary Appellation Selection - BEGIN
+// ************************************************************************* //
+
+const handleSecondaryAppellationSelection = () =>{
+  getSecondaryAppellationMapAndDisplay();
+  // populateTertiaryAppellationSelectInput(); // stub for future code.
+
+};
+// ************************************************************************* //
+// Handle Primary Appellation Selection - END
+// ************************************************************************* //
 
 // ************************************************************************* //
 // Secondary Appellation Select Input - BEGIN
 // ************************************************************************* //
+// TODO - sa map - getSecondaryAppellations()
 const getSecondaryAppellations = () => {
   let secondaryAppellations = [];
   const $countySelectInput = $('#js-country-select');
@@ -2595,7 +2609,7 @@ const getSecondaryAppellations = () => {
   if ( !APPS[countryKey].primary_appellations[primAppKey]) {
     // handles "Other", "Don't Know" or bogus Primary Appellation
     // "countryKey" already handled in getPrimaryAppellations().
-    setNoSecondaryAppellationLabel(primAppWithCapitalLetters);
+    setNoSecondaryAppellationLabel(primAppWithCapitalLetters); // TODO - is this needed? dont think so
     return false;
   }
 
@@ -2647,71 +2661,97 @@ const populateSecondaryAppellationSelectInput = () => {
 // Secondary Appellation Select Input - END
 // ************************************************************************* //
 
-// // ************************************************************************* //
-// // Secondary Appellation Map - BEGIN
-// // ************************************************************************* //
-// // TODO - sa map - getPrimaryAppellationMapAndDisplay
-// const getSecondaryAppellationMapAndDisplay = () => {
-//   console.log('getSecondaryAppellationMapAndDisplay ran');
-//   const $countrySelectInput = $('#js-country-select');
-//   const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
-//
-//   const $primAppSelectInput = $('#js-primary-appellation-select');
-//   const $primAppMapWrapper = $('.js-primary-app-map-wrapper');
-//   const primAppWithCapitalLetters = $primAppSelectInput.val();
-//   const primAppKey = $primAppSelectInput.val().toLowerCase().split(' ').join('_');
-//   let html = '';
-//
-//   console.log('countryKey', countryKey);
-//   console.log('primAppKey', primAppKey);
-//
-//   if ( !APPS[countryKey] ) {
-//     // handles "Other", "Don't Know", or bogus country.
-//     // This is extra error handling.
-//     // Error handling already handled in getCountryMapAndDisplay().
-//     return false;
-//   }
-//
-//   if ( !APPS[countryKey].primary_appellations ) {
-//     // handles countries that exist but don't have Primary Appellations.
-//     // This is extra error handling.
-//     // Error handling already handled in getPrimaryAppellations().
-//     return false;
-//   }
-//
-//   if (!APPS[countryKey].primary_appellations[primAppKey]) {
-//     // handles "Other", "Don't Know", bogus Primary Appellations.
-//     html = `No Primary Map for ${primAppWithCapitalLetters}`;
-//     $primAppMapWrapper.html(html);
-//     $primAppMapWrapper.show();
-//     return false;
-//   }
-//
-//   if (!APPS[countryKey].primary_appellations[primAppKey].map) {
-//     // handles Primary Appellations that exist, but don't have maps.
-//     html = `No Primary Map for ${primAppWithCapitalLetters}`;
-//     $primAppMapWrapper.html(html);
-//     $primAppMapWrapper.show();
-//   } else {
-//     // country exists in data object, and it has a map.
-//     html = `<div class="primary-app-map js-primary-app-map">
-//               <span class="primary-app-map-span js-primary-app-map-span">Show/Hide Primary Appellation Map</span>
-//               <img class="primary-app-map-img js-primary-app-map-img" src="${APPS[countryKey].primary_appellations[primAppKey].map}">
-//             </div>`;
-//   }
-//
-//   $primAppMapWrapper.html(html);
-//   $primAppMapWrapper.show();
-//
-// };
-//
-// const togglePrimAppMap = (e) => {
-//   e.stopPropagation();
-//   const $primAppMapSpan = $(e.target);
-//   $primAppMapSpan.siblings('.js-primary-app-map-img').toggle();
-// };
-// // ************************************************************************* //
-// // Secondary Appellation Map - END
+// ************************************************************************* //
+// Secondary Appellation Map - BEGIN
+// ************************************************************************* //
+// TODO - sa map - getSecondaryAppellationMapAndDisplay
+const getSecondaryAppellationMapAndDisplay = () => {
+  console.log('getSecondaryAppellationMapAndDisplay ran');
+  // Country
+  const $countrySelectInput = $('#js-country-select');
+  const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
+
+  // Primary Appellation
+  const $primAppSelectInput = $('#js-primary-appellation-select');
+  // const $primAppMapWrapper = $('.js-primary-app-map-wrapper');
+  // const primAppWithCapitalLetters = $primAppSelectInput.val();
+  const primAppKey = $primAppSelectInput.val().toLowerCase().split(' ').join('_');
+
+  // Secondary Appellation.
+  const $secAppSelectInput = $('#js-secondary-appellation-select');
+  const $secAppMapWrapper = $('.js-secondary-app-map-wrapper');
+  const secAppWithCapitalLetters = $secAppSelectInput.val();
+  const secAppKey = $secAppSelectInput.val().toLowerCase().split(' ').join('_');
+  let html = '';
+
+  console.log('countryKey', countryKey);
+  console.log('primAppKey', primAppKey);
+  console.log('secAppKey', secAppKey);
+
+  if ( !APPS[countryKey] ) {
+    console.log('if ( !APPS[countryKey] ) ran');
+    // handles "Other", "Don't Know", or bogus country.
+    // This is extra error handling.
+    // Error handling already handled in getCountryMapAndDisplay().
+    return false;
+  }
+
+  if ( !APPS[countryKey].primary_appellations ) {
+    console.log('if ( !APPS[countryKey].primary_appellations ) ran');
+    // handles countries that exist but don't have Primary Appellations.
+    // This is extra error handling.
+    // Error handling already handled in getPrimaryAppellations().
+    return false;
+  }
+
+  if (!APPS[countryKey].primary_appellations[primAppKey]) {
+    console.log('if (!APPS[countryKey].primary_appellations[primAppKey]) ran');
+    // handles "Other", "Don't Know", bogus Primary Appellations.
+    // This is extra error handling.
+    // Error handling already handled in TODO - what comment goes here.
+    return false;
+  }
+  if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations ) {
+    console.log('if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations ) ran');
+    // handles Primary Appellations that exist, but don't have Secondary Appellations.
+    return false;
+  }
+
+  if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey] ) {
+    console.log('if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey] ) ran');
+    // handles "Other", "Don't Know", or bogus Secondary Appellations.
+    html = `No Secondary Appellation Map for ${secAppWithCapitalLetters}`;
+    $secAppMapWrapper.html(html);
+    $secAppMapWrapper.show();
+    return false;
+  }
+
+  if (!APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map) {
+    console.log('if (!!APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map) ran');
+    // handles Secondary Appellations that exist, but don't have maps.
+    html = `No Secondary Appellation Map for ${secAppWithCapitalLetters}`;
+    $secAppMapWrapper.html(html);
+    $secAppMapWrapper.show();
+  } else {
+    console.log('else (!!APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map) ran');
+    // country exists in data object, and it has a map.
+    html = `<div class="secondary-app-map js-secondary-app-map">
+              <span class="secondary-app-map-span js-secondary-app-map-span">Show/Hide Secondary Appellation Map for ${secAppWithCapitalLetters}</span>
+              <img class="secondary-app-map-img js-secondary-app-map-img" src="${APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map}">
+            </div>`;
+    $secAppMapWrapper.html(html);
+    $secAppMapWrapper.show();
+  }
+
+};
+
+const toggleSecAppMap = (e) => {
+  e.stopPropagation();
+  const $secAppMapSpan = $(e.target);
+  $secAppMapSpan.siblings('.js-secondary-app-map-img').toggle();
+};
+// ************************************************************************* //
+// Secondary Appellation Map - END
 // // ************************************************************************* //
 
 // ************************************************************************* //
@@ -2890,29 +2930,35 @@ const handlePricing4Selection = () => {
 $(function() {
   populateCountrySelectInput();
 
-  // listeners
+  // LISTENERS
   const $cancelButton = $('.js-button-cancel');
   const $tastingNoteForm = $('.tasting-form');
+
+  // Country, Primary Appellations, Secondary Appellations select inputs.
   const $countrySelectInput = $('#js-country-select');
   const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
-  // const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select'); // TODO - wire up.
-  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
+  const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
+  $countrySelectInput.change(handleCountrySelection);
+  $primaryAppellationSelectInput.change(handlePrimaryAppellationSelection);
+  $secondaryAppellationSelectInput.change(handleSecondaryAppellationSelection);
+
+  // toggle maps.
+  $tastingNoteForm.on('click', '.js-country-map-span', toggleCountryMap);
+  $tastingNoteForm.on('click', '.js-primary-app-map-span', togglePrimAppMap);
+  $tastingNoteForm.on('click', '.js-secondary-app-map-span', toggleSecAppMap);
+
+  // Pricing select inputs.
   const $pricing1 = $('#js-pricing1-select');
   const $pricing2 = $('#js-pricing2-select');
   const $pricing3 = $('#js-pricing3-select');
   const $pricing4 = $('#js-pricing4-select');
-
-  $countrySelectInput.change(handleCountrySelection);
-  $primaryAppellationSelectInput.change(handlePrimaryAppellationSelection);
   $pricing1.change(handlePricing1Selection);
   $pricing2.change(handlePricing2Selection);
   $pricing3.change(handlePricing3Selection);
   $pricing4.change(handlePricing4Selection);
 
-  // $newTastingNoteForm.on('click', '.js-country-map', showHideCountryMap);
-  $tastingNoteForm.on('click', '.js-country-map-span', toggleCountryMap);
-  $tastingNoteForm.on('click', '.js-primary-app-map-span', togglePrimAppMap);
-  // $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
+  // Primary Grape select input.
+  const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   $primaryGrapeSelectInput.change(addWineTypeText);
 
 });
