@@ -1,8 +1,4 @@
 'use strict';
-// This API routes controller is responsible for fetching:
-// 1) TASTING EVENTS list data
-// 2) TASTING NOTES list data
-// 3) TASTING NOTES DETAIL data.
 
 const config = require('../../config');
 const mongoose = require('mongoose');
@@ -12,62 +8,62 @@ const {TastingNote} = require('../models/model_tasting_note');
 mongoose.connect(config.localdb);
 
 
-// ************************************************************************* //
-// TASTINGS EVENTS - BEGIN
-// ************************************************************************* //
-module.exports.getTastingEventsData = (req, res) => {
-  // res.json(EVENTS_DATA); // for TESTING
-  Event
-    .find()
-    .then((events) => {
-      console.log('events =', events);
-      res.json(events).status(200);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error', err: err });
-    });
-
-};
-
-module.exports.postTastingEventsData = (req, res) => {
-  console.log('req.body = ', req.body);
-
-  // make sure client didn't send unexpected fields.
-  const requiredFields = ['eventName', 'eventHost'];
-  for( let i=0; i< requiredFields.length; i++) {
-    const field = requiredFields[i];
-
-    if ( !(field in req.body) ) {
-      const message = `Missing \`${field}\` in request body`;
-      console.error(message);
-      return res.status(400).send(message);
-    }
-  }
-
-  Event
-    .create({
-      eventName: req.body.eventName,
-      eventHost: req.body.eventHost
-    })
-    .then(event => {
-      console.log('Event ID = ', event._id);
-      res.status(200).json(event.serialize())
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error', err: err });
-    });
-
-};
-// ************************************************************************* //
-// TASTINGS EVENTS - END
-// ************************************************************************* //
+// // ************************************************************************* //
+// // TASTINGS EVENTS - BEGIN
+// // ************************************************************************* //
+// module.exports.getTastingEventsData = (req, res) => {
+//   // res.json(EVENTS_DATA); // for TESTING
+//   Event
+//     .find()
+//     .then((events) => {
+//       console.log('events =', events);
+//       res.json(events).status(200);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({ message: 'Internal server error', err: err });
+//     });
+//
+// };
+//
+// module.exports.postTastingEventsData = (req, res) => {
+//   console.log('req.body = ', req.body);
+//
+//   // make sure client didn't send unexpected fields.
+//   const requiredFields = ['eventName', 'eventHost'];
+//   for( let i=0; i< requiredFields.length; i++) {
+//     const field = requiredFields[i];
+//
+//     if ( !(field in req.body) ) {
+//       const message = `Missing \`${field}\` in request body`;
+//       console.error(message);
+//       return res.status(400).send(message);
+//     }
+//   }
+//
+//   Event
+//     .create({
+//       eventName: req.body.eventName,
+//       eventHost: req.body.eventHost
+//     })
+//     .then(event => {
+//       console.log('Event ID = ', event._id);
+//       res.status(200).json(event.serialize())
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({ message: 'Internal server error', err: err });
+//     });
+//
+// };
+// // ************************************************************************* //
+// // TASTINGS EVENTS - END
+// // ************************************************************************* //
 
 // ************************************************************************* //
 // TASTINGS NOTES - BEGIN
 // ************************************************************************* //
-module.exports.getTastingNotesList = (req, res) => {
+module.exports.getTastingNotes = (req, res) => {
   console.log('API controller getTastingNotesList ran');
   const eventId = req.params.eventId;
   TastingNote
@@ -124,13 +120,12 @@ module.exports.postTastingNoteData = (req, res) => {
 };
 module.exports.deleteTastingNote = (req, res) => {
   console.log('module.exports.deleteTastingNote ran');
-  console.log('req.body', req.body);
-  console.log('req.params', req.params);
-  console.log('req.params.tastingId', req.params.tastingId);
-
   TastingNote
       .findByIdAndRemove(req.params.tastingId)
-      .then(tasting => res.status(204).end())
+      .then(tasting => {
+        console.log('tasting = ', tasting);
+        res.status(204).end()
+      })
       .catch(err => res.status(500).json({ message: 'Internal server error' }));
 };
 // ************************************************************************* //

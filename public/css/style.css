@@ -98,6 +98,14 @@ li.event-li {
 li.tasting-li {
   list-style: none;
 }
+.events-list-wrapper .delete-event-span,
+.events-list-wrapper .edit-event-span {
+  cursor: pointer;
+}
+.events-list-wrapper .delete-tasting-span,
+.events-list-wrapper .edit-tasting-span {
+  cursor: pointer;
+}
 .events-list-wrapper .tasting-span {
   cursor: pointer;
 }

@@ -5,7 +5,6 @@
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
-// TODO - POST live Tasting Form data - js/tasting_note_form_submit.js.
 const TASTING_EVENTS_URL = `/events`;
 
 function postDataToApi(url, options, callback) {
