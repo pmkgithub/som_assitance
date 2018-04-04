@@ -18,17 +18,12 @@ router.put('/events/:eventId', jsonParser, function() {});
 // tastings
 router.get('/events/:eventId', ctrlTastings.getTastingNotesList);
 // router.get('/tasting-note-detail/:tastingId', ctrlTastings.getTastingNoteDeatil); // old
+// TODO  - do I need getTastingNoteDeatil???
 router.get('/events/:eventsId/tastings/:tastingId', ctrlTastings.getTastingNoteDeatil); // recommended by RS
 
 
-
-// TODO = routes need to be built / coded.
-// router.post for testing...
-// router.post('/events/:eventsId/tastings', jsonParser, (req, res) => {
-//   console.log('req.body = ', req.body);
-//   res.send({"msg": "new tasting note posted"});
-// });
-router.post('/events/:eventsId/tastings', jsonParser, ctrlTastings.postTastingNoteData);
+// TODO - POST live Tasting Form data - routes/index.js.
+router.post('/events/:eventId/tastings', jsonParser, ctrlTastings.postTastingNoteData);
 
 router.put('/events/:eventsId/tastings/:tastingId', jsonParser, (req, res) => {
   res.send({"msg": "tasting note updated"});

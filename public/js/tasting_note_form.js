@@ -2392,7 +2392,6 @@ const populateCountrySelectInput = () => {
 // ************************************************************************* //
 // Country Map - BEGIN
 // ************************************************************************* //
-// TODO - sa map - getCountryMapAndDisplay
 const getCountryMapAndDisplay = () => {
   const $countrySelectInput = $('#js-country-select');
   const $countryMapWrapper = $('.js-country-map-wrapper');
@@ -2403,7 +2402,6 @@ const getCountryMapAndDisplay = () => {
 
   if ( !APPS[countryKey] ) {
     // handles "Other", "Don't Know", or bogus country.
-    console.log('set no ');
     html = `No Country Map for ${countryWithCapitalLetters}`;
     $countryMapWrapper.html(html);
     $countryMapWrapper.show();
@@ -2451,7 +2449,6 @@ const handlePrimaryAppellationSelection = () =>{
 // ************************************************************************* //
 // Primary Appellation Select Input - BEGIN
 // ************************************************************************* //
-// TODO - sa map - getPrimaryAppellations
 const getPrimaryAppellations = () => {
   let primaryAppellations = [];
   const $countySelectInput = $('#js-country-select');
@@ -2519,7 +2516,6 @@ const populatePrimaryAppellationSelectInput = () => {
 // ************************************************************************* //
 // Primary Appellation Map - BEGIN
 // ************************************************************************* //
-// TODO - sa map - getPrimaryAppellationMapAndDisplay
 const getPrimaryAppellationMapAndDisplay = () => {
   // Country
   const $countrySelectInput = $('#js-country-select');
@@ -2595,7 +2591,6 @@ const handleSecondaryAppellationSelection = () =>{
 // ************************************************************************* //
 // Secondary Appellation Select Input - BEGIN
 // ************************************************************************* //
-// TODO - sa map - getSecondaryAppellations()
 const getSecondaryAppellations = () => {
   let secondaryAppellations = [];
   const $countySelectInput = $('#js-country-select');
@@ -2664,9 +2659,7 @@ const populateSecondaryAppellationSelectInput = () => {
 // ************************************************************************* //
 // Secondary Appellation Map - BEGIN
 // ************************************************************************* //
-// TODO - sa map - getSecondaryAppellationMapAndDisplay
 const getSecondaryAppellationMapAndDisplay = () => {
-  console.log('getSecondaryAppellationMapAndDisplay ran');
   // Country
   const $countrySelectInput = $('#js-country-select');
   const countryKey = $countrySelectInput.val().toLowerCase().split(' ').join('_');
@@ -2684,12 +2677,7 @@ const getSecondaryAppellationMapAndDisplay = () => {
   const secAppKey = $secAppSelectInput.val().toLowerCase().split(' ').join('_');
   let html = '';
 
-  console.log('countryKey', countryKey);
-  console.log('primAppKey', primAppKey);
-  console.log('secAppKey', secAppKey);
-
   if ( !APPS[countryKey] ) {
-    console.log('if ( !APPS[countryKey] ) ran');
     // handles "Other", "Don't Know", or bogus country.
     // This is extra error handling.
     // Error handling already handled in getCountryMapAndDisplay().
@@ -2697,7 +2685,6 @@ const getSecondaryAppellationMapAndDisplay = () => {
   }
 
   if ( !APPS[countryKey].primary_appellations ) {
-    console.log('if ( !APPS[countryKey].primary_appellations ) ran');
     // handles countries that exist but don't have Primary Appellations.
     // This is extra error handling.
     // Error handling already handled in getPrimaryAppellations().
@@ -2705,20 +2692,15 @@ const getSecondaryAppellationMapAndDisplay = () => {
   }
 
   if (!APPS[countryKey].primary_appellations[primAppKey]) {
-    console.log('if (!APPS[countryKey].primary_appellations[primAppKey]) ran');
     // handles "Other", "Don't Know", bogus Primary Appellations.
-    // This is extra error handling.
-    // Error handling already handled in TODO - what comment goes here.
     return false;
   }
   if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations ) {
-    console.log('if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations ) ran');
     // handles Primary Appellations that exist, but don't have Secondary Appellations.
     return false;
   }
 
   if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey] ) {
-    console.log('if ( !APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey] ) ran');
     // handles "Other", "Don't Know", or bogus Secondary Appellations.
     html = `No Secondary Appellation Map for ${secAppWithCapitalLetters}`;
     $secAppMapWrapper.html(html);
@@ -2727,13 +2709,11 @@ const getSecondaryAppellationMapAndDisplay = () => {
   }
 
   if (!APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map) {
-    console.log('if (!!APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map) ran');
     // handles Secondary Appellations that exist, but don't have maps.
     html = `No Secondary Appellation Map for ${secAppWithCapitalLetters}`;
     $secAppMapWrapper.html(html);
     $secAppMapWrapper.show();
   } else {
-    console.log('else (!!APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map) ran');
     // country exists in data object, and it has a map.
     html = `<div class="secondary-app-map js-secondary-app-map">
               <span class="secondary-app-map-span js-secondary-app-map-span">Show/Hide Secondary Appellation Map for ${secAppWithCapitalLetters}</span>
@@ -2876,7 +2856,6 @@ const addWineTypeText = () => {
 // Pricing Select Inputs - BEGIN
 // ************************************************************************* //
 const handlePricing1Selection = () => {
-  console.log('handlePricing1Selection ran');
   const $pricing1SelectVal = $('#js-pricing1-select').val();
   const $pricing1PriceInput = $('#js-pricing1-input');
 
@@ -2888,7 +2867,6 @@ const handlePricing1Selection = () => {
   }
 };
 const handlePricing2Selection = () => {
-  console.log('handlePricing1Selection ran');
   const $pricing2SelectVal = $('#js-pricing2-select').val();
   const $pricing2PriceInput = $('#js-pricing2-input');
 
@@ -2900,7 +2878,6 @@ const handlePricing2Selection = () => {
   }
 };
 const handlePricing3Selection = () => {
-  console.log('handlePricing1Selection ran');
   const $pricing3SelectVal = $('#js-pricing3-select').val();
   const $pricing3PriceInput = $('#js-pricing3-input');
 
@@ -2912,7 +2889,6 @@ const handlePricing3Selection = () => {
   }
 };
 const handlePricing4Selection = () => {
-  console.log('handlePricing1Selection ran');
   const $pricing4SelectVal = $('#js-pricing4-select').val();
   const $pricing4PriceInput = $('#js-pricing4-input');
 

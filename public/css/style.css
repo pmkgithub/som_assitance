@@ -101,6 +101,9 @@ li.tasting-li {
 .events-list-wrapper .tasting-span {
   cursor: pointer;
 }
+.events-list-wrapper .tasting-detail-wrapper {
+  display: none;
+}
 .events-list-wrapper .country-map-span {
   cursor: pointer;
 }
@@ -111,6 +114,12 @@ li.tasting-li {
   cursor: pointer;
 }
 .events-list-wrapper .primary-appellation-map {
+  display: none;
+}
+.events-list-wrapper .secondary-appellation-map-span {
+  cursor: pointer;
+}
+.events-list-wrapper .secondary-appellation-map {
   display: none;
 }
 /******************************************************************************/
@@ -212,7 +221,7 @@ li.tasting-li {
   width: 100%;
 }
 .tasting-form textarea {
-  height: 300px;
+  height: 100px;
 }
 .tasting-form .primary-app-map-wrapper {
   display: none;
@@ -223,7 +232,6 @@ li.tasting-li {
 .tasting-form .primary-app-map-img {
   width: 100%;
 }
-/* TODO - pa - css*/
 .tasting-form .secondary-app-map-wrapper {
   display: none;
 }

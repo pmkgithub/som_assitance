@@ -6,10 +6,9 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div>Tasting Form - for creating New Tasting, or editting Existing Tasting</div>
     <form class="tasting-form" >
         <fieldset>
-            <legend>New Tasting Note for EVENT NAME goes here...</legend>
+            <legend>Tasting Note Form</legend>
             <p>
                 <label for="js-wine-name-input">Wine Name (Required)</label>
                 <input id="js-wine-name-input" class="wine-name-input" type="text" name="wine-name-input" required autofocus="true"/>
@@ -35,41 +34,7 @@
             </p>
             <p>
                 <label for="js-tasting-note-ta">Tasting Notes</label>
-                <textarea id="js-tasting-note-ta" class="tasting-note-ta" type="text-area" name="tasting-note-ta">
-NOSE SECTION
-Primary Aromas - from the grape (e.g. dark cherry, spice, wet gravel, etc.):
-
-
-Secondary Aromas - from wine making process, yeast, bacteria (e.g. buttery, etc.):
-
-
-Tertiary Aromas - from aging and oxidation (e.g. nutty, etc.):
-
-
-Faults (corked, reduction, oxidized, UV-damage, heat-damage, spritzed):
-
-
-TASTE SECTION
-Attack:
-
-
-Mid-Palate:
-
-
-Finish:
-
-
-SWEETNESS (bone-dry, dry, off-dry, sweet, very sweet):
-
-ACIDITY (low, medium-low, average, sour, very sour):
-
-TANNIN (low, medium-low, average, astringent, very astringent):
-
-ALCOHOL (low, medium-low, average, medium-high, high:
-
-BODY (very light, light-bodied, average, medium-full, full-bodied):
-
-                </textarea>
+                <textarea id="js-tasting-note-ta" class="tasting-note-ta" type="text-area" name="tasting-note-ta"></textarea>
             </p>
             <p>
                 <label for="js-rating-select">Rating</label>
@@ -86,15 +51,19 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                 <label for="js-pricing1-select">Pricing 1</label>
                 <select id="js-pricing1-select" class="pricing1-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
-                    <option value="not_applicable">Not Applicable</option>
-                    <option value="btl_1">Btl 1</option>
-                    <option value="btl_12">Btl 12</option>
-                    <option value="case_1">Case 1</option>
-                    <option value="case_3">Case 3</option>
-                    <option value="case_5">Case 5</option>
-                    <option value="case_10">Case 10</option>
-                    <option value="case_15">Case 15</option>
-                    <option value="btg">BTG</option>
+                    <option value="Not Applicable">Not Applicable</option>
+                    <option value="Btl 1">Btl 1</option>
+                    <option value="Case 1 (6 Count)">Case 1 (6 Count)</option>
+                    <option value="Case 1 (12 Count)">Case 1 (12 Count)</option>
+                    <option value="Case 3 (6 Count)">Case 3 (6 Count)</option>
+                    <option value="Case 3 {12 Count)">Case 3 {12 Count)</option>
+                    <option value="Case 5 (6 Count)">Case 5 (6 Count)</option>
+                    <option value="Case 5 (12 Count)">Case 5 (12 Count)</option>
+                    <option value="Case 10 (6 Count)">Case 10 (6 Count)</option>
+                    <option value="Case 10 (12 Count)">Case 10 (12 Count)</option>
+                    <option value="Case 15 (6 Count)">Case 15 (6 Count)</option>
+                    <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
+                    <option value="BTG">BTG</option>
                 </select>
                 <input id="js-pricing1-input" class="pricing1-input" type="text" name="pricing1-input" disabled/>
             </p>
@@ -102,15 +71,19 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                 <label for="js-pricing2-select">Pricing 2</label>
                 <select id="js-pricing2-select" class="pricing2-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
-                    <option value="not_applicable">Not Applicable</option>
-                    <option value="btl_1">Btl 1</option>
-                    <option value="btl_12">Btl 12</option>
-                    <option value="case_1">Case 1</option>
-                    <option value="case_3">Case 3</option>
-                    <option value="case_5">Case 5</option>
-                    <option value="case_10">Case 10</option>
-                    <option value="case_15">Case 15</option>
-                    <option value="btg">BTG</option>
+                    <option value="Not Applicable">Not Applicable</option>
+                    <option value="Btl 1">Btl 1</option>
+                    <option value="Case 1 (6 Count)">Case 1 (6 Count)</option>
+                    <option value="Case 1 (12 Count)">Case 1 (12 Count)</option>
+                    <option value="Case 3 (6 Count)">Case 3 (6 Count)</option>
+                    <option value="Case 3 {12 Count)">Case 3 {12 Count)</option>
+                    <option value="Case 5 (6 Count)">Case 5 (6 Count)</option>
+                    <option value="Case 5 (12 Count)">Case 5 (12 Count)</option>
+                    <option value="Case 10 (6 Count)">Case 10 (6 Count)</option>
+                    <option value="Case 10 (12 Count)">Case 10 (12 Count)</option>
+                    <option value="Case 15 (6 Count)">Case 15 (6 Count)</option>
+                    <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
+                    <option value="BTG">BTG</option>
                 </select>
                 <input id="js-pricing2-input" class="pricing2-input" type="text" name="pricing2-input" disabled/>
             </p>
@@ -118,15 +91,19 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                 <label for="js-pricing3-select">Pricing 3</label>
                 <select id="js-pricing3-select" class="pricing2-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
-                    <option value="not_applicable">Not Applicable</option>
-                    <option value="btl_1">Btl 1</option>
-                    <option value="btl_12">Btl 12</option>
-                    <option value="case_1">Case 1</option>
-                    <option value="case_3">Case 3</option>
-                    <option value="case_5">Case 5</option>
-                    <option value="case_10">Case 10</option>
-                    <option value="case_15">Case 15</option>
-                    <option value="btg">BTG</option>
+                    <option value="Not Applicable">Not Applicable</option>
+                    <option value="Btl 1">Btl 1</option>
+                    <option value="Case 1 (6 Count)">Case 1 (6 Count)</option>
+                    <option value="Case 1 (12 Count)">Case 1 (12 Count)</option>
+                    <option value="Case 3 (6 Count)">Case 3 (6 Count)</option>
+                    <option value="Case 3 {12 Count)">Case 3 {12 Count)</option>
+                    <option value="Case 5 (6 Count)">Case 5 (6 Count)</option>
+                    <option value="Case 5 (12 Count)">Case 5 (12 Count)</option>
+                    <option value="Case 10 (6 Count)">Case 10 (6 Count)</option>
+                    <option value="Case 10 (12 Count)">Case 10 (12 Count)</option>
+                    <option value="Case 15 (6 Count)">Case 15 (6 Count)</option>
+                    <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
+                    <option value="BTG">BTG</option>
                 </select>
                 <input id="js-pricing3-input" class="pricing3-input" type="text" name="pricing3-input" disabled/>
             </p>
@@ -134,15 +111,19 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
                 <label for="js-pricing4-select">Pricing 4</label>
                 <select id="js-pricing4-select" class="pricing4-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
-                    <option value="not_applicable">Not Applicable</option>
-                    <option value="btl_1">Btl 1</option>
-                    <option value="btl_12">Btl 12</option>
-                    <option value="case_1">Case 1</option>
-                    <option value="case_3">Case 3</option>
-                    <option value="case_5">Case 5</option>
-                    <option value="case_10">Case 10</option>
-                    <option value="case_15">Case 15</option>
-                    <option value="btg">BTG</option>
+                    <option value="Not Applicable">Not Applicable</option>
+                    <option value="Btl 1">Btl 1</option>
+                    <option value="Case 1 (6 Count)">Case 1 (6 Count)</option>
+                    <option value="Case 1 (12 Count)">Case 1 (12 Count)</option>
+                    <option value="Case 3 (6 Count)">Case 3 (6 Count)</option>
+                    <option value="Case 3 {12 Count)">Case 3 {12 Count)</option>
+                    <option value="Case 5 (6 Count)">Case 5 (6 Count)</option>
+                    <option value="Case 5 (12 Count)">Case 5 (12 Count)</option>
+                    <option value="Case 10 (6 Count)">Case 10 (6 Count)</option>
+                    <option value="Case 10 (12 Count)">Case 10 (12 Count)</option>
+                    <option value="Case 15 (6 Count)">Case 15 (6 Count)</option>
+                    <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
+                    <option value="BTG">BTG</option>
                 </select>
                 <input id="js-pricing4-input" class="pricing4-input" type="text" name="pricing4-input" disabled/>
             </p>

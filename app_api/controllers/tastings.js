@@ -8,7 +8,7 @@ const config = require('../../config');
 const mongoose = require('mongoose');
 const {Event} = require('../models/model_tasting_event');
 const {TastingNote} = require('../models/model_tasting_note');
-const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testData/test_data'); // static test data.
+// const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testData/test_data'); // static test data.
 mongoose.connect(config.localdb);
 
 
@@ -16,7 +16,18 @@ mongoose.connect(config.localdb);
 // TASTINGS EVENTS - BEGIN
 // ************************************************************************* //
 module.exports.getTastingEventsData = (req, res) => {
-  res.json(EVENTS_DATA);
+  // res.json(EVENTS_DATA); // for TESTING
+  Event
+    .find()
+    .then((events) => {
+      console.log('events =', events);
+      res.json(events).status(200);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error', err: err });
+    });
+
 };
 
 module.exports.postTastingEventsData = (req, res) => {
@@ -58,22 +69,26 @@ module.exports.postTastingEventsData = (req, res) => {
 // ************************************************************************* //
 module.exports.getTastingNotesList = (req, res) => {
   console.log('API controller getTastingNotesList ran');
-  console.log('req.params eventId', req.params);
   const eventId = req.params.eventId;
-  res.json(TASTINGS_DATA);
   TastingNote
     .find({eventId: eventId})
     .then(tastings => {
       res.status(200).json(tastings);
     })
-    .catch();
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error', err: err });
+    });
 };
 module.exports.postTastingNoteData = (req, res) => {
   console.log('req.body = ', req.body);
-  // const eventId = req.params.eventId; // for PRODUCTION
+  // TODO - POST live Tasting Form data - controllers/tasting.js
+  const eventId = req.params.eventId; // for PRODUCTION
+  console.log('req.params, ', req.params);
+  console.log('postTastingNoteData eventId', eventId);
   Event
-    .findById({"_id": "5abe1f15b6440d32545ea073"}) // works
-    // .findById({"_id": "5abe1f15b6440d32545ea073"})
+    // .findById({"_id": req.body.eventId})
+    .findById({"_id": eventId})
     .then(event => {
       const _eventId = event._id;
       console.log("Event found when saving a Tasting Note: ");
@@ -86,29 +101,22 @@ module.exports.postTastingNoteData = (req, res) => {
           wineName: req.body.wineName,
           grapePrimary: req.body.primaryGrape,
           country: req.body.country,
+          countryMapSrc: req.body.countryMapSrc,
           primaryAppellation: req.body.primaryAppellation,
+          primaryAppellationMapSrc: req.body.primaryAppellationMapSrc,
           secondaryAppellation: req.body.secondaryAppellation,
+          secondaryAppellationMapSrc: req.body.secondaryAppellationMapSrc,
           rating: req.body.rating,
-          pricing1: {
-            desc: req.body.pricing1.desc,
-            price: req.body.pricing1.price
-          },
-          pricing2: {
-            desc: req.body.pricing2.desc,
-            price: req.body.pricing2.price
-          },
-          pricing3: {
-            desc: req.body.pricing3.desc,
-            price: req.body.pricing3.price
-          },
-          pricing4: {
-            desc: req.body.pricing4.desc,
-            price: req.body.pricing4.price
-          },
+          pricing1Desc: req.body.pricing1Desc,
+          pricing1Price: req.body.pricing1Price,
+          pricing2Desc: req.body.pricing2Desc,
+          pricing2Price: req.body.pricing2Price,
+          pricing3Desc: req.body.pricing3Desc,
+          pricing3Price: req.body.pricing3Price,
+          pricing4Desc: req.body.pricing4Desc,
+          pricing4Price: req.body.pricing4Price,
           tastingNotes: req.body.tastingNotes,
-          // eventId: req.body.eventId, // for PRODUCTION
-          eventId: _eventId, // for TESTING - test 1 - find Event by ID, then save TN with the found Event's ID.
-          // eventId: ObjectId(_eventId), // for TESTING - test 2 fails.
+          eventId: _eventId
         })
         .then(tasting => res.status(200).json(tasting.serialize()))
         .catch(err => {
@@ -117,39 +125,6 @@ module.exports.postTastingNoteData = (req, res) => {
         });
 
     });
-  // TastingNote
-  //   .create({
-  //     eventHost: req.body.eventHost,
-  //     wineName: req.body.wineName,
-  //     grapePrimary: req.body.primaryGrape,
-  //     country: req.body.country,
-  //     primaryAppellation: req.body.primaryAppellation,
-  //     secondaryAppellation: req.body.secondaryAppellation,
-  //     rating: req.body.rating,
-  //     pricing1: {
-  //       desc: req.body.pricing1.desc,
-  //       price: req.body.pricing1.price
-  //     },
-  //     pricing2: {
-  //       desc: req.body.pricing2.desc,
-  //       price: req.body.pricing2.price
-  //     },
-  //     pricing3: {
-  //       desc: req.body.pricing3.desc,
-  //       price: req.body.pricing3.price
-  //     },
-  //     pricing4: {
-  //       desc: req.body.pricing4.desc,
-  //       price: req.body.pricing4.price
-  //     },
-  //     tastingNotes: req.body.tastingNotes,
-  //     // eventId: req.body.eventId,
-  //   })
-  //   .then(tasting => res.status(200).json(tasting.serialize()))
-  //   .catch(err => {
-  //     console.error(err);
-  //     res.status(500).json({ message: 'Internal server error', err: err });
-  //   });
 };
 // ************************************************************************* //
 // TASTINGS NOTES - END

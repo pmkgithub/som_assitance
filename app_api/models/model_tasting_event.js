@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = Schema({
-  // timestamp: {type: Date, default: Date.now},   //
   timestamp: {type: String, default: Date.now},    // 10230054857743
   // date: {type: String, default: new Date()},    // mm-dd-yyyy
   eventName: {type: String, required: true},

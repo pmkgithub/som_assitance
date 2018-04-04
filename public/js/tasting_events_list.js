@@ -45,17 +45,19 @@ function getDataFromApi(url, options, callback) {
 // TASTING EVENTS LIST - BEGIN
 // ************************************************************************* //
 
-function renderTastingEventsList(data) {
-  for (let i = 0; i < data.events.length ; i++) {
+function renderTastingEventsList(events) {
+  console.log('events = ', events);
+  for (let i = 0; i < events.length ; i++) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
-    STATE.tastingsFetched[data.events[i].id] = false;
+    STATE.tastingsFetched[events[i]._id] = false;
     //
-    // const date = moment(data.events[i].date).format('MMMM Do YYYY, h:mm:ss a');
+    // const mDate = moment(events[i].date).format('MMMM Do YYYY, h:mm:ss a');
+    const mDate = moment(events[i].date).format('MMMM D, YYYY');
 
     // render EVENTS.
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
-        <span data-eventid="${data.events[i].id}" data-eventhost="${data.events[i].eventHost}" class="event-span js-event-span">${data.events[i].date} - ${data.events[i].eventName} - ${data.events[i].eventHost}</span>
+        <span data-eventid="${events[i]._id}" data-eventhost="${events[i].eventHost}" class="event-span js-event-span">${mDate} - ${events[i].eventName} - ${events[i].eventHost}</span>
         <ul class="tastings-ul js-tastings-ul"></ul>
        </li>`);
   }
@@ -68,38 +70,76 @@ function renderTastingEventsList(data) {
 // ************************************************************************* //
 // TASTING NOTES LIST - BEGIN
 // ************************************************************************* //
-function getTastingNotesListData(e) {
+function getAndDisplayTastingNotes(e) {
+  console.log('getAndDisplayTastingNotes ran');
   e.stopPropagation();
-  const $tastingEventSpan = $(e.target);  // span being clicked on.
-  const eventId = $tastingEventSpan.attr("data-eventid"); // parent of clicked span, contains the "eventId"
+  const $tastingEventSpan = $(e.target);  // TASTING EVENT span being clicked on.
+  // eventId is used as the "key" for STATE.tastingsFetched.
+  // parent of "Add Tasting Note" a tag, contains the "eventId"
+  const eventId = $tastingEventSpan.attr("data-eventid");
 
   if( !STATE.tastingsFetched[eventId] ) {
     // if first time clicking a TASTING EVENT, fetch TASTING NOTE for a particular TASTING EVENT.
-    // getDataFromApi(`/api/tasting-events/${eventId}`, {}, renderTastingsList); // working
-    getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}`, {}, renderTastingsList); // what I want.
+    getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}`, {}, renderTastingNotes);
   } else {
     // If TASTING NOTES already been fetched for a particular TASTING EVENT,
     // keep TASTING NOTES in DOM and show/hide on future TASTING EVENT clicks.
     $tastingEventSpan.siblings('ul.js-tastings-ul').toggle();
   }
 
-  // helper function.
-  function renderTastingsList(data) {
+  function renderTastingNotes(tastings) {
+    console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
-    const { tastingDetail } = data;
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
     STATE.tastingsFetched[eventId] = true;
 
-    for (let i = 0; i < data.tastings.length ; i++) {
-      // populate STATE object "tastingDetailFetched" object for each TASTING NOTE.
-      STATE.tastingDetailFetched[data.tastings[i].id] = false;
+    for (let i = 0; i < tastings.length ; i++) {
 
+      // TODO - stop/start - write ternary for countryMap
       // Render Tasting Note Header and append DOM.
       $tastingEventSpan.siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
-            <span data-eventid="${data.tastings[i].eventId}" data-tastingid="${data.tastings[i].id}" class="tasting-span js-tasting-span">${data.tastings[i].wineName} - (${data.tastings[i].distributor} -  ${data.tastings[i].date})</span>
-            <div class="tasting-detail-wrapper js-tasting-detail-wrapper"></div>
+            <!--<span data-eventid="${tastings[i].eventId}" data-tastingid="${tastings[i]._id}" class="tasting-span js-tasting-span">${tastings[i].wineName}</span>-->
+            <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
+            <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
+                <div class="country-map-wrapper js-country-map-wrapper">
+                  <span class="country-map-span js-country-map-span">Country: ${tastings[i].country}</span>
+                  <div class="country-map js-country-map">
+                      <img class="js-country-map-img" src="${tastings[i].countryMapSrc}">
+                  </div>
+                </div>
+                <div class="primary-appellation-wrapper js-primary-appellation-wrapper">
+                  <span class="primary-appellation-map-span js-primary-appellation-map-span">Primary Appellation: ${tastings[i].primaryAppellation}</span>
+                  <div class="primary-appellation-map js-primary-appellation-map">
+                      <img class="js-primary-appellation-map-img" src="${tastings[i].primaryAppellationMapSrc}">
+                  </div>
+                </div>
+                <div class="secondary-appellation-wrapper js-secondary-appellation-wrapper">
+                  <span class="secondary-appellation-map-span js-secondary-appellation-map-span">Secondary Appellation: ${tastings[i].secondaryAppellation}</span>
+                  <div class="secondary-appellation-map js-secondary-appellation-map">
+                      <img class="js-secondary-appellation-map-img" src="${tastings[i].secondaryAppellationMapSrc}">
+                  </div>
+                </div>
+                <div>Primary Grape: ${tastings[i].grapePrimary}</div>
+                <div>Rating: ${tastings[i].rating}</div>
+                <div>
+                    Pricing 1: ${tastings[i].pricing1Desc} - ${tastings[i].pricing1Price}
+                </div>
+                <div>
+                    Pricing 2: ${tastings[i].pricing2Desc} - ${tastings[i].pricing2Price}
+                </div>
+                <div>
+                    Pricing 3: ${tastings[i].pricing3Desc} - ${tastings[i].pricing3Price}
+                </div>       
+                <div>
+                    Pricing 4: ${tastings[i].pricing4Desc} - ${tastings[i].pricing4Price}
+                </div>                         
+                <div>
+                  <span>Tasting Notes:</span>
+                  <div class="tasting-notes">${tastings[i].tastingNotes}</div>
+                </div>
+            </div>
          </li>`);
     }
 
@@ -118,91 +158,105 @@ function getTastingNotesListData(e) {
 // ************************************************************************* //
 
 
-// ************************************************************************* //
-// TASTING NOTE DETAIL - BEGIN
-// ************************************************************************* //
-
-function getTastingNotesDetailData(e) {
+// // ************************************************************************* //
+// // TASTING NOTE DETAIL - BEGIN
+// // ************************************************************************* //
+//
+// function getTastingNotesDetailData(e) {
+//   e.stopPropagation();
+//   // NOTE: event.target = span.tasting-span, event.currentTarget = li.js-tasting
+//   const $tastingSpan = $(e.currentTarget);
+//   const tastingId = $tastingSpan.attr("data-tastingid");
+//
+//   // const eventId = $tastingSpan.attr("data-eventid");
+//   const eventId = "1000";
+//
+//   if ( !STATE.tastingDetailFetched[tastingId] ) {
+//     // if first time clicking a TASTINGS NOTE, fetch TASTING DETAIL for a particular TASTING NOTE.
+//     // getDataFromApi(`/api/tasting-note-detail/${tastingId}`, {}, renderTastingDetail);
+//     getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}/tastings/${tastingId}`, {}, renderTastingDetail);
+//   } else {
+//     // If TASTING DETAIL already been fetched for a particular TASTING NOTE,
+//     // keep TASTING DETAIL in DOM and show/hide on future TASTING NOTE clicks.
+//     $tastingSpan.siblings('.js-tasting-detail-wrapper').toggle();
+//   }
+//
+//   // helper function.
+//   function renderTastingDetail(data) {
+//     const { tastingDetail } = data;
+//     const { pricing } = data.tastingDetail;
+//
+//     // This function is run one time when TASTING DETAIL of a particular TASTING NOTE is fetched.
+//
+//     // Set tastingDetailFetched flag, so future clicks on a TASTING NOTE
+//     // will result in a toggle of DOM TASTING DETAIL (and no further fetching of TASTING DETAIL).
+//     STATE.tastingDetailFetched[tastingId] = true;
+//
+//     // render and append DOM.
+//     $tastingSpan.siblings('.js-tasting-detail-wrapper').append(
+//     `<div>Date: ${tastingDetail.date}</div>` +
+//     `<div>Event Host: ${tastingDetail.eventHost}</div>` +
+//     `<div>Wine: ${tastingDetail.wineName}</div>` +
+//     `<div>Primary Grape: ${tastingDetail.grapePrimary}</div>` +
+//     `<div class="country-map-wrapper js-country-map-wrapper">
+//         <span class="country-map-span js-country-map-span">Country: ${tastingDetail.country}</span>
+//         <div class="country-map js-country-map">
+//             <img class="js-country-map-img" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-All-wine-map2_1024x1024.jpg?v=1504901393">
+//         </div>
+//      </div>` +
+//     `<div class="primary-appellation-wrapper js-primary-appellation-wrapper">
+//         <span class="primary-appellation-map-span js-primary-appellation-map-span">Primary Appellation: ${tastingDetail.appellationPrimary}</span>
+//         <div class="primary-appellation-map js-primary-appellation-map">
+//             <img class="js-primary-appellation-map-img" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-Burgundy-wine-map2.jpg?v=1504901465">
+//         </div>
+//      </div>` +
+//     `<div>Secondary Appellation: ${tastingDetail.appellationSecondary}</div>` +
+//     `<div>Tertiary Appellation: ${tastingDetail.appellationTertiary}</div>` +
+//     `<div>Rating: ${tastingDetail.rating}</div>` +
+//     `<div>${ pricing.pricing1[0] === "n/a" ? `Pricing 1: ${pricing.pricing1[0]}` : `Pricing 1: ${pricing.pricing1[0]} = ${pricing.pricing1[1]}` } </div>` +
+//     `<div>${ pricing.pricing2[0] === "n/a" ? `Pricing 2: ${pricing.pricing2[0]}` : `Pricing 2: ${pricing.pricing2[0]} = ${pricing.pricing2[1]}` } </div>` +
+//     `<div>${ pricing.pricing3[0] === "n/a" ? `Pricing 3: ${pricing.pricing3[0]}` : `Pricing 3: ${pricing.pricing3[0]} = ${pricing.pricing3[1]}` } </div>` +
+//     `<div>${ pricing.pricing4[0] === "n/a" ? `Pricing 4: ${pricing.pricing4[0]}` : `Pricing 4: ${pricing.pricing4[0]} = ${pricing.pricing4[1]}` } </div>` +
+//     `<div>
+//         <span>Tasting Notes:</span>
+//         <div class="tasting-notes">${tastingDetail.tastingNotes}</div>
+//      </div>`
+//     );
+//   }
+//
+// }
+//
+//
+//
+// // ************************************************************************* //
+// // TASTING NOTE DETAIL - END
+// // ************************************************************************* //
+function toggleTastingNote(e) {
+  console.log('toggleTastingNote ran');
   e.stopPropagation();
-  // NOTE: event.target = span.tasting-span, event.currentTarget = li.js-tasting
-  const $tastingSpan = $(e.currentTarget);
-  const tastingId = $tastingSpan.attr("data-tastingid");
-
-  // const eventId = $tastingSpan.attr("data-eventid");
-  const eventId = "1000";
-
-  if ( !STATE.tastingDetailFetched[tastingId] ) {
-    // if first time clicking a TASTINGS NOTE, fetch TASTING DETAIL for a particular TASTING NOTE.
-    // getDataFromApi(`/api/tasting-note-detail/${tastingId}`, {}, renderTastingDetail);
-    getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}/tastings/${tastingId}`, {}, renderTastingDetail);
-  } else {
-    // If TASTING DETAIL already been fetched for a particular TASTING NOTE,
-    // keep TASTING DETAIL in DOM and show/hide on future TASTING NOTE clicks.
-    $tastingSpan.siblings('.js-tasting-detail-wrapper').toggle();
-  }
-
-  // helper function.
-  function renderTastingDetail(data) {
-    const { tastingDetail } = data;
-    const { pricing } = data.tastingDetail;
-
-    // This function is run one time when TASTING DETAIL of a particular TASTING NOTE is fetched.
-
-    // Set tastingDetailFetched flag, so future clicks on a TASTING NOTE
-    // will result in a toggle of DOM TASTING DETAIL (and no further fetching of TASTING DETAIL).
-    STATE.tastingDetailFetched[tastingId] = true;
-
-    // render and append DOM.
-    $tastingSpan.siblings('.js-tasting-detail-wrapper').append(
-    `<div>Date: ${tastingDetail.date}</div>` +
-    `<div>Event Host: ${tastingDetail.eventHost}</div>` +
-    `<div>Wine: ${tastingDetail.wineName}</div>` +
-    `<div>Primary Grape: ${tastingDetail.grapePrimary}</div>` +
-    `<div class="country-map-wrapper js-country-map-wrapper">
-        <span class="country-map-span js-country-map-span">Country: ${tastingDetail.country}</span>
-        <div class="country-map js-country-map">
-            <img class="js-country-map-img" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-All-wine-map2_1024x1024.jpg?v=1504901393">
-        </div>
-     </div>` +
-    `<div class="primary-appellation-wrapper js-primary-appellation-wrapper">
-        <span class="primary-appellation-map-span js-primary-appellation-map-span">Primary Appellation: ${tastingDetail.appellationPrimary}</span>
-        <div class="primary-appellation-map js-primary-appellation-map">
-            <img class="js-primary-appellation-map-img" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-Burgundy-wine-map2.jpg?v=1504901465">
-        </div>
-     </div>` +
-    `<div>Secondary Appellation: ${tastingDetail.appellationSecondary}</div>` +
-    `<div>Tertiary Appellation: ${tastingDetail.appellationTertiary}</div>` +
-    `<div>Rating: ${tastingDetail.rating}</div>` +
-    `<div>${ pricing.pricing1[0] === "n/a" ? `Pricing 1: ${pricing.pricing1[0]}` : `Pricing 1: ${pricing.pricing1[0]} = ${pricing.pricing1[1]}` } </div>` +
-    `<div>${ pricing.pricing2[0] === "n/a" ? `Pricing 2: ${pricing.pricing2[0]}` : `Pricing 2: ${pricing.pricing2[0]} = ${pricing.pricing2[1]}` } </div>` +
-    `<div>${ pricing.pricing3[0] === "n/a" ? `Pricing 3: ${pricing.pricing3[0]}` : `Pricing 3: ${pricing.pricing3[0]} = ${pricing.pricing3[1]}` } </div>` +
-    `<div>${ pricing.pricing4[0] === "n/a" ? `Pricing 4: ${pricing.pricing4[0]}` : `Pricing 4: ${pricing.pricing4[0]} = ${pricing.pricing4[1]}` } </div>` +
-    `<div>
-        <span>Tasting Notes:</span>
-        <div class="tasting-notes">${tastingDetail.tastingNotes}</div>\
-     </div>`
-    );
-  }
-
+  const $countrySpan = $(e.target);
+  $countrySpan.siblings('.js-tasting-detail-wrapper').toggle();
 }
-
 function toggleCountryMap(e) {
+  console.log('toggleCountryMap ran');
   e.stopPropagation();
   const $countrySpan = $(e.target);
   $countrySpan.siblings('.js-country-map').toggle();
 }
 
-function toggleAppellationPrimaryMap(e) {
+function togglePrimaryAppellationMap(e) {
+  console.log('togglePrimaryAppellationMap ran');
   e.stopPropagation();
-  // NOTE: event.target = span.appellation-primary-span, event.currentTarget = div.js-tasting
   const $appellationSpan = $(e.target);
   $appellationSpan.siblings('.js-primary-appellation-map').toggle();
 }
 
-// ************************************************************************* //
-// TASTING NOTE DETAIL - END
-// ************************************************************************* //
-
+function toggleSecondaryAppellationMap(e) {
+  console.log('toggleSecondaryAppellationMap ran');
+  e.stopPropagation();
+  const $appellationSpan = $(e.target);
+  $appellationSpan.siblings('.js-secondary-appellation-map').toggle();
+}
 
 $(function() {
 
@@ -212,8 +266,9 @@ $(function() {
 
   // listeners
   const $tastingEventsAndTastingNotesWrapper = $('.js-events-list-wrapper');
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-span', getTastingNotesListData);
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-span', getTastingNotesDetailData);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-span', getAndDisplayTastingNotes);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-span', toggleTastingNote);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', toggleAppellationPrimaryMap);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', togglePrimaryAppellationMap);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-secondary-appellation-map-span', toggleSecondaryAppellationMap);
 });

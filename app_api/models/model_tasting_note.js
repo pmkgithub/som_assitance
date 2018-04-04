@@ -7,31 +7,25 @@ const tastingNoteSchema = Schema({
   timestamp: {type: String, default: Date.now},
   wineName: {type: String, required: true},
   eventHost: {type: String},
-  grapePrimary: {type: String, required: true},
-  country: {type: String, required: true},
+  grapePrimary: {type: String},
+  country: {type: String},
+  countryMapSrc: {type: String},
   primaryAppellation: {type: String},
+  primaryAppellationMapSrc: {type: String},
   secondaryAppellation: {type: String},
-  rating: {type: Number},
-  pricing1: {
-    desc: {type: String},
-    price: {type: String}
-  },
-  pricing2: {
-    desc: {type: String},
-    price: {type: String}
-  },
-  pricing3: {
-    desc: {type: String},
-    price: {type: String}
-  },
-  pricing4: {
-    desc: {type: String},
-    price: {type: String}
-  },
+  secondaryAppellationMapSrc: {type: String},
+  rating: {type: String},
+  pricing1Desc: {type: String},
+  pricing1Price: {type: String},
+  pricing2Desc: {type: String},
+  pricing2Price: {type: String},
+  pricing3Desc: {type: String},
+  pricing3Price: {type: String},
+  pricing4Desc: {type: String},
+  pricing4Price: {type: String},
   tastingNotes: {type: String},
   eventId: {
     type: Schema.Types.ObjectId,
-    // type: {type: String},
     ref: 'tasting_events'
   },
 });
