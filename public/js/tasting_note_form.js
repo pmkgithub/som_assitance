@@ -2,6 +2,7 @@
 // ************************************************************************* //
 // FORM DATA - BEGIN
 // ************************************************************************* //
+// TODO - move DATA OBJECTS to their own file.
 const COUNTRIES =  {
   algeria: "Algeria",
   argentina: "Argentina",

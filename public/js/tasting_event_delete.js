@@ -33,7 +33,6 @@ function deleteEvent(e) {
 
   const eventId = $clickedDeleteEventSpan.attr('data-eventid');
   const TASTING_EVENT_DELETE_URL = `/api/events/${eventId}`;
-  console.log('TASTING_EVENT_DELETE_URL', TASTING_EVENT_DELETE_URL);
 
   deleteEventFromApi(TASTING_EVENT_DELETE_URL, redirectToEventsListOnDelete);
 }

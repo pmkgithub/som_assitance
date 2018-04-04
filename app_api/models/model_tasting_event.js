@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = Schema({
-  timestamp: {type: String, default: Date.now()},    // 10230054857743
+  // Don't create data here. causes problems with moment.js.
+  // Create date when document is created.
+  // timestamp: {type: String, default: new Date()},
+  timestamp: {type: String},
   eventName: {type: String, required: true},
   eventHost: {type: String},
 
