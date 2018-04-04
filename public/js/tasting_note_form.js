@@ -2869,7 +2869,7 @@ const handlePricing1Selection = () => {
   const $pricing1SelectVal = $('#js-pricing1-select').val();
   const $pricing1PriceInput = $('#js-pricing1-input');
 
-  if ( $pricing1SelectVal === "not_applicable" ) {
+  if ( $pricing1SelectVal === "Not Applicable" ) {
     // disable pricing text input.
     $pricing1PriceInput.attr({'disabled': true});
   } else {
@@ -2880,7 +2880,7 @@ const handlePricing2Selection = () => {
   const $pricing2SelectVal = $('#js-pricing2-select').val();
   const $pricing2PriceInput = $('#js-pricing2-input');
 
-  if ( $pricing2SelectVal === "not_applicable" ) {
+  if ( $pricing2SelectVal === "Not Applicable" ) {
     // disable pricing text input.
     $pricing2PriceInput.attr({'disabled': true});
   } else {
@@ -2891,7 +2891,7 @@ const handlePricing3Selection = () => {
   const $pricing3SelectVal = $('#js-pricing3-select').val();
   const $pricing3PriceInput = $('#js-pricing3-input');
 
-  if ( $pricing3SelectVal === "not_applicable" ) {
+  if ( $pricing3SelectVal === "Not Applicable" ) {
     // disable pricing text input.
     $pricing3PriceInput.attr({'disabled': true});
   } else {
@@ -2902,7 +2902,7 @@ const handlePricing4Selection = () => {
   const $pricing4SelectVal = $('#js-pricing4-select').val();
   const $pricing4PriceInput = $('#js-pricing4-input');
 
-  if ( $pricing4SelectVal === "not_applicable" ) {
+  if ( $pricing4SelectVal === "Not Applicable" ) {
     // disable pricing text input.
     $pricing4PriceInput.attr({'disabled': true});
   } else {
