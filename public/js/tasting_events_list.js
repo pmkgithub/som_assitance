@@ -45,9 +45,12 @@ function renderTastingEventsList(events) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[events[i]._id] = false;
 
-    // const mDate = moment(events[i].date).format('MMMM Do YYYY, h:mm:ss a');
-    // const mDate = moment(events[i].date).format('MMMM D, YYYY');
-    const mDate = moment.unix(events[i].timestamp).format('MMM D, YYYY'); // doesnt work
+    // const mDate = moment(events[i].timestamp).format('MMMM Do YYYY, h:mm:ss a'); // works
+    const mDate = moment(events[i].timestamp).format('MMMM D, YYYY'); // works
+    // const mDate = moment(events[i].timestamp).format('MMMM D, YYYY');
+    // const mDate = moment.unix(events[i].timestamp).format('MMM D, YYYY'); // doesnt work
+    // const mDate = moment.unix(events[i].timestamp).format('YYYY-MM-DD HH:mm'); // doesnt work
+    // const mDate = moment.utc(events[i].timestamp).format('MMM D, YYYY'); // doesnt work
     // const mDate = moment(events[i].timestamp).format('MMM D, YYYY');
     console.log('events[i].timestamp', events[i].timestamp);
     console.log('mDate', mDate);
@@ -112,7 +115,7 @@ function getAndDisplayTastingNotes(e) {
     STATE.tastingsFetched[eventId] = true;
 
     for (let i = 0; i < tastings.length ; i++) {
-
+    // <img class="js-country-map-img" src="${tastings[i].countryMapSrc}">
       // TODO - stop/start - write ternary for countryMap
       // Render Tasting Note Header and append DOM.
       $tastingEventSpan.siblings('ul.js-tastings-ul').append(
@@ -133,7 +136,7 @@ function getAndDisplayTastingNotes(e) {
                 <div class="country-map-wrapper js-country-map-wrapper">
                   <span class="country-map-span js-country-map-span">Country: ${tastings[i].country}</span>
                   <div class="country-map js-country-map">
-                      <img class="js-country-map-img" src="${tastings[i].countryMapSrc}">
+                  ${tastings[i].countryMapSrc !== '' ? `<img class="js-country-map-img" src="${tastings[i].countryMapSrc}">`: `<div>No Map</div>`}
                   </div>
                 </div>
                 <div class="primary-appellation-wrapper js-primary-appellation-wrapper">

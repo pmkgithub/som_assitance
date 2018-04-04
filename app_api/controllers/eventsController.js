@@ -43,6 +43,7 @@ module.exports.postTastingEventsData = (req, res) => {
 
   Event
     .create({
+      timestamp: new Date(),
       eventName: req.body.eventName,
       eventHost: req.body.eventHost
     })
@@ -60,33 +61,18 @@ module.exports.deleteEvent = (req, res) => {
   const eventId = req.params.eventId;
   console.log('eventId = ', eventId);
 
-  // This looks good
+  // working
   Event
     .findByIdAndRemove(eventId)
     .then(event => res.status(204).end())
     .catch(err => res.status(500).json({ message: 'Internal server error' }));
-
-  // Tasting
-  //   .find({eventId: eventId})
-  //   .then((tastings) => {
-  //     console.log('deleteEvent tastings', tastings);
-  //   })
-  //   .catch(err => res.status(500).json({ message: 'Internal server error' }));
-
-  // // not working
-  // TastingNote
-  //   .find({eventId: eventId})
-  //   .then((tastings) => {
-  //     console.log('deleteEvent tastings', tastings);
-  //     tastings.remove();
-  //   })
-  //   .catch(err => res.status(500).json({ message: 'Internal server error' }));
 
   // working
   TastingNote
     .remove({eventId: eventId})
     .then((tasting) => {
       console.log('deleteEvent tastings', tasting);
+      res.status(204).end();
     })
     .catch(err => res.status(500).json({ message: 'Internal server error' }));
 };
