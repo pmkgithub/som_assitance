@@ -29,10 +29,7 @@ function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.preventDefault();
 
-  console.log('window.location.url = ', window.location.href);
   // FOR PRODUCTION
-  // let eventHost = 'Avant Partir';
-  // let eventId = '5ac2993292857c46b74c9245';
   let wineName = $('#js-wine-name-input').val();
   let country = $('#js-country-select').val();
   let countryMapSrc = $('.js-country-map-img').attr('src');
@@ -52,28 +49,6 @@ function handleFormSubmit(e) {
   let pricing4Price = $('#js-pricing4-input').val();
   let tastingNotes = $('#js-tasting-note-ta').val();
 
-  // // FOR TESTING
-  // let eventHost = 'Avant Partir';
-  // let eventId = '5ac2993292857c46b74c9245';
-  //
-  // let wineName = 'Wow Wine';
-  // let country = 'France';
-  // let countryMapSrc = "";
-  // let primaryAppellation = 'Bordeaux';
-  // let primaryAppellationMapSrc = "";
-  // let secondaryAppellation = 'Langon';
-  // let secondaryAppellationMapSrc = "";
-  // let primaryGrape = 'Bordeaux Blend';
-  // let rating = '2';
-  // let pricing1Desc = 'Btl 1';
-  // let pricing1Price = '20.00';
-  // let pricing2Desc = 'Btl 2';
-  // let pricing2Price = '19.00';
-  // let pricing3Desc = 'Case 1 (12 Count)';
-  // let pricing3Price = '18.00';
-  // let pricing4Desc = 'Case 5 (12 Count)';
-  // let pricing4Price = '17.00';
-  // let tastingNotes = 'blah blah blah';
 
   // TODO - code Server-side Validation.
   // Server-side Validation
@@ -96,8 +71,6 @@ function handleFormSubmit(e) {
   if ( !pricing4Price ) { pricing4Price = 'No Price Inputted'; }
 
   const options = {
-    // eventHost,  // TODO - stuck - how do I get eventHost variable into form when it loads?
-    // eventId,    // TODO - stuck - how do I get eventId variable into form when it loads?
     wineName,
     country,
     countryMapSrc,
@@ -118,36 +91,22 @@ function handleFormSubmit(e) {
     tastingNotes
   };
 
-  console.log('tasting_note_form_submit.js options = ', options);
-  let eventId = '5ac2993292857c46b74c9245';
-  // const TASTING_NOTE_POST_URL = `/api/events/5abe1f15b6440d32545ea073/tastings`; // temp url for testing
-  const TASTING_NOTE_POST_URL = `/api/events/5ac2993292857c46b74c9245/tastings`; // temp url for testing
+  const eventId = localStorage.getItem('eventId');
   const TASTING_NOTE_POST_URL = `/api/events/${eventId}/tastings`; // temp url for testing
   postDataToApi(TASTING_NOTE_POST_URL, options, redirectToEventsListOnSave);
 }
 
-function redirectToEventsListOnCancel(event) {
-  event.preventDefault();
+function redirectToEventsListOnCancel() {
   window.location = TASTING_EVENTS_URL;
 }
 
-function redirectToEventsListOnSave(data) {
-  console.log(data.message);
+function redirectToEventsListOnSave() {
   // on AJAX success, navigate the user back to TASTING EVENTS LIST.
   window.location = TASTING_EVENTS_URL;
 }
 
 
 $(function() {
-
-  // function getEventIdFromUrl() {
-  //   const url = window.location.href;
-  //   const arr = url.split("/");
-  //   console.log('arr ', arr);
-  //   const eventId = arr[4];
-  //   console.log('eventId =', eventId);
-  // }
-  // getEventIdFromUrl();
 
   // listeners
   const $cancelButton = $('.js-button-cancel');

@@ -57,7 +57,7 @@ function renderTastingEventsList(events) {
     // render EVENTS.
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
-        <span data-eventid="${events[i]._id}" data-eventhost="${events[i].eventHost}" class="event-span js-event-span">${mDate} - ${events[i].eventName} - ${events[i].eventHost}</span>
+        <span data-eventid="${events[i]._id}" data-eventhost="${events[i].eventHost}" data-eventname="${events[i].eventName}" class="event-span js-event-span">${mDate} - ${events[i].eventName} - ${events[i].eventHost}</span>
         <ul class="tastings-ul js-tastings-ul"></ul>
        </li>`);
   }
@@ -73,10 +73,12 @@ function renderTastingEventsList(events) {
 function getAndDisplayTastingNotes(e) {
   console.log('getAndDisplayTastingNotes ran');
   e.stopPropagation();
-  const $tastingEventSpan = $(e.target);  // TASTING EVENT span being clicked on.
-  // eventId is used as the "key" for STATE.tastingsFetched.
-  // parent of "Add Tasting Note" a tag, contains the "eventId"
+  const $tastingEventSpan = $(e.target);  // TASTING EVENT span.
+  // eventId is used for
+  // 1) the "key" for STATE.tastingsFetched.
+  // 2) placed on "Add Tasting Note" a tag, which is then extracted and placed in localStorage.
   const eventId = $tastingEventSpan.attr("data-eventid");
+  const eventName = $tastingEventSpan.attr("data-eventname");
 
   if( !STATE.tastingsFetched[eventId] ) {
     // if first time clicking a TASTING EVENT, fetch TASTING NOTE for a particular TASTING EVENT.
@@ -148,7 +150,14 @@ function getAndDisplayTastingNotes(e) {
     //   `<button class="js-add-new-tasting-note">Add Tasting Note</button>`
     // );
     $tastingEventSpan.siblings('ul.js-tastings-ul').append(
-      `<a href="/events/${eventId}/tastings/new" class="add-new-tasting-note">Add Tasting Note</a>`
+      `<a 
+        href="/events/${eventId}/tastings/new" 
+        class="add-new-tasting-note js-add-new-tasting-note" 
+        data-eventid="${eventId}"
+        data-eventname="${eventName}"
+        >
+        Add Tasting Note
+      </a>`
     );
   }
 
@@ -258,6 +267,16 @@ function toggleSecondaryAppellationMap(e) {
   $appellationSpan.siblings('.js-secondary-appellation-map').toggle();
 }
 
+function setLocalStorage(e) {
+  const $linkToNewTastingForm = $(e.target);
+  const eventId = $linkToNewTastingForm.attr('data-eventid');
+  const eventHost = $linkToNewTastingForm.attr('data-eventhost');
+  const eventName = $linkToNewTastingForm.attr('data-eventname');
+  localStorage.setItem('eventId', eventId);
+  localStorage.setItem('eventHost', eventHost);
+  localStorage.setItem('eventName', eventName);
+}
+
 $(function() {
 
   // get data for events view when events list loads.
@@ -271,4 +290,6 @@ $(function() {
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', togglePrimaryAppellationMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-secondary-appellation-map-span', toggleSecondaryAppellationMap);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note', setLocalStorage);
+
 });
