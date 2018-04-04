@@ -7,12 +7,6 @@
 //    e.g. /api/tasting-events/:eventId
 const TASTING_EVENTS_API_URL = `/api/events/`;
 
-// url below used to:
-// 1) fetch TASTING NOTE DETAIL when a TASTING NOTE LIST ITEM is clicked:
-//    e.g. /api/tasting-note-detail/:tastingId
-// const TASTING_NOTE_DETAIL_API_URL = `/api/tasting-note-detail/`; // old
-const TASTING_NOTE_DETAIL_API_URL = `/api/events/:eventsId/tasting/:tastingId/`;
-
 let STATE = {
   tastingsFetched: {
   },
@@ -46,18 +40,30 @@ function getDataFromApi(url, options, callback) {
 // ************************************************************************* //
 
 function renderTastingEventsList(events) {
-  console.log('events = ', events);
+  // console.log('events = ', events);
   for (let i = 0; i < events.length ; i++) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[events[i]._id] = false;
-    //
-    // const mDate = moment(events[i].date).format('MMMM Do YYYY, h:mm:ss a');
-    const mDate = moment(events[i].date).format('MMMM D, YYYY');
 
+    // const mDate = moment(events[i].date).format('MMMM Do YYYY, h:mm:ss a');
+    // const mDate = moment(events[i].date).format('MMMM D, YYYY');
+    const mDate = moment.unix(events[i].timestamp).format('MMM D, YYYY'); // doesnt work
+    // const mDate = moment(events[i].timestamp).format('MMM D, YYYY');
+    console.log('events[i].timestamp', events[i].timestamp);
+    console.log('mDate', mDate);
+    // ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
     // render EVENTS.
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
-        <span data-eventid="${events[i]._id}" data-eventhost="${events[i].eventHost}" data-eventname="${events[i].eventName}" class="event-span js-event-span">${mDate} - ${events[i].eventName} - ${events[i].eventHost}</span>
+         <span 
+            data-eventid="${events[i]._id}" 
+            data-eventhost="${events[i].eventHost}" 
+            data-eventname="${events[i].eventName}" 
+            class="event-span js-event-span"
+            >
+            
+            ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
+          </span>
         <ul class="tastings-ul js-tastings-ul"></ul>
        </li>`);
   }
@@ -90,7 +96,7 @@ function getAndDisplayTastingNotes(e) {
   }
 
   function renderTastingNotes(tastings) {
-    console.log('tastings = ', tastings);
+    // console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
@@ -104,6 +110,7 @@ function getAndDisplayTastingNotes(e) {
         `<li class="tasting-li js-tasting-li">
             <!--<span data-eventid="${tastings[i].eventId}" data-tastingid="${tastings[i]._id}" class="tasting-span js-tasting-span">${tastings[i].wineName}</span>-->
             <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
+            <span class="delete-tasting-note js-delete-tasting-note" data-tastingid="${tastings[i]._id}">Delete</span>
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
                 <div class="country-map-wrapper js-country-map-wrapper">
                   <span class="country-map-span js-country-map-span">Country: ${tastings[i].country}</span>
