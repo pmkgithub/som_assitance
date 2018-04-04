@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
@@ -120,8 +122,8 @@ function handleFormSubmit(e) {
   let eventId = '5ac2993292857c46b74c9245';
   // const TASTING_NOTE_POST_URL = `/api/events/5abe1f15b6440d32545ea073/tastings`; // temp url for testing
   const TASTING_NOTE_POST_URL = `/api/events/5ac2993292857c46b74c9245/tastings`; // temp url for testing
-  // const TASTING_NOTE_POST_URL = `/api/events/${eventId}/tastings`; // temp url for testing
-  // postDataToApi(TASTING_NOTE_POST_URL, options, redirectToEventsListOnSave);
+  const TASTING_NOTE_POST_URL = `/api/events/${eventId}/tastings`; // temp url for testing
+  postDataToApi(TASTING_NOTE_POST_URL, options, redirectToEventsListOnSave);
 }
 
 function redirectToEventsListOnCancel(event) {
@@ -137,6 +139,15 @@ function redirectToEventsListOnSave(data) {
 
 
 $(function() {
+
+  // function getEventIdFromUrl() {
+  //   const url = window.location.href;
+  //   const arr = url.split("/");
+  //   console.log('arr ', arr);
+  //   const eventId = arr[4];
+  //   console.log('eventId =', eventId);
+  // }
+  // getEventIdFromUrl();
 
   // listeners
   const $cancelButton = $('.js-button-cancel');
