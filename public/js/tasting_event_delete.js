@@ -1,11 +1,11 @@
 'use strict';
 
-// const TASTING_EVENTS_URL = `/events`; // This was already declared in tasting_event_delete.js
+const TASTING_EVENTS_URL = `/events`;
 // ************************************************************************* //
 // API DELETE - BEGIN
 // ************************************************************************* //
 
-function deleteTastingNoteFromApi(url, callback) {
+function deleteEventFromApi(url, callback) {
   $.ajax({
     url: url,
     method: 'DELETE',
@@ -23,30 +23,30 @@ function deleteTastingNoteFromApi(url, callback) {
 // ************************************************************************* //
 
 // ************************************************************************* //
-// DELETE TASTING NOTE - BEGIN
+// DELETE EVENT - BEGIN
 // ************************************************************************* //
-function deleteTastingNote(e) {
-  console.log('tasting_note-delete.js deleteTastingNote ran');
-  const $clickedDeleteTastingSpan = $(e.target);
-  console.log('$clickedDeleteTastingSpan = ', $clickedDeleteTastingSpan);
+function deleteEvent(e) {
+  console.log('tasting_event_delete deleteEvent ran');
+  // When deleting an Event, the associated Tasting Notes must be deleted too.
+  const $clickedDeleteEventSpan = $(e.target);
   event.preventDefault();
 
-  // const tastingId = $('.js-delete-tasting-span').attr('data-tastingid');
-  const tastingId = $clickedDeleteTastingSpan.attr('data-tastingid');
-  const TASTING_NOTE_DELETE_URL = `/api/tastings/${tastingId}`;
+  const eventId = $clickedDeleteEventSpan.attr('data-eventid');
+  const TASTING_EVENT_DELETE_URL = `/api/events/${eventId}`;
+  console.log('TASTING_EVENT_DELETE_URL', TASTING_EVENT_DELETE_URL);
 
-  deleteTastingNoteFromApi(TASTING_NOTE_DELETE_URL, redirectToEventsListOnDelete);
+  deleteEventFromApi(TASTING_EVENT_DELETE_URL, redirectToEventsListOnDelete);
 }
 
 function redirectToEventsListOnDelete() {
   window.location = TASTING_EVENTS_URL;
 }
+// ************************************************************************* //
+// DELETE EVENT - END
+// ************************************************************************* //
 
-// ************************************************************************* //
-// DELETE TASTING NOTE - END
-// ************************************************************************* //
 $(function() {
   // listeners
   const $tastingEventsList = $('.js-events-list-wrapper');
-  $tastingEventsList.on('click', '.js-delete-tasting-span', deleteTastingNote);
+  $tastingEventsList.on('click', '.js-delete-event-span', deleteEvent);
 });

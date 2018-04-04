@@ -6,17 +6,18 @@ const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testDat
 
 const router = require('express').Router();
 const jsonParser = require('body-parser').json({ type: 'application/json' });
-const ctrlTastings = require('../controllers/tastings');
+const ctrlEvents = require('../controllers/eventsController');
+const ctrlTastings = require('../controllers/tastingsController');
 
 // events
-router.get('/events', ctrlTastings.getTastingEventsData); // working
-router.post('/events', jsonParser, ctrlTastings.postTastingEventsData); // working
-// router.post('/events', jsonParser, ctrlTastings.postTastingEventsData); // recommended by RS
-router.delete('/events/:eventId', function() {});
-router.put('/events/:eventId', jsonParser, function() {});
+router.get('/events', ctrlEvents.getTastingEvents); // working
+router.post('/events', jsonParser, ctrlEvents.postTastingEventsData); // working
+// router.post('/events', jsonParser, ctrlEvents.postTastingEventsData); // recommended by RS
+router.delete('/events/:eventId', ctrlEvents.deleteEvent);
+router.put('/events/:eventId', jsonParser, function() {}); // stub
 
 // tastings
-router.get('/events/:eventId', ctrlTastings.getTastingNotesList); // working
+router.get('/events/:eventId', ctrlTastings.getTastingNotes); // working
 router.post('/events/:eventId/tastings', jsonParser, ctrlTastings.postTastingNoteData); // working
 router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote); // working
 // TODO  - do I need getTastingNoteDeatil???

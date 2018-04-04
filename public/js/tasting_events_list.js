@@ -61,8 +61,17 @@ function renderTastingEventsList(events) {
             data-eventname="${events[i].eventName}" 
             class="event-span js-event-span"
             >
-            
             ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
+          </span>
+          <span 
+            class="edit-event-span js-edit-event-span"
+            data-eventid="${events[i]._id}" 
+            >Edit
+          </span>
+          <span 
+            class="delete-event-span js-delete-event-span"
+            data-eventid="${events[i]._id}" 
+            >Delete
           </span>
         <ul class="tastings-ul js-tastings-ul"></ul>
        </li>`);
@@ -110,7 +119,16 @@ function getAndDisplayTastingNotes(e) {
         `<li class="tasting-li js-tasting-li">
             <!--<span data-eventid="${tastings[i].eventId}" data-tastingid="${tastings[i]._id}" class="tasting-span js-tasting-span">${tastings[i].wineName}</span>-->
             <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
-            <span class="delete-tasting-note js-delete-tasting-note" data-tastingid="${tastings[i]._id}">Delete</span>
+            <span 
+                class="edit-tasting-span js-edit-tasting-span" 
+                data-tastingid="${tastings[i]._id}"
+                >Edit
+            </span>            
+            <span 
+                class="delete-tasting-span js-delete-tasting-span" 
+                data-tastingid="${tastings[i]._id}"
+                >Delete
+            </span>
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
                 <div class="country-map-wrapper js-country-map-wrapper">
                   <span class="country-map-span js-country-map-span">Country: ${tastings[i].country}</span>
