@@ -81,11 +81,7 @@ module.exports.getTastingNotesList = (req, res) => {
     });
 };
 module.exports.postTastingNoteData = (req, res) => {
-  console.log('req.body = ', req.body);
-  // TODO - POST live Tasting Form data - controllers/tasting.js
-  const eventId = req.params.eventId; // for PRODUCTION
-  console.log('req.params, ', req.params);
-  console.log('postTastingNoteData eventId', eventId);
+  const eventId = req.params.eventId;
   Event
     // .findById({"_id": req.body.eventId})
     .findById({"_id": eventId})
@@ -126,20 +122,31 @@ module.exports.postTastingNoteData = (req, res) => {
 
     });
 };
+module.exports.deleteTastingNote = (req, res) => {
+  console.log('module.exports.deleteTastingNote ran');
+  console.log('req.body', req.body);
+  console.log('req.params', req.params);
+  console.log('req.params.tastingId', req.params.tastingId);
+
+  TastingNote
+      .findByIdAndRemove(req.params.tastingId)
+      .then(tasting => res.status(204).end())
+      .catch(err => res.status(500).json({ message: 'Internal server error' }));
+};
 // ************************************************************************* //
 // TASTINGS NOTES - END
 // ************************************************************************* //
 
 
-// ************************************************************************* //
-// TASTINGS DEATILS - BEGIN
-// ************************************************************************* //
-module.exports.getTastingNoteDeatil = (req, res) => {
-  console.log('API controller getTastingNoteDeatil ran');
-  console.log('req.params', req.params);
-  res.json(TASTING_DETAIL_DATA);
-};
-
-// ************************************************************************* //
-// TASTINGS DEATILS - END
-// ************************************************************************* //
+// // ************************************************************************* //
+// // TASTINGS DEATILS - BEGIN
+// // ************************************************************************* //
+// module.exports.getTastingNoteDeatil = (req, res) => {
+//   console.log('API controller getTastingNoteDeatil ran');
+//   console.log('req.params', req.params);
+//   res.json(TASTING_DETAIL_DATA);
+// };
+//
+// // ************************************************************************* //
+// // TASTINGS DEATILS - END
+// // ************************************************************************* //
