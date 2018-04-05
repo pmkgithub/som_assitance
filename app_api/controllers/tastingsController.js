@@ -22,6 +22,21 @@ module.exports.getTastingNotes = (req, res) => {
       res.status(500).json({ message: 'Internal server error', err: err });
     });
 };
+module.exports.getOneTastingNote = (req, res) => {
+  console.log('getOneTastingNote ran');
+  const tastingId = req.params.tastingId;
+  console.log('req.params.tastingId', req.params.tastingId);
+  TastingNote
+    .findById(tastingId)
+    .then((event) => {
+      // res.json(event.serialize()).status(200);
+      res.json(event).status(200);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error', err: err });
+    });
+};
 module.exports.postTastingNoteData = (req, res) => {
   const eventId = req.params.eventId;
   Event
@@ -35,7 +50,7 @@ module.exports.postTastingNoteData = (req, res) => {
           timestamp: new Date(),
           eventHost: req.body.eventHost,
           wineName: req.body.wineName,
-          grapePrimary: req.body.primaryGrape,
+          primaryGrape: req.body.primaryGrape,
           country: req.body.country,
           countryMapSrc: req.body.countryMapSrc,
           primaryAppellation: req.body.primaryAppellation,
@@ -61,6 +76,10 @@ module.exports.postTastingNoteData = (req, res) => {
         });
 
     });
+};
+
+module.exports.putTastingNoteData = (req, res) => {
+  console.log('putTastingNoteData ran');
 };
 module.exports.deleteTastingNote = (req, res) => {
   TastingNote

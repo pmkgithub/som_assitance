@@ -4,7 +4,7 @@
 const eventId = localStorage.getItem('eventId');
 console.log('eventId', eventId);
 const TASTING_EVENTS_LIST_URL = `/events`;
-const TASTING_EVENT_API_URL = `/api/events/${eventId}`;
+const TASTING_EVENT_API_URL = `/api/events/edit/${eventId}`;
 
 
 // ************************************************************************* //

@@ -24,7 +24,6 @@ router.get('/events/edit', (req, res) => {
 router.get('/tastings/new', (req, res) => {
   res.sendFile('tasting_note_form.html', {"root": "./app_server/views"});
 });
-// TODO - Tasting Note Edit
 router.get('/tastings/edit', (req, res) => {
   res.sendFile('tasting_note_form_edit.html', {"root": "./app_server/views"});
 });

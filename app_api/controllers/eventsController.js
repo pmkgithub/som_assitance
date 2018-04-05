@@ -27,12 +27,13 @@ module.exports.getAllTastingEvents = (req, res) => {
 };
 
 module.exports.getOneTastingEvent = (req, res) => {
+  console.log('getOneTastingEvent ran');
   const eventId  = req.params.eventId;
 
   Event
     .findById(eventId)
     .then((event) => {
-      res.json(event).status(200);
+      res.json(event.serialize()).status(200);
     })
     .catch(err => {
       console.error(err);
@@ -92,6 +93,7 @@ module.exports.putTastingEventData = (req, res) => {
 };
 
 module.exports.deleteEvent = (req, res) => {
+  const eventId = req.params.eventId;
 
   Event
     .findByIdAndRemove(eventId)
@@ -101,13 +103,13 @@ module.exports.deleteEvent = (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     });
 
-  TastingNote
-    .remove({eventId: eventId})
-    .then((tasting) => res.status(204).end() )
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
-    });
+  // TastingNote
+  //   .remove({eventId: eventId})
+  //   .then((tasting) => res.status(204).end() )
+  //   .catch(err => {
+  //     console.error(err);
+  //     res.status(500).json({ message: 'Internal server error' });
+  //   });
 };
 // ************************************************************************* //
 // TASTINGS EVENTS - END
