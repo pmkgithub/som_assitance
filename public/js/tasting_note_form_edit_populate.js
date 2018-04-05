@@ -135,6 +135,10 @@ const buildCountrySelectInput = () => {
 // ************************************************************************* //
 // ************************************************************************* //
 
+// ************************************************************************* //
+// FORM DATA - BEGIN
+// ************************************************************************* //
+// TODO - move DATA OBJECTS to their own file.
 const COUNTRIES =  {
   algeria: "Algeria",
   argentina: "Argentina",
@@ -2463,9 +2467,26 @@ const APPS = {
 };
 
 // ************************************************************************* //
+// FORM DATA - END
+// ************************************************************************* //
+
+
+// ************************************************************************* //
+// BLAH - BEGIN
+// ************************************************************************* //
+
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+// ************************************************************************* //
+// BLAH - END
+// ************************************************************************* //
+
+// ************************************************************************* //
 // Misc Helpers - BEGIN
 // ************************************************************************* //
-const populateLegend = () => {
+const buildLegend = () => {
   $('.js-legend').html(`Tasting Note for ${localStorage.getItem('eventName')} Event`);
 }
 // ************************************************************************* //
@@ -2477,8 +2498,8 @@ const populateLegend = () => {
 // ************************************************************************* //
 const handleCountrySelection = () => {
   getCountryMapAndDisplay();
-  populatePrimaryAppellationSelectInput();
-  populatePrimaryGrapesSelectInput();
+  buildPrimaryAppellationSelectInput();
+  buildPrimaryGrapesSelectInput();
 };
 
 // ************************************************************************* //
@@ -2501,7 +2522,7 @@ const getCountries = () => {
   return countries;
 };
 
-const populateCountrySelectInput = () => {
+const buildCountrySelectInput = () => {
   let html = `<option value="" disabled selected>Select a country</option>`;
   const $countySelectInput = $('#js-country-select');
 
@@ -2565,7 +2586,7 @@ const toggleCountryMap = (e) => {
 
 const handlePrimaryAppellationSelection = () =>{
   getPrimaryAppellationMapAndDisplay();
-  populateSecondaryAppellationSelectInput();
+  buildSecondaryAppellationSelectInput();
 
 };
 // ************************************************************************* //
@@ -2619,7 +2640,7 @@ const getPrimaryAppellations = () => {
   }
 };
 
-const populatePrimaryAppellationSelectInput = () => {
+const buildPrimaryAppellationSelectInput = () => {
   const $primaryAppellationSelectInput = $('#js-primary-appellation-select');
   const appellations = getPrimaryAppellations();
 
@@ -2707,7 +2728,7 @@ const togglePrimAppMap = (e) => {
 
 const handleSecondaryAppellationSelection = () =>{
   getSecondaryAppellationMapAndDisplay();
-  // populateTertiaryAppellationSelectInput(); // stub for future code.
+  // buildTertiaryAppellationSelectInput(); // stub for future code.
 
 };
 // ************************************************************************* //
@@ -2759,7 +2780,7 @@ const getSecondaryAppellations = () => {
 
 };
 
-const populateSecondaryAppellationSelectInput = () => {
+const buildSecondaryAppellationSelectInput = () => {
   const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
   const appellations = getSecondaryAppellations();
 
@@ -2933,7 +2954,7 @@ const getGrapesByCountry = (country) => {
 
 };
 
-const populatePrimaryGrapesSelectInput = () => {
+const buildPrimaryGrapesSelectInput = () => {
   const $countrySelectInput = $('#js-country-select');
   const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   const country = $countrySelectInput.val();
@@ -3051,7 +3072,7 @@ $(function() {
   getOneTastingFromApi(TASTING_NOTE_API_URL, options, populateState);
 
   // ****************************
-  // Populate Form Section - BEGIN
+  // Populate Form Section - END
   // ****************************
 
   // ****************************
