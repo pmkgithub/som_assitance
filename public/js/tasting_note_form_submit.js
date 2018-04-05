@@ -52,22 +52,22 @@ function handleFormSubmit(e) {
   // TODO - code Server-side Validation.
   // Server-side Validation
 
-  if ( !country ) { country = 'No Country Selected'; }
+  if ( !country ) { country = 'Not Selected'; }
   if ( !countryMapSrc ) { countryMapSrc = ''; }
-  if ( !primaryAppellation ) { primaryAppellation = 'No Primary Appellation Selected'; }
+  if ( !primaryAppellation ) { primaryAppellation = 'Not Selected'; }
   if ( !primaryAppellationMapSrc ) { primaryAppellationMapSrc = ''; }
-  if ( !secondaryAppellation ) { secondaryAppellation = 'No Secondary Appellation Selected'; }
+  if ( !secondaryAppellation ) { secondaryAppellation = 'Not Selected'; }
   if ( !secondaryAppellationMapSrc ) { secondaryAppellationMapSrc = ''; }
   if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }
   if ( !rating ) { rating = 'No Rating Selected'; }
   if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
-  if ( !pricing1Price ) { pricing1Price = 'No Price Inputted'; }
+  if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
   if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
-  if ( !pricing2Price ) { pricing2Price = 'No Price Inputted'; }
+  if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
   if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
-  if ( !pricing3Price ) { pricing3Price = 'No Price Inputted'; }
+  if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
   if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
-  if ( !pricing4Price ) { pricing4Price = 'No Price Inputted'; }
+  if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
 
   const options = {
     wineName,
