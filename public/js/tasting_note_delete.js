@@ -1,6 +1,7 @@
 'use strict';
 
-// const TASTING_EVENTS_URL = `/events`; // This was already declared in tasting_event_delete.js
+// NOTE: This was already declared in tasting_event_delete.js
+// const TASTING_EVENTS_URL = `/events`;
 // ************************************************************************* //
 // API DELETE - BEGIN
 // ************************************************************************* //

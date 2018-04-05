@@ -45,16 +45,7 @@ function renderTastingEventsList(events) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[events[i]._id] = false;
 
-    // const mDate = moment(events[i].timestamp).format('MMMM Do YYYY, h:mm:ss a'); // works
-    const mDate = moment(events[i].timestamp).format('MMMM D, YYYY'); // works
-    // const mDate = moment(events[i].timestamp).format('MMMM D, YYYY');
-    // const mDate = moment.unix(events[i].timestamp).format('MMM D, YYYY'); // doesnt work
-    // const mDate = moment.unix(events[i].timestamp).format('YYYY-MM-DD HH:mm'); // doesnt work
-    // const mDate = moment.utc(events[i].timestamp).format('MMM D, YYYY'); // doesnt work
-    // const mDate = moment(events[i].timestamp).format('MMM D, YYYY');
-    console.log('events[i].timestamp', events[i].timestamp);
-    console.log('mDate', mDate);
-    // ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
+    const mDate = moment(events[i].timestamp).format('MMMM D, YYYY');
     // render EVENTS.
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
@@ -89,7 +80,6 @@ function renderTastingEventsList(events) {
 // TASTING NOTES LIST - BEGIN
 // ************************************************************************* //
 function getAndDisplayTastingNotes(e) {
-  console.log('getAndDisplayTastingNotes ran');
   e.stopPropagation();
   const $tastingEventSpan = $(e.target);  // TASTING EVENT span.
   // eventId is used for
@@ -108,7 +98,6 @@ function getAndDisplayTastingNotes(e) {
   }
 
   function renderTastingNotes(tastings) {
-    // console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
@@ -133,24 +122,40 @@ function getAndDisplayTastingNotes(e) {
                 >Delete
             </span>
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
+            
                 <div class="country-map-wrapper js-country-map-wrapper">
-                  <span class="country-map-span js-country-map-span">Country: ${tastings[i].country}</span>
+                  <span class="country-map-span js-country-map-span">
+                    Country: ${tastings[i].country}
+                  </span>
                   <div class="country-map js-country-map">
-                  ${tastings[i].countryMapSrc !== '' ? `<img class="js-country-map-img" src="${tastings[i].countryMapSrc}">`: `<div>No Map</div>`}
+                     ${tastings[i].countryMapSrc !== '' ? 
+                    `<img class="js-country-map-img" src="${tastings[i].countryMapSrc}">`: 
+                    `<div>No Country Map</div>`}
                   </div>
                 </div>
+                
                 <div class="primary-appellation-wrapper js-primary-appellation-wrapper">
-                  <span class="primary-appellation-map-span js-primary-appellation-map-span">Primary Appellation: ${tastings[i].primaryAppellation}</span>
+                  <span class="primary-appellation-map-span js-primary-appellation-map-span">
+                    Primary Appellation: ${tastings[i].primaryAppellation}
+                  </span>
                   <div class="primary-appellation-map js-primary-appellation-map">
-                      <img class="js-primary-appellation-map-img" src="${tastings[i].primaryAppellationMapSrc}">
+                    ${tastings[i].primaryAppellationMapSrc !== '' ?
+                    `<img class="js-primary-appellation-map-img" src="${tastings[i].primaryAppellationMapSrc}">`:
+                    `<div>No Primary Appellation Map</div>`}
                   </div>
                 </div>
+                
                 <div class="secondary-appellation-wrapper js-secondary-appellation-wrapper">
-                  <span class="secondary-appellation-map-span js-secondary-appellation-map-span">Secondary Appellation: ${tastings[i].secondaryAppellation}</span>
+                  <span class="secondary-appellation-map-span js-secondary-appellation-map-span">
+                    Secondary Appellation: ${tastings[i].secondaryAppellation}
+                  </span>
                   <div class="secondary-appellation-map js-secondary-appellation-map">
-                      <img class="js-secondary-appellation-map-img" src="${tastings[i].secondaryAppellationMapSrc}">
+                    ${tastings[i].secondaryAppellationMapSrc !== '' ?
+                    `<img class="js-secondary-appellation-map-img" src="${tastings[i].secondaryAppellationMapSrc}">`:
+                    '<div>No Secondary Appellation Map</div>'}
                   </div>
                 </div>
+                
                 <div>Primary Grape: ${tastings[i].grapePrimary}</div>
                 <div>Rating: ${tastings[i].rating}</div>
                 <div>
@@ -269,27 +274,23 @@ function getAndDisplayTastingNotes(e) {
 // // TASTING NOTE DETAIL - END
 // // ************************************************************************* //
 function toggleTastingNote(e) {
-  console.log('toggleTastingNote ran');
   e.stopPropagation();
   const $countrySpan = $(e.target);
   $countrySpan.siblings('.js-tasting-detail-wrapper').toggle();
 }
 function toggleCountryMap(e) {
-  console.log('toggleCountryMap ran');
   e.stopPropagation();
   const $countrySpan = $(e.target);
   $countrySpan.siblings('.js-country-map').toggle();
 }
 
 function togglePrimaryAppellationMap(e) {
-  console.log('togglePrimaryAppellationMap ran');
   e.stopPropagation();
   const $appellationSpan = $(e.target);
   $appellationSpan.siblings('.js-primary-appellation-map').toggle();
 }
 
-function toggleSecondaryAppellationMap(e) {
-  console.log('toggleSecondaryAppellationMap ran');
+function toggleSecondaryAppellationMap(e) {;
   e.stopPropagation();
   const $appellationSpan = $(e.target);
   $appellationSpan.siblings('.js-secondary-appellation-map').toggle();
