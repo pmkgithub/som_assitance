@@ -11,22 +11,22 @@ router.get('/', (req, res) => {
 
 // events
 router.get('/events', (req, res) => {
-  res.sendFile('tasting_events_list.html', {"root": "./app_server/views"}); // works
+  res.sendFile('tasting_events_list.html', {"root": "./app_server/views"});
 });
 router.get('/events/new', (req, res) => {
-  console.log('content router tasting-events/new ran');
-  res.sendFile('tasting_event_form.html', {"root": "./app_server/views"}); // works
+  res.sendFile('tasting_event_form.html', {"root": "./app_server/views"});
 });
-
+router.get('/events/edit', (req, res) => {
+  res.sendFile('tasting_event_form_edit.html', {"root": "./app_server/views"});
+});
 
 // tastings
-router.get('/events/:eventId/tastings/new', (req, res) => {
-  res.sendFile('tasting_note_form.html', {"root": "./app_server/views"}); // works
+router.get('/tastings/new', (req, res) => {
+  res.sendFile('tasting_note_form.html', {"root": "./app_server/views"});
 });
-
-// TODO
-router.get('/events/:eventId/tastings/:tastingId/edit', (req, res) => {
-  res.sendFile(__dirname + '/views/tasting_note_form.html');
+// TODO - Tasting Note Edit
+router.get('/tastings/edit', (req, res) => {
+  res.sendFile('tasting_note_form_edit.html', {"root": "./app_server/views"});
 });
 
 

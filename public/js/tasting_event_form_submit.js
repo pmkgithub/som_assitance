@@ -25,8 +25,8 @@ function postDataToApi(url, options, callback) {
 // API POST - END
 // ************************************************************************* //
 
-function handleFormSubmit(event) {
-  event.preventDefault();
+function handleFormSubmit(e) {
+  e.preventDefault();
 
   const eventName = $('.js-event-name').val();
   const eventHost = $('.js-event-host').val();
@@ -46,8 +46,8 @@ function handleFormSubmit(event) {
   postDataToApi(TASTING_EVENT_POST_URL, options, redirectToEventsListOnSave);
 }
 
-function redirectToEventsListOnCancel(event) {
-  event.preventDefault();
+function redirectToEventsListOnCancel(e) {
+  e.preventDefault();
   window.location = TASTING_EVENTS_URL;
 }
 

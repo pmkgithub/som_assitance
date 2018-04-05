@@ -4,67 +4,13 @@ const config = require('../../config');
 const mongoose = require('mongoose');
 const {Event} = require('../models/model_tasting_event');
 const {TastingNote} = require('../models/model_tasting_note');
-// const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testData/test_data'); // static test data.
+
 mongoose.connect(config.localdb);
-
-
-// // ************************************************************************* //
-// // TASTINGS EVENTS - BEGIN
-// // ************************************************************************* //
-// module.exports.getTastingEventsData = (req, res) => {
-//   // res.json(EVENTS_DATA); // for TESTING
-//   Event
-//     .find()
-//     .then((events) => {
-//       console.log('events =', events);
-//       res.json(events).status(200);
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({ message: 'Internal server error', err: err });
-//     });
-//
-// };
-//
-// module.exports.postTastingEventsData = (req, res) => {
-//   console.log('req.body = ', req.body);
-//
-//   // make sure client didn't send unexpected fields.
-//   const requiredFields = ['eventName', 'eventHost'];
-//   for( let i=0; i< requiredFields.length; i++) {
-//     const field = requiredFields[i];
-//
-//     if ( !(field in req.body) ) {
-//       const message = `Missing \`${field}\` in request body`;
-//       console.error(message);
-//       return res.status(400).send(message);
-//     }
-//   }
-//
-//   Event
-//     .create({
-//       eventName: req.body.eventName,
-//       eventHost: req.body.eventHost
-//     })
-//     .then(event => {
-//       console.log('Event ID = ', event._id);
-//       res.status(200).json(event.serialize())
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({ message: 'Internal server error', err: err });
-//     });
-//
-// };
-// // ************************************************************************* //
-// // TASTINGS EVENTS - END
-// // ************************************************************************* //
 
 // ************************************************************************* //
 // TASTINGS NOTES - BEGIN
 // ************************************************************************* //
 module.exports.getTastingNotes = (req, res) => {
-  console.log('API controller getTastingNotesList ran');
   const eventId = req.params.eventId;
   TastingNote
     .find({eventId: eventId})
@@ -83,12 +29,10 @@ module.exports.postTastingNoteData = (req, res) => {
     .findById({"_id": eventId})
     .then(event => {
       const _eventId = event._id;
-      console.log("Event found when saving a Tasting Note: ");
-      console.log(event._id);
-      console.log(event.eventName);
-      console.log(event.eventHost);
+
       TastingNote
         .create({
+          timestamp: new Date(),
           eventHost: req.body.eventHost,
           wineName: req.body.wineName,
           grapePrimary: req.body.primaryGrape,
@@ -119,29 +63,17 @@ module.exports.postTastingNoteData = (req, res) => {
     });
 };
 module.exports.deleteTastingNote = (req, res) => {
-  console.log('module.exports.deleteTastingNote ran');
   TastingNote
       .findByIdAndRemove(req.params.tastingId)
       .then(tasting => {
         console.log('tasting = ', tasting);
         res.status(204).end()
       })
-      .catch(err => res.status(500).json({ message: 'Internal server error' }));
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' })
+      });
 };
 // ************************************************************************* //
 // TASTINGS NOTES - END
 // ************************************************************************* //
-
-
-// // ************************************************************************* //
-// // TASTINGS DEATILS - BEGIN
-// // ************************************************************************* //
-// module.exports.getTastingNoteDeatil = (req, res) => {
-//   console.log('API controller getTastingNoteDeatil ran');
-//   console.log('req.params', req.params);
-//   res.json(TASTING_DETAIL_DATA);
-// };
-//
-// // ************************************************************************* //
-// // TASTINGS DEATILS - END
-// // ************************************************************************* //

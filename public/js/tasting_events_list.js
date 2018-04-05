@@ -1,11 +1,8 @@
 'use strict';
 
-// API URL's below used to:
-// 1) fetch TASTING EVENTS list:
-//    e.g. /api/tasting-events/
-// 2) fetch TASTING EVENT's TASTING NOTES list, when a TASTING EVENT list item is clicked:
-//    e.g. /api/tasting-events/:eventId
 const TASTING_EVENTS_API_URL = `/api/events/`;
+const TASTING_NOTES_API_URL = `/api/tastings/`;
+const TASTING_EVENT_EDIT_FORM_URL = '/events/edit';
 
 let STATE = {
   tastingsFetched: {
@@ -90,7 +87,7 @@ function getAndDisplayTastingNotes(e) {
 
   if( !STATE.tastingsFetched[eventId] ) {
     // if first time clicking a TASTING EVENT, fetch TASTING NOTE for a particular TASTING EVENT.
-    getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}`, {}, renderTastingNotes);
+    getDataFromApi(`${TASTING_NOTES_API_URL}${eventId}`, {}, renderTastingNotes);
   } else {
     // If TASTING NOTES already been fetched for a particular TASTING EVENT,
     // keep TASTING NOTES in DOM and show/hide on future TASTING EVENT clicks.
@@ -98,14 +95,13 @@ function getAndDisplayTastingNotes(e) {
   }
 
   function renderTastingNotes(tastings) {
+    console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
     STATE.tastingsFetched[eventId] = true;
 
     for (let i = 0; i < tastings.length ; i++) {
-    // <img class="js-country-map-img" src="${tastings[i].countryMapSrc}">
-      // TODO - stop/start - write ternary for countryMap
       // Render Tasting Note Header and append DOM.
       $tastingEventSpan.siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
@@ -184,7 +180,7 @@ function getAndDisplayTastingNotes(e) {
     // );
     $tastingEventSpan.siblings('ul.js-tastings-ul').append(
       `<a 
-        href="/events/${eventId}/tastings/new" 
+        href="/tastings/new" 
         class="add-new-tasting-note js-add-new-tasting-note" 
         data-eventid="${eventId}"
         data-eventname="${eventName}"
@@ -199,80 +195,18 @@ function getAndDisplayTastingNotes(e) {
 // TASTING NOTES LIST - END
 // ************************************************************************* //
 
+const loadEditEventForm = (e) => {
+  const $editEventSpan = $(e.target);
+  const eventId = $editEventSpan.attr('data-eventid');
+  localStorage.setItem('eventId', eventId);
+  localStorage.setItem('eventHost', ''); // clear eventHost.
+  localStorage.setItem('eventName', ''); // clear eventName.
+  window.location = TASTING_EVENT_EDIT_FORM_URL;
+};
 
-// // ************************************************************************* //
-// // TASTING NOTE DETAIL - BEGIN
-// // ************************************************************************* //
-//
-// function getTastingNotesDetailData(e) {
-//   e.stopPropagation();
-//   // NOTE: event.target = span.tasting-span, event.currentTarget = li.js-tasting
-//   const $tastingSpan = $(e.currentTarget);
-//   const tastingId = $tastingSpan.attr("data-tastingid");
-//
-//   // const eventId = $tastingSpan.attr("data-eventid");
-//   const eventId = "1000";
-//
-//   if ( !STATE.tastingDetailFetched[tastingId] ) {
-//     // if first time clicking a TASTINGS NOTE, fetch TASTING DETAIL for a particular TASTING NOTE.
-//     // getDataFromApi(`/api/tasting-note-detail/${tastingId}`, {}, renderTastingDetail);
-//     getDataFromApi(`${TASTING_EVENTS_API_URL}${eventId}/tastings/${tastingId}`, {}, renderTastingDetail);
-//   } else {
-//     // If TASTING DETAIL already been fetched for a particular TASTING NOTE,
-//     // keep TASTING DETAIL in DOM and show/hide on future TASTING NOTE clicks.
-//     $tastingSpan.siblings('.js-tasting-detail-wrapper').toggle();
-//   }
-//
-//   // helper function.
-//   function renderTastingDetail(data) {
-//     const { tastingDetail } = data;
-//     const { pricing } = data.tastingDetail;
-//
-//     // This function is run one time when TASTING DETAIL of a particular TASTING NOTE is fetched.
-//
-//     // Set tastingDetailFetched flag, so future clicks on a TASTING NOTE
-//     // will result in a toggle of DOM TASTING DETAIL (and no further fetching of TASTING DETAIL).
-//     STATE.tastingDetailFetched[tastingId] = true;
-//
-//     // render and append DOM.
-//     $tastingSpan.siblings('.js-tasting-detail-wrapper').append(
-//     `<div>Date: ${tastingDetail.date}</div>` +
-//     `<div>Event Host: ${tastingDetail.eventHost}</div>` +
-//     `<div>Wine: ${tastingDetail.wineName}</div>` +
-//     `<div>Primary Grape: ${tastingDetail.grapePrimary}</div>` +
-//     `<div class="country-map-wrapper js-country-map-wrapper">
-//         <span class="country-map-span js-country-map-span">Country: ${tastingDetail.country}</span>
-//         <div class="country-map js-country-map">
-//             <img class="js-country-map-img" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-All-wine-map2_1024x1024.jpg?v=1504901393">
-//         </div>
-//      </div>` +
-//     `<div class="primary-appellation-wrapper js-primary-appellation-wrapper">
-//         <span class="primary-appellation-map-span js-primary-appellation-map-span">Primary Appellation: ${tastingDetail.appellationPrimary}</span>
-//         <div class="primary-appellation-map js-primary-appellation-map">
-//             <img class="js-primary-appellation-map-img" src="http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-France-Burgundy-wine-map2.jpg?v=1504901465">
-//         </div>
-//      </div>` +
-//     `<div>Secondary Appellation: ${tastingDetail.appellationSecondary}</div>` +
-//     `<div>Tertiary Appellation: ${tastingDetail.appellationTertiary}</div>` +
-//     `<div>Rating: ${tastingDetail.rating}</div>` +
-//     `<div>${ pricing.pricing1[0] === "n/a" ? `Pricing 1: ${pricing.pricing1[0]}` : `Pricing 1: ${pricing.pricing1[0]} = ${pricing.pricing1[1]}` } </div>` +
-//     `<div>${ pricing.pricing2[0] === "n/a" ? `Pricing 2: ${pricing.pricing2[0]}` : `Pricing 2: ${pricing.pricing2[0]} = ${pricing.pricing2[1]}` } </div>` +
-//     `<div>${ pricing.pricing3[0] === "n/a" ? `Pricing 3: ${pricing.pricing3[0]}` : `Pricing 3: ${pricing.pricing3[0]} = ${pricing.pricing3[1]}` } </div>` +
-//     `<div>${ pricing.pricing4[0] === "n/a" ? `Pricing 4: ${pricing.pricing4[0]}` : `Pricing 4: ${pricing.pricing4[0]} = ${pricing.pricing4[1]}` } </div>` +
-//     `<div>
-//         <span>Tasting Notes:</span>
-//         <div class="tasting-notes">${tastingDetail.tastingNotes}</div>
-//      </div>`
-//     );
-//   }
-//
-// }
-//
-//
-//
-// // ************************************************************************* //
-// // TASTING NOTE DETAIL - END
-// // ************************************************************************* //
+// ************************************************************************* //
+// TOGGLES - BEGIN
+// ************************************************************************* //
 function toggleTastingNote(e) {
   e.stopPropagation();
   const $countrySpan = $(e.target);
@@ -290,13 +224,19 @@ function togglePrimaryAppellationMap(e) {
   $appellationSpan.siblings('.js-primary-appellation-map').toggle();
 }
 
-function toggleSecondaryAppellationMap(e) {;
+function toggleSecondaryAppellationMap(e) {
   e.stopPropagation();
   const $appellationSpan = $(e.target);
   $appellationSpan.siblings('.js-secondary-appellation-map').toggle();
 }
+// ************************************************************************* //
+// TOGGLES - END
+// ************************************************************************* //
 
-function setLocalStorage(e) {
+// ************************************************************************* //
+// SET LOCALSTORAGE - BEGIN
+// ************************************************************************* //
+function loadNewTastingForm(e) {
   const $linkToNewTastingForm = $(e.target);
   const eventId = $linkToNewTastingForm.attr('data-eventid');
   const eventHost = $linkToNewTastingForm.attr('data-eventhost');
@@ -305,6 +245,9 @@ function setLocalStorage(e) {
   localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
 }
+// ************************************************************************* //
+// SET LOCALSTORAGE - BEGIN
+// ************************************************************************* //
 
 $(function() {
 
@@ -319,6 +262,7 @@ $(function() {
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', togglePrimaryAppellationMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-secondary-appellation-map-span', toggleSecondaryAppellationMap);
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note', setLocalStorage);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note', loadNewTastingForm);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-edit-event-span', loadEditEventForm);
 
 });
