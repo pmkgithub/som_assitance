@@ -1,11 +1,9 @@
 'use strict';
 
-
-
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
-const TASTING_EVENTS_URL = `/events`;
+const TASTING_EVENTS_LIST_URL = `/events`;
 
 function postDataToApi(url, options, callback) {
   $.ajax({
@@ -91,17 +89,16 @@ function handleFormSubmit(e) {
   };
 
   const eventId = localStorage.getItem('eventId');
-  const TASTING_NOTE_POST_URL = `/api/events/${eventId}/tastings`; // temp url for testing
-  postDataToApi(TASTING_NOTE_POST_URL, options, redirectToEventsListOnSave);
+  postDataToApi(`/api/tastings/${eventId}`, options, redirectToEventsListOnSave);
 }
 
 function redirectToEventsListOnCancel() {
-  window.location = TASTING_EVENTS_URL;
+  window.location = TASTING_EVENTS_LIST_URL;
 }
 
 function redirectToEventsListOnSave() {
   // on AJAX success, navigate the user back to TASTING EVENTS LIST.
-  window.location = TASTING_EVENTS_URL;
+  window.location = TASTING_EVENTS_LIST_URL;
 }
 
 

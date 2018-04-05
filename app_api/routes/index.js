@@ -10,16 +10,17 @@ const ctrlEvents = require('../controllers/eventsController');
 const ctrlTastings = require('../controllers/tastingsController');
 
 // events
-router.get('/events', ctrlEvents.getTastingEvents); // working
-router.post('/events', jsonParser, ctrlEvents.postTastingEventsData); // working
+router.get('/events', ctrlEvents.getAllTastingEvents);
+router.post('/events', jsonParser, ctrlEvents.postTastingEventData);
 // router.post('/events', jsonParser, ctrlEvents.postTastingEventsData); // recommended by RS
 router.delete('/events/:eventId', ctrlEvents.deleteEvent);
-router.put('/events/:eventId', jsonParser, function() {}); // stub
+router.get('/events/:eventId', ctrlEvents.getOneTastingEvent);
+router.put('/events/:eventId', jsonParser, ctrlEvents.putTastingEventData);
 
 // tastings
-router.get('/events/:eventId', ctrlTastings.getTastingNotes); // working
-router.post('/events/:eventId/tastings', jsonParser, ctrlTastings.postTastingNoteData); // working
-router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote); // working
+router.get('/tastings/:eventId', ctrlTastings.getTastingNotes);
+router.post('/tastings/:eventId', jsonParser, ctrlTastings.postTastingNoteData);
+router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
 // TODO  - do I need getTastingNoteDeatil???
 // router.get('/events/:eventsId/tastings/:tastingId', ctrlTastings.getTastingNoteDeatil); // recommended by RS
 
