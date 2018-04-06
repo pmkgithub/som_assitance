@@ -2336,25 +2336,23 @@ const APPS = {
 
 
 // ************************************************************************* //
-// BLAH - BEGIN
+// HELPERS - BEGIN
 // ************************************************************************* //
-
-
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 // ************************************************************************* //
-// BLAH - END
+// HELPERS - END
 // ************************************************************************* //
 
 // ************************************************************************* //
-// Misc Helpers - BEGIN
+// SET LEGEND - BEGIN
 // ************************************************************************* //
 const buildLegend = () => {
   $('.js-legend').html(`Tasting Note for ${localStorage.getItem('eventName')} Event`);
 }
 // ************************************************************************* //
-// Misc Helpers - BEGIN
+// SET LEGEND - END
 // ************************************************************************* //
 
 // ************************************************************************* //
@@ -2365,7 +2363,6 @@ const handleCountrySelection = () => {
   buildPrimaryAppellationSelectInput();
   buildPrimaryGrapesSelectInput();
 };
-
 // ************************************************************************* //
 // Handle Country Selection - END
 // ************************************************************************* //
@@ -2518,8 +2515,6 @@ const buildPrimaryAppellationSelectInput = () => {
   }
 
 };
-
-
 // ************************************************************************* //
 // Primary Appellation Select Input - END
 // ************************************************************************* //
@@ -2589,11 +2584,9 @@ const togglePrimAppMap = (e) => {
 // ************************************************************************* //
 // Handle Primary Appellation Selection - BEGIN
 // ************************************************************************* //
-
 const handleSecondaryAppellationSelection = () =>{
   getSecondaryAppellationMapAndDisplay();
   // buildTertiaryAppellationSelectInput(); // stub for future code.
-
 };
 // ************************************************************************* //
 // Handle Primary Appellation Selection - END
@@ -2732,6 +2725,7 @@ const getSecondaryAppellationMapAndDisplay = () => {
             </div>`;
     $secAppMapWrapper.html(html);
     $secAppMapWrapper.show();
+    return false;
   }
 
 };

@@ -22,6 +22,9 @@ function postDataToApi(url, options, callback) {
 // API POST - END
 // ************************************************************************* //
 
+// ************************************************************************* //
+// HANDLE SUBMIT - BEGIN
+// ************************************************************************* //
 function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.preventDefault();
@@ -100,7 +103,9 @@ function redirectToEventsListOnSave() {
   // on AJAX success, navigate the user back to TASTING EVENTS LIST.
   window.location = TASTING_EVENTS_LIST_URL;
 }
-
+// ************************************************************************* //
+// HANDLE SUBMIT - END
+// ************************************************************************* //
 
 $(function() {
 
