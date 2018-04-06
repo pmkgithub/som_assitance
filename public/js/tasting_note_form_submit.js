@@ -30,6 +30,7 @@ function handleFormSubmit(e) {
   e.preventDefault();
 
   // FOR PRODUCTION
+  let eventHost = localStorage.getItem('eventHost');
   let wineName = $('#js-wine-name-input').val();
   let country = $('#js-country-select').val();
   let countryMapSrc = $('.js-country-map-img').attr('src');
@@ -71,6 +72,7 @@ function handleFormSubmit(e) {
   if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
 
   const options = {
+    eventHost,
     wineName,
     country,
     countryMapSrc,

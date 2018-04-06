@@ -6,7 +6,6 @@ let STATE = {};
 //
 // Grab the tastingId from localStorage (set when "Edit" is clicked on Tasting Note).
 const tastingId = localStorage.getItem('tastingId');
-console.log('tastingId', tastingId);
 const TASTING_NOTE_API_URL = `/api/tastings/edit/${tastingId}`;
 
 // ************************************************************************* //

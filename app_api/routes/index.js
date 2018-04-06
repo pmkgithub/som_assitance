@@ -22,19 +22,16 @@ router.post('/tastings/:eventId', jsonParser, ctrlTastings.postTastingNoteData);
 router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
 router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote); // not working
 router.put('/tastings/edit/:tastingId', jsonParser, ctrlTastings.putTastingNoteData);
-// TODO  - do I need getTastingNoteDeatil???
-// router.get('/events/:eventsId/tastings/:tastingId', ctrlTastings.getTastingNoteDeatil); // recommended by RS
-
-
 
 router.put('/events/:eventsId/tastings/:tastingId', jsonParser, (req, res) => {
   res.send({"msg": "tasting note updated"});
 });
 
-
+// TODO - SEARCH router.post 'api/search'
 // search
 router.post('/search', (req, res) => {
-  res.send('search form posted - search results list provided');
+  // put search criteria in req.body, not in the URL
+  res.send({"msg": "router.post '/search' ran"});
 });
 
 
