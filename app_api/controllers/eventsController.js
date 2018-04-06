@@ -1,11 +1,9 @@
 'use strict';
 
-
 const config = require('../../config');
 const mongoose = require('mongoose');
 const {Event} = require('../models/model_tasting_event');
 const {TastingNote} = require('../models/model_tasting_note');
-// const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testData/test_data'); // static test data.
 mongoose.connect(config.localdb);
 
 
@@ -16,9 +14,7 @@ module.exports.getAllTastingEvents = (req, res) => {
 
   Event
     .find()
-    .then((events) => {
-      res.json(events).status(200);
-    })
+    .then((events) => { res.json(events).status(200); })
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
@@ -27,14 +23,11 @@ module.exports.getAllTastingEvents = (req, res) => {
 };
 
 module.exports.getOneTastingEvent = (req, res) => {
-  console.log('getOneTastingEvent ran');
   const eventId  = req.params.eventId;
 
   Event
     .findById(eventId)
-    .then((event) => {
-      res.json(event.serialize()).status(200);
-    })
+    .then((event) => { res.json(event.serialize()).status(200); })
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
@@ -74,9 +67,9 @@ module.exports.postTastingEventData = (req, res) => {
 module.exports.putTastingEventData = (req, res) => {
   const eventId = req.params.eventId;
   const toUpdate = {};
-  const updateableFields = ['eventName', 'eventHost'];
+  const updatableFields = ['eventName', 'eventHost'];
 
-  updateableFields.forEach(field => {
+  updatableFields.forEach(field => {
     if (field in req.body) {
       toUpdate[field] = req.body[field];
     }
@@ -85,7 +78,7 @@ module.exports.putTastingEventData = (req, res) => {
   Event
   // all key/value pairs in toUpdate will be updated -- that's what `$set` does
     .findByIdAndUpdate(eventId, { $set: toUpdate })
-    .then(restaurant => res.status(204).end())
+    .then(event => res.status(204).end())
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' })
@@ -103,13 +96,13 @@ module.exports.deleteEvent = (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     });
 
-  // TastingNote
-  //   .remove({eventId: eventId})
-  //   .then((tasting) => res.status(204).end() )
-  //   .catch(err => {
-  //     console.error(err);
-  //     res.status(500).json({ message: 'Internal server error' });
-  //   });
+  TastingNote
+    .remove({eventId: eventId})
+    .then((tasting) => res.status(204).end() )
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
 };
 // ************************************************************************* //
 // TASTINGS EVENTS - END

@@ -8,6 +8,7 @@ const TASTING_NOTE_EDIT_FORM_URL = '/tastings/edit';
 let STATE = {
   tastingsFetched: {
   },
+  // TODO - remove tastingDetailFetched
   tastingDetailFetched: {
   }
 };
@@ -80,11 +81,15 @@ function renderTastingEventsList(events) {
 function getAndDisplayTastingNotes(e) {
   e.stopPropagation();
   const $tastingEventSpan = $(e.target);  // TASTING EVENT span.
-  // eventId is used for
+  // "eventId" is used for:
   // 1) the "key" for STATE.tastingsFetched.
-  // 2) placed on "Add Tasting Note" a tag, which is then extracted and placed in localStorage.
+  // 2) placed on "Add Tasting Note" a tag, which is then extracted when "Add Tasting Note"
+  //    is clicked and placed in localStorage.
+  // 3) placed on "Edit" tasting note span, which is then extracted when "Edit" tasting note
+  //    is clicked and placed in localStorage.
   const eventId = $tastingEventSpan.attr("data-eventid");
   const eventName = $tastingEventSpan.attr("data-eventname");
+  const eventHost = $tastingEventSpan.attr("data-eventhost");
 
   if( !STATE.tastingsFetched[eventId] ) {
     // if first time clicking a TASTING EVENT, fetch TASTING NOTE for a particular TASTING EVENT.
@@ -105,12 +110,12 @@ function getAndDisplayTastingNotes(e) {
       // Render Tasting Note Header and append DOM.
       $tastingEventSpan.siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
-            <!--<span data-eventid="${tastings[i].eventId}" data-tastingid="${tastings[i]._id}" class="tasting-span js-tasting-span">${tastings[i].wineName}</span>-->
             <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
             <span 
                 class="edit-tasting-span js-edit-tasting-span" 
                 data-tastingid="${tastings[i]._id}"
                 data-eventname="${eventName}"
+                data-eventhost="${eventHost}"
                 >Edit
             </span>            
             <span 
@@ -210,13 +215,15 @@ const loadNewTastingNoteForm = (e) => {
   localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
 };
+// TODO - current WIP
 const loadEditTastingNoteForm = (e) => {
   const $editTastingNoteSpan = $(e.target);
   const tastingId = $editTastingNoteSpan.attr('data-tastingid');
-  const eventName = $editTastingNoteSpan.attr('data-eventName');
+  const eventName = $editTastingNoteSpan.attr('data-eventname');
+  const eventHost = $editTastingNoteSpan.attr('data-eventhost');
   localStorage.setItem('tastingId', tastingId);
   localStorage.setItem('eventId', '');    // clear eventId.
-  localStorage.setItem('eventHost', '');  // clear eventHost.
+  localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
   window.location = TASTING_NOTE_EDIT_FORM_URL;
 };
