@@ -12,15 +12,16 @@ const ctrlTastings = require('../controllers/tastingsController');
 // events
 router.get('/events', ctrlEvents.getAllTastingEvents);
 router.post('/events', jsonParser, ctrlEvents.postTastingEventData);
-// router.post('/events', jsonParser, ctrlEvents.postTastingEventsData); // recommended by RS
 router.delete('/events/:eventId', ctrlEvents.deleteEvent);
-router.get('/events/:eventId', ctrlEvents.getOneTastingEvent);
-router.put('/events/:eventId', jsonParser, ctrlEvents.putTastingEventData);
+router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);
+router.put('/events/edit/:eventId', jsonParser, ctrlEvents.putTastingEventData);
 
 // tastings
 router.get('/tastings/:eventId', ctrlTastings.getTastingNotes);
 router.post('/tastings/:eventId', jsonParser, ctrlTastings.postTastingNoteData);
 router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
+router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote); // not working
+router.put('/tastings/edit/:tastingId', jsonParser, ctrlTastings.putTastingNoteData);
 // TODO  - do I need getTastingNoteDeatil???
 // router.get('/events/:eventsId/tastings/:tastingId', ctrlTastings.getTastingNoteDeatil); // recommended by RS
 

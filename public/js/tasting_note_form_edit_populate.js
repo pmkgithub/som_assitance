@@ -1,4 +1,291 @@
 'use strict';
+
+
+// TODO - code below is FORM POPULATE
+// ************************************************************************* //
+// ************************************************************************* //
+// Populate Tasting Note Form - BEGIN
+// ************************************************************************* //
+// ************************************************************************* //
+let STATE = {};
+
+// Grab the tastingId from localStorage (set when "Edit" is clicked on Tasting Note).
+const tastingId = localStorage.getItem('tastingId');
+console.log('tastingId', tastingId);
+//
+const TASTING_NOTE_API_URL = `/api/tastings/edit/${tastingId}`;
+
+
+// ************************************************************************* //
+// API GET AND POPULATE STATE - BEGIN
+// ************************************************************************* //
+function getOneTastingFromApi(url, options, callback) {
+  console.log('getOneTastingFromApi ran');
+  console.log('url = ', url);
+  $.ajax({
+    url: url,
+    type: 'GET',
+    dataType: 'json',
+    data: options,
+    success: callback,
+    error: function() { console.log('something went wrong'); },
+  });
+}
+
+const populateState = (tastingNote) => {
+  console.log('tastingNote = ', tastingNote);
+  STATE.wineName = tastingNote.wineName;
+  STATE.country = tastingNote.country;
+  STATE.countryMapSrc = tastingNote.countryMapSrc;
+  STATE.primaryAppellation = tastingNote.primaryAppellation;
+  STATE.primaryAppellationMapSrc = tastingNote.primaryAppellationMapSrc;
+  STATE.secondaryAppellation = tastingNote.secondaryAppellation;
+  STATE.secondaryAppellationMapSrc = tastingNote.secondaryAppellationMapSrc;
+  STATE.primaryGrape = tastingNote.primaryGrape;
+  STATE.rating = tastingNote.rating;
+
+  STATE.pricing1Desc = tastingNote.pricing1Desc;
+  STATE.pricing1Price = tastingNote.pricing1Price;
+
+  STATE.pricing2Desc = tastingNote.pricing2Desc;
+  STATE.pricing2Price = tastingNote.pricing2Price;
+
+  STATE.pricing3Desc = tastingNote.pricing3Desc;
+  STATE.pricing3Price = tastingNote.pricing3Price;
+
+  STATE.pricing4Desc = tastingNote.pricing4Desc;
+  STATE.pricing4Price = tastingNote.pricing4Price;
+
+  STATE.tastingNotes = tastingNote.tastingNotes;
+
+  console.log('wineName = ', STATE.wineName);
+  console.log('country = ', STATE.country);
+  console.log('countryMapSrc', STATE.countryMapSrc);
+  console.log('primaryAppellation', STATE.primaryAppellation);
+  console.log('primaryAppellationMapSrc', STATE.primaryAppellationMapSrc);
+  console.log('secondaryAppellation', STATE.secondaryAppellation);
+  console.log('secondaryAppellationMapSrc', STATE.secondaryAppellationMapSrc);
+  console.log('primaryGrape', STATE.primaryGrape);
+  console.log('rating', STATE.rating);
+  console.log('pricing1Desc', STATE.pricing1Desc);
+  console.log('pricing1Price', STATE.pricing1Price);
+  console.log('pricing2Desc', STATE.pricing2Desc);
+  console.log('pricing2Price', STATE.pricing2Price);
+  console.log('pricing3Desc', STATE.pricing3Desc);
+  console.log('pricing3Price', STATE.pricing3Price);
+  console.log('pricing4Desc', STATE.pricing4Desc);
+  console.log('pricing4Price', STATE.pricing4Price);
+  console.log('tastingNotes', STATE.tastingNotes);
+
+};
+// ************************************************************************* //
+// API GET AND POPULATE STATE - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Tasting Form - BEGIN
+// ************************************************************************* //
+// Populate the Event Form with fetched data.
+const populateTastingForm = (tastingNote) => {
+  $('#js-wine-name-input').val(tastingNote.wineName);
+  populateCountrySelect();
+  populatePrimaryAppellationSelect();
+  populateSecondaryAppellationSelect();
+  populatePrimaryGrapeSelect();
+  $('#js-tasting-note-ta').val(STATE.tastingNotes);
+  popluateRatingSelectInput();
+  populatePricing();
+};
+// ************************************************************************* //
+// Populate Tasting Form - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Country Select Input - BEGIN
+// ************************************************************************* //
+const populateCountrySelect = () => {
+  // build Country Select Input
+  buildCountrySelectInput();
+
+  // populate Country Select Input
+  if( STATE.country === 'Not Selected'){
+    // do nothing, Country Select Input will be at starting state.
+  } else {
+    $('#js-country-select').val(STATE.country);
+    getCountryMapAndDisplay();
+  }
+};
+
+// ************************************************************************* //
+// Populate Country Select Input - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Primary Appellation Select Input - BEGIN
+// ************************************************************************* //
+const populatePrimaryAppellationSelect = () => {
+
+  if ( STATE.primaryAppellation === 'Not Selected' ) {
+    // do nothing, let Primary Appellation Select Default to original load state.
+  } else {
+    buildPrimaryAppellationSelectInput();
+    const $primaryAppellationSelctInput = $('#js-primary-appellation-select');
+    $primaryAppellationSelctInput.attr({'disabled': false});
+    $primaryAppellationSelctInput.val(STATE.primaryAppellation);
+
+    getPrimaryAppellationMapAndDisplay();
+  }
+};
+// ************************************************************************* //
+// Populate Primary Appellation Select Input - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Secondary Appellation Select Input - BEGIN
+// ************************************************************************* //
+const populateSecondaryAppellationSelect = () => {
+
+  if ( STATE.secondaryAppellation === 'Not Selected' ) {
+    // do nothing, let Secondary Appellation Select Default to original load state.
+  } else {
+
+    buildSecondaryAppellationSelectInput();
+    const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
+    $secondaryAppellationSelectInput.attr({'disabled': false});
+    $secondaryAppellationSelectInput.val(STATE.secondaryAppellation);
+
+    getSecondaryAppellationMapAndDisplay();
+  }
+};
+// ************************************************************************* //
+// Populate Secondary Appellation Select Input - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Primary Grape Select Input - BEGIN
+// ************************************************************************* //
+const populatePrimaryGrapeSelect = () => {
+  console.log('populatePrimaryGrapeSelect ran');
+
+  buildPrimaryGrapesSelectInput();
+
+  if ( STATE.primaryGrape === 'Not Selected' ) {
+    // do nothing?
+  } else {
+    const $primaryGrapeSelectInput = $('#js-primary-grape-select');
+    $primaryGrapeSelectInput.attr({'disabled': false});
+    $primaryGrapeSelectInput.val(STATE.primaryGrape);
+  }
+};
+
+// ************************************************************************* //
+// Populate Primary Grape Select Input - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Tasting Notes Textarea - BEGIN
+// ************************************************************************* //
+const popluateRatingSelectInput = () => {
+
+  if ( STATE.rating === 'No Rating Selected' ) {
+    // do nothing?
+  } else {
+    const $ratingSelectInput = $('#js-rating-select');
+    $ratingSelectInput.attr({'disabled': false});
+    $ratingSelectInput.val(STATE.rating);
+  }
+
+};
+// ************************************************************************* //
+// Populate Tasting Notes Textarea - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Pricing - BEGIN
+// ************************************************************************* //
+// TODO - stop/start WIP
+const populatePricing = () => {
+
+  if ( STATE.pricing1Desc === 'No Price 1 Selected' ) {
+    // do nothing?
+  } else {
+    const $price1Select = $('#js-pricing1-select');
+    $price1Select.attr({'disabled': false});
+    $price1Select.val(STATE.pricing1Desc);
+  }
+  if ( STATE.pricing1Price === 'No Price Entered' ) {
+    // do nothing?
+  } else {
+    const $price1Input = $('#js-pricing1-input');
+    $price1Input.attr({'disabled': false});
+    $price1Input.val(STATE.pricing1Price);
+  }
+
+  if ( STATE.pricing2Desc === 'No Price 2 Selected' ) {
+    // do nothing?
+  } else {
+    const $price2Select = $('#js-pricing2-select');
+    $price2Select.attr({'disabled': false});
+    $price2Select.val(STATE.pricing2Desc);
+  }
+  if ( STATE.pricing2Price === 'No Price Entered' ) {
+    // do nothing?
+  } else {
+    const $price2Input = $('#js-pricing2-input');
+    $price2Input.attr({'disabled': false});
+    $price2Input.val(STATE.pricing2Price);
+  }
+
+  if ( STATE.pricing3Desc === 'No Price 3 Selected' ) {
+    // do nothing?
+  } else {
+    const $price3Select = $('#js-pricing3-select');
+    $price3Select.attr({'disabled': false});
+    $price3Select.val(STATE.pricing3Desc);
+  }
+  if ( STATE.pricing3Price === 'No Price Entered' ) {
+    // do nothing?
+  } else {
+    const $price3Input = $('#js-pricing3-input');
+    $price3Input.attr({'disabled': false});
+    $price3Input.val(STATE.pricing3Price);
+  }
+
+  if ( STATE.pricing4Desc === 'No Price 4 Selected' ) {
+    // do nothing?
+  } else {
+    const $price4Select = $('#js-pricing4-select');
+    $price4Select.attr({'disabled': false});
+    $price4Select.val(STATE.pricing4Desc);
+  }
+  if ( STATE.pricing4Price === 'No Price Entered' ) {
+    // do nothing?
+  } else {
+    const $price4Input = $('#js-pricing4-input');
+    $price4Input.attr({'disabled': false});
+    $price4Input.val(STATE.pricing4Price);
+  }
+
+};
+
+// ************************************************************************* //
+// Populate Pricing - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// ************************************************************************* //
+// Populate Tasting Note Form - END
+// ************************************************************************* //
+// ************************************************************************* //
+
+// TODO - code below is FORM CONTROL
+
+// ************************************************************************* //
+// ************************************************************************* //
+// FORM CONTROL - BEGIN
+// ************************************************************************* //
+// ************************************************************************* //
+
 // ************************************************************************* //
 // FORM DATA - BEGIN
 // ************************************************************************* //
@@ -2335,27 +2622,27 @@ const APPS = {
 // ************************************************************************* //
 
 
-// ************************************************************************* //
-// BLAH - BEGIN
-// ************************************************************************* //
+// // ************************************************************************* //
+// // BLAH - BEGIN
+// // ************************************************************************* //
+//
+//
+// function capitalizeFirstLetter(string) {
+//   return string.charAt(0).toUpperCase() + string.slice(1);
+// }
+// // ************************************************************************* //
+// // BLAH - END
+// // ************************************************************************* //
 
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-// ************************************************************************* //
-// BLAH - END
-// ************************************************************************* //
-
-// ************************************************************************* //
-// Misc Helpers - BEGIN
-// ************************************************************************* //
-const buildLegend = () => {
-  $('.js-legend').html(`Tasting Note for ${localStorage.getItem('eventName')} Event`);
-}
-// ************************************************************************* //
-// Misc Helpers - BEGIN
-// ************************************************************************* //
+// // ************************************************************************* //
+// // Misc Helpers - BEGIN
+// // ************************************************************************* //
+// const buildLegend = () => {
+//   $('.js-legend').html(`Tasting Note for ${localStorage.getItem('eventName')} Event`);
+// }
+// // ************************************************************************* //
+// // Misc Helpers - BEGIN
+// // ************************************************************************* //
 
 // ************************************************************************* //
 // Handle Country Selection - BEGIN
@@ -2914,11 +3201,35 @@ const handlePricing4Selection = () => {
 // Pricing Select Inputs - BEGIN
 // ************************************************************************* //
 
-$(function() {
-  buildLegend();
-  buildCountrySelectInput();
+// ************************************************************************* //
+// ************************************************************************* //
+// FORM CONTROL - END
+// ************************************************************************* //
+// ************************************************************************* //
 
-  // LISTENERS
+
+
+// ************************************************************************* //
+// ************************************************************************* //
+// ************************************************************************* //
+$(function() {
+  // TODO - $ CALLBACK Section
+  // ****************************
+  // Populate Form Section - BEGIN
+  // ****************************
+  // get data for TASTING NOTE EDIT form page loads.
+  let options = {};
+  // getOneTastingFromApi(TASTING_NOTE_API_URL, options, populateTastingForm); // old
+  getOneTastingFromApi(TASTING_NOTE_API_URL, options, populateState);
+
+  // ****************************
+  // Populate Form Section - END
+  // ****************************
+
+  // ****************************
+  // Form Control Section - BEGIN
+  // ****************************
+  // Form Control Listeners
   const $cancelButton = $('.js-button-cancel');
   const $tastingNoteForm = $('.tasting-form');
 
@@ -2948,5 +3259,7 @@ $(function() {
   // Primary Grape select input.
   const $primaryGrapeSelectInput = $('#js-primary-grape-select');
   $primaryGrapeSelectInput.change(addWineTypeText);
-
+  // ****************************
+  // Form Control Section - END
+  // ****************************
 });

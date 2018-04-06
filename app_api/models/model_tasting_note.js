@@ -8,7 +8,7 @@ const tastingNoteSchema = Schema({
   timestamp: {type: String, default: new Date()},
   wineName: {type: String, required: true},
   eventHost: {type: String},
-  grapePrimary: {type: String},
+  primaryGrape: {type: String},
   country: {type: String},
   countryMapSrc: {type: String},
   primaryAppellation: {type: String},

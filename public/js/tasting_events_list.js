@@ -3,6 +3,7 @@
 const TASTING_EVENTS_API_URL = `/api/events/`;
 const TASTING_NOTES_API_URL = `/api/tastings/`;
 const TASTING_EVENT_EDIT_FORM_URL = '/events/edit';
+const TASTING_NOTE_EDIT_FORM_URL = '/tastings/edit';
 
 let STATE = {
   tastingsFetched: {
@@ -95,7 +96,6 @@ function getAndDisplayTastingNotes(e) {
   }
 
   function renderTastingNotes(tastings) {
-    console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
@@ -110,6 +110,7 @@ function getAndDisplayTastingNotes(e) {
             <span 
                 class="edit-tasting-span js-edit-tasting-span" 
                 data-tastingid="${tastings[i]._id}"
+                data-eventname="${eventName}"
                 >Edit
             </span>            
             <span 
@@ -195,14 +196,43 @@ function getAndDisplayTastingNotes(e) {
 // TASTING NOTES LIST - END
 // ************************************************************************* //
 
+// ************************************************************************* //
+// LOAD FORMS - BEGIN
+// ************************************************************************* //
+const loadNewTastingNoteForm = (e) => {
+  // form "loaded" via <a> href.
+  const $linkToNewTastingForm = $(e.target);
+  const eventId = $linkToNewTastingForm.attr('data-eventid');
+  const eventHost = $linkToNewTastingForm.attr('data-eventhost');
+  const eventName = $linkToNewTastingForm.attr('data-eventname');
+  localStorage.setItem('tastingId', ''); // clear tastingId
+  localStorage.setItem('eventId', eventId);
+  localStorage.setItem('eventHost', eventHost);
+  localStorage.setItem('eventName', eventName);
+};
+const loadEditTastingNoteForm = (e) => {
+  const $editTastingNoteSpan = $(e.target);
+  const tastingId = $editTastingNoteSpan.attr('data-tastingid');
+  const eventName = $editTastingNoteSpan.attr('data-eventName');
+  localStorage.setItem('tastingId', tastingId);
+  localStorage.setItem('eventId', '');    // clear eventId.
+  localStorage.setItem('eventHost', '');  // clear eventHost.
+  localStorage.setItem('eventName', eventName);
+  window.location = TASTING_NOTE_EDIT_FORM_URL;
+};
 const loadEditEventForm = (e) => {
   const $editEventSpan = $(e.target);
   const eventId = $editEventSpan.attr('data-eventid');
+  localStorage.setItem('tastingId', ''); // clear tastingId
   localStorage.setItem('eventId', eventId);
   localStorage.setItem('eventHost', ''); // clear eventHost.
-  localStorage.setItem('eventName', ''); // clear eventName.
+  localStorage.setItem('eventName', ''); // clear eventHost.
   window.location = TASTING_EVENT_EDIT_FORM_URL;
 };
+// ************************************************************************* //
+// LOAD FORMS - END
+// ************************************************************************* //
+
 
 // ************************************************************************* //
 // TOGGLES - BEGIN
@@ -217,13 +247,11 @@ function toggleCountryMap(e) {
   const $countrySpan = $(e.target);
   $countrySpan.siblings('.js-country-map').toggle();
 }
-
 function togglePrimaryAppellationMap(e) {
   e.stopPropagation();
   const $appellationSpan = $(e.target);
   $appellationSpan.siblings('.js-primary-appellation-map').toggle();
 }
-
 function toggleSecondaryAppellationMap(e) {
   e.stopPropagation();
   const $appellationSpan = $(e.target);
@@ -233,21 +261,6 @@ function toggleSecondaryAppellationMap(e) {
 // TOGGLES - END
 // ************************************************************************* //
 
-// ************************************************************************* //
-// SET LOCALSTORAGE - BEGIN
-// ************************************************************************* //
-function loadNewTastingForm(e) {
-  const $linkToNewTastingForm = $(e.target);
-  const eventId = $linkToNewTastingForm.attr('data-eventid');
-  const eventHost = $linkToNewTastingForm.attr('data-eventhost');
-  const eventName = $linkToNewTastingForm.attr('data-eventname');
-  localStorage.setItem('eventId', eventId);
-  localStorage.setItem('eventHost', eventHost);
-  localStorage.setItem('eventName', eventName);
-}
-// ************************************************************************* //
-// SET LOCALSTORAGE - BEGIN
-// ************************************************************************* //
 
 $(function() {
 
@@ -262,7 +275,8 @@ $(function() {
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', togglePrimaryAppellationMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-secondary-appellation-map-span', toggleSecondaryAppellationMap);
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note', loadNewTastingForm);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note', loadNewTastingNoteForm);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-edit-tasting-span', loadEditTastingNoteForm);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-edit-event-span', loadEditEventForm);
 
 });
