@@ -14,18 +14,14 @@ module.exports.getTastingNotes = (req, res) => {
   const eventId = req.params.eventId;
   TastingNote
     .find({eventId: eventId})
-    .then(tastings => {
-      res.status(200).json(tastings);
-    })
+    .then(tastings => { res.status(200).json(tastings); })
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
     });
 };
 module.exports.getOneTastingNote = (req, res) => {
-  console.log('getOneTastingNote ran');
   const tastingId = req.params.tastingId;
-  console.log('req.params.tastingId', req.params.tastingId);
   TastingNote
     .findById(tastingId)
     .then((event) => {
@@ -39,8 +35,42 @@ module.exports.getOneTastingNote = (req, res) => {
 };
 module.exports.postTastingNoteData = (req, res) => {
   const eventId = req.params.eventId;
+
+  // Make sure client didn't send unexpected fields in the req.body.
+  // NOTE: "eventId" is is in req.params, and not in req.body.
+  const requiredFields = [
+    'eventHost',
+    'wineName',
+    'primaryGrape',
+    'country',
+    'countryMapSrc',
+    'primaryAppellation',
+    'primaryAppellationMapSrc',
+    'secondaryAppellation',
+    'secondaryAppellationMapSrc',
+    'rating',
+    'pricing1Desc',
+    'pricing1Price',
+    'pricing2Desc',
+    'pricing2Price',
+    'pricing3Desc',
+    'pricing3Price',
+    'pricing4Desc',
+    'pricing4Price',
+    'pricing4Price',
+    'tastingNotes'
+  ];
+  for( let i=0; i< requiredFields.length; i++) {
+    const field = requiredFields[i];
+
+    if ( !(field in req.body) ) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
   Event
-    // .findById({"_id": req.body.eventId})
     .findById({"_id": eventId})
     .then(event => {
       const _eventId = event._id;
@@ -79,15 +109,51 @@ module.exports.postTastingNoteData = (req, res) => {
 };
 
 module.exports.putTastingNoteData = (req, res) => {
-  console.log('putTastingNoteData ran');
+  // NOTE: Don't need to find the Associated Event b/c an edited Tasting Note
+  //       in the DB already has the "eventId" property populated.
+  const tastingId = req.params.tastingId;
+  const toUpdate = {};
+  const updatableFields = [
+    'wineName',
+    'country',
+    'countryMapSrc',
+    'primaryAppellation',
+    'primaryAppellationMapSrc',
+    'secondaryAppellation',
+    'secondaryAppellationMapSrc',
+    'primaryGrape',
+    'tastingNotes',
+    'rating',
+    'pricing1Desc',
+    'pricing1Price',
+    'pricing2Desc',
+    'pricing2Price',
+    'pricing3Desc',
+    'pricing3Price',
+    'pricing4Desc',
+    'pricing4Price',
+    'tastingNotes'
+  ];
+
+  updatableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+  });
+
+  TastingNote
+  // all key/value pairs in toUpdate will be updated -- that's what `$set` does
+    .findByIdAndUpdate(tastingId, { $set: toUpdate })
+    .then(restaurant => res.status(204).end())
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' })
+    });
 };
 module.exports.deleteTastingNote = (req, res) => {
   TastingNote
       .findByIdAndRemove(req.params.tastingId)
-      .then(tasting => {
-        console.log('tasting = ', tasting);
-        res.status(204).end()
-      })
+      .then(tasting => { res.status(204).end() })
       .catch(err => {
         console.error(err);
         res.status(500).json({ message: 'Internal server error' })

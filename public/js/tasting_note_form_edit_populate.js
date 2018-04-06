@@ -2,6 +2,8 @@
 
 let STATE = {};
 
+// NOTE: localStorage "tastingId" set when User clicks "Edit" tasting note in the
+//
 // Grab the tastingId from localStorage (set when "Edit" is clicked on Tasting Note).
 const tastingId = localStorage.getItem('tastingId');
 console.log('tastingId', tastingId);

@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tastingNoteSchema = Schema({
-  // TODO - move date initialization to tasting note create.
   timestamp: {type: String, default: new Date()},
   wineName: {type: String, required: true},
   eventHost: {type: String},
