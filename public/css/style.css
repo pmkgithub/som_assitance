@@ -81,6 +81,10 @@
 /*  FLEXIBLE GRID  - END */
 /******************************************************************************/
 
+events-list-page-wrapper {
+
+}
+
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
@@ -135,12 +139,82 @@ li.tasting-li {
 /******************************************************************************/
 
 /******************************************************************************/
-/*  EVENT / TASTING FORM  - BEGIN */
+/*  SEARCH FORM - BEGIN */
 /******************************************************************************/
-.event-form,
-.tasting-form {
+.search-inputs-wrapper {
+  float: left;
+  width: 60%;
+}
+.search-button-wrapper {
+  float: left;
+  width: 40%
+}
+.search-form {
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+  font-size: 0.8em;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+.search-form fieldset {
+  border: none;
+  padding: 0;
+}
+
+.search-form legend,
+.search-form label {
+  padding: 0;
+  font-weight: bold;
+}
+
+.search-form label {
+  text-align: left;
+  /*display: block;*/
+}
+
+.search-form input[type="text"],
+.search-form select              {
+  float: right;
+  width: 60%;
+  border: 1px solid #ccc;
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+  font-size: 0.9em;
+  padding: 0.3em;
+}
+/* TODO - tweak*/
+.search-form button {
+  padding: 1em;
+  background: #eee;
+  border: none;
+  font-weight: bold;
+  margin-left: 40%;
+  margin-top: 2em;
+}
+
+.search-form button:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+/******************************************************************************/
+/*  SEARCH FORM - END */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  EVENT / TASTING FORM - BEGIN */
+/******************************************************************************/
+.events-list-page-wrapper,
+.tasting-form-new-page-wrapper,
+.tasting-form-edit-page-wrapper {
   margin: 30px auto 30px auto;
   width: 50%;
+}
+
+.event-form,
+.tasting-form {
+  /*margin: 30px auto 30px auto;*/
+  /*width: 50%;*/
 }
 
 .event-form fieldset,
@@ -213,7 +287,7 @@ li.tasting-li {
   cursor: pointer;
 }
 /******************************************************************************/
-/*  EVENT / TASTING FORM  - END */
+/*  EVENT / TASTING FORM - END */
 /******************************************************************************/
 
 /******************************************************************************/

@@ -5,7 +5,9 @@
     <title>New Tasting</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+<!-- TODO - add optgroups https://code.tutsplus.com/tutorials/20-html-forms-best-practices-for-beginners--net-6593 -->
 <body>
+<div class="tasting-form-new-page-wrapper">
     <form class="tasting-form" >
         <fieldset>
             <legend class="js-legend"></legend>
@@ -16,17 +18,17 @@
             <p>
                 <label for="js-country-select">Country</label>
                 <select id="js-country-select" class="country-select" ></select>
-                <div class="country-map-wrapper js-country-map-wrapper">Show/Hide Country Map</div>
+            <div class="country-map-wrapper js-country-map-wrapper">Show/Hide Country Map</div>
             </p>
             <p>
                 <label for="js-primary-appellation-select">Primary Appellation (disabled until Country selected)</label>
                 <select id="js-primary-appellation-select" class="primary-appellation-select" disabled></select>
-                <div class="primary-app-map-wrapper js-primary-app-map-wrapper">Show/Hide Primary Appellation Map</div>
+            <div class="primary-app-map-wrapper js-primary-app-map-wrapper">Show/Hide Primary Appellation Map</div>
             </p>
             <p>
                 <label for="js-secondary-appellation-select">Secondary Appellation (disabled until Primary Appellation selected)</label>
                 <select id="js-secondary-appellation-select" class="secondary-appellation-select" disabled></select>
-                <div class="secondary-app-map-wrapper js-secondary-app-map-wrapper">Show/Hide Secondary Appellation Map</div>
+            <div class="secondary-app-map-wrapper js-secondary-app-map-wrapper">Show/Hide Secondary Appellation Map</div>
             </p>
             <p>
                 <label for="js-primary-grape-select">Primary Grape / Style</label>
@@ -68,7 +70,7 @@ ALCOHOL (low, medium-low, average, medium-high, high:
 
 BODY (very light, light-bodied, average, medium-full, full-bodied):
 
-                </textarea>
+            </textarea>
             </p>
             <p>
                 <label for="js-rating-select">Rating</label>
@@ -174,14 +176,15 @@ BODY (very light, light-bodied, average, medium-full, full-bodied):
             </div>
         </fieldset>
     </form>
+</div>
 
-    <script src="//code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous">
-    </script>
-    <script></script>
-    <script src="/js/tasting_note_form.js"></script>
-    <script src="/js/tasting_note_form_submit.js"></script>
-    <!--<script src="/js/mappings/mappings_countries_grapes.js"></script>-->
+
+<script src="//code.jquery.com/jquery-2.2.1.min.js"
+        integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+        crossorigin="anonymous">
+</script>
+<script></script>
+<script src="/js/tasting_note_form.js"></script>
+<script src="/js/tasting_note_form_submit.js"></script>
 </body>
 </html>

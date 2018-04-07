@@ -8,6 +8,7 @@ const router = require('express').Router();
 const jsonParser = require('body-parser').json({ type: 'application/json' });
 const ctrlEvents = require('../controllers/eventsController');
 const ctrlTastings = require('../controllers/tastingsController');
+const ctrlSearch = require('../controllers/searchController');
 
 // events
 router.get('/events', ctrlEvents.getAllTastingEvents);
@@ -29,10 +30,12 @@ router.put('/events/:eventsId/tastings/:tastingId', jsonParser, (req, res) => {
 
 // TODO - SEARCH router.post 'api/search'
 // search
-router.post('/search', (req, res) => {
-  // put search criteria in req.body, not in the URL
-  res.send({"msg": "router.post '/search' ran"});
-});
+router.post('/search', jsonParser, ctrlSearch.postTastingNotesSearcData);
 
+// // search stub - delete when done
+// router.post('/search', jsonParser, (req, res) => {
+//   // put search criteria in req.body, not in the URL
+//   res.send({"msg": "router.post '/search' ran"});
+// });
 
 module.exports = router;

@@ -29,11 +29,9 @@ router.get('/tastings/edit', (req, res) => {
 });
 
 
-// search
-// TODO WIP - search will have its own form if I decide to go with MODAL.
-// TODO WIP - or search will be part of the EVENTS LISTINGS page (preferred).
-router.get('/search/:tastingId', (req, res) => {
-  res.sendFile(__dirname + '/views/tasting_detail.html');
+// search results
+router.get('/searchresults', (req, res) => {
+  res.sendFile('search_results.html', {"root": "./app_server/views"});
 });
 
 
