@@ -154,7 +154,7 @@ function getAndDisplayTastingNotes(e) {
                   </div>
                 </div>
                 
-                <div>Primary Grape: ${tastings[i].grapePrimary}</div>
+                <div>Primary Grape: ${tastings[i].primaryGrape}</div>
                 <div>Rating: ${tastings[i].rating}</div>
                 <div>
                     Pricing 1: ${tastings[i].pricing1Desc} - ${tastings[i].pricing1Price}
@@ -203,7 +203,6 @@ function getAndDisplayTastingNotes(e) {
 // ************************************************************************* //
 const loadNewTastingNoteForm = (e) => {
   // form "loaded" via <a> href.
-  // TODO - current WIP
   const $linkToNewTastingForm = $(e.target);
   const eventId = $linkToNewTastingForm.attr('data-eventid');
   const eventHost = $linkToNewTastingForm.attr('data-eventhost');
@@ -213,7 +212,7 @@ const loadNewTastingNoteForm = (e) => {
   localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
 };
-// TODO - current WIP
+
 const loadEditTastingNoteForm = (e) => {
   const $editTastingNoteSpan = $(e.target);
   const tastingId = $editTastingNoteSpan.attr('data-tastingid');
