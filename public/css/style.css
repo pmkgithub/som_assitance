@@ -333,6 +333,19 @@ li.tasting-li {
 /*  TASTING FORM ONLY - BEGIN */
 /******************************************************************************/
 
+/******************************************************************************/
+/*  SEARCH RESULTS - BEGIN */
+/******************************************************************************/
+.result-li {
+  list-style: none;
+}
+.result-detail-wrapper {
+  display: none;
+}
+.result-header-span {
+  cursor: pointer;
+}
+
 /* Misc Hold - BEGIN */
 /*.event-form input[type=button],*/
 /*.event-form input[type=submit] {*/

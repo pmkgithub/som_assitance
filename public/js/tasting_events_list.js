@@ -212,7 +212,6 @@ const loadNewTastingNoteForm = (e) => {
   localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
 };
-
 const loadEditTastingNoteForm = (e) => {
   const $editTastingNoteSpan = $(e.target);
   const tastingId = $editTastingNoteSpan.attr('data-tastingid');

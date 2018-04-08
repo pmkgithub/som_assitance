@@ -4,25 +4,29 @@
 //  send ajax POST request /api/search
 //  POST success sends data to search_results.html
 //  loop over data, render HTML in search_results.html
-
+const STATE = {
+  searchPrice: null
+};
 const $primaryGrapeSelect = $('#js-search-primary-grape-select');
 const $ratingSelectInput = $('#js-search-rating-select');
 const $priceInput = $('#js-search-price');
-// ************************************************************************* //
-// Get LOCALSTORAGE Values on Page Load - BEGIN
-// ************************************************************************* //
-const getLocalstorage = () => {
-  const searchGrape = localStorage.getItem('searchGrape');
-  const searchRating = localStorage.getItem('searchRating');
-  const searchPrice = localStorage.getItem('searchPrice');
-  console.log('queryGrape', searchGrape);
-  console.log('queryRating', searchRating);
-  console.log('queryPrice', searchPrice);
-};
 
-// ************************************************************************* //
-// Get LOCALSTORAGE Values on Page Load - END
-// ************************************************************************* //
+// TODO - is this code needed?
+// // ************************************************************************* //
+// // Get LOCALSTORAGE Values on Page Load - BEGIN
+// // ************************************************************************* //
+// const getLocalstorage = () => {
+//   const searchGrape = localStorage.getItem('searchGrape');
+//   const searchRating = localStorage.getItem('searchRating');
+//   const searchPrice = localStorage.getItem('searchPrice');
+//   console.log('queryGrape', searchGrape);
+//   console.log('queryRating', searchRating);
+//   console.log('queryPrice', searchPrice);
+// };
+//
+// // ************************************************************************* //
+// // Get LOCALSTORAGE Values on Page Load - END
+// // ************************************************************************* //
 
 // ************************************************************************* //
 // doOnPageLoad - BEGIN
@@ -31,6 +35,9 @@ const doOnPageLoad = () => {
   const searchGrape = localStorage.getItem('searchGrape');
   const searchRating = localStorage.getItem('searchRating');
   const searchPrice = localStorage.getItem('searchPrice');
+
+  // set STATE var for later logic determining which pricing was the matched price.
+  STATE.matchedPrice = searchPrice;
 
   populateSearchFormOnPageLoad(searchGrape, searchRating, searchPrice);
 
@@ -716,25 +723,71 @@ function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.preventDefault();
 
-  const searchGrape = $primaryGrapeSelect.val();
-  const searchRating = $ratingSelectInput.val();
-  const searchPrice =  $priceInput.val();
-
+  // DEV - TEST CSS
   const options = {
-    searchGrape,
-    searchRating,
-    searchPrice,
+    searchGrape: "Chenin Blanc",
+    searchRating: "3",
+    searchPrice: "20",
   };
+
+  // TODO - current WIP - uncomment when done
+  // // PRODUCTION
+  // const searchGrape = $primaryGrapeSelect.val();
+  // const searchRating = $ratingSelectInput.val();
+  // const searchPrice =  $priceInput.val();
+  //
+  // const options = {
+  //   searchGrape,
+  //   searchRating,
+  //   searchPrice,
+  // };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
 
-function redirectToEventsListOnCancel() {
-  window.location = TASTING_EVENTS_LIST_URL;
-}
+// // future code ?
+// function redirectToEventsListOnCancel() {
+//   window.location = TASTING_EVENTS_LIST_URL;
+// }
 
 // ************************************************************************* //
 // Handle Submit - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Get Matched Price - BEGIN
+// ************************************************************************* //
+const getMatchedPrice = (result) => {
+  let match = {};
+
+  // TODO - for testing - remove when done.
+  STATE.searchPrice = '20';
+  console.log('result ', result);
+  console.log('STATE.searchPrice = ', STATE.searchPrice);
+  console.log('result.pricing1Price = ', result.pricing1Price);
+  console.log('result.pricing1Desc = ', result.pricing1Desc);
+
+  if ( result.pricing1Price === STATE.searchPrice ) {
+    match.matchedPrice = result.pricing1Price;
+    match.matchedPriceDesc = result.pricing1Desc;
+  }
+  if ( result.pricing2Price === STATE.searchPrice ) {
+    match.matchedPrice = result.pricing2Price;
+    match.matchedPriceDesc = result.pricing2Desc;
+  }
+  if ( result.pricing3Price === STATE.searchPrice ) {
+    match.matchedPrice = result.pricing3Price;
+    match.matchedPriceDesc = result.pricing3Desc;
+  }
+  if ( result.pricing4Price === STATE.searchPrice ) {
+    match.matchedPrice = result.pricing4Price;
+    match.matchedPriceDesc = result.pricing4Desc;
+  }
+
+  return match;
+};
+// ************************************************************************* //
+// Get Matched Price - END
 // ************************************************************************* //
 
 // ************************************************************************* //
@@ -743,19 +796,65 @@ function redirectToEventsListOnCancel() {
 const renderSearchResults = (searchResults) => {
   console.log('renderSearchResults ran');
   console.log('searchResults = ', searchResults);
+
+  for (let i = 0; i < searchResults.length ; i++) {
+
+    const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
+    const {matchedPrice, matchedPriceDesc} = getMatchedPrice(searchResults[i]);
+
+    $('ul.js-search-results-ul').append(
+      `<li class="result-li js-result-li">  
+          <span class="result-header-span js-result-header-span">
+              ${searchResults[i].wineName} Rating: ${searchResults[i].rating}  Price: ${matchedPrice} at ${matchedPriceDesc}
+          </span>
+          <div class="result-detail-wrapper js-result-detail-wrapper">
+              <div>Date: ${mDate}</div>  
+              <div>Event Host: ${searchResults[i].eventHost}</div>
+              <div>Event Name: ${searchResults[i].eventName}</div>
+              <div>Rating: ${searchResults[i].rating}</div>
+              <div>
+                  Pricing 1: ${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}
+              </div>
+              <div>
+                  Pricing 2: ${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}
+              </div>
+              <div>
+                  Pricing 3: ${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}
+              </div>       
+              <div>
+                  Pricing 4: ${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}
+              </div>                         
+              <div>
+                <span>Tasting Notes:</span>
+                <div class="tasting-notes">${searchResults[i].tastingNotes}</div>
+              </div>
+                
+            </div>
+         </li>`);
+  }
 };
 // ************************************************************************* //
 // Render Search Results - END
 // ************************************************************************* //
 
+// ************************************************************************* //
+// Toggles - BEGIN
+// ************************************************************************* //
+function toggleResultDetail(e) {
+  e.stopPropagation();
+  const $resultHeaderSpan = $(e.target);
+  $resultHeaderSpan.siblings('.js-result-detail-wrapper').toggle();
+}
+// ************************************************************************* //
+// Toggles - END
+// ************************************************************************* //
 $(function() {
   doOnPageLoad();
 
   // LISTENERS
   const $searchFormInSearchResultsPage = $('.search-form');
-  // const $searchFormInEventsListPage = $('.events-list-page-wrapper .search-form');  // works, but best to stop "submit event" at the form.
-  // $searchFormInEventsListPage.on('click', function() {
-  //   console.log('button clicked');});
+  const $searchResultsList = $('.js-search-results-ul');
   $searchFormInSearchResultsPage.on('submit', handleFormSubmit);
+  $searchResultsList.on('click', '.js-result-header-span', toggleResultDetail)
 
 });

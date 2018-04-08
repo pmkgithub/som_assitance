@@ -31,6 +31,7 @@ function handleFormSubmit(e) {
 
   // FOR PRODUCTION
   let eventHost = localStorage.getItem('eventHost');
+  let eventName = localStorage.getItem('eventName');
   let wineName = $('#js-wine-name-input').val();
   let country = $('#js-country-select').val();
   let countryMapSrc = $('.js-country-map-img').attr('src');
@@ -73,6 +74,7 @@ function handleFormSubmit(e) {
 
   const options = {
     eventHost,
+    eventName,
     wineName,
     country,
     countryMapSrc,
