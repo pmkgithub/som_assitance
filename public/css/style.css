@@ -242,6 +242,7 @@ li.tasting-li {
 .event-form select,
 .event-form textarea,
 .tasting-form input[type="text"],
+.tasting-form input[type="number"],
 .tasting-form select,
 .tasting-form textarea {
   display: block;
