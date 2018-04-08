@@ -187,6 +187,7 @@ li.tasting-li {
 }
 
 .search-form input[type="text"],
+.search-form input[type="number"],
 .search-form select              {
   float: right;
   width: 60%;

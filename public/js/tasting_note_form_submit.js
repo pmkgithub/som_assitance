@@ -51,7 +51,6 @@ function handleFormSubmit(e) {
   let pricing4Price = $('#js-pricing4-input').val();
   let tastingNotes = $('#js-tasting-note-ta').val();
 
-
   // TODO - code Server-side Validation.
   // Server-side Validation
 

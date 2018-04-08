@@ -4,9 +4,7 @@
 //  send ajax POST request /api/search
 //  POST success sends data to search_results.html
 //  loop over data, render HTML in search_results.html
-const STATE = {
-  searchPrice: null
-};
+
 const $primaryGrapeSelect = $('#js-search-primary-grape-select');
 const $ratingSelectInput = $('#js-search-rating-select');
 const $priceInput = $('#js-search-price');
@@ -35,9 +33,6 @@ const doOnPageLoad = () => {
   const searchGrape = localStorage.getItem('searchGrape');
   const searchRating = localStorage.getItem('searchRating');
   const searchPrice = localStorage.getItem('searchPrice');
-
-  // set STATE var for later logic determining which pricing was the matched price.
-  STATE.matchedPrice = searchPrice;
 
   populateSearchFormOnPageLoad(searchGrape, searchRating, searchPrice);
 
@@ -723,115 +718,98 @@ function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.preventDefault();
 
-  // DEV - TEST CSS
-  const options = {
-    searchGrape: "Malbec",
-    searchRating: "3",
-    searchPrice: "20",
-  };
-
-  // TODO - current WIP - uncomment when done
-  // // PRODUCTION
-  // const searchGrape = $primaryGrapeSelect.val();
-  // const searchRating = $ratingSelectInput.val();
-  // const searchPrice =  $priceInput.val();
-  //
+  // // DEV - for testing CSS changes.
+  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
   // const options = {
-  //   searchGrape,
-  //   searchRating,
-  //   searchPrice,
+  //   searchGrape: "Barbera",
+  //   searchRating: "3",
+  //   searchPrice: "20",
   // };
+
+  // PRODUCTION
+  // clear Results list HTML.
+  $('.js-search-results-ul').empty();
+
+  // set up OPTION for ajax POST.
+  const searchGrape = $primaryGrapeSelect.val();
+  const searchRating = $ratingSelectInput.val();
+  const searchPrice =  $priceInput.val();
+
+  const options = {
+    searchGrape,
+    searchRating,
+    searchPrice,
+  };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
-
-// // future code ?
-// function redirectToEventsListOnCancel() {
-//   window.location = TASTING_EVENTS_LIST_URL;
-// }
 
 // ************************************************************************* //
 // Handle Submit - END
 // ************************************************************************* //
 
-// TODO - revisit once New Tasting Note form working with NUMBERS
-// // ************************************************************************* //
-// // Get Matched Price - BEGIN
-// // ************************************************************************* //
-// const getLowestPrice = (result) => {
-//   let lowest = {};
-//
-//   // TODO - for testing - remove when done.
-//   STATE.searchPrice = '20';
-//   console.log('result ', result);
-//   console.log('STATE.searchPrice = ', STATE.searchPrice);
-//   console.log('result.pricing1Price = ', result.pricing1Price);
-//   console.log('result.pricing1Desc = ', result.pricing1Desc);
-//
-//   // if ( result.pricing1Price === STATE.searchPrice ) {
-//   //   match.matchedPrice = result.pricing1Price;
-//   //   match.matchedPriceDesc = result.pricing1Desc;
-//   // }
-//   // if ( result.pricing2Price <= STATE.searchPrice ) {
-//   //   match.matchedPrice = result.pricing2Price;
-//   //   match.matchedPriceDesc = result.pricing2Desc;
-//   // }
-//   // if ( result.pricing3Price <= STATE.searchPrice ) {
-//   //   match.matchedPrice = result.pricing3Price;
-//   //   match.matchedPriceDesc = result.pricing3Desc;
-//   // }
-//   // if ( result.pricing4Price <= STATE.searchPrice ) {
-//   //   match.matchedPrice = result.pricing4Price;
-//   //   match.matchedPriceDesc = result.pricing4Desc;
-//   // }
-//   //
-//   // return match;
-//
-//   const prices = [
-//     result.pricing1Price,
-//     result.pricing2Price,
-//     result.pricing3Price,
-//     result.pricing4Price,
-//   ];
-//
-//   const lowestPrice = Math.min(...prices);
-//   lowest.lowestPrice = lowestPrice;
-//
-//   if ( result.pricing1Price === lowestPrice ) {
-//     lowest.matchedPriceDesc = result.pricing1Desc;
-//   }
-//   if ( result.pricing2Price === lowestPrice ) {
-//     lowest.matchedPriceDesc = result.pricing2Desc;
-//   }
-//   if ( result.pricing3Price === lowestPrice ) {
-//     lowest.matchedPriceDesc = result.pricing3Desc;
-//   }
-//   if ( result.pricing4Price === lowestPrice ) {
-//     lowest.matchedPriceDesc = result.pricing4Desc;
-//   }
-//    return lowest;
-// };
-// // ************************************************************************* //
-// // Get Matched Price - END
-// // ************************************************************************* //
+// ************************************************************************* //
+// Get Lowest Price - BEGIN
+// ************************************************************************* //
+const getLowestPrice = (result) => {
+  let price1 = result.pricing1Price;
+  let price2 = result.pricing2Price;
+  let price3 = result.pricing3Price;
+  let price4 = result.pricing4Price;
+  let prices = [];
+  let lowest = {};
+
+  // Handle the text strings "No Price Entered"
+  if ( !(price1 === "No Price Entered") ) {
+    prices.push(Number(price1))
+  }
+  if ( !(price2 === "No Price Entered") ) {
+    prices.push(Number(price2))
+  }
+  if ( !(price3 === "No Price Entered") ) {
+    prices.push(Number(price3))
+  }
+  if ( !(price4 === "No Price Entered") ) {
+    prices.push(Number(price4))
+  }
+
+  // Find lowest price
+  const lowestPrice = String(Math.min(...prices));
+  lowest.lowestPrice = lowestPrice;
+
+  // set lowestPriceDesc
+  if ( result.pricing1Price === lowestPrice ) {
+    lowest.lowestPriceDesc = result.pricing1Desc;
+  }
+  if ( result.pricing2Price === lowestPrice ) {
+    lowest.lowestPriceDesc = result.pricing2Desc;
+  }
+  if ( result.pricing3Price === lowestPrice ) {
+    lowest.lowestPriceDesc = result.pricing3Desc;
+  }
+  if ( result.pricing4Price === lowestPrice ) {
+    lowest.lowestPriceDesc = result.pricing4Desc;
+  }
+   return lowest;
+};
+// ************************************************************************* //
+// Get Lowest Price - END
+// ************************************************************************* //
 
 // ************************************************************************* //
 // Render Search Results - BEGIN
 // ************************************************************************* //
 const renderSearchResults = (searchResults) => {
-  console.log('searchResults = ', searchResults);
 
   for (let i = 0; i < searchResults.length ; i++) {
 
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
-    // const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
-    // console.log('lowestPrice =', lowestPrice);
-    // console.log('lowestPriceDesc =', lowestPriceDesc);
+    const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
       `<li class="result-li js-result-li">  
           <span class="result-header-span js-result-header-span">
-              ${searchResults[i].wineName} Rating: ${searchResults[i].rating}
+              ${searchResults[i].wineName} Rating: ${searchResults[i].rating} Pricing: $${lowestPrice} at ${lowestPriceDesc}
           </span>
           <div class="result-detail-wrapper js-result-detail-wrapper">
               <div>Date: ${mDate}</div>  
@@ -877,7 +855,7 @@ function toggleResultDetail(e) {
 $(function() {
   doOnPageLoad();
 
-  // LISTENERS
+  // Listeners.
   const $searchFormInSearchResultsPage = $('.search-form');
   const $searchResultsList = $('.js-search-results-ul');
   $searchFormInSearchResultsPage.on('submit', handleFormSubmit);
