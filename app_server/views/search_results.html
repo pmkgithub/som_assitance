@@ -19,8 +19,8 @@
                     <select id="js-search-primary-grape-select" class="primary-grape-select" required></select>
                 </p>
                 <p>
-                    <label for="js-search-rating-select">Rating (Optional)</label>
-                    <select id="js-search-rating-select" class="search-rating-select" >
+                    <label for="js-search-rating-select">Rating (greater than):</label>
+                    <select id="js-search-rating-select" class="search-rating-select" required>
                         <option value="" disabled selected>Choose Rating</option>
                         <option value="5">5 - Exceptional</option>
                         <option value="4">4 - Excellent</option>
@@ -30,8 +30,8 @@
                     </select>
                 </p>
                 <p>
-                    <label for="js-search-price">Price (Optional)</label>
-                    <input id="js-search-price" class="search-price" type="text" name="search-price" />
+                    <label for="js-search-price">Price (less than):</label>
+                    <input id="js-search-price" class="search-price" type="text" name="search-price" required/>
                 </p>
             </div>
 
