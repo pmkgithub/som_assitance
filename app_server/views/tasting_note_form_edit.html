@@ -6,39 +6,44 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div class="tasting-form-edit-page-wrapper">
     <form class="tasting-form" >
         <fieldset>
             <legend class="js-legend"></legend>
             <p>
-                <label for="js-wine-name-input">Wine Name (Required)</label>
+                <label for="js-wine-name-input">Wine Name (required)</label>
                 <input id="js-wine-name-input" class="wine-name-input" type="text" name="wine-name-input" required autofocus="true"/>
             </p>
+
             <p>
-                <label for="js-country-select">Country</label>
-                <select id="js-country-select" class="country-select" ></select>
-                <div class="country-map-wrapper js-country-map-wrapper">Show/Hide Country Map</div>
+                <label for="js-country-select">Country (required)</label>
+                <select id="js-country-select" class="country-select" required></select>
             </p>
+            <div class="country-map-wrapper js-country-map-wrapper">Show/Hide Country Map</div>
+
             <p>
                 <label for="js-primary-appellation-select">Primary Appellation (disabled until Country selected)</label>
                 <select id="js-primary-appellation-select" class="primary-appellation-select" disabled></select>
-                <div class="primary-app-map-wrapper js-primary-app-map-wrapper">Show/Hide Primary Appellation Map</div>
             </p>
+            <div class="primary-app-map-wrapper js-primary-app-map-wrapper">Show/Hide Primary Appellation Map</div>
+
             <p>
                 <label for="js-secondary-appellation-select">Secondary Appellation (disabled until Primary Appellation selected)</label>
                 <select id="js-secondary-appellation-select" class="secondary-appellation-select" disabled></select>
-                <div class="secondary-app-map-wrapper js-secondary-app-map-wrapper">Show/Hide Secondary Appellation Map</div>
             </p>
+            <div class="secondary-app-map-wrapper js-secondary-app-map-wrapper">Show/Hide Secondary Appellation Map</div>
+
             <p>
-                <label for="js-primary-grape-select">Primary Grape / Style</label>
-                <select id="js-primary-grape-select" class="primary-grape-select" disabled></select>
+                <label for="js-primary-grape-select">Primary Grape / Style (required)</label>
+                <select id="js-primary-grape-select" class="primary-grape-select" disabled required></select>
             </p>
             <p>
                 <label for="js-tasting-note-ta">Tasting Notes</label>
                 <textarea id="js-tasting-note-ta" class="tasting-note-ta" type="text-area" name="tasting-note-ta"></textarea>
             </p>
             <p>
-                <label for="js-rating-select">Rating</label>
-                <select id="js-rating-select" class="rating-select" >
+                <label for="js-rating-select">Rating (required)</label>
+                <select id="js-rating-select" class="rating-select" required>
                     <option value="" disabled selected>Choose Rating</option>
                     <option value="5">5 - Exceptional</option>
                     <option value="4">4 - Excellent</option>
@@ -48,8 +53,8 @@
                 </select>
             </p>
             <p>
-                <label for="js-pricing1-select">Pricing 1</label>
-                <select id="js-pricing1-select" class="pricing1-select" >
+                <label for="js-pricing1-select">Pricing 1 (required)</label>
+                <select id="js-pricing1-select" class="pricing1-select" required>
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="Not Applicable">Not Applicable</option>
                     <option value="Btl 1">Btl 1</option>
@@ -65,10 +70,10 @@
                     <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
                     <option value="BTG">BTG</option>
                 </select>
-                <input id="js-pricing1-input" class="pricing1-input" type="text" name="pricing1-input" disabled/>
+                <input id="js-pricing1-input" class="pricing1-input" type="number" step="0.01" name="pricing1-input" disabled required/>
             </p>
             <p>
-                <label for="js-pricing2-select">Pricing 2</label>
+                <label for="js-pricing2-select">Pricing 2 (required)</label>
                 <select id="js-pricing2-select" class="pricing2-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="Not Applicable">Not Applicable</option>
@@ -85,10 +90,10 @@
                     <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
                     <option value="BTG">BTG</option>
                 </select>
-                <input id="js-pricing2-input" class="pricing2-input" type="text" name="pricing2-input" disabled/>
+                <input id="js-pricing2-input" class="pricing2-input" type="number" step="0.01" name="pricing2-input" disabled required/>
             </p>
             <p>
-                <label for="js-pricing3-select">Pricing 3</label>
+                <label for="js-pricing3-select">Pricing 3 (required)</label>
                 <select id="js-pricing3-select" class="pricing2-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="Not Applicable">Not Applicable</option>
@@ -105,10 +110,10 @@
                     <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
                     <option value="BTG">BTG</option>
                 </select>
-                <input id="js-pricing3-input" class="pricing3-input" type="text" name="pricing3-input" disabled/>
+                <input id="js-pricing3-input" class="pricing3-input" type="number" step="0.01" name="pricing3-input" disabled required/>
             </p>
             <p>
-                <label for="js-pricing4-select">Pricing 4</label>
+                <label for="js-pricing4-select">Pricing 4 (required)</label>
                 <select id="js-pricing4-select" class="pricing4-select" >
                     <option value="" disabled selected>Choose Pricing Bracket</option>
                     <option value="Not Applicable">Not Applicable</option>
@@ -125,7 +130,7 @@
                     <option value="Case 15 (12 Count)">Case 15 (12 Count)</option>
                     <option value="BTG">BTG</option>
                 </select>
-                <input id="js-pricing4-input" class="pricing4-input" type="text" name="pricing4-input" disabled/>
+                <input id="js-pricing4-input" class="pricing4-input" type="number" step="0.01" name="pricing4-input" disabled required/>
             </p>
             <div class="buttons">
                 <div class="button-cancel">
@@ -140,15 +145,17 @@
             </div>
         </fieldset>
     </form>
+</div>
 
-    <script src="//code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous">
-    </script>
-    <script></script>
-    <script src="/js/tasting_note_form.js"></script>
-    <script src="/js/tasting_note_form_edit_populate.js"></script>
-    <script src="/js/tasting_note_form_edit_submit.js"></script>
-    <!--<script src="/js/mappings/mappings_countries_grapes.js"></script>-->
+
+<script src="//code.jquery.com/jquery-2.2.1.min.js"
+        integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+        crossorigin="anonymous">
+</script>
+
+<script src="/js/tasting_note_form.js"></script>
+<script src="/js/tasting_note_form_edit_populate.js"></script>
+<script src="/js/tasting_note_form_edit_submit.js"></script>
+<!--<script src="/js/mappings/mappings_countries_grapes.js"></script>-->
 </body>
 </html>

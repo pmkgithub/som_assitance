@@ -7,9 +7,6 @@ const TASTING_NOTE_EDIT_FORM_URL = '/tastings/edit';
 
 let STATE = {
   tastingsFetched: {
-  },
-  // TODO - remove tastingDetailFetched
-  tastingDetailFetched: {
   }
 };
 
@@ -39,7 +36,6 @@ function getDataFromApi(url, options, callback) {
 // ************************************************************************* //
 
 function renderTastingEventsList(events) {
-  // console.log('events = ', events);
   for (let i = 0; i < events.length ; i++) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[events[i]._id] = false;
@@ -158,7 +154,7 @@ function getAndDisplayTastingNotes(e) {
                   </div>
                 </div>
                 
-                <div>Primary Grape: ${tastings[i].grapePrimary}</div>
+                <div>Primary Grape: ${tastings[i].primaryGrape}</div>
                 <div>Rating: ${tastings[i].rating}</div>
                 <div>
                     Pricing 1: ${tastings[i].pricing1Desc} - ${tastings[i].pricing1Price}
@@ -190,6 +186,7 @@ function getAndDisplayTastingNotes(e) {
         class="add-new-tasting-note js-add-new-tasting-note" 
         data-eventid="${eventId}"
         data-eventname="${eventName}"
+        data-eventhost="${eventHost}"
         >
         Add Tasting Note
       </a>`
@@ -215,7 +212,6 @@ const loadNewTastingNoteForm = (e) => {
   localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
 };
-// TODO - current WIP
 const loadEditTastingNoteForm = (e) => {
   const $editTastingNoteSpan = $(e.target);
   const tastingId = $editTastingNoteSpan.attr('data-tastingid');

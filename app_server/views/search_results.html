@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Events</title>
+    <title>Search Results</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div class="events-list-page-wrapper">
-    <!-- nav -->
-    <div>
-        <a href="/">Home Page</a>
+<div class="search-results-page-wrapper">
+    <div class="nav-wrapper">
+        <a href="/events">Back to Events List</a>
     </div>
-
-    <!-- search form -->
     <form class="search-form" >
         <fieldset>
             <legend>Search Tasting Notes</legend>
@@ -34,7 +31,7 @@
                 </p>
                 <p>
                     <label for="js-search-price">Price (less than):</label>
-                    <input id="js-search-price" class="search-price" type="text" name="search-price" required/>
+                    <input id="js-search-price" class="search-price" type="number" step="0.01" name="search-price" required/>
                 </p>
             </div>
 
@@ -45,25 +42,18 @@
     </form>
 
     <!-- events list -->
-    <h3>Events:</h3>
-    <div class="events-list-wrapper js-events-list-wrapper">
-        <ul class="$events-ul js-events-ul"></ul>
-    </div>
-    <div class="new-tasting-event-link-wrapper js-new-tasting-event-link-wrapper">
-        <a href="/events/new">Add Tasting Event</a>
+    <h3>Search Results:</h3>
+    <div class="search-results-wrapper js-search-results-wrapper">
+        <ul class="$search-results-ul js-search-results-ul"></ul>
     </div>
 </div>
 
-<!-- scripts -->
 <script src="//code.jquery.com/jquery-2.2.1.min.js"
         integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
         crossorigin="anonymous">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"></script>
-<script src="/js/tasting_events_list.js"></script>
-<script src="/js/tasting_events_list_search.js"></script>
-<script src="/js/tasting_event_delete.js"></script>
-<script src="/js/tasting_note_delete.js"></script>
+<script src="/js/search_results.js"></script>
 
 </body>
 </html>

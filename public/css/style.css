@@ -82,6 +82,23 @@
 /******************************************************************************/
 
 /******************************************************************************/
+/*  ALL PAGES - BEGIN */
+/******************************************************************************/
+.events-list-page-wrapper,
+.tasting-form-new-page-wrapper,
+.tasting-form-edit-page-wrapper,
+.event-form-new-page-wrapper,
+.event-form-edit-page-wrapper,
+.search-results-page-wrapper {
+  margin: 30px auto 30px auto;
+  width: 50%;
+}
+/******************************************************************************/
+/*  ALL PAGES - END */
+/******************************************************************************/
+
+
+/******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
 .events-link {
@@ -135,12 +152,76 @@ li.tasting-li {
 /******************************************************************************/
 
 /******************************************************************************/
-/*  EVENT / TASTING FORM  - BEGIN */
+/*  SEARCH FORM - BEGIN */
+/******************************************************************************/
+.search-inputs-wrapper {
+  float: left;
+  width: 60%;
+}
+.search-button-wrapper {
+  float: left;
+  width: 40%
+}
+.search-form {
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+  font-size: 0.8em;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+.search-form fieldset {
+  border: none;
+  padding: 0;
+}
+
+.search-form legend,
+.search-form label {
+  padding: 0;
+  font-weight: bold;
+}
+
+.search-form label {
+  text-align: left;
+  /*display: block;*/
+}
+
+.search-form input[type="text"],
+.search-form input[type="number"],
+.search-form select              {
+  float: right;
+  width: 60%;
+  border: 1px solid #ccc;
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+  font-size: 0.9em;
+  padding: 0.3em;
+}
+/* TODO - tweak*/
+.search-form button {
+  padding: 1em;
+  background: #eee;
+  border: none;
+  font-weight: bold;
+  margin-left: 40%;
+  margin-top: 2em;
+}
+
+.search-form button:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+/******************************************************************************/
+/*  SEARCH FORM - END */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  EVENT / TASTING FORM - BEGIN */
 /******************************************************************************/
 .event-form,
 .tasting-form {
-  margin: 30px auto 30px auto;
-  width: 50%;
+  /*margin: 30px auto 30px auto;*/
+  /*width: 50%;*/
 }
 
 .event-form fieldset,
@@ -162,6 +243,7 @@ li.tasting-li {
 .event-form select,
 .event-form textarea,
 .tasting-form input[type="text"],
+.tasting-form input[type="number"],
 .tasting-form select,
 .tasting-form textarea {
   display: block;
@@ -213,7 +295,7 @@ li.tasting-li {
   cursor: pointer;
 }
 /******************************************************************************/
-/*  EVENT / TASTING FORM  - END */
+/*  EVENT / TASTING FORM - END */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -252,6 +334,19 @@ li.tasting-li {
 /******************************************************************************/
 /*  TASTING FORM ONLY - BEGIN */
 /******************************************************************************/
+
+/******************************************************************************/
+/*  SEARCH RESULTS - BEGIN */
+/******************************************************************************/
+.result-li {
+  list-style: none;
+}
+.result-detail-wrapper {
+  display: none;
+}
+.result-header-span {
+  cursor: pointer;
+}
 
 /* Misc Hold - BEGIN */
 /*.event-form input[type=button],*/

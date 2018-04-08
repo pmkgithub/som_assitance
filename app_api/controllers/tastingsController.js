@@ -40,6 +40,7 @@ module.exports.postTastingNoteData = (req, res) => {
   // NOTE: "eventId" is is in req.params, and not in req.body.
   const requiredFields = [
     'eventHost',
+    'eventName',
     'wineName',
     'primaryGrape',
     'country',
@@ -79,6 +80,7 @@ module.exports.postTastingNoteData = (req, res) => {
         .create({
           timestamp: new Date(),
           eventHost: req.body.eventHost,
+          eventName: req.body.eventName,
           wineName: req.body.wineName,
           primaryGrape: req.body.primaryGrape,
           country: req.body.country,

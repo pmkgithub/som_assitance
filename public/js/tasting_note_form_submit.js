@@ -1,9 +1,9 @@
 'use strict';
 
+const TASTING_EVENTS_LIST_URL = `/events`;
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
-const TASTING_EVENTS_LIST_URL = `/events`;
 
 function postDataToApi(url, options, callback) {
   $.ajax({
@@ -30,6 +30,8 @@ function handleFormSubmit(e) {
   e.preventDefault();
 
   // FOR PRODUCTION
+  let eventHost = localStorage.getItem('eventHost');
+  let eventName = localStorage.getItem('eventName');
   let wineName = $('#js-wine-name-input').val();
   let country = $('#js-country-select').val();
   let countryMapSrc = $('.js-country-map-img').attr('src');
@@ -48,7 +50,6 @@ function handleFormSubmit(e) {
   let pricing4Desc = $('#js-pricing4-select').val();
   let pricing4Price = $('#js-pricing4-input').val();
   let tastingNotes = $('#js-tasting-note-ta').val();
-
 
   // TODO - code Server-side Validation.
   // Server-side Validation
@@ -71,6 +72,8 @@ function handleFormSubmit(e) {
   if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
 
   const options = {
+    eventHost,
+    eventName,
     wineName,
     country,
     countryMapSrc,
