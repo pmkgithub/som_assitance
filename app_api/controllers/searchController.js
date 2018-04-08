@@ -19,6 +19,7 @@ module.exports.postTastingNotesSearchData = (req, res) => {
       {'pricing4Price': { $lte: searchPrice}}],
       'primaryGrape': searchGrape,
       'rating': {$gte: searchRating}} )
+    .sort({'wineName': 1})
     .then((results) => {
       res.json(results)
     })
