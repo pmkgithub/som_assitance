@@ -1,9 +1,9 @@
 'use strict';
 
+const TASTING_EVENTS_LIST_URL = `/events`;
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
-const TASTING_EVENTS_LIST_URL = `/events`;
 
 function postDataToApi(url, options, callback) {
   $.ajax({

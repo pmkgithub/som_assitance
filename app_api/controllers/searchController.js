@@ -5,7 +5,13 @@ const mongoose = require('mongoose');
 const {TastingNote} = require('../models/model_tasting_note');
 mongoose.connect(config.localdb);
 
-module.exports.postTastingNotesSearcData = (req, res) => {
+module.exports.postTastingNotesSearchData = (req, res) => {
+
+  console.log('postTastingNotesSearchData req.body = ', req.body);
+  const searchGrape = req.body.searchGrape;
+  const searchRating = req.body.searchRating;
+  const searchPrice = req.body.searchPrice;
+
   // put search criteria in req.body, not in the URL / req.params.
 
   // const primaryGrape = req.body.primaryGrape; // equal to.
@@ -44,16 +50,18 @@ module.exports.postTastingNotesSearcData = (req, res) => {
 
   //
   //   // TODO - build POST query.
-  // // this looks good.
-  // TastingNote
-  //   .find( {$or:[
-  //     // {'primaryGrape': primaryGrape},
-  //     // {'rating': rating},
-  //     {'pricing1Price': price},
-  //     {'pricing2Price': price},
-  //     {'pricing3Price': price},
-  //     {'pricing4Price': price}],
-  //     'primaryGrape': primaryGrape,
-  //     'rating': rating} )
-  //   .then(() => { // do stuff })
+  // this looks good.
+  TastingNote
+    .find( {$or:[
+      // {'primaryGrape': primaryGrape},
+      // {'rating': rating},
+      {'pricing1Price': searchPrice},
+      {'pricing2Price': searchPrice},
+      {'pricing3Price': searchPrice},
+      {'pricing4Price': searchPrice}],
+      'primaryGrape': searchGrape,
+      'rating': searchRating} )
+    .then((results) => {
+      res.json(results)
+    })
 };

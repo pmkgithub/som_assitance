@@ -30,7 +30,7 @@ router.put('/events/:eventsId/tastings/:tastingId', jsonParser, (req, res) => {
 
 // TODO - SEARCH router.post 'api/search'
 // search
-router.post('/search', jsonParser, ctrlSearch.postTastingNotesSearcData);
+router.post('/search', jsonParser, ctrlSearch.postTastingNotesSearchData);
 
 // // search stub - delete when done
 // router.post('/search', jsonParser, (req, res) => {

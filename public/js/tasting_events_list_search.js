@@ -11,8 +11,29 @@
 //  POST success sends data to search_results.html
 //  loop over data, render HTML in search_results.html
 
+
+const $primaryGrapeSelect = $('#js-search-primary-grape-select');
+const $ratingSelectInput = $('#js-search-rating-select');
+const $priceInput = $('#js-search-price');
+
 // ************************************************************************* //
-// POPULATE PRIMARY GRAPE SELECT INPUT - BEGIN
+// Reset Search Form - BEGIN
+// ************************************************************************* //
+const resetSearchForm = () => {
+  $primaryGrapeSelect.val('');
+  $ratingSelectInput.val('');
+  $priceInput.val('');
+
+  localStorage.setItem('searchGrape', $primaryGrapeSelect.val());
+  localStorage.setItem('searchRating', $ratingSelectInput.val());
+  localStorage.setItem('searchPrice', $priceInput.val());
+};
+// ************************************************************************* //
+// Reset Search Form - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Populate Primary Grape Select Input - BEGIN
 // ************************************************************************* //
 const COUNTRIES =  {
   algeria: "Algeria",
@@ -617,44 +638,40 @@ const buildPrimaryGrapesSelectInput = () => {
   $primaryGrapeSelectInput.append(html);
 };
 // ************************************************************************* //
-// POPULATE PRIMARY GRAPE SELECT INPUT - END
+// Populate Primary Grape Select Input - END
 // ************************************************************************* //
 
 // ************************************************************************* //
-// HANDLE SUBMIT - BEGIN
+// Handle Submit - BEGIN
 // ************************************************************************* //
-const SEARCH_PAGE_URL = '/searchresults';
+const SEARCH_RESULTS_PAGE_URL = '/searchresults';
 
 function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.stopPropagation(); // keeps URL clean, no querystring characters will display.
   e.preventDefault();
 
-  // get form inputs, set to localstorage.
-  const $primaryGrapeSelect = $('#js-search-primary-grape-select');
-  const $ratingSelectInput = $('#js-search-rating-select');
-  const $priceInput = $('#js-search-price');
-
+  // set localstorage.
   localStorage.setItem('searchGrape', $primaryGrapeSelect.val());
   localStorage.setItem('searchRating', $ratingSelectInput.val());
   localStorage.setItem('searchPrice', $priceInput.val());
 
   // load the SEARCH tastings page.
-  window.location = SEARCH_PAGE_URL;
-
+  window.location = SEARCH_RESULTS_PAGE_URL;
 
 }
 
 // ************************************************************************* //
-// HANDLE SUBMIT - END
+// Handle Submit - END
 // ************************************************************************* //
 
 $(function() {
+  resetSearchForm();  // reset Search Form on Event List Page Load.
   buildPrimaryGrapesSelectInput();
 
   // LISTENERS
-  const $searchFormInEventsListPage = $('.search-form');
-  // const $searchFormInEventsListPage = $('events-list-page-wrapper .search-form');
+  // const $searchFormInEventsListPage = $('.search-form');
+  const $searchFormInEventsListPage = $('.events-list-page-wrapper .search-form');  // works, but best to stop "submit event" at the form.
   // $searchFormInEventsListPage.on('click', function() {
   //   console.log('button clicked');});
   $searchFormInEventsListPage.on('submit', handleFormSubmit);
