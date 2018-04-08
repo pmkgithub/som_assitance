@@ -81,9 +81,22 @@
 /*  FLEXIBLE GRID  - END */
 /******************************************************************************/
 
-events-list-page-wrapper {
-
+/******************************************************************************/
+/*  ALL PAGES - BEGIN */
+/******************************************************************************/
+.events-list-page-wrapper,
+.tasting-form-new-page-wrapper,
+.tasting-form-edit-page-wrapper,
+.event-form-new-page-wrapper,
+.event-form-edit-page-wrapper,
+.search-results-page-wrapper {
+  margin: 30px auto 30px auto;
+  width: 50%;
 }
+/******************************************************************************/
+/*  ALL PAGES - END */
+/******************************************************************************/
+
 
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
@@ -204,13 +217,6 @@ li.tasting-li {
 /******************************************************************************/
 /*  EVENT / TASTING FORM - BEGIN */
 /******************************************************************************/
-.events-list-page-wrapper,
-.tasting-form-new-page-wrapper,
-.tasting-form-edit-page-wrapper {
-  margin: 30px auto 30px auto;
-  width: 50%;
-}
-
 .event-form,
 .tasting-form {
   /*margin: 30px auto 30px auto;*/
