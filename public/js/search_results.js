@@ -715,7 +715,6 @@ function postDataToApi(url, options, callback) {
 // Handle Submit - BEGIN
 // ************************************************************************* //
 function handleFormSubmit(e) {
-  console.log('handleFormSubmit ran');
   e.preventDefault();
 
   // // DEV - for testing CSS changes.
@@ -729,6 +728,7 @@ function handleFormSubmit(e) {
   // PRODUCTION
   // clear Results list HTML.
   $('.js-search-results-ul').empty();
+  $('.js-no-search-results').hide();
 
   // set up OPTION for ajax POST.
   const searchGrape = $primaryGrapeSelect.val();
@@ -804,9 +804,6 @@ const renderSearchResults = (searchResults) => {
   // display "No Results" if API query returns an empty array
   if ( searchResults.length < 1 ) {
     $('.js-no-search-results').show();
-    $('ul.js-search-results-ul').append(
-      `<div class="no-search-results js-no-search-results">No Search Results for Query</div>`
-    );
   }
 
   for (let i = 0; i < searchResults.length ; i++) {
@@ -862,11 +859,12 @@ function toggleResultDetail(e) {
 // ************************************************************************* //
 $(function() {
   doOnPageLoad();
+  $('.js-no-search-results').hide();
 
   // Listeners.
   const $searchFormInSearchResultsPage = $('.search-form');
   const $searchResultsList = $('.js-search-results-ul');
   $searchFormInSearchResultsPage.on('submit', handleFormSubmit);
-  $searchResultsList.on('click', '.js-result-header-span', toggleResultDetail)
+  $searchResultsList.on('click', '.js-result-header-span', toggleResultDetail);
 
 });
