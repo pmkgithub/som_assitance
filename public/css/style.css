@@ -156,15 +156,15 @@ li.tasting-li {
 /******************************************************************************/
 .search-inputs-wrapper {
   float: left;
-  width: 60%;
+  width: 70%;
 }
 .search-button-wrapper {
   float: left;
-  width: 40%
+  width: 30%
 }
 .search-form {
   /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-  font-size: 0.8em;
+  /*font-size: 0.8em;*/
   width: 100%;
   padding: 1em;
   border: 1px solid #ccc;
@@ -189,21 +189,36 @@ li.tasting-li {
 .search-form input[type="text"],
 .search-form input[type="number"],
 .search-form select              {
+  /*float: right;*/
+  /*width: 60%;*/
+  /*border: 1px solid #ccc;*/
+  /*!*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*!*/
+  /*font-size: 0.9em;*/
+  /*padding: 0.3em;*/
+
   float: right;
+  display: block;
   width: 60%;
   border: 1px solid #ccc;
-  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-  font-size: 0.9em;
-  padding: 0.3em;
+  font-size: 1.1em;
+  padding: 0.4em;
 }
-/* TODO - tweak*/
+
 .search-form button {
-  padding: 1em;
-  background: #eee;
+  /*padding: 1em;*/
+  /*background: #eee;*/
+  /*border: none;*/
+  /*font-weight: bold;*/
+  /*margin-left: 40%;*/
+  /*margin-top: 2em;*/
+  margin-left: 40%;
+  background: #ccc;
+  color: white;
+  padding: 0.5rem;
+  font-size:  1rem;
   border: none;
   font-weight: bold;
-  margin-left: 40%;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 .search-form button:hover {
@@ -211,8 +226,31 @@ li.tasting-li {
   cursor: pointer;
 }
 
+.search-form button.search-button:hover {
+  background: green;
+}
+
 /******************************************************************************/
 /*  SEARCH FORM - END */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  SEARCH RESULTS - BEGIN */
+/******************************************************************************/
+.result-li {
+  list-style: none;
+}
+.result-detail-wrapper {
+  display: none;
+}
+.result-header-span {
+  cursor: pointer;
+}
+.no-search-results {
+  display: none;
+}
+/******************************************************************************/
+/*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -335,18 +373,6 @@ li.tasting-li {
 /*  TASTING FORM ONLY - BEGIN */
 /******************************************************************************/
 
-/******************************************************************************/
-/*  SEARCH RESULTS - BEGIN */
-/******************************************************************************/
-.result-li {
-  list-style: none;
-}
-.result-detail-wrapper {
-  display: none;
-}
-.result-header-span {
-  cursor: pointer;
-}
 
 /* Misc Hold - BEGIN */
 /*.event-form input[type=button],*/
