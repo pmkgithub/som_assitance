@@ -801,6 +801,14 @@ const getLowestPrice = (result) => {
 // ************************************************************************* //
 const renderSearchResults = (searchResults) => {
 
+  // display "No Results" if API query returns an empty array
+  if ( searchResults.length < 1 ) {
+    $('.js-no-search-results').show();
+    $('ul.js-search-results-ul').append(
+      `<div class="no-search-results js-no-search-results">No Search Results for Query</div>`
+    );
+  }
+
   for (let i = 0; i < searchResults.length ; i++) {
 
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
