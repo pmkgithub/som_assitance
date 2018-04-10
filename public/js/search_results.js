@@ -34,6 +34,8 @@ const doOnPageLoad = () => {
   const searchRating = localStorage.getItem('searchRating');
   const searchPrice = localStorage.getItem('searchPrice');
 
+  $('.js-no-search-results').hide();
+
   populateSearchFormOnPageLoad(searchGrape, searchRating, searchPrice);
 
   const options = {
@@ -859,7 +861,6 @@ function toggleResultDetail(e) {
 // ************************************************************************* //
 $(function() {
   doOnPageLoad();
-  $('.js-no-search-results').hide();
 
   // Listeners.
   const $searchFormInSearchResultsPage = $('.search-form');
