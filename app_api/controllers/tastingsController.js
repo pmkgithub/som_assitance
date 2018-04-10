@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const {Event} = require('../models/model_tasting_event');
 const {TastingNote} = require('../models/model_tasting_note');
 
-mongoose.connect(config.localdb);
+mongoose.connect(config.DATABASE_URL);
 
 // ************************************************************************* //
 // TASTINGS NOTES - BEGIN

@@ -1,7 +1,8 @@
 const config = require('../../config');
 const mongoose = require('mongoose');
 const {User} = require('../models/model_user');
-mongoose.connect(config.localdb);
+
+mongoose.connect(config.DATABASE_URL);
 
 exports.signup = (req, res, next) => {
   console.log('ctrl signup ran');
