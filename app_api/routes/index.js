@@ -19,37 +19,26 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 // passport - END
 
 // events
-// router.get('/events', ctrlEvents.getAllTastingEvents); // old - without auth - working
-router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents); // new - with auth - working
-// router.post('/events', jsonParser, ctrlEvents.postTastingEventData); // old - before jsonParser added to server.js
-router.post('/events', ctrlEvents.postTastingEventData); // new - after jsonParser added to server.js
+router.get('/events', ctrlEvents.getAllTastingEvents);
+// router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents);
+router.post('/events', ctrlEvents.postTastingEventData);
 router.delete('/events/:eventId', ctrlEvents.deleteEvent);
 router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);
-// router.put('/events/edit/:eventId', jsonParser, ctrlEvents.putTastingEventData);  // old - before jsonParser added to server.js
-router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData);  // new - after jsonParser added to server.js
-// router.put('/events/edit/:eventId', jsonParser, ctrlEvents.putTastingEventData);  // old - before jsonParser added to server.js
-router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData);  // new - after jsonParser added to server.js
+router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData);
 
 // tastings
 router.get('/tastings/:eventId', ctrlTastings.getTastingNotes);
-// router.post('/tastings/:eventId', jsonParser, ctrlTastings.postTastingNoteData); // old - before jsonParser added to server.js
-router.post('/tastings/:eventId', ctrlTastings.postTastingNoteData); // old - before jsonParser added to server.js
+router.post('/tastings/:eventId', ctrlTastings.postTastingNoteData);
 router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
 router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote);
-// router.put('/tastings/edit/:tastingId', jsonParser, ctrlTastings.putTastingNoteData); // old - before jsonParser added to server.js
-router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // new - after jsonParser added to server.js
+router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData);
 
 // search
-// router.post('/search', jsonParser, ctrlSearch.postTastingNotesSearchData); // old - before jsonParser added to server.js
-router.post('/search', ctrlSearch.postTastingNotesSearchData); // new - after jsonParser added to server.js
+router.post('/search', ctrlSearch.postTastingNotesSearchData);
 
 // authentication
-// router.post('/signin', ctrlAuth.signin);
-// router.post('/signin', jsonParser, ctrlAuth.signin); // old - before jsonParser added to server.js
-// router.post('/signin', ctrlAuth.signin); // new - after jsonParser added to server.js
-router.post('/signin', requireSignin, ctrlAuth.signin); // TODO - WIP
+router.post('/signup', ctrlAuth.signup);
+router.post('/signin', requireSignin, ctrlAuth.signin);
 
-// router.post('/signup', jsonParser, ctrlAuth.signup); // this route runs. // old - before jsonParser added to server.js
-router.post('/signup', ctrlAuth.signup); // this route runs. // new - after jsonParser added to server.js
 
 module.exports = router;
