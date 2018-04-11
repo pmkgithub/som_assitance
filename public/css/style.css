@@ -97,6 +97,66 @@
 /*  ALL PAGES - END */
 /******************************************************************************/
 
+/******************************************************************************/
+/*  SIGNIN / SIGNUP FORM - BEGIN */
+/******************************************************************************/
+.signin-form {
+  width: 400px;
+  background-color: white;
+  margin: auto;
+  padding: 40px;
+}
+.signin-form fieldset {
+  border-style: none;
+}
+.signin-form legend {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 50px;
+}
+.signin-label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.signin-email-input,
+.signin-password-input,
+.signin-button {
+  height: 55px;
+  font-size: 20px;
+  width: 100%;
+  border: 2px solid #dddddd;
+  padding: 15px;
+}
+.signin-email-input,
+.signin-password-input {
+  margin-bottom: 20px;
+}
+.signin-button {
+  background-color: rgb(21, 205, 114);
+  color: white;
+}
+.signin-button:hover {
+  background-color: rgb(21, 175, 96);
+  cursor: pointer;
+}
+.signup-link {
+  font-weight: bold;
+  text-align: center;
+  /*color: white;*/
+  color: black;
+}
+.signup-link a {
+  /*color: white;*/
+  color: black;
+  text-decoration: underline;
+}
+
+
+/******************************************************************************/
+/*  SIGNIN / SIGNUP FORM - BEGIN */
+/******************************************************************************/
 
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */

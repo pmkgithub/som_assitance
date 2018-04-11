@@ -6,7 +6,7 @@ const router = require('express').Router();
 // for now, EVENTS list is the LANDING PAGE - this will be refacted later.
 // Ultimately, LANDING PAGE will contain a signup/signin form.
 router.get('/', (req, res) => {
-  res.sendFile('index.html', {"root": "./app_server/views"}); // yes
+  res.sendFile('landing.html', {"root": "./app_server/views"}); // yes
 });
 
 // events

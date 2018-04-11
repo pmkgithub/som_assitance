@@ -1,11 +1,22 @@
 const config = require('../../config');
 const mongoose = require('mongoose');
 const {User} = require('../models/model_user');
-mongoose.connect(config.localdb);
+const jwt = require('jsonwebtoken');
 
-exports.signup = (req, res, next) => {
-  console.log('ctrl signup ran');
-  console.log('req.body = ', req.body);
+mongoose.connect(config.DATABASE_URL);
+
+const tokenForUser = (user) => {
+  return jwt.sign({user}, config.JWT_SECRET, {
+    subject: user.id,
+    expiresIn: config.JWT_EXPIRY,
+    algorithm: 'HS256'
+  });
+};
+
+// ************************************************************************* //
+// signup - BEGIN
+// ************************************************************************* //
+exports.signup = (req, res) => {
 
   // check for required fields - BEGIN
   const requiredFields = ['email', 'password'];
@@ -68,8 +79,6 @@ exports.signup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // res.send({ token: 'jwt token '});
-
   // See if User with the given email exists.
   User
     .findOne({email: email})
@@ -86,20 +95,23 @@ exports.signup = (req, res, next) => {
         });
       }
 
-      // If a User with email DOES NOT exist, create and save User record.
-      // // If there is no existing user, hash the password
+      // If there is no existing user, hash the password.
       return User.hashPassword(password);
     })
     .then(hash => {
-      console.log('hash = ', hash);
+      // If a User with email DOES NOT exist, create and save User record.
       return User.create({
         email,
         password: hash
       });
     })
     .then((user) => {
+      // // Grider workflow: create a jwt here and send it back in the response.
+      return res.status(201).json({ token: tokenForUser(user)});
+
+      // Thinkful approach.
       // Respond to request indicating the User was created.
-      return res.status(201).json(user.serialize());
+      // return res.status(201).json(user.serialize());
     })
     .catch(err => {
       // Forward validation errors on to the client, otherwise give a 500
@@ -112,8 +124,21 @@ exports.signup = (req, res, next) => {
 
   // MAIN LOGIC - END
 };
+// ************************************************************************* //
+// signup - END
+// ************************************************************************* //
 
-exports.signin = (req, res, next) => {
-
-  // res.send({ token: 'jwt token'});
+// ************************************************************************* //
+// signin - BEGIN
+// ************************************************************************* //
+exports.signin = (req, res) => {
+  // At signin, User has already had their email and password auth'd.
+  //
+  // NOTE: passport done function assigns "user" to req.user in passport.js localStrategy();
+  //
+  // Now, we just need to send them a JWT token.
+  res.json({ token: tokenForUser(req.user)});
 };
+// ************************************************************************* //
+// signin - BEGIN
+// ************************************************************************* //
