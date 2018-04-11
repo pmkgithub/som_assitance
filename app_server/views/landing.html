@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Som Assistance web app">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Som Assistance</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div>Welcome to Som Assistance</div>
+
+    <a class="events-link" href="/events">Display Events</a>
+
+    <form class="signin-form" role="form">
+        <fieldset>
+            <legend>Signin</legend>
+
+            <label for="signin-email" class="signin-label">Email</label>
+            <input id="signin-email" class="signin-email-input js-signin-email-input" type="text" name="email" placeholder="me@example.com" required>
+
+            <label for="signin-password" class="signin-label" >Password</label>
+            <input id="signin-password" class="signin-password-input" type="password" name="password" placeholder="mypassword" required>
+
+            <button class="signin-button js-signin-button" type="submit">Signin</button>
+        </fieldset>
+    </form>
+    <p class="signup-link">Don't have an account? <a href="/signup">Signup</a></p>
+
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous">
+    </script>
+    <script src="/js/landing.js"></script>
+</body>
+</html>
