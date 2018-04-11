@@ -24,14 +24,14 @@ router.get('/events', ctrlEvents.getAllTastingEvents);
 router.post('/events', ctrlEvents.postTastingEventData);
 router.delete('/events/:eventId', ctrlEvents.deleteEvent);
 router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);
-router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData);
+router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData); // disregard Webstorm's error.
 
 // tastings
 router.get('/tastings/:eventId', ctrlTastings.getTastingNotes);
 router.post('/tastings/:eventId', ctrlTastings.postTastingNoteData);
 router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
 router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote);
-router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData);
+router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // disregard Webstorm's error.
 
 // search
 router.post('/search', ctrlSearch.postTastingNotesSearchData);

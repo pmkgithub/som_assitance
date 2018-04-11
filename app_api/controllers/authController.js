@@ -17,8 +17,6 @@ const tokenForUser = (user) => {
 // signup - BEGIN
 // ************************************************************************* //
 exports.signup = (req, res) => {
-  console.log('ctrl signup ran');
-  console.log('req.body = ', req.body);
 
   // check for required fields - BEGIN
   const requiredFields = ['email', 'password'];
@@ -81,8 +79,6 @@ exports.signup = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // res.send({ token: 'jwt token '});
-
   // See if User with the given email exists.
   User
     .findOne({email: email})
@@ -110,12 +106,11 @@ exports.signup = (req, res) => {
       });
     })
     .then((user) => {
-      // Respond to request indicating the User was created.
-      // TODO - Grider workflow: he creates a jwt here and sends it in the res.
+      // // Grider workflow: create a jwt here and send it back in the response.
       return res.status(201).json({ token: tokenForUser(user)});
-      // // Grider workflow: he creates a jwt here and sends it in the res - end.
 
       // Thinkful approach.
+      // Respond to request indicating the User was created.
       // return res.status(201).json(user.serialize());
     })
     .catch(err => {
@@ -137,8 +132,7 @@ exports.signup = (req, res) => {
 // signin - BEGIN
 // ************************************************************************* //
 exports.signin = (req, res) => {
-  // At signin, User has already had their email and password verified.
-  // verified by requireAuth middleware.
+  // At signin, User has already had their email and password auth'd.
   //
   // NOTE: passport done function assigns "user" to req.user in passport.js localStrategy();
   //
