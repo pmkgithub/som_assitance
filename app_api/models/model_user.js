@@ -20,8 +20,8 @@ UserSchema.methods.serialize = function() {
   };
 };
 
-UserSchema.methods.validatePassword = function(password) {
-  return bcrypt.compare(password, this.password);
+UserSchema.methods.validatePassword = function(candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
 };
 
 UserSchema.statics.hashPassword = function(password) {

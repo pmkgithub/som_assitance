@@ -3,6 +3,7 @@
 const config = require('./config');
 const express = require('express');
 const app = express();
+const jsonParser = require('body-parser').json({ type: 'application/json' });
 // const path = require('path');
 const morgan = require('morgan');
 
@@ -11,6 +12,7 @@ const routesApi = require('./app_api/routes/index');
 const routes = require('./app_server/routes/index');
 
 // middlewares
+app.use(jsonParser);
 app.use(morgan('common'));
 // app.use(cors);
 app.use(express.static('public')); // valid syntax
