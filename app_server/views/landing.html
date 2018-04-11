@@ -5,11 +5,15 @@
     <meta name="description" content="Som Assistance web app">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Som Assistance</title>
+    <title>Som Assistance Signin</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
-<body>
-    <div>Welcome to Som Assistance</div>
+<body class="landing-page">
+    <!--<div class="landing-page-header-wrapper">-->
+        <!--<div class="landing-page-header">som assistance</div>-->
+    <!--</div>-->
+    <div class="landing-page-header">som assistance</div>
 
     <a class="events-link" href="/events">Display Events</a>
 
@@ -18,15 +22,18 @@
             <legend>Signin</legend>
 
             <label for="signin-email" class="signin-label">Email</label>
-            <input id="signin-email" class="signin-email-input js-signin-email-input" type="text" name="email" placeholder="me@example.com" required>
+            <input id="signin-email" class="signin-email-input js-signin-email-input" type="email" name="email" placeholder="me@example.com" required>
 
             <label for="signin-password" class="signin-label" >Password</label>
-            <input id="signin-password" class="signin-password-input" type="password" name="password" placeholder="mypassword" required>
+            <input id="signin-password" class="signin-password-input js-signin-password-input" type="password" name="password" placeholder="mypassword" required>
 
             <button class="signin-button js-signin-button" type="submit">Signin</button>
         </fieldset>
     </form>
-    <p class="signup-link">Don't have an account? <a href="/signup">Signup</a></p>
+    <p class="signup-link">Don't have an account?  <a href="/signup">Signup</a></p>
+    <footer>
+        <div class="info"></div>
+    </footer>
 
     <script src="//code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
