@@ -16,9 +16,13 @@ let STATE = {
 
 function getDataFromApi(url, options, callback) {
 
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     type: 'GET',
+    contentType: "application/json",
+    headers: {"authorization": token},
     dataType: 'json',
     data: options,
     success: callback,
@@ -97,6 +101,7 @@ function getAndDisplayTastingNotes(e) {
   }
 
   function renderTastingNotes(tastings) {
+    console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).

@@ -83,6 +83,8 @@ module.exports.putTastingEventData = (req, res) => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' })
     });
+
+  // TODO - update Tasting Notes for a particular Event when the Event is updated.
 };
 
 module.exports.deleteEvent = (req, res) => {

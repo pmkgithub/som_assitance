@@ -132,6 +132,7 @@ exports.signup = (req, res) => {
 // signin - BEGIN
 // ************************************************************************* //
 exports.signin = (req, res) => {
+  console.log('authController signin ran');
   // At signin, User has already had their email and password auth'd.
   //
   // NOTE: passport done function assigns "user" to req.user in passport.js localStrategy();

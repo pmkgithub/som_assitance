@@ -1,6 +1,8 @@
 'use strict';
 
 const TASTING_EVENTS_URL = `/events`;
+const $passwordInput = $('.js-signup-password-input');
+const $confPasswordInput = $('.js-signup-conf-password-input');
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
@@ -27,21 +29,22 @@ function postDataToApi(url, options, callback) {
 // ************************************************************************* //
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  console.log('handleSubmit ran');
 
   // FOR PRODUCTION
-  let email = $('.js-signin-email-input').val();
-  let password = $('.js-signin-password-input').val();
-
-  console.log('email ', email);
-  console.log('password ', password);
+  let email = $('.js-signup-email-input').val();
+  let password = $passwordInput.val();
+  let confPassword = $confPasswordInput.val();
 
   // TODO - code Server-side Validation.
   // Server-side Validation
 
   if ( !email ) {  }
   if ( !password ) {  }
+  if ( !confPassword ) {  }
 
+  if (password !== confPassword) {
+    passwordsDontMatch();
+  }
 
   const options = {
     email,
@@ -49,12 +52,32 @@ const handleFormSubmit = (e) => {
   };
 
   // const eventId = localStorage.getItem('eventId');
-  postDataToApi(`/api/signin`, options, redirectToEventsList);
+  postDataToApi(`/api/signup`, options, redirectToEventsList);
 
 };
 
 // ************************************************************************* //
 // Handle Submit - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Passwords Don't Match - BEGIN
+// ************************************************************************* //
+const passwordsDontMatch = () => {
+  $passwordInput.focus();
+
+  $confPasswordInput.attr({"type": "text"});
+  $confPasswordInput.css({"color": "red"});
+  $confPasswordInput.val("Password Don't Match" );
+  setTimeout(function() {
+    $confPasswordInput.css({"color": "black"});
+    $confPasswordInput.attr({"type": "password"});
+    $confPasswordInput.val('');
+  }, 2000);
+
+};
+// ************************************************************************* //
+// Passwords Don't Match - END
 // ************************************************************************* //
 
 // ************************************************************************* //
@@ -78,12 +101,13 @@ const redirectToEventsList = (response) => {
 $(function() {
 
   // clear form on page load.
-  $('.js-signin-email-input').val('');
-  $('.js-signin-password-input').val('');
+  $('.js-signup-email-input').val('');
+  $('.js-signup-password-input').val('');
+  $('.js-signup-conf-password-input').val('');
 
   // Listeners
   // const $jsSigninButton = $('.js-signin-button');
-  const $signinForm = $('.signin-form');
-  $signinForm.on('submit', handleFormSubmit);
+  const $signupForm = $('.signup-form');
+  $signupForm.on('submit', handleFormSubmit);
 
 });
