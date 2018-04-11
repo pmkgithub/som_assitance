@@ -274,8 +274,53 @@ li.tasting-li {
 .events-list-wrapper .secondary-appellation-map {
   display: none;
 }
+
+/*.event-li {*/
+  /*!* position: relative for position icons *!*/
+  /*position: relative;*/
+  /*border: 1px solid black;*/
+  /*background-color: cornflowerblue;*/
+/*}*/
+.event-desc {
+  /* contains Event Date, Name, Distributor, Edit, Delete*/
+  position: relative;
+  border: 1px solid black;
+  background-color: cornflowerblue;
+}
+
+/* tasting icons positioning - BEGIN */
+.tasting-li {
+  /* position: relative for position icons */
+  position: relative;
+  border: 1px solid black;
+  background-color: cornflowerblue;
+}
+/*.tasting-li .*/
+.edit-tasting-span,
+.edit-event-span  {
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+}
+.delete-tasting-span,
+.delete-event-span {
+  display: inline-block;
+  position: absolute;
+  right: 30px;
+}
+/* icons positioning - BEGIN */
 /******************************************************************************/
 /*  EVENTS LIST - END */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  EVENTS LIST - TASTING NOTE  - BEGIN */
+/******************************************************************************/
+.tasting-li .tn-textarea {
+  width: 100%;
+}
+/******************************************************************************/
+/*  EVENTS LIST - TASTING NOTE  - END */
 /******************************************************************************/
 
 /******************************************************************************/

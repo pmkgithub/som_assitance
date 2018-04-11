@@ -837,7 +837,7 @@ const renderSearchResults = (searchResults) => {
               </div>                         
               <div>
                 <span>Tasting Notes:</span>
-                <div class="tasting-notes">${searchResults[i].tastingNotes}</div>
+                <textarea class="sr-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
               </div>
                 
             </div>

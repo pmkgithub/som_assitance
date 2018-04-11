@@ -48,26 +48,31 @@ function renderTastingEventsList(events) {
     // render EVENTS.
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
-         <span 
-            data-eventid="${events[i]._id}" 
-            data-eventhost="${events[i].eventHost}" 
-            data-eventname="${events[i].eventName}" 
-            class="event-span js-event-span"
-            >
-            ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
-          </span>
-          <span 
-            class="edit-event-span js-edit-event-span"
-            data-eventid="${events[i]._id}" 
-            >Edit
-          </span>
-          <span 
-            class="delete-event-span js-delete-event-span"
-            data-eventid="${events[i]._id}" 
-            >Delete
-          </span>
-        <ul class="tastings-ul js-tastings-ul"></ul>
-       </li>`);
+         <div class="event-desc">
+            <span 
+              data-eventid="${events[i]._id}" 
+              data-eventhost="${events[i].eventHost}" 
+              data-eventname="${events[i].eventName}" 
+              class="event-span js-event-span"
+              >
+              ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
+            </span>
+            <span 
+              class="edit-event-span js-edit-event-span"
+              data-eventid="${events[i]._id}" 
+              >
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </span>
+            <span 
+              class="delete-event-span js-delete-event-span"
+              data-eventid="${events[i]._id}" 
+              >
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </span>
+         </div>
+         <ul class="tastings-ul js-tastings-ul"></ul>
+       </li>
+       `);
   }
 }
 
@@ -101,7 +106,6 @@ function getAndDisplayTastingNotes(e) {
   }
 
   function renderTastingNotes(tastings) {
-    console.log('tastings = ', tastings);
     // This function is run one time when an initial set of TASTINGS NOTES are fetched.
     // Set tastingsFetched flag, so future clicks on a TASTING EVENT
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
@@ -109,21 +113,29 @@ function getAndDisplayTastingNotes(e) {
 
     for (let i = 0; i < tastings.length ; i++) {
       // Render Tasting Note Header and append DOM.
-      $tastingEventSpan.siblings('ul.js-tastings-ul').append(
+      // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
+      $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
+            <div>
+            
+            </div>
             <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
             <span 
                 class="edit-tasting-span js-edit-tasting-span" 
                 data-tastingid="${tastings[i]._id}"
                 data-eventname="${eventName}"
                 data-eventhost="${eventHost}"
-                >Edit
-            </span>            
+                >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </span> 
+                       
             <span 
                 class="delete-tasting-span js-delete-tasting-span" 
                 data-tastingid="${tastings[i]._id}"
-                >Delete
+                >
+                <i class="fa fa-trash" aria-hidden="true"></i>
             </span>
+            
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
             
                 <div class="country-map-wrapper js-country-map-wrapper">
@@ -174,8 +186,9 @@ function getAndDisplayTastingNotes(e) {
                     Pricing 4: ${tastings[i].pricing4Desc} - ${tastings[i].pricing4Price}
                 </div>                         
                 <div>
-                  <span>Tasting Notes:</span>
-                  <div class="tasting-notes">${tastings[i].tastingNotes}</div>
+                  <div>Tasting Notes:</div>
+                  <textarea class="tn-textarea" name="" id="" cols="30" rows="10" disabled>${tastings[i].tastingNotes}</textarea>
+                  
                 </div>
             </div>
          </li>`);
