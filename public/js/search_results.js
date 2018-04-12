@@ -719,13 +719,13 @@ function postDataToApi(url, options, callback) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  // DEV - for testing CSS changes.
-  // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
-  const options = {
-    searchGrape: "Barbera",
-    searchRating: "3",
-    searchPrice: "25",
-  };
+  // // DEV - for testing CSS changes.
+  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
+  // const options = {
+  //   searchGrape: "Barbera",
+  //   searchRating: "3",
+  //   searchPrice: "25",
+  // };
 
   // PRODUCTION
   // clear Results list HTML.
@@ -737,12 +737,11 @@ function handleFormSubmit(e) {
   const searchRating = $ratingSelectInput.val();
   const searchPrice =  $priceInput.val();
 
-  // // comment out when testing css
-  // const options = {
-  //   searchGrape,
-  //   searchRating,
-  //   searchPrice,
-  // };
+  const options = {
+    searchGrape,
+    searchRating,
+    searchPrice,
+  };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
