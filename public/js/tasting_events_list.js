@@ -186,14 +186,12 @@ function getAndDisplayTastingNotes(e) {
                     '<div class="no-secondary-appellation-map">No Secondary Appellation Map</div>'}
                   </div>
                 </div>
-                
                 <div class="primary-grape-wrapper">
                   Primary Grape:
                   <span class="primary-grape-span">${tastings[i].primaryGrape}</span>
                 </div>
                 <div class="rating-wrapper">Rating:<span class="rating-span"> ${tastings[i].rating}</span></div>
-                
-                <div>Pricing 1: ${tastings[i].pricing1Desc} "-" ${tastings[i].pricing1Price}</div>
+                <div>Pricing 1: ${tastings[i].pricing1Desc} - ${tastings[i].pricing1Price}</div>
                 <div>Pricing 2: ${tastings[i].pricing2Desc} - ${tastings[i].pricing2Price}</div>
                 <div>Pricing 3: ${tastings[i].pricing3Desc} - ${tastings[i].pricing3Price}</div>       
                 <div>Pricing 4: ${tastings[i].pricing4Desc} - ${tastings[i].pricing4Price}</div> 

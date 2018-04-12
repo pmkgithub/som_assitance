@@ -373,7 +373,7 @@ li .tasting-desc {
 .tasting-li .secondary-appellation-map-img {
   width: 100%
 }
-.tasting-li .rating {
+.tasting-li .rating-wrapper {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
