@@ -40,6 +40,8 @@ const populateTastingNoteEditForm = (tastingNote) => {
     }
   });
 
+  // NOTE: Legend for Edit Tasting Note Form is set in tasting_note_form.js
+
   // populate form inputs.
   $('#js-wine-name-input').val(STATE.wineName);
   populateCountrySelect();

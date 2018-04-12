@@ -88,11 +88,14 @@ html {
   font-family: 'Lato', sans-serif;
 }
 .events-list-page-wrapper,
+.search-results-page-wrapper {
+  margin: 30px auto 30px auto;
+  width: 60%;
+}
 .tasting-form-new-page-wrapper,
 .tasting-form-edit-page-wrapper,
 .event-form-new-page-wrapper,
-.event-form-edit-page-wrapper,
-.search-results-page-wrapper {
+.event-form-edit-page-wrapper {
   margin: 30px auto 30px auto;
   width: 50%;
 }
@@ -135,6 +138,13 @@ body.signup-page::after {
   z-index: -1;
 }
 /* set background image - END */
+
+/* temp events link css - delete when link is removed from page */
+.events-link {
+  padding-left: 20px;
+}
+/* temp events link css - delete when link is removed from page */
+
 .landing-page-header,
 .signup-page-header   {
   font-size: 3.25em;
@@ -213,6 +223,7 @@ body.signup-page::after {
   text-decoration: underline;
   margin-left: 10px;
 }
+/* TODO - add footer info section */
 /*footer .info {*/
   /*background-color: cornflowerblue;*/
   /*height: 10em;*/
@@ -228,28 +239,10 @@ body.signup-page::after {
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
-.events-link {
-  padding-left: 20px;
-}
-
-li.event-li {
-  list-style: none;
-}
 .events-list-wrapper .event-span {
   cursor: pointer;
 }
 
-li.tasting-li {
-  list-style: none;
-}
-.events-list-wrapper .delete-event-span,
-.events-list-wrapper .edit-event-span {
-  cursor: pointer;
-}
-.events-list-wrapper .delete-tasting-span,
-.events-list-wrapper .edit-tasting-span {
-  cursor: pointer;
-}
 .events-list-wrapper .tasting-span {
   cursor: pointer;
 }
@@ -274,156 +267,129 @@ li.tasting-li {
 .events-list-wrapper .secondary-appellation-map {
   display: none;
 }
-
-/*.event-li {*/
-  /*!* position: relative for position icons *!*/
-  /*position: relative;*/
-  /*border: 1px solid black;*/
-  /*background-color: cornflowerblue;*/
-/*}*/
-.event-desc {
-  /* contains Event Date, Name, Distributor, Edit, Delete*/
+/*TODO - event-li*/
+li.event-li {
+  list-style: none;
+  margin-left: -40px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+li .event-desc {
+  /* contains Event Date, Name, Distributor, Edit, Delete icons */
+  /* position:relative for <span> placement */
   position: relative;
-  border: 1px solid black;
+  font-size: 1.3em;
+  color: white;
+  padding: 0.5em;
   background-color: cornflowerblue;
-}
 
-/* tasting icons positioning - BEGIN */
-.tasting-li {
-  /* position: relative for position icons */
-  position: relative;
-  border: 1px solid black;
-  background-color: cornflowerblue;
 }
-/*.tasting-li .*/
-.edit-tasting-span,
-.edit-event-span  {
-  display: inline-block;
-  position: absolute;
-  right: 50px;
-}
-.delete-tasting-span,
-.delete-event-span {
-  display: inline-block;
-  position: absolute;
-  right: 30px;
-}
-/* icons positioning - BEGIN */
 /******************************************************************************/
 /*  EVENTS LIST - END */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  EVENTS LIST - TASTING NOTE  - BEGIN */
+/*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
 /******************************************************************************/
-.tasting-li .tn-textarea {
-  width: 100%;
-}
-/******************************************************************************/
-/*  EVENTS LIST - TASTING NOTE  - END */
-/******************************************************************************/
-
-/******************************************************************************/
-/*  SEARCH FORM - BEGIN */
-/******************************************************************************/
-.search-inputs-wrapper {
-  float: left;
-  width: 70%;
-}
-.search-button-wrapper {
-  float: left;
-  width: 30%
-}
-.search-form {
-  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-  /*font-size: 0.8em;*/
-  width: 100%;
-  padding: 1em;
-  border: 1px solid #ccc;
-}
-
-.search-form fieldset {
-  border: none;
-  padding: 0;
-}
-
-.search-form legend,
-.search-form label {
-  padding: 0;
-  font-weight: bold;
-}
-
-.search-form label {
-  text-align: left;
-  /*display: block;*/
-}
-
-.search-form input[type="text"],
-.search-form input[type="number"],
-.search-form select              {
-  /*float: right;*/
-  /*width: 60%;*/
-  /*border: 1px solid #ccc;*/
-  /*!*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*!*/
-  /*font-size: 0.9em;*/
-  /*padding: 0.3em;*/
-
-  float: right;
-  display: block;
-  width: 60%;
-  border: 1px solid #ccc;
-  font-size: 1.1em;
-  padding: 0.4em;
-}
-
-.search-form button {
-  /*padding: 1em;*/
-  /*background: #eee;*/
-  /*border: none;*/
-  /*font-weight: bold;*/
-  /*margin-left: 40%;*/
-  /*margin-top: 2em;*/
-  margin-left: 40%;
-  background: #ccc;
-  color: white;
-  padding: 0.5rem;
-  font-size:  1rem;
-  border: none;
-  font-weight: bold;
-  margin-top: 1em;
-}
-
-.search-form button:hover {
-  background: #ccc;
+/* tasting icons styling and positioning - BEGIN */
+.events-list-wrapper .add-new-tasting-note-span,
+.events-list-wrapper .delete-event-span,
+.events-list-wrapper .edit-event-span {
   cursor: pointer;
 }
-
-.search-form button.search-button:hover {
-  background: green;
+.events-list-wrapper .delete-tasting-span,
+.events-list-wrapper .edit-tasting-span {
+  cursor: pointer;
+}
+.add-new-tasting-note-span {
+  display: inline-block;
+  position: absolute;
+  right: 5.25em;
 }
 
+.edit-event-span,
+.edit-tasting-span {
+  display: inline-block;
+  position: absolute;
+  /*right: 70px;*/
+  right: 3.25em;
+}
+.delete-event-span,
+.delete-tasting-span {
+  display: inline-block;
+  position: absolute;
+  right: 1.25em;
+}
+/* icons styling and positioning - END */
 /******************************************************************************/
-/*  SEARCH FORM - END */
+/*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  SEARCH RESULTS - BEGIN */
+/*  TASTING NOTE  - BEGIN */
 /******************************************************************************/
-.result-li {
+li.tasting-li {
   list-style: none;
+  margin-left: -20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
-.result-detail-wrapper {
-  display: none;
+li .tasting-desc {
+  /* contains Wine Name, Edit, Delete icons */
+  /* position:relative for <span> placement */
+  position: relative;
+  font-size: 1.3em;
+  color: white;
+  padding: 0.5em;
+  background-color: cornflowerblue;
 }
-.result-header-span {
-  cursor: pointer;
+.tasting-detail-wrapper {
+  background-color: blanchedalmond;
+  padding: 10px;
 }
-.no-search-results {
-  display: none;
+
+.tasting-li .tasting-detail-wrapper div {
+  font-size: 1.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+.tasting-li .country-map-wrapper,
+.tasting-li .primary-appellation-wrapper,
+.tasting-li .secondary-appellation-wrapper,
+.tasting-li .primary-grape-wrapper,
+.tasting-li .rating-wrapper {
+  position: relative;
+}
+.tasting-li .country-map-span,
+.tasting-li .primary-appellation-map-span,
+.tasting-li .secondary-appellation-map-span,
+.tasting-li .primary-grape-span,
+.tasting-li .rating-span {
+  position: absolute;
+  left: 13rem;
+}
+.tasting-li .country-map-img,
+.tasting-li .primary-appellation-map-img,
+.tasting-li .secondary-appellation-map-img {
+  width: 100%
+}
+.tasting-li .rating-wrapper {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.tasting-li .tasting-note {
+  margin-top: 0.5rem;
+}
+.tasting-li .tn-textarea {
+  background-color: blanchedalmond;
+  font-size: 1rem;
+  width: 100%;
+
 }
 /******************************************************************************/
-/*  SEARCH RESULTS - BEGIN */
+/*  TASTING NOTE  - END */
 /******************************************************************************/
+
 
 /******************************************************************************/
 /*  EVENT / TASTING FORM - BEGIN */
@@ -517,9 +483,6 @@ li.tasting-li {
 .tasting-form .country-map-span {
   cursor: pointer;
 }
-.tasting-form .country-map-img {
-  width: 100%;
-}
 .tasting-form textarea {
   height: 100px;
 }
@@ -529,20 +492,131 @@ li.tasting-li {
 .tasting-form .primary-app-map-span {
   cursor: pointer;
 }
-.tasting-form .primary-app-map-img {
-  width: 100%;
-}
 .tasting-form .secondary-app-map-wrapper {
   display: none;
 }
 .tasting-form .secondary-app-map-span {
   cursor: pointer;
 }
-.tasting-form .secondary-app-map-img {
+.tasting-form .country-map-img,
+.tasting-form .primary-appellation-map-img,
+.tasting-form .secondary-appellation-map-img {
   width: 100%;
 }
 /******************************************************************************/
 /*  TASTING FORM ONLY - BEGIN */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  SEARCH FORM - BEGIN */
+/******************************************************************************/
+.search-inputs-wrapper {
+  float: left;
+  width: 70%;
+}
+.search-button-wrapper {
+  float: left;
+  width: 30%
+}
+.search-form {
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+  /*font-size: 0.8em;*/
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+.search-form fieldset {
+  border: none;
+  padding: 0;
+}
+
+.search-form legend,
+.search-form label {
+  padding: 0;
+  font-weight: bold;
+}
+
+.search-form label {
+  text-align: left;
+  /*display: block;*/
+}
+
+.search-form input[type="text"],
+.search-form input[type="number"],
+.search-form select              {
+  /*float: right;*/
+  /*width: 60%;*/
+  /*border: 1px solid #ccc;*/
+  /*!*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*!*/
+  /*font-size: 0.9em;*/
+  /*padding: 0.3em;*/
+
+  float: right;
+  display: block;
+  width: 60%;
+  border: 1px solid #ccc;
+  font-size: 1.1em;
+  padding: 0.4em;
+}
+
+.search-form button {
+  /*padding: 1em;*/
+  /*background: #eee;*/
+  /*border: none;*/
+  /*font-weight: bold;*/
+  /*margin-left: 40%;*/
+  /*margin-top: 2em;*/
+  margin-left: 40%;
+  background: #ccc;
+  color: white;
+  padding: 0.5rem;
+  font-size:  1rem;
+  border: none;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.search-form button:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+.search-form button.search-button:hover {
+  background: green;
+}
+
+/******************************************************************************/
+/*  SEARCH FORM - END */
+/******************************************************************************/
+/*TODO-search-results*/
+/******************************************************************************/
+/*  SEARCH RESULTS - BEGIN */
+/******************************************************************************/
+
+.result-detail-wrapper {
+  display: none;
+}
+.result-header-span {
+  cursor: pointer;
+}
+li.result-li {
+  list-style: none;
+  margin-left: -40px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+li .result-desc {
+  font-size: 1.3em;
+  color: white;
+  padding: 0.5em;
+  background-color: cornflowerblue;
+}
+.no-search-results {
+  display: none;
+}
+/******************************************************************************/
+/*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
 
 
