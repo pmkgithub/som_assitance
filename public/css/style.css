@@ -348,7 +348,7 @@ li .tasting-desc {
   padding: 10px;
 }
 
-.tasting-li .tasting-detail-wrapper div {
+.tasting-detail-wrapper div {
   font-size: 1.2rem;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -611,21 +611,36 @@ li .result-date-span {
 /* result desc - END */
 
 /* result detail - BEGIN */
+/* TODO - wip */
 .result-detail-wrapper {
+  background-color: blanchedalmond;
+  padding: 10px;
   display: none;
 }
+.result-detail-wrapper div {
+  font-size: 1.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
 
-/* TODO - wip */
 .result-li .eventhost-wrapper,
 .result-li .eventname-wrapper,
-.result-li .rating-wrapper {
+.result-li .rating-wrapper,
+.result-li .pricing1-wrapper,
+.result-li .pricing2-wrapper,
+.result-li .pricing3-wrapper,
+.result-li .pricing4-wrapper {
   position: relative;
 }
 .result-li .eventhost-span,
 .result-li .eventname-span,
-.result-li .rating-span {
+.result-li .rating-span,
+.result-li .pricing1-span,
+.result-li .pricing2-span,
+.result-li .pricing3-span,
+.result-li .pricing4-span {
   position: absolute;
-  left: 13rem;
+  left: 8rem;
 }
 .result-li .rating-wrapper {
   margin-top: 0.5rem;

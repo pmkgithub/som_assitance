@@ -842,17 +842,21 @@ const renderSearchResults = (searchResults) => {
         Rating:
         <span class="rating-span">${searchResults[i].rating}</span>
     </div>
-    <div>
-        Pricing 1: ${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}
+    <div class="pricing1-wrapper">
+        Pricing 1:
+        <span class="pricing1-span">${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}</span>
     </div>
-    <div>
-        Pricing 2: ${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}
+    <div class="pricing2-wrapper">
+        Pricing 2:
+        <span class="pricing2-span">${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}</span>
     </div>
-    <div>
-        Pricing 3: ${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}
+    <div class="pricing3-wrapper">
+        Pricing 3:
+        <span class="pricing3-span">${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}</span>
     </div>       
-    <div>
-        Pricing 4: ${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}
+    <div class="pricing4-wrapper">
+        Pricing 4:
+        <span class="pricing4-span">${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}</span>
     </div>                         
     <div class="tasting-note">Tasting Notes:</div>
     <textarea class="tn-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
