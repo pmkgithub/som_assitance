@@ -356,13 +356,15 @@ li .tasting-desc {
 .tasting-li .country-map-wrapper,
 .tasting-li .primary-appellation-wrapper,
 .tasting-li .secondary-appellation-wrapper,
-.tasting-li .primary-grape-wrapper {
+.tasting-li .primary-grape-wrapper,
+.tasting-li .rating-wrapper {
   position: relative;
 }
 .tasting-li .country-map-span,
 .tasting-li .primary-appellation-map-span,
 .tasting-li .secondary-appellation-map-span,
-.tasting-li .primary-grape-span {
+.tasting-li .primary-grape-span,
+.tasting-li .rating-span {
   position: absolute;
   left: 13rem;
 }
