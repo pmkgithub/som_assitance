@@ -384,7 +384,6 @@ li .tasting-desc {
   background-color: blanchedalmond;
   font-size: 1rem;
   width: 100%;
-
 }
 /******************************************************************************/
 /*  TASTING NOTE  - END */
@@ -594,6 +593,7 @@ li.result-li {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+/* result desc - BEGIN */
 li div.result-desc {
   position: relative;
   font-size: 1.3em;
@@ -608,12 +608,43 @@ li .result-date-span {
   position: absolute;
   right: 1.0rem
 }
+/* result desc - END */
+
+/* result detail - BEGIN */
 .result-detail-wrapper {
   display: none;
 }
+
+/* TODO - wip */
+.result-li .eventhost-wrapper,
+.result-li .eventname-wrapper,
+.result-li .rating-wrapper {
+  position: relative;
+}
+.result-li .eventhost-span,
+.result-li .eventname-span,
+.result-li .rating-span {
+  position: absolute;
+  left: 13rem;
+}
+.result-li .rating-wrapper {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.result-li .tasting-note {
+  margin-top: 0.5rem;
+}
+.result-li .tn-textarea {
+  background-color: blanchedalmond;
+  font-size: 1rem;
+  width: 100%;
+}
+/* result detail - END */
+
 .no-search-results {
   display: none;
 }
+
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/

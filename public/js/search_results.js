@@ -827,9 +827,21 @@ const renderSearchResults = (searchResults) => {
   </div>  
 
   <div class="result-detail-wrapper js-result-detail-wrapper">  
-    <div>Event Host: ${searchResults[i].eventHost}</div>
-    <div>Event Name: ${searchResults[i].eventName}</div>
-    <div>Rating: ${searchResults[i].rating}</div>
+    
+    <div class="eventhost-wrapper">
+        Event Host:
+        <span class="eventhost-span">${searchResults[i].eventHost}</span>
+    </div>
+    
+    <div class="eventname-wrapper">
+        Event Name:
+        <span class="eventname-span">${searchResults[i].eventName}</span>
+    </div>
+    
+    <div class="rating-wrapper">
+        Rating:
+        <span class="rating-span">${searchResults[i].rating}</span>
+    </div>
     <div>
         Pricing 1: ${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}
     </div>
@@ -842,10 +854,9 @@ const renderSearchResults = (searchResults) => {
     <div>
         Pricing 4: ${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}
     </div>                         
-    <div>
-      <span>Tasting Notes:</span>
-      <textarea class="sr-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
-    </div>
+    <div class="tasting-note">Tasting Notes:</div>
+    <textarea class="tn-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
+    
   </div>
 </li>`);
 
