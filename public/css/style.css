@@ -250,14 +250,7 @@ li.event-li {
 li.tasting-li {
   list-style: none;
 }
-.events-list-wrapper .delete-event-span,
-.events-list-wrapper .edit-event-span {
-  cursor: pointer;
-}
-.events-list-wrapper .delete-tasting-span,
-.events-list-wrapper .edit-tasting-span {
-  cursor: pointer;
-}
+
 .events-list-wrapper .tasting-span {
   cursor: pointer;
 }
@@ -306,7 +299,22 @@ li.tasting-li {
 /******************************************************************************/
 /*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
 /******************************************************************************/
-/* tasting icons positioning - BEGIN */
+/* tasting icons styling and positioning - BEGIN */
+.events-list-wrapper .add-new-tasting-note-span,
+.events-list-wrapper .delete-event-span,
+.events-list-wrapper .edit-event-span {
+  cursor: pointer;
+}
+.events-list-wrapper .delete-tasting-span,
+.events-list-wrapper .edit-tasting-span {
+  cursor: pointer;
+}
+.add-new-tasting-note-span {
+  display: inline-block;
+  position: absolute;
+  right: 5.25em;
+}
+
 .edit-event-span,
 .edit-tasting-span {
   display: inline-block;
@@ -320,7 +328,7 @@ li.tasting-li {
   position: absolute;
   right: 1.25em;
 }
-/* icons positioning - END */
+/* icons styling and positioning - END */
 /******************************************************************************/
 /*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
 /******************************************************************************/

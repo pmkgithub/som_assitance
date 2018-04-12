@@ -27,13 +27,11 @@ function deleteTastingNoteFromApi(url, callback) {
 // DELETE TASTING NOTE - BEGIN
 // ************************************************************************* //
 function deleteTastingNote(e) {
-  console.log('tasting_note-delete.js deleteTastingNote ran');
-  const $clickedDeleteTastingSpan = $(e.target);
-  console.log('$clickedDeleteTastingSpan = ', $clickedDeleteTastingSpan);
+  const $deleteTastingIcon = $(e.target);
   event.preventDefault();
 
   // const tastingId = $('.js-delete-tasting-span').attr('data-tastingid');
-  const tastingId = $clickedDeleteTastingSpan.attr('data-tastingid');
+  const tastingId = $deleteTastingIcon.parent().attr('data-tastingid');
   const TASTING_NOTE_DELETE_URL = `/api/tastings/${tastingId}`;
 
   deleteTastingNoteFromApi(TASTING_NOTE_DELETE_URL, redirectToEventsListOnDelete);

@@ -27,10 +27,10 @@ function deleteEventFromApi(url, callback) {
 // ************************************************************************* //
 function deleteEvent(e) {
   // When deleting an Event, the associated Tasting Notes must be deleted too.
-  const $clickedDeleteEventSpan = $(e.target);
+  const $deleteEventIcon = $(e.target);
   event.preventDefault();
 
-  const eventId = $clickedDeleteEventSpan.attr('data-eventid');
+  const eventId = $deleteEventIcon.parent().attr('data-eventid');
   const TASTING_EVENT_DELETE_URL = `/api/events/${eventId}`;
 
   deleteEventFromApi(TASTING_EVENT_DELETE_URL, redirectToEventsListOnDelete);

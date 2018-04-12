@@ -4,6 +4,7 @@ const TASTING_EVENTS_API_URL = `/api/events/`;
 const TASTING_NOTES_API_URL = `/api/tastings/`;
 const TASTING_EVENT_EDIT_FORM_URL = '/events/edit';
 const TASTING_NOTE_EDIT_FORM_URL = '/tastings/edit';
+const TASTING_NOTE_NEW_FORM_URL = '/tastings/new';
 
 let STATE = {
   tastingsFetched: {
@@ -49,23 +50,24 @@ function renderTastingEventsList(events) {
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
          <div class="event-desc">
-            <span 
+            <span
+              class="event-span js-event-span"
               data-eventid="${events[i]._id}" 
               data-eventhost="${events[i].eventHost}" 
               data-eventname="${events[i].eventName}" 
-              class="event-span js-event-span"
               >
               ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
-            </span
-              class="add-new-tasting-note js-add-new-tasting-note" 
+            </span>
+            
+            <span
+              class="add-new-tasting-note-span js-add-new-tasting-note-span" 
               data-eventid="${events[i]._id}"
               data-eventname="${events[i].eventName}"
               data-eventhost="${events[i].eventHost}"
               >
-              <i class="fas fa-plus"></i>
-            <span>
-            
+              <i class="fa fa-plus"></i>
             </span>
+            
             <span 
               class="edit-event-span js-edit-event-span"
               data-eventid="${events[i]._id}" 
@@ -204,22 +206,6 @@ function getAndDisplayTastingNotes(e) {
          </li>`);
     }
 
-    // append ADD NEW TASTING NOTE button to DOM
-    // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
-    //   `<button class="js-add-new-tasting-note">Add Tasting Note</button>`
-    // );
-    // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
-      $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
-      `<a 
-        href="/tastings/new" 
-        class="add-new-tasting-note js-add-new-tasting-note" 
-        data-eventid="${eventId}"
-        data-eventname="${eventName}"
-        data-eventhost="${eventHost}"
-        >
-        Add Tasting Note
-      </a>`
-    );
   }
 
 }
@@ -231,15 +217,16 @@ function getAndDisplayTastingNotes(e) {
 // LOAD FORMS - BEGIN
 // ************************************************************************* //
 const loadNewTastingNoteForm = (e) => {
-  // form "loaded" via <a> href.
-  const $linkToNewTastingForm = $(e.target);
-  const eventId = $linkToNewTastingForm.attr('data-eventid');
-  const eventHost = $linkToNewTastingForm.attr('data-eventhost');
-  const eventName = $linkToNewTastingForm.attr('data-eventname');
+  // form "loaded" via "+" icon.
+  const $newTastingFormIcon = $(e.target);
+  const eventId = $newTastingFormIcon.parent().attr('data-eventid');
+  const eventHost = $newTastingFormIcon.parent().attr('data-eventhost');
+  const eventName = $newTastingFormIcon.parent().attr('data-eventname');
   localStorage.setItem('tastingId', ''); // clear tastingId
   localStorage.setItem('eventId', eventId);
   localStorage.setItem('eventHost', eventHost);
   localStorage.setItem('eventName', eventName);
+  window.location = TASTING_NOTE_NEW_FORM_URL;
 };
 const loadEditTastingNoteForm = (e) => {
   const $editTastingNoteIcon = $(e.target);
@@ -307,7 +294,7 @@ $(function() {
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', togglePrimaryAppellationMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-secondary-appellation-map-span', toggleSecondaryAppellationMap);
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note', loadNewTastingNoteForm);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-add-new-tasting-note-span', loadNewTastingNoteForm);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-edit-tasting-span', loadEditTastingNoteForm);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-edit-event-span', loadEditEventForm);
 
