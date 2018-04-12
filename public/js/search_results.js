@@ -814,34 +814,37 @@ const renderSearchResults = (searchResults) => {
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
-      `<li class="result-li js-result-li">  
-          <span class="result-header-span js-result-header-span">
-              ${searchResults[i].wineName} Rating: ${searchResults[i].rating} Pricing: $${lowestPrice} at ${lowestPriceDesc}
-          </span>
-          <div class="result-detail-wrapper js-result-detail-wrapper">
-              <div>Date: ${mDate}</div>  
-              <div>Event Host: ${searchResults[i].eventHost}</div>
-              <div>Event Name: ${searchResults[i].eventName}</div>
-              <div>Rating: ${searchResults[i].rating}</div>
-              <div>
-                  Pricing 1: ${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}
-              </div>
-              <div>
-                  Pricing 2: ${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}
-              </div>
-              <div>
-                  Pricing 3: ${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}
-              </div>       
-              <div>
-                  Pricing 4: ${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}
-              </div>                         
-              <div>
-                <span>Tasting Notes:</span>
-                <textarea class="sr-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
-              </div>
-                
-            </div>
-         </li>`);
+`<li class="result-li js-result-li">
+
+  <div class="result-desc">
+    <span class="result-header-span js-result-header-span">
+    ${searchResults[i].wineName} Rating: ${searchResults[i].rating} Pricing: $${lowestPrice} at ${lowestPriceDesc}
+    </span>
+  </div>  
+
+  <div class="result-detail-wrapper js-result-detail-wrapper">
+    <div>Date: ${mDate}</div>  
+    <div>Event Host: ${searchResults[i].eventHost}</div>
+    <div>Event Name: ${searchResults[i].eventName}</div>
+    <div>Rating: ${searchResults[i].rating}</div>
+    <div>
+        Pricing 1: ${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}
+    </div>
+    <div>
+        Pricing 2: ${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}
+    </div>
+    <div>
+        Pricing 3: ${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}
+    </div>       
+    <div>
+        Pricing 4: ${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}
+    </div>                         
+    <div>
+      <span>Tasting Notes:</span>
+      <textarea class="sr-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
+    </div>
+  </div>
+</li>`);
   }
 };
 // ************************************************************************* //
@@ -854,7 +857,7 @@ const renderSearchResults = (searchResults) => {
 function toggleResultDetail(e) {
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
-  $resultHeaderSpan.siblings('.js-result-detail-wrapper').toggle();
+  $resultHeaderSpan.parent().siblings('.js-result-detail-wrapper').toggle();
 }
 // ************************************************************************* //
 // Toggles - END

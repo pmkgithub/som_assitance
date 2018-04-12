@@ -1,11 +1,8 @@
 'use strict';
 // API SERVER ROUTES
 
-// static test data - for WIP.
-// const {EVENTS_DATA, TASTINGS_DATA, TASTING_DETAIL_DATA} = require('../../testData/test_data');
 
 const router = require('express').Router();
-const jsonParser = require('body-parser').json({ type: 'application/json' });  // old - before jsonParser added to server.js
 const ctrlEvents = require('../controllers/eventsController');
 const ctrlTastings = require('../controllers/tastingsController');
 const ctrlSearch = require('../controllers/searchController');
