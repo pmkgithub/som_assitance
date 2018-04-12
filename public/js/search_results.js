@@ -719,13 +719,13 @@ function postDataToApi(url, options, callback) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  // // DEV - for testing CSS changes.
-  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
-  // const options = {
-  //   searchGrape: "Barbera",
-  //   searchRating: "3",
-  //   searchPrice: "20",
-  // };
+  // DEV - for testing CSS changes.
+  // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
+  const options = {
+    searchGrape: "Barbera",
+    searchRating: "3",
+    searchPrice: "25",
+  };
 
   // PRODUCTION
   // clear Results list HTML.
@@ -737,11 +737,12 @@ function handleFormSubmit(e) {
   const searchRating = $ratingSelectInput.val();
   const searchPrice =  $priceInput.val();
 
-  const options = {
-    searchGrape,
-    searchRating,
-    searchPrice,
-  };
+  // // comment out when testing css
+  // const options = {
+  //   searchGrape,
+  //   searchRating,
+  //   searchPrice,
+  // };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
@@ -817,9 +818,10 @@ const renderSearchResults = (searchResults) => {
 `<li class="result-li js-result-li">
 
   <div class="result-desc">
-    <span class="result-header-span js-result-header-span">
-    ${searchResults[i].wineName} Rating: ${searchResults[i].rating} Pricing: $${lowestPrice} at ${lowestPriceDesc}
+    <span class="result-desc-span js-result-desc-span">
+    ${searchResults[i].wineName}Rating: ${searchResults[i].rating}   Pricing: $${lowestPrice} at ${lowestPriceDesc}
     </span>
+    <span class="result-date">${mDate}</span>
   </div>  
 
   <div class="result-detail-wrapper js-result-detail-wrapper">
@@ -869,6 +871,6 @@ $(function() {
   const $searchFormInSearchResultsPage = $('.search-form');
   const $searchResultsList = $('.js-search-results-ul');
   $searchFormInSearchResultsPage.on('submit', handleFormSubmit);
-  $searchResultsList.on('click', '.js-result-header-span', toggleResultDetail);
+  $searchResultsList.on('click', '.js-result-desc-span', toggleResultDetail);
 
 });
