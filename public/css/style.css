@@ -594,7 +594,7 @@ li.result-li {
   margin-top: 3px;
   margin-bottom: 3px;
 }
-li .result-desc {
+li div.result-desc {
   position: relative;
   font-size: 1.3em;
   color: white;
@@ -604,7 +604,7 @@ li .result-desc {
 .result-desc-span {
   cursor: pointer;
 }
-.result-date {
+li .result-date-span {
   position: absolute;
   right: 1.0rem
 }

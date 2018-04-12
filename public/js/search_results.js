@@ -812,20 +812,21 @@ const renderSearchResults = (searchResults) => {
   for (let i = 0; i < searchResults.length ; i++) {
 
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
-    const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
+    // TODO - LOC below: used when "lowestPrice", "lowestPriceDesc" added to "result-desc-span"
+    // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
+    // const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
 `<li class="result-li js-result-li">
 
   <div class="result-desc">
     <span class="result-desc-span js-result-desc-span">
-    ${searchResults[i].wineName}Rating: ${searchResults[i].rating}   Pricing: $${lowestPrice} at ${lowestPriceDesc}
+        <span class="result-desc-winename-span">${searchResults[i].wineName}</span>
     </span>
-    <span class="result-date">${mDate}</span>
+    <span class="result-date-span">${mDate}</span>
   </div>  
 
-  <div class="result-detail-wrapper js-result-detail-wrapper">
-    <div>Date: ${mDate}</div>  
+  <div class="result-detail-wrapper js-result-detail-wrapper">  
     <div>Event Host: ${searchResults[i].eventHost}</div>
     <div>Event Name: ${searchResults[i].eventName}</div>
     <div>Rating: ${searchResults[i].rating}</div>
@@ -847,6 +848,7 @@ const renderSearchResults = (searchResults) => {
     </div>
   </div>
 </li>`);
+
   }
 };
 // ************************************************************************* //
@@ -857,13 +859,16 @@ const renderSearchResults = (searchResults) => {
 // Toggles - BEGIN
 // ************************************************************************* //
 function toggleResultDetail(e) {
+  console.log('toggleResultDetail ran');
+  console.log('e.target', e.target);
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
-  $resultHeaderSpan.parent().siblings('.js-result-detail-wrapper').toggle();
+  $resultHeaderSpan.parent().parent().siblings('.js-result-detail-wrapper').toggle();
 }
 // ************************************************************************* //
 // Toggles - END
 // ************************************************************************* //
+
 $(function() {
   doOnPageLoad();
 
