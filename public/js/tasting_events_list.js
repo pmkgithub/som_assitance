@@ -56,6 +56,15 @@ function renderTastingEventsList(events) {
               class="event-span js-event-span"
               >
               ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
+            </span
+              class="add-new-tasting-note js-add-new-tasting-note" 
+              data-eventid="${events[i]._id}"
+              data-eventname="${events[i].eventName}"
+              data-eventhost="${events[i].eventHost}"
+              >
+              <i class="fas fa-plus"></i>
+            <span>
+            
             </span>
             <span 
               class="edit-event-span js-edit-event-span"
@@ -102,7 +111,8 @@ function getAndDisplayTastingNotes(e) {
   } else {
     // If TASTING NOTES already been fetched for a particular TASTING EVENT,
     // keep TASTING NOTES in DOM and show/hide on future TASTING EVENT clicks.
-    $tastingEventSpan.siblings('ul.js-tastings-ul').toggle();
+    // $tastingEventSpan.siblings('ul.js-tastings-ul').toggle(); // old
+    $tastingEventSpan.parent().siblings('ul.js-tastings-ul').toggle();
   }
 
   function renderTastingNotes(tastings) {
@@ -116,25 +126,25 @@ function getAndDisplayTastingNotes(e) {
       // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
       $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
-            <div>
-            
+            <div class="tasting-desc">
+              <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
+              <span 
+                  class="edit-tasting-span js-edit-tasting-span" 
+                  data-tastingid="${tastings[i]._id}"
+                  data-eventname="${eventName}"
+                  data-eventhost="${eventHost}"
+                  >
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+              </span> 
+                         
+              <span 
+                  class="delete-tasting-span js-delete-tasting-span" 
+                  data-tastingid="${tastings[i]._id}"
+                  >
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+              </span>
             </div>
-            <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
-            <span 
-                class="edit-tasting-span js-edit-tasting-span" 
-                data-tastingid="${tastings[i]._id}"
-                data-eventname="${eventName}"
-                data-eventhost="${eventHost}"
-                >
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-            </span> 
-                       
-            <span 
-                class="delete-tasting-span js-delete-tasting-span" 
-                data-tastingid="${tastings[i]._id}"
-                >
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </span>
+
             
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
             
@@ -144,7 +154,7 @@ function getAndDisplayTastingNotes(e) {
                   </span>
                   <div class="country-map js-country-map">
                      ${tastings[i].countryMapSrc !== '' ? 
-                    `<img class="js-country-map-img" src="${tastings[i].countryMapSrc}">`: 
+                    `<img class="country-map-img js-country-map-img" src="${tastings[i].countryMapSrc}">`: 
                     `<div>No Country Map</div>`}
                   </div>
                 </div>
@@ -198,7 +208,8 @@ function getAndDisplayTastingNotes(e) {
     // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
     //   `<button class="js-add-new-tasting-note">Add Tasting Note</button>`
     // );
-    $tastingEventSpan.siblings('ul.js-tastings-ul').append(
+    // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
+      $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
       `<a 
         href="/tastings/new" 
         class="add-new-tasting-note js-add-new-tasting-note" 
@@ -231,10 +242,10 @@ const loadNewTastingNoteForm = (e) => {
   localStorage.setItem('eventName', eventName);
 };
 const loadEditTastingNoteForm = (e) => {
-  const $editTastingNoteSpan = $(e.target);
-  const tastingId = $editTastingNoteSpan.attr('data-tastingid');
-  const eventName = $editTastingNoteSpan.attr('data-eventname');
-  const eventHost = $editTastingNoteSpan.attr('data-eventhost');
+  const $editTastingNoteIcon = $(e.target);
+  const tastingId = $editTastingNoteIcon.parent().attr('data-tastingid');
+  const eventName = $editTastingNoteIcon.parent().attr('data-eventname');
+  const eventHost = $editTastingNoteIcon.parent().attr('data-eventhost');
   localStorage.setItem('tastingId', tastingId);
   localStorage.setItem('eventId', '');    // clear eventId.
   localStorage.setItem('eventHost', eventHost);
@@ -242,8 +253,8 @@ const loadEditTastingNoteForm = (e) => {
   window.location = TASTING_NOTE_EDIT_FORM_URL;
 };
 const loadEditEventForm = (e) => {
-  const $editEventSpan = $(e.target);
-  const eventId = $editEventSpan.attr('data-eventid');
+  const $editEventIcon = $(e.target);
+  const eventId = $editEventIcon.parent().attr('data-eventid');
   localStorage.setItem('tastingId', ''); // clear tastingId
   localStorage.setItem('eventId', eventId);
   localStorage.setItem('eventHost', ''); // clear eventHost.
@@ -260,8 +271,8 @@ const loadEditEventForm = (e) => {
 // ************************************************************************* //
 function toggleTastingNote(e) {
   e.stopPropagation();
-  const $countrySpan = $(e.target);
-  $countrySpan.siblings('.js-tasting-detail-wrapper').toggle();
+  const $tastingSpan = $(e.target);
+  $tastingSpan.parent().siblings('.js-tasting-detail-wrapper').toggle();
 }
 function toggleCountryMap(e) {
   e.stopPropagation();

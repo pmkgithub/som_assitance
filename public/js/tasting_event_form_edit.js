@@ -2,7 +2,6 @@
 
 // Grab the eventId from localStorage (set when "Edit" is clicked on Event List.
 const eventId = localStorage.getItem('eventId');
-console.log('eventId', eventId);
 const TASTING_EVENTS_LIST_URL = `/events`;
 const TASTING_EVENT_API_URL = `/api/events/edit/${eventId}`;
 
@@ -25,7 +24,6 @@ function getOneEventFromApi(url, options, callback) {
 
 // Populate the Event Form with fetched data.
 const populateEventForm = (tastingEvent) => {
-  console.log('event = ', event);
   const {eventName, eventHost} = tastingEvent;
   $('#event-name').val(eventName);
   $('#event-host').val(eventHost);
@@ -39,7 +37,6 @@ const populateEventForm = (tastingEvent) => {
 // ************************************************************************* //
 
 function putEventDataToApi(url, options, callback) {
-  console.log('options inside postDataToApi() = ', options);
   $.ajax({
     url: url,
     method: 'PUT',

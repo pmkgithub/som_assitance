@@ -88,11 +88,14 @@ html {
   font-family: 'Lato', sans-serif;
 }
 .events-list-page-wrapper,
+.search-results-page-wrapper {
+  margin: 30px auto 30px auto;
+  width: 60%;
+}
 .tasting-form-new-page-wrapper,
 .tasting-form-edit-page-wrapper,
 .event-form-new-page-wrapper,
-.event-form-edit-page-wrapper,
-.search-results-page-wrapper {
+.event-form-edit-page-wrapper {
   margin: 30px auto 30px auto;
   width: 50%;
 }
@@ -135,6 +138,13 @@ body.signup-page::after {
   z-index: -1;
 }
 /* set background image - END */
+
+/* temp events link css - delete when link is removed from page */
+.events-link {
+  padding-left: 20px;
+}
+/* temp events link css - delete when link is removed from page */
+
 .landing-page-header,
 .signup-page-header   {
   font-size: 3.25em;
@@ -213,6 +223,7 @@ body.signup-page::after {
   text-decoration: underline;
   margin-left: 10px;
 }
+/* TODO - add footer info section */
 /*footer .info {*/
   /*background-color: cornflowerblue;*/
   /*height: 10em;*/
@@ -228,9 +239,6 @@ body.signup-page::after {
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
-.events-link {
-  padding-left: 20px;
-}
 
 li.event-li {
   list-style: none;
@@ -275,52 +283,85 @@ li.tasting-li {
   display: none;
 }
 
-/*.event-li {*/
-  /*!* position: relative for position icons *!*/
-  /*position: relative;*/
-  /*border: 1px solid black;*/
-  /*background-color: cornflowerblue;*/
-/*}*/
-.event-desc {
-  /* contains Event Date, Name, Distributor, Edit, Delete*/
-  position: relative;
-  border: 1px solid black;
-  background-color: cornflowerblue;
-}
 
-/* tasting icons positioning - BEGIN */
-.tasting-li {
-  /* position: relative for position icons */
+.event-li {
+  margin-left: -40px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.event-desc {
+  /* contains Event Date, Name, Distributor, Edit, Delete icons */
+  /* position:relative for <span> placement */
   position: relative;
-  border: 1px solid black;
+  font-size: 1.3em;
+  color: white;
+  padding: 0.5em;
   background-color: cornflowerblue;
+
 }
-/*.tasting-li .*/
-.edit-tasting-span,
-.edit-event-span  {
-  display: inline-block;
-  position: absolute;
-  right: 50px;
-}
-.delete-tasting-span,
-.delete-event-span {
-  display: inline-block;
-  position: absolute;
-  right: 30px;
-}
-/* icons positioning - BEGIN */
 /******************************************************************************/
 /*  EVENTS LIST - END */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  EVENTS LIST - TASTING NOTE  - BEGIN */
+/*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
 /******************************************************************************/
+/* tasting icons positioning - BEGIN */
+.edit-event-span,
+.edit-tasting-span {
+  display: inline-block;
+  position: absolute;
+  /*right: 70px;*/
+  right: 3.25em;
+}
+.delete-event-span,
+.delete-tasting-span {
+  display: inline-block;
+  position: absolute;
+  right: 1.25em;
+}
+/* icons positioning - END */
+/******************************************************************************/
+/*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  TASTING NOTE  - BEGIN */
+/******************************************************************************/
+.tasting-li {
+  margin-left: -20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.tasting-desc {
+  /* contains Wine Name, Edit, Delete icons */
+  /* position:relative for <span> placement */
+  position: relative;
+  font-size: 1.3em;
+  color: white;
+  padding: 0.5em;
+  background-color: cornflowerblue;
+}
+.tasting-detail-wrapper {
+  background-color: blanchedalmond;
+  padding: 10px;
+}
+.tasting-detail-wrapper div {
+  font-size: 1.2em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+
+}
+.tasting-li .country-map-img {
+  width: 100%
+}
 .tasting-li .tn-textarea {
+  background-color: blanchedalmond;
+  font-size: 1em;
   width: 100%;
 }
 /******************************************************************************/
-/*  EVENTS LIST - TASTING NOTE  - END */
+/*  TASTING NOTE  - END */
 /******************************************************************************/
 
 /******************************************************************************/
