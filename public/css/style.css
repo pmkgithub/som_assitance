@@ -588,13 +588,6 @@ li .tasting-desc {
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
-
-.result-detail-wrapper {
-  display: none;
-}
-.result-header-span {
-  cursor: pointer;
-}
 li.result-li {
   list-style: none;
   margin-left: -40px;
@@ -602,10 +595,21 @@ li.result-li {
   margin-bottom: 3px;
 }
 li .result-desc {
+  position: relative;
   font-size: 1.3em;
   color: white;
   padding: 0.5em;
   background-color: cornflowerblue;
+}
+.result-desc-span {
+  cursor: pointer;
+}
+.result-date {
+  position: absolute;
+  right: 1.0rem
+}
+.result-detail-wrapper {
+  display: none;
 }
 .no-search-results {
   display: none;
