@@ -812,41 +812,58 @@ const renderSearchResults = (searchResults) => {
   for (let i = 0; i < searchResults.length ; i++) {
 
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
-    const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
+    // TODO - LOC below: used when "lowestPrice", "lowestPriceDesc" added to "result-desc-span"
+    // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
+    // const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
 `<li class="result-li js-result-li">
 
   <div class="result-desc">
     <span class="result-desc-span js-result-desc-span">
-    ${searchResults[i].wineName}Rating: ${searchResults[i].rating}   Pricing: $${lowestPrice} at ${lowestPriceDesc}
+        <span class="result-desc-winename-span">${searchResults[i].wineName}</span>
     </span>
-    <span class="result-date">${mDate}</span>
+    <span class="result-date-span">${mDate}</span>
   </div>  
 
-  <div class="result-detail-wrapper js-result-detail-wrapper">
-    <div>Date: ${mDate}</div>  
-    <div>Event Host: ${searchResults[i].eventHost}</div>
-    <div>Event Name: ${searchResults[i].eventName}</div>
-    <div>Rating: ${searchResults[i].rating}</div>
-    <div>
-        Pricing 1: ${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}
+  <div class="result-detail-wrapper js-result-detail-wrapper">  
+    
+    <div class="eventhost-wrapper">
+        Event Host:
+        <span class="eventhost-span">${searchResults[i].eventHost}</span>
     </div>
-    <div>
-        Pricing 2: ${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}
+    
+    <div class="eventname-wrapper">
+        Event Name:
+        <span class="eventname-span">${searchResults[i].eventName}</span>
     </div>
-    <div>
-        Pricing 3: ${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}
+    
+    <div class="rating-wrapper">
+        Rating:
+        <span class="rating-span">${searchResults[i].rating}</span>
+    </div>
+    <div class="pricing1-wrapper">
+        Pricing 1:
+        <span class="pricing1-span">${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}</span>
+    </div>
+    <div class="pricing2-wrapper">
+        Pricing 2:
+        <span class="pricing2-span">${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}</span>
+    </div>
+    <div class="pricing3-wrapper">
+        Pricing 3:
+        <span class="pricing3-span">${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}</span>
     </div>       
-    <div>
-        Pricing 4: ${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}
+    <div class="pricing4-wrapper">
+        Pricing 4:
+        <span class="pricing4-span">${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}</span>
     </div>                         
-    <div>
-      <span>Tasting Notes:</span>
-      <textarea class="sr-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
-    </div>
+    <div class="tasting-note">Tasting Notes:</div>
+    <textarea class="tn-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>
+    
   </div>
 </li>`);
+
   }
 };
 // ************************************************************************* //
@@ -857,13 +874,16 @@ const renderSearchResults = (searchResults) => {
 // Toggles - BEGIN
 // ************************************************************************* //
 function toggleResultDetail(e) {
+  console.log('toggleResultDetail ran');
+  console.log('e.target', e.target);
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
-  $resultHeaderSpan.parent().siblings('.js-result-detail-wrapper').toggle();
+  $resultHeaderSpan.parent().parent().siblings('.js-result-detail-wrapper').toggle();
 }
 // ************************************************************************* //
 // Toggles - END
 // ************************************************************************* //
+
 $(function() {
   doOnPageLoad();
 

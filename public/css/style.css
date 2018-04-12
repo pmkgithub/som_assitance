@@ -348,7 +348,7 @@ li .tasting-desc {
   padding: 10px;
 }
 
-.tasting-li .tasting-detail-wrapper div {
+.tasting-detail-wrapper div {
   font-size: 1.2rem;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -384,7 +384,6 @@ li .tasting-desc {
   background-color: blanchedalmond;
   font-size: 1rem;
   width: 100%;
-
 }
 /******************************************************************************/
 /*  TASTING NOTE  - END */
@@ -594,7 +593,8 @@ li.result-li {
   margin-top: 3px;
   margin-bottom: 3px;
 }
-li .result-desc {
+/* result desc - BEGIN */
+li div.result-desc {
   position: relative;
   font-size: 1.3em;
   color: white;
@@ -604,16 +604,62 @@ li .result-desc {
 .result-desc-span {
   cursor: pointer;
 }
-.result-date {
+li .result-date-span {
   position: absolute;
   right: 1.0rem
 }
+/* result desc - END */
+
+/* result detail - BEGIN */
+/* TODO - wip */
 .result-detail-wrapper {
+  background-color: blanchedalmond;
+  padding: 10px;
   display: none;
 }
+.result-detail-wrapper div {
+  font-size: 1.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.result-li .eventhost-wrapper,
+.result-li .eventname-wrapper,
+.result-li .rating-wrapper,
+.result-li .pricing1-wrapper,
+.result-li .pricing2-wrapper,
+.result-li .pricing3-wrapper,
+.result-li .pricing4-wrapper {
+  position: relative;
+}
+.result-li .eventhost-span,
+.result-li .eventname-span,
+.result-li .rating-span,
+.result-li .pricing1-span,
+.result-li .pricing2-span,
+.result-li .pricing3-span,
+.result-li .pricing4-span {
+  position: absolute;
+  left: 8rem;
+}
+.result-li .rating-wrapper {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.result-li .tasting-note {
+  margin-top: 0.5rem;
+}
+.result-li .tn-textarea {
+  background-color: blanchedalmond;
+  font-size: 1rem;
+  width: 100%;
+}
+/* result detail - END */
+
 .no-search-results {
   display: none;
 }
+
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
