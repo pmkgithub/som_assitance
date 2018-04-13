@@ -604,6 +604,10 @@ li div.result-desc {
 .result-desc-span {
   cursor: pointer;
 }
+li .result-desc-pricing-span {
+  position: absolute;
+  left: 15em;
+}
 li .result-date-span {
   position: absolute;
   right: 1.0rem

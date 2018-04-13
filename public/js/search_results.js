@@ -813,7 +813,7 @@ const renderSearchResults = (searchResults) => {
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
     // TODO - LOC below: used when "lowestPrice", "lowestPriceDesc" added to "result-desc-span"
     // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
-    // const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
+    const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
 `<li class="result-li js-result-li">
@@ -821,6 +821,7 @@ const renderSearchResults = (searchResults) => {
   <div class="result-desc">
     <span class="result-desc-span js-result-desc-span">
         <span class="result-desc-winename-span">${searchResults[i].wineName}</span>
+        <span class="result-desc-pricing-span">$${lowestPrice} at ${lowestPriceDesc}</span>
     </span>
     <span class="result-date-span">${mDate}</span>
   </div>  
