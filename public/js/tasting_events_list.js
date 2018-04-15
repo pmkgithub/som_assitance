@@ -21,7 +21,7 @@ function getDataFromApi(url, options, callback) {
   const userId = localStorage.getItem('userId');
 
   $.ajax({
-    url: `${url}/${userId}`,
+    url: `${url}${userId}`,
     type: 'GET',
     contentType: "application/json",
     headers: {"authorization": token},

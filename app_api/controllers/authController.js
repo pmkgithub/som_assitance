@@ -108,8 +108,12 @@ exports.signup = (req, res) => {
       });
     })
     .then((user) => {
+      console.log('user.id = ', user._id);
       // // Grider workflow: create a jwt here and send it back in the response.
-      return res.status(201).json({ token: tokenForUser(user)});
+      return res.status(201).json({
+        token: tokenForUser(user),
+        userId: user._id
+        });
 
       // Thinkful approach.
       // Respond to request indicating the User was created.

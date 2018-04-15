@@ -97,9 +97,11 @@ const redirectToEventsList = (response) => {
 
   // set localstorage token
   localStorage.setItem('token', response.token);
+  localStorage.setItem('userId', response.userId);
+
 
   // redirect to Events List
-  window.location = TASTING_EVENTS_URL;
+  // window.location = TASTING_EVENTS_URL;
 };
 // ************************************************************************* //
 // Redirect to Events List - END
