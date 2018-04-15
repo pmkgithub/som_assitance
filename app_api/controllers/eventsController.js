@@ -2,6 +2,7 @@
 
 const config = require('../../config');
 const mongoose = require('mongoose');
+const {User} = require('../models/model_user');
 const {Event} = require('../models/model_tasting_event');
 const {TastingNote} = require('../models/model_tasting_note');
 
@@ -12,7 +13,6 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 module.exports.getAllTastingEvents = (req, res) => {
 
-    // get req.params.userId
     const { userId } = req.params;
 
   Event
@@ -39,8 +39,9 @@ module.exports.getOneTastingEvent = (req, res) => {
 };
 
 module.exports.postTastingEventData = (req, res) => {
+  const userId = req.params.userId;
 
-  // make sure client didn't send unexpected fields.
+  // make sure client didn't send unexpected fields in req.body.
   const requiredFields = ['eventName', 'eventHost'];
   for( let i=0; i< requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -52,21 +53,42 @@ module.exports.postTastingEventData = (req, res) => {
     }
   }
 
-  // TODO - get userId form localstorage when creating a new event on frontend
-  Event
-    .create({
-      userId: userId,
-      timestamp: new Date(),
-      eventName: req.body.eventName,
-      eventHost: req.body.eventHost
+  // make sure userId is in req.params.
+  if ( !userId ) {
+    const message = `Missing userId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
+  User
+    .findById({ "_id": userId })
+    .then(user => {
+      const _userId = user._id;
+
+      Event
+        .create({
+          timestamp: new Date(),
+          userId: _userId,
+          eventName: req.body.eventName,
+          eventHost: req.body.eventHost
+        })
+        .then(event => {
+          res.status(200).json(event.serialize())
+        })
+        // event model error.
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ message: 'Internal server error', err: err });
+        });
+
     })
-    .then(event => {
-      res.status(200).json(event.serialize())
-    })
+    // user model error.
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
     });
+
+
 
 };
 

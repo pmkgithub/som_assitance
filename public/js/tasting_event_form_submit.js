@@ -1,14 +1,11 @@
 'use strict';
 
-const TASTING_EVENTS_URL = `/events`;
-const TASTING_EVENT_POST_URL = `/api/events`;
-
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
 
 function postDataToApi(url, options, callback) {
-  console.log('options inside postDataToApi() = ', options);
+
   $.ajax({
     url: url,
     method: 'POST',
@@ -30,7 +27,7 @@ function handleFormSubmit(e) {
 
   const eventName = $('.js-event-name').val();
   const eventHost = $('.js-event-host').val();
-
+  const userId = localStorage.getItem('userId');
 
   // Server-side Validation
   // if ( !eventName ) {
@@ -43,6 +40,7 @@ function handleFormSubmit(e) {
     eventHost
   };
 
+  const TASTING_EVENT_POST_URL = `/api/events/${userId}`;
   postDataToApi(TASTING_EVENT_POST_URL, options, redirectToEventsListOnSave);
 }
 
@@ -51,10 +49,11 @@ function redirectToEventsListOnCancel(e) {
   window.location = TASTING_EVENTS_URL;
 }
 
-function redirectToEventsListOnSave(data) {
-  console.log('res data = ', data);
-  // console.log(data.message);
+function redirectToEventsListOnSave(response) {
+  // console.log('response = ', response);
+
   // on AJAX success, navigate the user back to TASTING EVENTS LIST.
+  const TASTING_EVENTS_URL = `/events`;
   window.location = TASTING_EVENTS_URL;
 }
 

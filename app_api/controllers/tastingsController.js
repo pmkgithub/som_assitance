@@ -102,11 +102,16 @@ module.exports.postTastingNoteData = (req, res) => {
           eventId: _eventId
         })
         .then(tasting => res.status(200).json(tasting.serialize()))
+        // tasting note model error.
         .catch(err => {
           console.error(err);
           res.status(500).json({ message: 'Internal server error', err: err });
         });
-
+    })
+    // event model error.
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error', err: err });
     });
 };
 
