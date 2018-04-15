@@ -3,6 +3,13 @@
 const TASTING_EVENTS_URL = `/events`;
 const $passwordInput = $('.js-signup-password-input');
 const $confPasswordInput = $('.js-signup-conf-password-input');
+
+// TODO - finish coding.
+const handleAjaxError = (err) => {
+  // sniff error and handle
+  console.log('frontend err =', err.responseJSON.message);
+
+};
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
@@ -15,7 +22,8 @@ function postDataToApi(url, options, callback) {
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,
-    error: function(err) { console.log('something went wrong', err); },
+    // error: function(err) { console.log('something went wrong', err); },
+    error: handleAjaxError,
   });
 
 }

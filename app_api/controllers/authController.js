@@ -18,6 +18,7 @@ const tokenForUser = (user) => {
 // ************************************************************************* //
 exports.signup = (req, res) => {
 
+  console.log('req.body = ', req.body);
   // check for required fields - BEGIN
   const requiredFields = ['email', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -85,6 +86,7 @@ exports.signup = (req, res) => {
     .count()
     .then((count) => {
       if ( count > 0 ) {
+        console.log('in count if ran');
         // If User with email DOES exist, return an error.
         // There is an existing user with the same email.
         return Promise.reject({
@@ -133,12 +135,18 @@ exports.signup = (req, res) => {
 // ************************************************************************* //
 exports.signin = (req, res) => {
   console.log('authController signin ran');
+
+  // TODO - send USER id back with the token - BEGIN
+  const userId = req.user._id;
+
   // At signin, User has already had their email and password auth'd.
   //
   // NOTE: passport done function assigns "user" to req.user in passport.js localStrategy();
   //
   // Now, we just need to send them a JWT token.
-  res.json({ token: tokenForUser(req.user)});
+  res.json({ token: tokenForUser(req.user), userId });
+
+
 };
 // ************************************************************************* //
 // signin - BEGIN

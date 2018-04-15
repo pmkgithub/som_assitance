@@ -10,7 +10,10 @@ const eventSchema = Schema({
   timestamp: {type: String},
   eventName: {type: String, required: true},
   eventHost: {type: String},
-
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  },
 });
 
 // eventSchema.virtual('addressString').get(function() {

@@ -12,8 +12,12 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 module.exports.getAllTastingEvents = (req, res) => {
 
+    // get req.params.userId
+    const { userId } = req.params;
+
   Event
-    .find()
+    // .find() // without userId
+    .find({ userId })
     .then((events) => { res.json(events).status(200); })
     .catch(err => {
       console.error(err);
@@ -48,8 +52,10 @@ module.exports.postTastingEventData = (req, res) => {
     }
   }
 
+  // TODO - get userId form localstorage when creating a new event on frontend
   Event
     .create({
+      userId: userId,
       timestamp: new Date(),
       eventName: req.body.eventName,
       eventHost: req.body.eventHost

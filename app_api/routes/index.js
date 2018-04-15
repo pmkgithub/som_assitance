@@ -16,8 +16,9 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 // passport - END
 
 // events
-// router.get('/events', ctrlEvents.getAllTastingEvents); // without auth
-router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents); // with auth - not working
+// router.get('/events', ctrlEvents.getAllTastingEvents); // without auth, without User Id
+router.get('/events/:userId', ctrlEvents.getAllTastingEvents); // without auth, with User Id
+// router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents); // with auth - not working
 router.post('/events', ctrlEvents.postTastingEventData);
 router.delete('/events/:eventId', ctrlEvents.deleteEvent);
 router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);

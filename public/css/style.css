@@ -224,13 +224,13 @@ body.signup-page::after {
   margin-left: 10px;
 }
 /* TODO - add footer info section */
-/*footer .info {*/
-  /*background-color: cornflowerblue;*/
-  /*height: 10em;*/
-  /*width: 80%;*/
-  /*!*text-align: center;*!*/
+footer .info {
+  background-color: cornflowerblue;
+  height: 20em;
+  width: 100%;
+  /*text-align: center;*/
   /*margin: auto;*/
-/*}*/
+}
 
 /******************************************************************************/
 /*  SIGNIN / SIGNUP FORM - BEGIN */
