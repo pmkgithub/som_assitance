@@ -19,8 +19,9 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents);
 router.post('/events', requireAuth, ctrlEvents.postTastingEventData);
 
+// TODO - current WIP - route being worked...
+router.delete('/events/:eventId', requireAuth, ctrlEvents.deleteEvent);
 
-router.delete('/events/:eventId', ctrlEvents.deleteEvent);
 router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);
 router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData); // disregard Webstorm's error.
 

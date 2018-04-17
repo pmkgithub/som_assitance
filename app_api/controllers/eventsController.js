@@ -91,8 +91,9 @@ module.exports.postTastingEventData = (req, res) => {
 
 module.exports.putTastingEventData = (req, res) => {
 
-  // passport placed "user" on the request in jwtStrategy.
-  const userId = req.user._id;
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The event can
+  //       be located via the eventId.
   const eventId = req.params.eventId;
   const toUpdate = {};
   const updatableFields = ['eventName', 'eventHost'];
@@ -117,10 +118,11 @@ module.exports.putTastingEventData = (req, res) => {
 
 module.exports.deleteEvent = (req, res) => {
 
-  // passport placed "user" on the request in jwtStrategy.
-  const userId = req.user._id;
   const eventId = req.params.eventId;
 
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The event can
+  //       be located via the eventId.
   Event
     .findByIdAndRemove(eventId)
     .then(event => res.status(204).end())
