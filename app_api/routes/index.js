@@ -16,7 +16,7 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 // passport - END
 
 // events
-router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents);
+router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
 router.post('/events', requireAuth, ctrlEvents.postTastingEventData);
 router.delete('/events/:eventId', requireAuth, ctrlEvents.deleteEvent);
 router.get('/events/edit/:eventId', requireAuth, ctrlEvents.getOneTastingEvent); // for Edit Event Form.

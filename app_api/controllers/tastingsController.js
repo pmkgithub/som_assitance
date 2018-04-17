@@ -13,6 +13,9 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 module.exports.getTastingNotes = (req, res) => {
 
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.
+  //       The Tasting Note(s) can be found via the eventId.
   const eventId = req.params.eventId;
 
   TastingNote
@@ -22,6 +25,7 @@ module.exports.getTastingNotes = (req, res) => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
     });
+
 };
 
 module.exports.getOneTastingNote = (req, res) => {

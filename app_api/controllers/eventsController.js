@@ -11,7 +11,7 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 // TASTINGS EVENTS - BEGIN
 // ************************************************************************* //
-module.exports.getAllTastingEvents = (req, res) => {
+module.exports.getTastingEvents = (req, res) => {
 
   // passport placed "user" on the request in jwtStrategy.
   const userId = req.user._id;
@@ -30,8 +30,8 @@ module.exports.getOneTastingEvent = (req, res) => {
   // used when loading Edit Event Form.
 
   // NOTE: Don't need to find User using req.user._id b/c user
-  //       was already verified by jwtStrategy.  The event can
-  //       be located via the eventId.
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   const eventId  = req.params.eventId;
 
   Event
@@ -91,8 +91,8 @@ module.exports.postTastingEventData = (req, res) => {
 module.exports.putTastingEventData = (req, res) => {
 
   // NOTE: Don't need to find User using req.user._id b/c user
-  //       was already verified by jwtStrategy.  The event can
-  //       be located via the eventId.
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   const eventId = req.params.eventId;
   const toUpdate = {};
   const updatableFields = ['eventName', 'eventHost'];
@@ -120,8 +120,8 @@ module.exports.deleteEvent = (req, res) => {
   const eventId = req.params.eventId;
 
   // NOTE: Don't need to find User using req.user._id b/c user
-  //       was already verified by jwtStrategy.  The event can
-  //       be located via the eventId.
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   Event
     .findByIdAndRemove(eventId)
     .then(event => res.status(204).end())
