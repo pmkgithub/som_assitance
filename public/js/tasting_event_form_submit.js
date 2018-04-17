@@ -6,10 +6,13 @@
 
 function postDataToApi(url, options, callback) {
 
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'POST',
     contentType: 'application/json; charset=utf-8',
+    headers: {"authorization": token},
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,
@@ -27,7 +30,6 @@ function handleFormSubmit(e) {
 
   const eventName = $('.js-event-name').val();
   const eventHost = $('.js-event-host').val();
-  const userId = localStorage.getItem('userId');
 
   // Server-side Validation
   // if ( !eventName ) {
@@ -40,7 +42,7 @@ function handleFormSubmit(e) {
     eventHost
   };
 
-  const TASTING_EVENT_POST_URL = `/api/events/${userId}`;
+  const TASTING_EVENT_POST_URL = `/api/events`;
   postDataToApi(TASTING_EVENT_POST_URL, options, redirectToEventsListOnSave);
 }
 

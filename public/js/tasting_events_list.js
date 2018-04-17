@@ -18,12 +18,11 @@ let STATE = {
 function getDataFromApi(url, options, callback) {
 
   const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('userId');
 
   $.ajax({
-    url: `${url}${userId}`,
+    url: url,
     type: 'GET',
-    contentType: "application/json",
+    contentType: 'application/json; charset=utf-8',
     headers: {"authorization": token},
     dataType: 'json',
     data: options,

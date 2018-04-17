@@ -13,14 +13,9 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 module.exports.getAllTastingEvents = (req, res) => {
 
-  console.log('event controller getAllTastingEvents');
-  console.log('req.user.id id came from token', req.user._id);
-
-  console.log('req.params.id id came from ls', req.params.id);
-  const { userId } = req.params;  // way1 - sending the ls userId
+  const { userId } = req.user._id;
 
   Event
-    // .find() // without userId
     .find({ userId })
     .then((events) => { res.json(events).status(200); })
     .catch(err => {
@@ -31,6 +26,8 @@ module.exports.getAllTastingEvents = (req, res) => {
 };
 
 module.exports.getOneTastingEvent = (req, res) => {
+
+  const { userId } = req.user._id;
   const eventId  = req.params.eventId;
 
   Event
@@ -43,8 +40,11 @@ module.exports.getOneTastingEvent = (req, res) => {
 };
 
 module.exports.postTastingEventData = (req, res) => {
-  // const userId = req.params.userId; // TODO - this goes away
+
   const userId = req.user._id;
+  console.log('req.user = ', req.user);
+  console.log('req.user._id = ', req.user._id);
+
 
   // make sure client didn't send unexpected fields in req.body.
   const requiredFields = ['eventName', 'eventHost'];
@@ -56,13 +56,6 @@ module.exports.postTastingEventData = (req, res) => {
       console.error(message);
       return res.status(400).send(message);
     }
-  }
-
-  // make sure userId is in req.params.
-  if ( !userId ) {
-    const message = `Missing userId in request params`;
-    console.error(message);
-    return res.status(400).send(message);
   }
 
   User
@@ -97,6 +90,8 @@ module.exports.postTastingEventData = (req, res) => {
 };
 
 module.exports.putTastingEventData = (req, res) => {
+
+  const { userId } = req.user._id;
   const eventId = req.params.eventId;
   const toUpdate = {};
   const updatableFields = ['eventName', 'eventHost'];
@@ -120,6 +115,8 @@ module.exports.putTastingEventData = (req, res) => {
 };
 
 module.exports.deleteEvent = (req, res) => {
+
+  const { userId } = req.user._id;
   const eventId = req.params.eventId;
 
   Event
