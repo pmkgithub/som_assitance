@@ -46,13 +46,13 @@ function handleFormSubmit(e) {
   let primaryGrape = $('#js-primary-grape-select').val();
   let rating = $('#js-rating-select').val();
   let pricing1Desc = $('#js-pricing1-select').val();
-  let pricing1Price = $('#js-pricing1-input').val();
+  let pricing1Price = String( Number( $('#js-pricing1-input').val() ).toFixed(2) );
   let pricing2Desc = $('#js-pricing2-select').val();
-  let pricing2Price = $('#js-pricing2-input').val();
+  let pricing2Price = String( Number( $('#js-pricing2-input').val() ).toFixed(2) );
   let pricing3Desc = $('#js-pricing3-select').val();
-  let pricing3Price = $('#js-pricing3-input').val();
+  let pricing3Price = String( Number( $('#js-pricing3-input').val() ).toFixed(2) );
   let pricing4Desc = $('#js-pricing4-select').val();
-  let pricing4Price = $('#js-pricing4-input').val();
+  let pricing4Price = String( Number( $('#js-pricing4-input').val() ).toFixed(2) );
   let tastingNotes = $('#js-tasting-note-ta').val();
 
   // TODO - code Server-side Validation.
@@ -66,14 +66,14 @@ function handleFormSubmit(e) {
   if ( !secondaryAppellationMapSrc ) { secondaryAppellationMapSrc = ''; }
   if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }
   if ( !rating ) { rating = 'No Rating Selected'; }
-  if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
-  if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
-  if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
-  if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
-  if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
-  if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
-  if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
-  if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
+  // if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
+  // if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
+  // if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
+  // if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
+  // if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
+  // if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
+  // if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
+  // if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
 
   const options = {
     eventHost,

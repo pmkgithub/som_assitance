@@ -15,6 +15,10 @@ const requireAuth = passport.authenticate('jwt', { session: false} );       // j
 const requireSignin = passport.authenticate('local', { session: false } );  // localStrategyu
 // passport - END
 
+// authentication
+router.post('/signup', ctrlAuth.signup);
+router.post('/signin', requireSignin, ctrlAuth.signin);
+
 // events
 router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
 router.post('/events', requireAuth, ctrlEvents.postTastingEventData);
@@ -26,16 +30,11 @@ router.put('/events/edit/:eventId', requireAuth, ctrlEvents.putTastingEventData)
 router.get('/tastings/:eventId', requireAuth, ctrlTastings.getTastingNotes);
 router.post('/tastings/:eventId', requireAuth, ctrlTastings.postTastingNoteData);
 router.delete('/tastings/:tastingId', requireAuth, ctrlTastings.deleteTastingNote);
-// TODO - current WIP - route being worked...
 router.get('/tastings/edit/:tastingId', requireAuth, ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
 router.put('/tastings/edit/:tastingId', requireAuth, ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
 
 // search
-router.post('/search', ctrlSearch.postTastingNotesSearchData);
-
-// authentication
-router.post('/signup', ctrlAuth.signup);
-router.post('/signin', requireSignin, ctrlAuth.signin);
+router.post('/search', requireAuth, ctrlSearch.postTastingNotesSearchData);
 
 
 module.exports = router;

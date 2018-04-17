@@ -2,18 +2,25 @@
 
 const config = require('../../config');
 const mongoose = require('mongoose');
-const {TastingNote} = require('../models/model_tasting_note');
+const { User } = require('../models/model_user');
+const { TastingNote } = require('../models/model_tasting_note');
 
 mongoose.connect(config.DATABASE_URL);
 
 module.exports.postTastingNotesSearchData = (req, res) => {
 
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
   const searchGrape = req.body.searchGrape;
   const searchRating = req.body.searchRating;
   const searchPrice = req.body.searchPrice;
 
+  console.log('searchController.js searchPrice = ', searchPrice);
+  console.log('searchController.js typeof searchPrice = ', typeof searchPrice);
+
   TastingNote
     .find({
+      'userId': userId,
       'primaryGrape': searchGrape,
       'rating': {$gte: searchRating},
       $or:[
