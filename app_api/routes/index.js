@@ -19,17 +19,17 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents);
 router.post('/events', requireAuth, ctrlEvents.postTastingEventData);
 router.delete('/events/:eventId', requireAuth, ctrlEvents.deleteEvent);
-
-// TODO - current WIP - route being worked...
-router.get('/events/edit/:eventId', requireAuth, ctrlEvents.getOneTastingEvent); // for Edit Event Form
-router.put('/events/edit/:eventId', requireAuth, ctrlEvents.putTastingEventData); // for Edit Event Form
+router.get('/events/edit/:eventId', requireAuth, ctrlEvents.getOneTastingEvent); // for Edit Event Form.
+router.put('/events/edit/:eventId', requireAuth, ctrlEvents.putTastingEventData); // for Edit Event Form.
 
 // tastings
-router.get('/tastings/:eventId', ctrlTastings.getTastingNotes);
-router.post('/tastings/:eventId', ctrlTastings.postTastingNoteData);
+// TODO - current WIP - route being worked...
+router.get('/tastings/:eventId', requireAuth, ctrlTastings.getTastingNotes);
+router.post('/tastings/:eventId', requireAuth, ctrlTastings.postTastingNoteData);
+
 router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
-router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote);
-router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // disregard Webstorm's error.
+router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
+router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
 
 // search
 router.post('/search', ctrlSearch.postTastingNotesSearchData);
