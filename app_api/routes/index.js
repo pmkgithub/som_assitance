@@ -23,11 +23,10 @@ router.get('/events/edit/:eventId', requireAuth, ctrlEvents.getOneTastingEvent);
 router.put('/events/edit/:eventId', requireAuth, ctrlEvents.putTastingEventData); // for Edit Event Form.
 
 // tastings
-// TODO - current WIP - route being worked...
 router.get('/tastings/:eventId', requireAuth, ctrlTastings.getTastingNotes);
 router.post('/tastings/:eventId', requireAuth, ctrlTastings.postTastingNoteData);
-
-router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
+router.delete('/tastings/:tastingId', requireAuth, ctrlTastings.deleteTastingNote);
+// TODO - current WIP - route being worked...
 router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
 router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
 

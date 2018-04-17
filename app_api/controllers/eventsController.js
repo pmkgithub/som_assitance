@@ -117,11 +117,11 @@ module.exports.putTastingEventData = (req, res) => {
 
 module.exports.deleteEvent = (req, res) => {
 
-  const eventId = req.params.eventId;
-
   // NOTE: Don't need to find User using req.user._id b/c user
   //       was already verified by jwtStrategy.  The Event(s) can
   //       be found via the eventId.
+  const eventId = req.params.eventId;
+
   Event
     .findByIdAndRemove(eventId)
     .then(event => res.status(204).end())

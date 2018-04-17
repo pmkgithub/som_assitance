@@ -184,15 +184,24 @@ module.exports.putTastingNoteData = (req, res) => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' })
     });
+
 };
+
 module.exports.deleteTastingNote = (req, res) => {
+
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.
+  //       The Tasting Note(s) can be found via the eventId.
+  const tastingId = req.params.tastingId;
+
   TastingNote
-      .findByIdAndRemove(req.params.tastingId)
-      .then(tasting => { res.status(204).end() })
-      .catch(err => {
-        console.error(err);
-        res.status(500).json({ message: 'Internal server error' })
-      });
+    .findByIdAndRemove(tastingId)
+    .then(tasting => { res.status(204).end() })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' })
+    });
+
 };
 // ************************************************************************* //
 // TASTINGS NOTES - END
