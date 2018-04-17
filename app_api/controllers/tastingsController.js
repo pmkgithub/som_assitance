@@ -18,6 +18,13 @@ module.exports.getTastingNotes = (req, res) => {
   //       The Tasting Note(s) can be found via the eventId.
   const eventId = req.params.eventId;
 
+  // make sure eventId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
   TastingNote
     .find({eventId: eventId})
     .then(tastings => { res.status(200).json(tastings); })
@@ -29,9 +36,19 @@ module.exports.getTastingNotes = (req, res) => {
 };
 
 module.exports.getOneTastingNote = (req, res) => {
-  // for Edit Tasting Note Form.
+  // Called when loading Edit Tasting Note Form loads.
 
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   const tastingId = req.params.tastingId;
+
+  // make sure tastingId is in url.
+  if ( !req.params.tastingId ) {
+    const message = `Missing tastingId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
 
   TastingNote
     .findById(tastingId)
@@ -53,7 +70,6 @@ module.exports.postTastingNoteData = (req, res) => {
   const eventId = req.params.eventId;
 
   // Make sure client didn't send unexpected fields in the req.body.
-  // NOTE: "eventId" is is in req.params, and not in req.body.
   const requiredFields = [
     'eventHost',
     'eventName',
@@ -85,6 +101,13 @@ module.exports.postTastingNoteData = (req, res) => {
       console.error(message);
       return res.status(400).send(message);
     }
+  }
+
+  // make sure eventId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
   }
 
   User
@@ -144,6 +167,7 @@ module.exports.postTastingNoteData = (req, res) => {
 };
 
 module.exports.putTastingNoteData = (req, res) => {
+
   // NOTE: Don't need to find the Associated Event b/c an edited Tasting Note
   //       in the DB already has the "eventId" property populated.
   const tastingId = req.params.tastingId;
@@ -171,13 +195,25 @@ module.exports.putTastingNoteData = (req, res) => {
   ];
 
   updatableFields.forEach(field => {
+
     if (field in req.body) {
       toUpdate[field] = req.body[field];
+    } else {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
     }
+
   });
 
+  // make sure tastingId is in url.
+  if ( !req.params.tastingId ) {
+    const message = `Missing tastingId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
   TastingNote
-  // all key/value pairs in toUpdate will be updated -- that's what `$set` does
     .findByIdAndUpdate(tastingId, { $set: toUpdate })
     .then(restaurant => res.status(204).end())
     .catch(err => {
@@ -193,6 +229,13 @@ module.exports.deleteTastingNote = (req, res) => {
   //       was already verified by jwtStrategy.
   //       The Tasting Note(s) can be found via the eventId.
   const tastingId = req.params.tastingId;
+
+  // make sure tastingId is in url.
+  if ( !req.params.tastingId ) {
+    const message = `Missing tastingId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
 
   TastingNote
     .findByIdAndRemove(tastingId)

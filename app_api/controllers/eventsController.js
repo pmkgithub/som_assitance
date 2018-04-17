@@ -27,12 +27,19 @@ module.exports.getTastingEvents = (req, res) => {
 };
 
 module.exports.getOneTastingEvent = (req, res) => {
-  // used when loading Edit Event Form.
+  // Called when loading Edit Event Form loads.
 
   // NOTE: Don't need to find User using req.user._id b/c user
   //       was already verified by jwtStrategy.  The Event(s) can
   //       be found via the eventId.
   const eventId  = req.params.eventId;
+
+  // make sure eventId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
 
   Event
     .findById(eventId)
@@ -98,13 +105,26 @@ module.exports.putTastingEventData = (req, res) => {
   const updatableFields = ['eventName', 'eventHost'];
 
   updatableFields.forEach(field => {
+
     if (field in req.body) {
       toUpdate[field] = req.body[field];
+    } else {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
     }
+
   });
 
+  // make sure eventIdId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
   Event
-  // all key/value pairs in toUpdate will be updated -- that's what `$set` does
+    // all key/value pairs in toUpdate will be updated -- that's what `$set` does
     .findByIdAndUpdate(eventId, { $set: toUpdate })
     .then(event => res.status(204).end())
     .catch(err => {
@@ -121,6 +141,13 @@ module.exports.deleteEvent = (req, res) => {
   //       was already verified by jwtStrategy.  The Event(s) can
   //       be found via the eventId.
   const eventId = req.params.eventId;
+
+  // make sure eventId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
 
   Event
     .findByIdAndRemove(eventId)

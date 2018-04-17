@@ -7,10 +7,13 @@ const TASTING_EVENTS_LIST_URL = `/events`;
 // ************************************************************************* //
 function putTastingNoteDataToApi(url, options, callback) {
 
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'PUT',
     contentType: 'application/json; charset=utf-8',
+    headers: {"authorization": token},
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,

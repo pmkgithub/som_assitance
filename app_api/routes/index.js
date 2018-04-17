@@ -27,8 +27,8 @@ router.get('/tastings/:eventId', requireAuth, ctrlTastings.getTastingNotes);
 router.post('/tastings/:eventId', requireAuth, ctrlTastings.postTastingNoteData);
 router.delete('/tastings/:tastingId', requireAuth, ctrlTastings.deleteTastingNote);
 // TODO - current WIP - route being worked...
-router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
-router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
+router.get('/tastings/edit/:tastingId', requireAuth, ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
+router.put('/tastings/edit/:tastingId', requireAuth, ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
 
 // search
 router.post('/search', ctrlSearch.postTastingNotesSearchData);
