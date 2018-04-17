@@ -7,14 +7,18 @@ const TASTING_EVENT_API_URL = `/api/events/edit/${eventId}`;
 
 
 // ************************************************************************* //
-// API GET AND POPULATE FORM - BEGIN
+// API GET AND POPULATE EDIT EVENT FORM - BEGIN
 // ************************************************************************* //
 // Fetch Event from API.
 function getOneEventFromApi(url, options, callback) {
 
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     type: 'GET',
+    contentType: 'application/json; charset=utf-8',
+    headers: {"authorization": token},
     dataType: 'json',
     data: options,
     success: callback,
@@ -29,7 +33,7 @@ const populateEventForm = (tastingEvent) => {
   $('#event-host').val(eventHost);
 };
 // ************************************************************************* //
-// API GET AND POPULATE FORM - END
+// API GET AND POPULATE EDIT EVENT FORM - END
 // ************************************************************************* //
 
 // ************************************************************************* //
@@ -37,10 +41,14 @@ const populateEventForm = (tastingEvent) => {
 // ************************************************************************* //
 
 function putEventDataToApi(url, options, callback) {
+
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'PUT',
     contentType: 'application/json; charset=utf-8',
+    headers: {"authorization": token},
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,

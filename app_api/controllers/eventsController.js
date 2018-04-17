@@ -27,9 +27,11 @@ module.exports.getAllTastingEvents = (req, res) => {
 };
 
 module.exports.getOneTastingEvent = (req, res) => {
+  // used when loading Edit Event Form.
 
-  // passport placed "user" on the request in jwtStrategy.
-  const userId = req.user._id;
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The event can
+  //       be located via the eventId.
   const eventId  = req.params.eventId;
 
   Event
@@ -84,9 +86,6 @@ module.exports.postTastingEventData = (req, res) => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
     });
-
-
-
 };
 
 module.exports.putTastingEventData = (req, res) => {
