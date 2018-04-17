@@ -13,7 +13,8 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 module.exports.getAllTastingEvents = (req, res) => {
 
-  const { userId } = req.user._id;
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
 
   Event
     .find({ userId })
@@ -27,7 +28,8 @@ module.exports.getAllTastingEvents = (req, res) => {
 
 module.exports.getOneTastingEvent = (req, res) => {
 
-  const { userId } = req.user._id;
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
   const eventId  = req.params.eventId;
 
   Event
@@ -41,10 +43,8 @@ module.exports.getOneTastingEvent = (req, res) => {
 
 module.exports.postTastingEventData = (req, res) => {
 
+  // passport placed "user" on the request in jwtStrategy.
   const userId = req.user._id;
-  console.log('req.user = ', req.user);
-  console.log('req.user._id = ', req.user._id);
-
 
   // make sure client didn't send unexpected fields in req.body.
   const requiredFields = ['eventName', 'eventHost'];
@@ -91,7 +91,8 @@ module.exports.postTastingEventData = (req, res) => {
 
 module.exports.putTastingEventData = (req, res) => {
 
-  const { userId } = req.user._id;
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
   const eventId = req.params.eventId;
   const toUpdate = {};
   const updatableFields = ['eventName', 'eventHost'];
@@ -116,7 +117,8 @@ module.exports.putTastingEventData = (req, res) => {
 
 module.exports.deleteEvent = (req, res) => {
 
-  const { userId } = req.user._id;
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
   const eventId = req.params.eventId;
 
   Event
