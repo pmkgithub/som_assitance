@@ -16,11 +16,19 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 // passport - END
 
 // events
+
+// TODO - .get('/events/:userId', vs .get('/events', requireAuth
 // router.get('/events', ctrlEvents.getAllTastingEvents); // without auth, without User Id
-router.get('/events/:userId', ctrlEvents.getAllTastingEvents); // without auth, with User Id
-// router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents); // with auth - not working
+// router.get('/events/:userId', ctrlEvents.getAllTastingEvents); // without auth, with userId pass in req.params
+router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents); // with auth - via passport AND without userId param.
+
+
+// TODO - .post('/events/:userId', vs .post('/events', requireAuth
 // router.post('/events', ctrlEvents.postTastingEventData); // OLD - without userId in url
 router.post('/events/:userId', ctrlEvents.postTastingEventData); // NEW - with userId in url
+router.post('/events/', requireAuth, ctrlEvents.postTastingEventData); // NEW - with userId in url
+
+
 router.delete('/events/:eventId', ctrlEvents.deleteEvent);
 router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);
 router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData); // disregard Webstorm's error.

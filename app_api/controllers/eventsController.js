@@ -13,7 +13,11 @@ mongoose.connect(config.DATABASE_URL);
 // ************************************************************************* //
 module.exports.getAllTastingEvents = (req, res) => {
 
-    const { userId } = req.params;
+  console.log('event controller getAllTastingEvents');
+  console.log('req.user.id id came from token', req.user._id);
+
+  console.log('req.params.id id came from ls', req.params.id);
+  const { userId } = req.params;  // way1 - sending the ls userId
 
   Event
     // .find() // without userId
@@ -39,7 +43,8 @@ module.exports.getOneTastingEvent = (req, res) => {
 };
 
 module.exports.postTastingEventData = (req, res) => {
-  const userId = req.params.userId;
+  // const userId = req.params.userId; // TODO - this goes away
+  const userId = req.user._id;
 
   // make sure client didn't send unexpected fields in req.body.
   const requiredFields = ['eventName', 'eventHost'];
@@ -80,7 +85,6 @@ module.exports.postTastingEventData = (req, res) => {
           console.error(err);
           res.status(500).json({ message: 'Internal server error', err: err });
         });
-
     })
     // user model error.
     .catch(err => {

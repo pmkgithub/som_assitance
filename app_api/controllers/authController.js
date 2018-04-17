@@ -112,7 +112,6 @@ exports.signup = (req, res) => {
       // // Grider workflow: create a jwt here and send it back in the response.
       return res.status(201).json({
         token: tokenForUser(user),
-        userId: user._id
         });
 
       // Thinkful approach.
