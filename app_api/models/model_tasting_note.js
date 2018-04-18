@@ -35,6 +35,47 @@ const tastingNoteSchema = Schema({
   }
 });
 
+// setters - Convert entered price into cents.
+tastingNoteSchema.path('pricing1Price').set(function(entry) {
+  return Number(entry).toFixed(2).split(".").join("");
+});
+tastingNoteSchema.path('pricing2Price').set(function(entry) {
+  return Number(entry).toFixed(2).split(".").join("");
+});
+tastingNoteSchema.path('pricing3Price').set(function(entry) {
+  return Number(entry).toFixed(2).split(".").join("");
+});
+tastingNoteSchema.path('pricing4Price').set(function(entry) {
+  return Number(entry).toFixed(2).split(".").join("");
+});
+
+// // getters - convert "000" to "No Price Entered".
+// tastingNoteSchema.path('pricing1Price').get(function(cents) {
+//   // function convertCentsToDollars(cents) {
+//   //   return `$${ (cents/100).toFixed(2) }`
+//   // }
+//   // // if ( price === "000") {
+//   // //   return price = "No Price Entered";
+//   // // } else {
+//   // //
+//   // // }
+//   console.log('cents1 = ', cents);
+//   return cents === "000" ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+// });
+// tastingNoteSchema.path('pricing2Price').get(function(cents) {
+//   console.log('cents2 = ', cents);
+//   return cents === "000" ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+// });
+// tastingNoteSchema.path('pricing3Price').get(function(cents) {
+//   console.log('cents3 = ', cents);
+//   return cents === "000" ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+// });
+// tastingNoteSchema.path('pricing4Price').get(function(cents) {
+//   console.log('cents4 = ', cents);
+//   return cents === "000" ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+// });
+
+
 tastingNoteSchema.methods.serialize = function() {
 
   return {

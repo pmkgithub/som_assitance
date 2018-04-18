@@ -28,7 +28,6 @@ const jwtOptions = {
 
 // Create JWT Strategy.
 const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
-  console.log('passport.js payload = ', payload);
   // "payload" is the "decoded" JWT token => {sub: <user.id>, expiresIn: <timestamp> }
   //
   // See if the User ID in the payload exists in our database.

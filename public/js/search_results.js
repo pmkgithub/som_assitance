@@ -758,6 +758,12 @@ function handleFormSubmit(e) {
 // Get Lowest Price - BEGIN
 // ************************************************************************* //
 const getLowestPrice = (result) => {
+  console.log('result.pricing1Price = ', result.pricing1Price);
+  console.log('result.pricing2Price = ', result.pricing2Price);
+  console.log('result.pricing3Price = ', result.pricing3Price);
+  console.log('result.pricing4Price = ', result.pricing4Price);
+
+
   let price1 = result.pricing1Price;
   let price2 = result.pricing2Price;
   let price3 = result.pricing3Price;
@@ -783,6 +789,9 @@ const getLowestPrice = (result) => {
   // Find lowest price
   const lowestPrice = String(Math.min(...prices));
   lowest.lowestPrice = lowestPrice;
+
+  console.log('lowestPrice = ', lowestPrice);
+  console.log('result.pricing1Price = ', result.pricing2Price);
 
   // set lowestPriceDesc
   if ( result.pricing1Price === lowestPrice ) {
@@ -879,8 +888,6 @@ const renderSearchResults = (searchResults) => {
 // Toggles - BEGIN
 // ************************************************************************* //
 function toggleResultDetail(e) {
-  console.log('toggleResultDetail ran');
-  console.log('e.target', e.target);
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
   $resultHeaderSpan.parent().parent().siblings('.js-result-detail-wrapper').toggle();

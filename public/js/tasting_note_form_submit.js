@@ -33,11 +33,14 @@ function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.preventDefault();
 
-  const convertPrice = (num) => {
+  const convertPriceToCents = (entry) => {
     // converts 23.5, 23.50 to 2350
-    // converts 23, 23.00 to 2300
+    // converts 23, 23.0, 23.00 to 2300
+    // let priceAsCents = Number(entry).toFixed(2);      // NOTE: .toFixed() returns a string.
+    // priceAsCents = priceAsCents.split(".").join("");  // removes the "dot" from price.
+    // return priceAsCents;
 
-
+    return Number(entry).toFixed(2).split(".").join(""); // works
   };
 
   // FOR PRODUCTION
@@ -54,16 +57,16 @@ function handleFormSubmit(e) {
   let rating = $('#js-rating-select').val();
   let pricing1Desc = $('#js-pricing1-select').val();
   let pricing1Price = $('#js-pricing1-input').val(); // old
-  // let pricing1Price = Number( $('#js-pricing1-input').val() ).toFixed(2); // new
+  // let pricing1Price = convertPriceToCents( $('#js-pricing1-input').val() ); // new
   let pricing2Desc = $('#js-pricing2-select').val();
   let pricing2Price = $('#js-pricing2-input').val(); // old
-  // let pricing2Price = Number( $('#js-pricing2-input').val() ).toFixed(2); // new
+  // let pricing2Price = convertPriceToCents( $('#js-pricing2-input').val() ); // new
   let pricing3Desc = $('#js-pricing3-select').val();
   let pricing3Price = $('#js-pricing3-input').val(); // old
-  // let pricing3Price = Number( $('#js-pricing3-input').val() ).toFixed(2); // new
+  // let pricing3Price = convertPriceToCents( $('#js-pricing3-input').val() ); // new
   let pricing4Desc = $('#js-pricing4-select').val();
   let pricing4Price = $('#js-pricing4-input').val(); // old
-  // let pricing4Price = Number( $('#js-pricing4-input').val() ).toFixed(2); // new
+  // let pricing4Price = convertPriceToCents( $('#js-pricing4-input').val() ); // new
   let tastingNotes = $('#js-tasting-note-ta').val();
 
   console.log('pricing1Price = ', pricing1Price);
@@ -73,22 +76,23 @@ function handleFormSubmit(e) {
   // TODO - code Server-side Validation.
   // Server-side Validation
 
-  if ( !country ) { country = 'Not Selected'; }
+  // if ( !country ) { country = 'Not Selected'; } // not needed, this is a required field.
   if ( !countryMapSrc ) { countryMapSrc = ''; }
   if ( !primaryAppellation ) { primaryAppellation = 'Not Selected'; }
   if ( !primaryAppellationMapSrc ) { primaryAppellationMapSrc = ''; }
   if ( !secondaryAppellation ) { secondaryAppellation = 'Not Selected'; }
   if ( !secondaryAppellationMapSrc ) { secondaryAppellationMapSrc = ''; }
-  if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }
-  if ( !rating ) { rating = 'No Rating Selected'; }
-  if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
-  if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
-  if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
-  if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
-  if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
-  if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
-  if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
-  if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
+  // if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }  // not needed, this is a required field.
+  // if ( !rating ) { rating = 'No Rating Selected'; } // not needed, this is a required field.
+
+  // if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
+  // if ( pricing1Price === "000" ) { pricing1Price = 'No Price Entered'; }
+  // if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
+  // if ( pricing2Price === "000" ) { pricing2Price = 'No Price Entered'; }
+  // if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
+  // if ( pricing3Price === "000" ) { pricing3Price = 'No Price Entered'; }
+  // if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
+  // if ( pricing4Price === "000") { pricing4Price = 'No Price Entered'; }
 
   const options = {
     eventHost,

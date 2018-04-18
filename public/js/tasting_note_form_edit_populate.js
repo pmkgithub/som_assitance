@@ -35,6 +35,7 @@ function getOneTastingFromApi(url, options, callback) {
 // ************************************************************************* //
 // Populate the Event Edit Form with fetched data.
 const populateTastingNoteEditForm = (tastingNote) => {
+  console.log('tastingNote = ', tastingNote);
 
   // populate STATE object.
   const omittedKeys = ['__v'];
@@ -44,6 +45,7 @@ const populateTastingNoteEditForm = (tastingNote) => {
     }
   });
 
+  console.log('STATE = ', STATE);
   // NOTE: Legend for Edit Tasting Note Form is set in tasting_note_form.js
 
   // populate form inputs.
@@ -163,65 +165,73 @@ const popluateRatingSelectInput = () => {
 // Populate Pricing - BEGIN
 // ************************************************************************* //
 const populatePricing = () => {
+  const $price1Select = $('#js-pricing1-select');
+  const $price1Input = $('#js-pricing1-input');
+  const $price2Select = $('#js-pricing2-select');
+  const $price2Input = $('#js-pricing2-input');
+  const $price3Select = $('#js-pricing3-select');
+  const $price3Input = $('#js-pricing3-input');
+  const $price4Select = $('#js-pricing4-select');
+  const $price4Input = $('#js-pricing4-input');
 
-  if ( STATE.pricing1Desc === 'No Price 1 Selected' ) {
+  const convertCentsToDollars = (cents) => {
+    return `${ (cents/100).toFixed(2) }`;
+  };
+
+  // PRICE 1
+  if ( STATE.pricing1Desc === 'Not Applicable' ) {
     // do nothing, let Pricing Selects / Inputs default to original state when html loads.
   } else {
-    const $price1Select = $('#js-pricing1-select');
     $price1Select.attr({'disabled': false});
-    $price1Select.val(STATE.pricing1Desc);
+    $price1Select.val( STATE.pricing1Desc);
   }
-  if ( STATE.pricing1Price === 'No Price Entered' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+  if ( STATE.pricing1Price === '000' ) {
+    $price1Input.attr({'disabled': true});
   } else {
-    const $price1Input = $('#js-pricing1-input');
     $price1Input.attr({'disabled': false});
-    $price1Input.val(STATE.pricing1Price);
+    $price1Input.val( convertCentsToDollars(STATE.pricing1Price) );
   }
 
-  if ( STATE.pricing2Desc === 'No Price 2 Selected' ) {
+  // PRICE 2
+  if ( STATE.pricing2Desc === 'Not Applicable' ) {
     // do nothing, let Pricing Selects / Inputs default to original state when html loads.
   } else {
-    const $price2Select = $('#js-pricing2-select');
     $price2Select.attr({'disabled': false});
     $price2Select.val(STATE.pricing2Desc);
   }
-  if ( STATE.pricing2Price === 'No Price Entered' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+  if ( STATE.pricing2Price === '000' ) {
+    $price1Input.attr({'disabled': true});
   } else {
-    const $price2Input = $('#js-pricing2-input');
     $price2Input.attr({'disabled': false});
-    $price2Input.val(STATE.pricing2Price);
+    $price2Input.val( convertCentsToDollars(STATE.pricing2Price) );
   }
 
-  if ( STATE.pricing3Desc === 'No Price 3 Selected' ) {
+  // PRICE 3
+  if ( STATE.pricing3Desc === 'Not Applicable' ) {
     // do nothing, let Pricing Selects / Inputs default to original state when html loads.
   } else {
-    const $price3Select = $('#js-pricing3-select');
     $price3Select.attr({'disabled': false});
     $price3Select.val(STATE.pricing3Desc);
   }
-  if ( STATE.pricing3Price === 'No Price Entered' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+  if ( STATE.pricing3Price === '000' ) {
+    $price1Input.attr({'disabled': true});
   } else {
-    const $price3Input = $('#js-pricing3-input');
     $price3Input.attr({'disabled': false});
-    $price3Input.val(STATE.pricing3Price);
+    $price3Input.val( convertCentsToDollars(STATE.pricing3Price) );
   }
 
-  if ( STATE.pricing4Desc === 'No Price 4 Selected' ) {
+  // PRICE 4
+  if ( STATE.pricing4Desc === 'Not Applicable' ) {
     // do nothing, let Pricing Selects / Inputs default to original state when html loads.
   } else {
-    const $price4Select = $('#js-pricing4-select');
     $price4Select.attr({'disabled': false});
     $price4Select.val(STATE.pricing4Desc);
   }
-  if ( STATE.pricing4Price === 'No Price Entered' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+  if ( STATE.pricing4Price === '000' ) {
+    $price1Input.attr({'disabled': true});
   } else {
-    const $price4Input = $('#js-pricing4-input');
     $price4Input.attr({'disabled': false});
-    $price4Input.val(STATE.pricing4Price);
+    $price4Input.val( convertCentsToDollars(STATE.pricing4Price) );
   }
 
 };

@@ -55,22 +55,23 @@ function handleFormSubmit(e) {
   // TODO - code Server-side Validation.
   // Server-side Validation
 
-  if ( !country ) { country = 'Not Selected'; }
+  // if ( !country ) { country = 'Not Selected'; } // not needed, this is a required field.
   if ( !countryMapSrc ) { countryMapSrc = ''; }
   if ( !primaryAppellation ) { primaryAppellation = 'Not Selected'; }
   if ( !primaryAppellationMapSrc ) { primaryAppellationMapSrc = ''; }
   if ( !secondaryAppellation ) { secondaryAppellation = 'Not Selected'; }
   if ( !secondaryAppellationMapSrc ) { secondaryAppellationMapSrc = ''; }
-  if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }
-  if ( !rating ) { rating = 'No Rating Selected'; }
-  if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
-  if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
-  if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
-  if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
-  if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
-  if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
-  if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
-  if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
+  // if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }  // not needed, this is a required field.
+  // if ( !rating ) { rating = 'No Rating Selected'; } // not needed, this is a required field.
+
+  // if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
+  // if ( pricing1Price === "000" ) { pricing1Price = 'No Price Entered'; }
+  // if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
+  // if ( pricing2Price === "000" ) { pricing2Price = 'No Price Entered'; }
+  // if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
+  // if ( pricing3Price === "000" ) { pricing3Price = 'No Price Entered'; }
+  // if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
+  // if ( pricing4Price === "000") { pricing4Price = 'No Price Entered'; }
 
   const options = {
     wineName,
