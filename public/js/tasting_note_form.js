@@ -2240,13 +2240,15 @@ const addWineTypeText = () => {
 // Pricing Select Inputs - BEGIN
 // ************************************************************************* //
 const handlePricing1Selection = () => {
+  console.log('tasting_note_form.js handlePricing1Selection ran');
   const $pricing1SelectVal = $('#js-pricing1-select').val();
   const $pricing1PriceInput = $('#js-pricing1-input');
 
   if ( $pricing1SelectVal === "Not Applicable" ) {
-    // disable pricing text input.
+    $pricing1PriceInput.val("");
     $pricing1PriceInput.attr({'disabled': true});
   } else {
+    console.log('tasting_note_form.js handlePricing1Selection $pricing1PriceInput', $pricing1PriceInput);
     $pricing1PriceInput.removeAttr('disabled');
   }
 };
@@ -2255,7 +2257,7 @@ const handlePricing2Selection = () => {
   const $pricing2PriceInput = $('#js-pricing2-input');
 
   if ( $pricing2SelectVal === "Not Applicable" ) {
-    // disable pricing text input.
+    $pricing2PriceInput.val("");
     $pricing2PriceInput.attr({'disabled': true});
   } else {
     $pricing2PriceInput.removeAttr('disabled');
@@ -2266,7 +2268,7 @@ const handlePricing3Selection = () => {
   const $pricing3PriceInput = $('#js-pricing3-input');
 
   if ( $pricing3SelectVal === "Not Applicable" ) {
-    // disable pricing text input.
+    $pricing3PriceInput.val("");
     $pricing3PriceInput.attr({'disabled': true});
   } else {
     $pricing3PriceInput.removeAttr('disabled');
@@ -2277,7 +2279,7 @@ const handlePricing4Selection = () => {
   const $pricing4PriceInput = $('#js-pricing4-input');
 
   if ( $pricing4SelectVal === "Not Applicable" ) {
-    // disable pricing text input.
+    $pricing4PriceInput.val("");
     $pricing4PriceInput.attr({'disabled': true});
   } else {
     $pricing4PriceInput.removeAttr('disabled');

@@ -32,11 +32,14 @@ const $priceInput = $('#js-search-price');
 const doOnPageLoad = () => {
   const searchGrape = localStorage.getItem('searchGrape');
   const searchRating = localStorage.getItem('searchRating');
-  const searchPrice = localStorage.getItem('searchPrice');
+  let searchPrice = localStorage.getItem('searchPrice');
 
   $('.js-no-search-results').hide();
 
   populateSearchFormOnPageLoad(searchGrape, searchRating, searchPrice);
+
+  // // convert searchPrice to Integer for Search.
+  // searchPrice = parseInt(searchPrice);
 
   const options = {
     searchGrape,
@@ -61,6 +64,10 @@ const doOnPageLoad = () => {
 // ************************************************************************* //
 const populateSearchFormOnPageLoad = (searchGrape, searchRating, searchPrice) => {
 
+  const convertCentsToDollars = (searchPrice) => {
+    return Number(searchPrice/100).toFixed(2);
+  };
+
   buildPrimaryGrapesSelectInput();
 
   if ( !searchGrape ) {
@@ -73,10 +80,11 @@ const populateSearchFormOnPageLoad = (searchGrape, searchRating, searchPrice) =>
   } else {
     $ratingSelectInput.val(searchRating);
   }
-  if ( !searchRating ) {
+
+  if ( !searchPrice ) {
     // do nothing.
   } else {
-    $priceInput.val(searchPrice);
+    $priceInput.val(convertCentsToDollars(searchPrice));
   }
 
 };
@@ -736,15 +744,18 @@ function handleFormSubmit(e) {
   $('.js-search-results-ul').empty();
   $('.js-no-search-results').hide();
 
+
   // set up OPTION for ajax POST.
   const searchGrape = $primaryGrapeSelect.val();
   const searchRating = $ratingSelectInput.val();
-  const searchPrice =  $priceInput.val();
+  const searchPriceAsCents =  $priceInput.val(); //old
+  // const searchPrice =  convertSearchPriceToCents($priceInput.val());
+  console.log('searchPrice = ', searchPriceAsCents);
 
   const options = {
     searchGrape,
     searchRating,
-    searchPrice,
+    searchPriceAsCents,
   };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
@@ -772,16 +783,16 @@ const getLowestPrice = (result) => {
   let lowest = {};
 
   // Handle the text strings "No Price Entered"
-  if ( !(price1 === "No Price Entered") ) {
+  if ( !(price1 === "000") ) {
     prices.push(Number(price1))
   }
-  if ( !(price2 === "No Price Entered") ) {
+  if ( !(price2 === "000") ) {
     prices.push(Number(price2))
   }
-  if ( !(price3 === "No Price Entered") ) {
+  if ( !(price3 === "000") ) {
     prices.push(Number(price3))
   }
-  if ( !(price4 === "No Price Entered") ) {
+  if ( !(price4 === "000") ) {
     prices.push(Number(price4))
   }
 
@@ -791,7 +802,6 @@ const getLowestPrice = (result) => {
   lowest.lowestPrice = lowestPrice;
 
   console.log('lowestPrice = ', lowestPrice);
-  console.log('result.pricing1Price = ', result.pricing2Price);
 
   // set lowestPriceDesc
   if ( result.pricing1Price === lowestPrice ) {
@@ -862,19 +872,19 @@ const renderSearchResults = (searchResults) => {
     </div>
     <div class="pricing1-wrapper">
         Pricing 1:
-        <span class="pricing1-span">${searchResults[i].pricing1Desc} - ${searchResults[i].pricing1Price}</span>
+        <span class="pricing1-span">${searchResults[i].pricing1Desc} - ${convertCentsToDollars(searchResults[i].pricing1Price)}</span>
     </div>
     <div class="pricing2-wrapper">
         Pricing 2:
-        <span class="pricing2-span">${searchResults[i].pricing2Desc} - ${searchResults[i].pricing2Price}</span>
+        <span class="pricing2-span">${searchResults[i].pricing2Desc} - ${convertCentsToDollars(searchResults[i].pricing2Price)}</span>
     </div>
     <div class="pricing3-wrapper">
         Pricing 3:
-        <span class="pricing3-span">${searchResults[i].pricing3Desc} - ${searchResults[i].pricing3Price}</span>
+        <span class="pricing3-span">${searchResults[i].pricing3Desc} - ${convertCentsToDollars(searchResults[i].pricing3Price)}</span>
     </div>       
     <div class="pricing4-wrapper">
         Pricing 4:
-        <span class="pricing4-span">${searchResults[i].pricing4Desc} - ${searchResults[i].pricing4Price}</span>
+        <span class="pricing4-span">${searchResults[i].pricing4Desc} - ${convertCentsToDollars(searchResults[i].pricing4Price)}</span>
     </div>                         
     <div class="tasting-note">Tasting Notes:</div>
     <textarea class="tn-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>

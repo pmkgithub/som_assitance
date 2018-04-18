@@ -165,6 +165,7 @@ const popluateRatingSelectInput = () => {
 // Populate Pricing - BEGIN
 // ************************************************************************* //
 const populatePricing = () => {
+  console.log('tasting_note_form_edit_populate.js populatePricing ran');
   const $price1Select = $('#js-pricing1-select');
   const $price1Input = $('#js-pricing1-input');
   const $price2Select = $('#js-pricing2-select');
@@ -174,60 +175,69 @@ const populatePricing = () => {
   const $price4Select = $('#js-pricing4-select');
   const $price4Input = $('#js-pricing4-input');
 
+  console.log('$price1Input = ', $price1Input);
+
   const convertCentsToDollars = (cents) => {
+    console.log('tasting_note_form_edit_populates.js convertCentsToDollars cents = ', cents);
     return `${ (cents/100).toFixed(2) }`;
   };
 
-  // PRICE 1
+  // PRICE 1 - Select
   if ( STATE.pricing1Desc === 'Not Applicable' ) {
     $price1Select.val("Not Applicable");
   } else {
     $price1Select.attr({'disabled': false});
     $price1Select.val( STATE.pricing1Desc);
   }
-  if ( STATE.pricing1Price === '000' ) {
+  // PRICE 1 - Input
+  if ( STATE.pricing1Price === 0 ) {
+    console.log('tasting_note_form_edit_populate.js populatePricing p1 if');
     $price1Input.attr({'disabled': true});
   } else {
+    console.log('tasting_note_form_edit_populate.js populatePricing p1 else');
     $price1Input.attr({'disabled': false});
     $price1Input.val( convertCentsToDollars(STATE.pricing1Price) );
   }
 
-  // PRICE 2
+  // PRICE 2 - Select
   if ( STATE.pricing2Desc === 'Not Applicable' ) {
     $price2Select.val("Not Applicable");
   } else {
     $price2Select.attr({'disabled': false});
     $price2Select.val(STATE.pricing2Desc);
   }
-  if ( STATE.pricing2Price === '000' ) {
+  // PRICE 2 - Input
+  if ( STATE.pricing2Price === 0 ) {
     $price1Input.attr({'disabled': true});
   } else {
     $price2Input.attr({'disabled': false});
     $price2Input.val( convertCentsToDollars(STATE.pricing2Price) );
   }
 
-  // PRICE 3
+  // PRICE 3 - Select
   if ( STATE.pricing3Desc === 'Not Applicable' ) {
     $price3Select.val("Not Applicable");
   } else {
     $price3Select.attr({'disabled': false});
     $price3Select.val(STATE.pricing3Desc);
   }
-  if ( STATE.pricing3Price === '000' ) {
+  // PRICE 3 - Input
+  if ( STATE.pricing3Price === 0 ) {
     $price1Input.attr({'disabled': true});
   } else {
     $price3Input.attr({'disabled': false});
     $price3Input.val( convertCentsToDollars(STATE.pricing3Price) );
   }
 
-  // PRICE 4
+  // PRICE 4 - Select
   if ( STATE.pricing4Desc === 'Not Applicable' ) {
     $price4Select.val("Not Applicable");
   } else {
     $price4Select.attr({'disabled': false});
     $price4Select.val(STATE.pricing4Desc);
   }
-  if ( STATE.pricing4Price === '000' ) {
+  // PRICE 4 - Input
+  if ( STATE.pricing4Price === 0 ) {
     $price1Input.attr({'disabled': true});
   } else {
     $price4Input.attr({'disabled': false});

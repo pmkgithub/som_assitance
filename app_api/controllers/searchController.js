@@ -13,10 +13,13 @@ module.exports.postTastingNotesSearchData = (req, res) => {
   const userId = req.user._id;
   const searchGrape = req.body.searchGrape;
   const searchRating = req.body.searchRating;
-  const searchPrice = req.body.searchPrice; // old
+  // const searchPrice = req.body.searchPrice; // old
+  const searchPrice = parseInt(req.body.searchPrice); // new
+
+
   // const searchPrice = Number(req.body.searchPrice).toFixed(2); // NOTE: .toFixed() returns a string decimal
   // searchPrice = Number(searchPrice); // convert string decimal number with decimals
-  console.log('searchController.js searchPrice = ', searchPrice);
+  console.log('searchController postTastingNotesSearchData searchPrice = ', searchPrice);
   console.log('line 20 searchController.js typeof searchPrice = ', typeof searchPrice);
 
   TastingNote
@@ -25,7 +28,7 @@ module.exports.postTastingNotesSearchData = (req, res) => {
       'primaryGrape': searchGrape,
       'rating': {$gte: searchRating},
       $or:[
-            {'pricing1Price': { $lte: searchPrice}},
+            {'pricing1Price': { $lte: searchPrice, $gt: 0}},
             {'pricing2Price': { $lte: searchPrice}},
             {'pricing3Price': { $lte: searchPrice}},
             {'pricing4Price': { $lte: searchPrice}}

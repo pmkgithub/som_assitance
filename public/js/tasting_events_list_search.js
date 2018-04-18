@@ -647,14 +647,17 @@ const buildPrimaryGrapesSelectInput = () => {
 const SEARCH_RESULTS_PAGE_URL = '/searchresults';
 
 function handleFormSubmit(e) {
-  console.log('handleFormSubmit ran');
   e.stopPropagation(); // keeps URL clean, no querystring characters will display.
   e.preventDefault();
+
+  const convertToCents = (entry) => {
+    return Number(entry).toFixed(2).split(".").join(""); // localstorage only stores Strings.
+  };
 
   // set localstorage.
   localStorage.setItem('searchGrape', $primaryGrapeSelect.val());
   localStorage.setItem('searchRating', $ratingSelectInput.val());
-  localStorage.setItem('searchPrice', $priceInput.val());
+  localStorage.setItem('searchPrice', convertToCents($priceInput.val()));
 
   // load the SEARCH tastings page.
   window.location = SEARCH_RESULTS_PAGE_URL;

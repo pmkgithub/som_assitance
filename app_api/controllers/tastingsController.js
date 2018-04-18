@@ -110,6 +110,21 @@ module.exports.postTastingNoteData = (req, res) => {
     return res.status(400).send(message);
   }
 
+  // store pricing as a Number and in Cents format.
+  // If User selectes "Not Applicable" or enters Number 0, save price as "null"
+  const convertToCentsOrNullOrNull = (entry) => {
+
+    if (entry === "" || entry === "0") {
+      console.log('convertToCentsOrNullOrNull if');
+      console.log('entry = ', entry);
+      return entry = null;
+    } else {
+      entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
+      return parseInt(entry);
+    }
+
+  };
+
   User
     .findById({ "_id": userId })
     .then(user => {
@@ -137,13 +152,17 @@ module.exports.postTastingNoteData = (req, res) => {
               secondaryAppellationMapSrc: req.body.secondaryAppellationMapSrc,
               rating: req.body.rating,
               pricing1Desc: req.body.pricing1Desc,
-              pricing1Price: req.body.pricing1Price,
+              // pricing1Price: req.body.pricing1Price,
+              pricing1Price: convertToCentsOrNullOrNull(req.body.pricing1Price),
               pricing2Desc: req.body.pricing2Desc,
-              pricing2Price: req.body.pricing2Price,
+              // pricing2Price: req.body.pricing2Price,
+              pricing2Price: convertToCentsOrNullOrNull(req.body.pricing2Price),
               pricing3Desc: req.body.pricing3Desc,
-              pricing3Price: req.body.pricing3Price,
+              // pricing3Price: req.body.pricing3Price,
+              pricing3Price: convertToCentsOrNullOrNull(req.body.pricing3Price),
               pricing4Desc: req.body.pricing4Desc,
-              pricing4Price: req.body.pricing4Price,
+              // pricing4Price: req.body.pricing4Price,
+              pricing4Price: convertToCentsOrNullOrNull(req.body.pricing4Price),
               tastingNotes: req.body.tastingNotes
             })
             .then(tasting => res.status(200).json(tasting.serialize()))
@@ -193,6 +212,25 @@ module.exports.putTastingNoteData = (req, res) => {
     'pricing4Price',
     'tastingNotes'
   ];
+
+  // TODO - convert pricing to Cents or Null if price input is "Not Applicable" or 0.
+  // store pricing as a Number and in Cents format.
+  // If User selectes "Not Applicable" or enters Number 0, save price as "null"
+  const convertToCentsOrNullOrNull = (entry) => {
+
+    if (entry === "" || entry === "0") {
+      console.log('convertToCentsOrNullOrNull if');
+      console.log('entry = ', entry);
+      return entry = null;
+    } else {
+      // convert to Cents and Number.
+      entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
+      return parseInt(entry);
+
+
+    }
+
+  };
 
   updatableFields.forEach(field => {
 
