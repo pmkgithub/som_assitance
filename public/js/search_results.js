@@ -32,14 +32,11 @@ const $priceInput = $('#js-search-price');
 const doOnPageLoad = () => {
   const searchGrape = localStorage.getItem('searchGrape');
   const searchRating = localStorage.getItem('searchRating');
-  let searchPrice = localStorage.getItem('searchPrice');
+  let searchPrice = localStorage.getItem('searchPrice'); // searchPrice was stored as cents
 
   $('.js-no-search-results').hide();
 
   populateSearchFormOnPageLoad(searchGrape, searchRating, searchPrice);
-
-  // // convert searchPrice to Integer for Search.
-  // searchPrice = parseInt(searchPrice);
 
   const options = {
     searchGrape,
@@ -748,14 +745,16 @@ function handleFormSubmit(e) {
   // set up OPTION for ajax POST.
   const searchGrape = $primaryGrapeSelect.val();
   const searchRating = $ratingSelectInput.val();
-  const searchPriceAsCents =  $priceInput.val(); //old
-  // const searchPrice =  convertSearchPriceToCents($priceInput.val());
-  console.log('searchPrice = ', searchPriceAsCents);
+  // const searchPrice =  $priceInput.val(); //old
+  let searchPrice =  $priceInput.val(); // new
+  console.log('searchPrice before converting to cents= ', searchPrice);
+
+  searchPrice = Number(searchPrice).toFixed(2).split(".").join("");
 
   const options = {
     searchGrape,
     searchRating,
-    searchPriceAsCents,
+    searchPrice,
   };
 
   postDataToApi(`/api/search`, options, renderSearchResults);

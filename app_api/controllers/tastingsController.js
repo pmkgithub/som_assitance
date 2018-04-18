@@ -114,14 +114,19 @@ module.exports.postTastingNoteData = (req, res) => {
   // If User selectes "Not Applicable" or enters Number 0, save price as "null"
   const convertToCentsOrNullOrNull = (entry) => {
 
-    if (entry === "" || entry === "0") {
-      console.log('convertToCentsOrNullOrNull if');
-      console.log('entry = ', entry);
-      return entry = null;
-    } else {
-      entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
-      return parseInt(entry);
-    }
+    // old
+    // if (entry === "" || entry === "0") {
+    //   console.log('convertToCentsOrNullOrNull if');
+    //   console.log('entry = ', entry);
+    //   return entry = null;
+    // } else {
+    //   entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
+    //   return parseInt(entry);
+    // }
+
+    // new - with RS.
+    entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
+    return parseInt(entry);
 
   };
 

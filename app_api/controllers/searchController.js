@@ -28,10 +28,10 @@ module.exports.postTastingNotesSearchData = (req, res) => {
       'primaryGrape': searchGrape,
       'rating': {$gte: searchRating},
       $or:[
-            {'pricing1Price': { $lte: searchPrice, $gt: 0}},
-            {'pricing2Price': { $lte: searchPrice}},
-            {'pricing3Price': { $lte: searchPrice}},
-            {'pricing4Price': { $lte: searchPrice}}
+            {'pricing1Price': { $lte: searchPrice, $gt: 0 }},
+            {'pricing2Price': { $lte: searchPrice, $gt: 0 }},
+            {'pricing3Price': { $lte: searchPrice, $gt: 0 }},
+            {'pricing4Price': { $lte: searchPrice, $gt: 0 }}
           ]
     })
     .sort({'wineName': 1})

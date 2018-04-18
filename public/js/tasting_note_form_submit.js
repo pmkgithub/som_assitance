@@ -98,7 +98,6 @@ function handleFormSubmit(e) {
   // if ( pricing4Price === "" ) { pricing4Price = null; }
 
 
-
   const options = {
     eventHost,
     eventName,
