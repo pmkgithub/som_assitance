@@ -647,7 +647,6 @@ const buildPrimaryGrapesSelectInput = () => {
 const SEARCH_RESULTS_PAGE_URL = '/searchresults';
 
 function handleFormSubmit(e) {
-  console.log('handleFormSubmit ran');
   e.stopPropagation(); // keeps URL clean, no querystring characters will display.
   e.preventDefault();
 
@@ -670,10 +669,7 @@ $(function() {
   buildPrimaryGrapesSelectInput();
 
   // LISTENERS
-  // const $searchFormInEventsListPage = $('.search-form');
   const $searchFormInEventsListPage = $('.events-list-page-wrapper .search-form');  // works, but best to stop "submit event" at the form.
-  // $searchFormInEventsListPage.on('click', function() {
-  //   console.log('button clicked');});
   $searchFormInEventsListPage.on('submit', handleFormSubmit);
 
 });

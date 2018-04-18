@@ -123,7 +123,13 @@ function getAndDisplayTastingNotes(e) {
     // will result in a toggle of DOM tastings notes (and no further fetching of tasting notes).
     STATE.tastingsFetched[eventId] = true;
 
+    // NOTE: In the DB, cents are stored as Number.
+    const displayCentsAsDollars = (cents) => {
+      return cents === 0 ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+    };
+
     for (let i = 0; i < tastings.length ; i++) {
+      console.log('tastings[i] = ', tastings[i]);
       // Render Tasting Note Header and append DOM.
       // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
       $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
@@ -191,10 +197,10 @@ function getAndDisplayTastingNotes(e) {
                   <span class="primary-grape-span">${tastings[i].primaryGrape}</span>
                 </div>
                 <div class="rating-wrapper">Rating:<span class="rating-span"> ${tastings[i].rating}</span></div>
-                <div>Pricing 1: ${tastings[i].pricing1Desc} - ${tastings[i].pricing1Price}</div>
-                <div>Pricing 2: ${tastings[i].pricing2Desc} - ${tastings[i].pricing2Price}</div>
-                <div>Pricing 3: ${tastings[i].pricing3Desc} - ${tastings[i].pricing3Price}</div>       
-                <div>Pricing 4: ${tastings[i].pricing4Desc} - ${tastings[i].pricing4Price}</div> 
+                <div>Pricing 1: ${tastings[i].pricing1Desc} - ${ displayCentsAsDollars(tastings[i].pricing1Price) }</div>
+                <div>Pricing 2: ${tastings[i].pricing2Desc} - ${ displayCentsAsDollars(tastings[i].pricing2Price) }</div>
+                <div>Pricing 3: ${tastings[i].pricing3Desc} - ${ displayCentsAsDollars(tastings[i].pricing3Price) }</div>       
+                <div>Pricing 4: ${tastings[i].pricing4Desc} - ${ displayCentsAsDollars(tastings[i].pricing4Price) }</div> 
                 <div class="tasting-note">Tasting Notes:</div>                        
                   
                 <textarea class="tn-textarea" name="" id="" cols="30" rows="10" disabled>${tastings[i].tastingNotes}</textarea>

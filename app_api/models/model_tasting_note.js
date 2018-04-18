@@ -17,13 +17,13 @@ const tastingNoteSchema = Schema({
   secondaryAppellationMapSrc: {type: String},
   rating: {type: String},
   pricing1Desc: {type: String},
-  pricing1Price: {type: String},
+  pricing1Price: {type: Number},
   pricing2Desc: {type: String},
-  pricing2Price: {type: String},
+  pricing2Price: {type: Number},
   pricing3Desc: {type: String},
-  pricing3Price: {type: String},
+  pricing3Price: {type: Number},
   pricing4Desc: {type: String},
-  pricing4Price: {type: String},
+  pricing4Price: {type: Number},
   tastingNotes: {type: String},
   eventId: {
     type: Schema.Types.ObjectId,
@@ -34,6 +34,18 @@ const tastingNoteSchema = Schema({
     ref: 'user'
   }
 });
+
+// // setters - stub
+// tastingNoteSchema.path('pricing1Price').set(function(num) {
+//   // do stuff with num
+// });
+//
+// // getters - stub
+// tastingNoteSchema.path('pricing1Price').get(function(num) {
+//   // do stuff with num
+// });
+
+
 
 tastingNoteSchema.methods.serialize = function() {
 

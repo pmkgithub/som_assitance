@@ -1,5 +1,7 @@
 'use strict';
 
+const TASTING_EVENTS_URL = `/events`;
+
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
@@ -55,7 +57,6 @@ function redirectToEventsListOnSave(response) {
   // console.log('response = ', response);
 
   // on AJAX success, navigate the user back to TASTING EVENTS LIST.
-  const TASTING_EVENTS_URL = `/events`;
   window.location = TASTING_EVENTS_URL;
 }
 

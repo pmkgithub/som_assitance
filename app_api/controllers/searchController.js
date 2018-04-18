@@ -2,7 +2,6 @@
 
 const config = require('../../config');
 const mongoose = require('mongoose');
-const { User } = require('../models/model_user');
 const { TastingNote } = require('../models/model_tasting_note');
 
 mongoose.connect(config.DATABASE_URL);
@@ -13,11 +12,10 @@ module.exports.postTastingNotesSearchData = (req, res) => {
   const userId = req.user._id;
   const searchGrape = req.body.searchGrape;
   const searchRating = req.body.searchRating;
-  const searchPrice = req.body.searchPrice; // old
-  // const searchPrice = Number(req.body.searchPrice).toFixed(2); // NOTE: .toFixed() returns a string decimal
-  // searchPrice = Number(searchPrice); // convert string decimal number with decimals
-  console.log('searchController.js searchPrice = ', searchPrice);
-  console.log('line 20 searchController.js typeof searchPrice = ', typeof searchPrice);
+  let searchPrice = req.body.searchPrice;
+
+  searchPrice = Number(searchPrice).toFixed(2).split(".").join(""); // convert searchPrice to Cents.
+  searchPrice = parseInt(searchPrice);                              // convert searchPrice to Integer.
 
   TastingNote
     .find({
@@ -25,10 +23,10 @@ module.exports.postTastingNotesSearchData = (req, res) => {
       'primaryGrape': searchGrape,
       'rating': {$gte: searchRating},
       $or:[
-            {'pricing1Price': { $lte: searchPrice}},
-            {'pricing2Price': { $lte: searchPrice}},
-            {'pricing3Price': { $lte: searchPrice}},
-            {'pricing4Price': { $lte: searchPrice}}
+            {'pricing1Price': { $lte: searchPrice, $gt: 0 }},
+            {'pricing2Price': { $lte: searchPrice, $gt: 0 }},
+            {'pricing3Price': { $lte: searchPrice, $gt: 0 }},
+            {'pricing4Price': { $lte: searchPrice, $gt: 0 }}
           ]
     })
     .sort({'wineName': 1})

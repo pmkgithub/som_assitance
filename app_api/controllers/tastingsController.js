@@ -110,6 +110,13 @@ module.exports.postTastingNoteData = (req, res) => {
     return res.status(400).send(message);
   }
 
+  // store pricing as a Number and in Cents format.
+  // If User selectes "Not Applicable" or enters Number 0, save price as "null"
+  const convertToCents = (entry) => {
+    entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
+    return parseInt(entry);
+  };
+
   User
     .findById({ "_id": userId })
     .then(user => {
@@ -119,7 +126,6 @@ module.exports.postTastingNoteData = (req, res) => {
         .findById({"_id": eventId})
         .then(event => {
           const _eventId = event._id;
-
           TastingNote
             .create({
               timestamp: new Date(),
@@ -137,13 +143,13 @@ module.exports.postTastingNoteData = (req, res) => {
               secondaryAppellationMapSrc: req.body.secondaryAppellationMapSrc,
               rating: req.body.rating,
               pricing1Desc: req.body.pricing1Desc,
-              pricing1Price: req.body.pricing1Price,
+              pricing1Price: convertToCents(req.body.pricing1Price),
               pricing2Desc: req.body.pricing2Desc,
-              pricing2Price: req.body.pricing2Price,
+              pricing2Price: convertToCents(req.body.pricing2Price),
               pricing3Desc: req.body.pricing3Desc,
-              pricing3Price: req.body.pricing3Price,
+              pricing3Price: convertToCents(req.body.pricing3Price),
               pricing4Desc: req.body.pricing4Desc,
-              pricing4Price: req.body.pricing4Price,
+              pricing4Price: convertToCents(req.body.pricing4Price),
               tastingNotes: req.body.tastingNotes
             })
             .then(tasting => res.status(200).json(tasting.serialize()))
@@ -171,40 +177,70 @@ module.exports.putTastingNoteData = (req, res) => {
   // NOTE: Don't need to find the Associated Event b/c an edited Tasting Note
   //       in the DB already has the "eventId" property populated.
   const tastingId = req.params.tastingId;
-  const toUpdate = {};
-  const updatableFields = [
-    'wineName',
-    'country',
-    'countryMapSrc',
-    'primaryAppellation',
-    'primaryAppellationMapSrc',
-    'secondaryAppellation',
-    'secondaryAppellationMapSrc',
-    'primaryGrape',
-    'tastingNotes',
-    'rating',
-    'pricing1Desc',
-    'pricing1Price',
-    'pricing2Desc',
-    'pricing2Price',
-    'pricing3Desc',
-    'pricing3Price',
-    'pricing4Desc',
-    'pricing4Price',
-    'tastingNotes'
-  ];
 
-  updatableFields.forEach(field => {
+  // alternate update strategy.
+  // const toUpdate = {};
+  // const updatableFields = [
+  //   'wineName',
+  //   'country',
+  //   'countryMapSrc',
+  //   'primaryAppellation',
+  //   'primaryAppellationMapSrc',
+  //   'secondaryAppellation',
+  //   'secondaryAppellationMapSrc',
+  //   'primaryGrape',
+  //   'tastingNotes',
+  //   'rating',
+  //   'pricing1Desc',
+  //   'pricing1Price',
+  //   'pricing2Desc',
+  //   'pricing2Price',
+  //   'pricing3Desc',
+  //   'pricing3Price',
+  //   'pricing4Desc',
+  //   'pricing4Price',
+  //   'tastingNotes'
+  // ];
+  //
+  // updatableFields.forEach(field => {
+  //
+  //   if (field in req.body) {
+  //     toUpdate[field] = req.body[field];
+  //   } else {
+  //     const message = `Missing \`${field}\` in request body`;
+  //     console.error(message);
+  //     return res.status(400).send(message);
+  //   }
+  //
+  // });
 
-    if (field in req.body) {
-      toUpdate[field] = req.body[field];
-    } else {
-      const message = `Missing \`${field}\` in request body`;
-      console.error(message);
-      return res.status(400).send(message);
-    }
 
-  });
+  // convert pricing to cents and Integer before saving to DB.
+  const convertToCents = (entry) => {
+    entry = Number(entry).toFixed(2).split(".").join(""); // NOTE: .toFixed() returns a String.
+    return parseInt(entry);
+  };
+
+  const toUpdate = {
+    wineName: req.body.wineName,
+    primaryGrape: req.body.primaryGrape,
+    country: req.body.country,
+    countryMapSrc: req.body.countryMapSrc,
+    primaryAppellation: req.body.primaryAppellation,
+    primaryAppellationMapSrc: req.body.primaryAppellationMapSrc,
+    secondaryAppellation: req.body.secondaryAppellation,
+    secondaryAppellationMapSrc: req.body.secondaryAppellationMapSrc,
+    rating: req.body.rating,
+    pricing1Desc: req.body.pricing1Desc,
+    pricing1Price: convertToCents(req.body.pricing1Price),
+    pricing2Desc: req.body.pricing2Desc,
+    pricing2Price: convertToCents(req.body.pricing2Price),
+    pricing3Desc: req.body.pricing3Desc,
+    pricing3Price: convertToCents(req.body.pricing3Price),
+    pricing4Desc: req.body.pricing4Desc,
+    pricing4Price: convertToCents(req.body.pricing4Price),
+    tastingNotes: req.body.tastingNotes
+  };
 
   // make sure tastingId is in url.
   if ( !req.params.tastingId ) {
