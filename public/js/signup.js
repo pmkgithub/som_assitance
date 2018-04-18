@@ -92,8 +92,6 @@ const passwordsDontMatch = () => {
 // Redirect to Events List - BEGIN
 // ************************************************************************* //
 const redirectToEventsList = (response) => {
-  console.log('redirectToEventsListOnAuth ran');
-  console.log('response = ', response);
 
   // set localstorage token
   localStorage.setItem('token', response.token);

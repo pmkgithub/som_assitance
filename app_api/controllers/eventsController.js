@@ -2,21 +2,21 @@
 
 const config = require('../../config');
 const mongoose = require('mongoose');
-const {Event} = require('../models/model_tasting_event');
-const {TastingNote} = require('../models/model_tasting_note');
+const { User } = require('../models/model_user');
+const { Event } = require('../models/model_tasting_event');
+const { TastingNote } = require('../models/model_tasting_note');
 
 mongoose.connect(config.DATABASE_URL);
 
 // ************************************************************************* //
 // TASTINGS EVENTS - BEGIN
 // ************************************************************************* //
-module.exports.getAllTastingEvents = (req, res) => {
+module.exports.getTastingEvents = (req, res) => {
 
-    // get req.params.userId
-    const { userId } = req.params;
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
 
   Event
-    // .find() // without userId
     .find({ userId })
     .then((events) => { res.json(events).status(200); })
     .catch(err => {
@@ -27,7 +27,19 @@ module.exports.getAllTastingEvents = (req, res) => {
 };
 
 module.exports.getOneTastingEvent = (req, res) => {
+  // Called when loading Edit Event Form loads.
+
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   const eventId  = req.params.eventId;
+
+  // make sure eventId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
 
   Event
     .findById(eventId)
@@ -40,7 +52,10 @@ module.exports.getOneTastingEvent = (req, res) => {
 
 module.exports.postTastingEventData = (req, res) => {
 
-  // make sure client didn't send unexpected fields.
+  // passport placed "user" on the request in jwtStrategy.
+  const userId = req.user._id;
+
+  // make sure client didn't send unexpected fields in req.body.
   const requiredFields = ['eventName', 'eventHost'];
   for( let i=0; i< requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -52,37 +67,64 @@ module.exports.postTastingEventData = (req, res) => {
     }
   }
 
-  // TODO - get userId form localstorage when creating a new event on frontend
-  Event
-    .create({
-      userId: userId,
-      timestamp: new Date(),
-      eventName: req.body.eventName,
-      eventHost: req.body.eventHost
+  User
+    .findById({ "_id": userId })
+    .then(user => {
+      const _userId = user._id;
+
+      Event
+        .create({
+          timestamp: new Date(),
+          userId: _userId,
+          eventName: req.body.eventName,
+          eventHost: req.body.eventHost
+        })
+        .then(event => {
+          res.status(200).json(event.serialize())
+        })
+        // event model error.
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ message: 'Internal server error', err: err });
+        });
     })
-    .then(event => {
-      res.status(200).json(event.serialize())
-    })
+    // user model error.
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error', err: err });
     });
-
 };
 
 module.exports.putTastingEventData = (req, res) => {
+
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   const eventId = req.params.eventId;
   const toUpdate = {};
   const updatableFields = ['eventName', 'eventHost'];
 
   updatableFields.forEach(field => {
+
     if (field in req.body) {
       toUpdate[field] = req.body[field];
+    } else {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
     }
+
   });
 
+  // make sure eventIdId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
   Event
-  // all key/value pairs in toUpdate will be updated -- that's what `$set` does
+    // all key/value pairs in toUpdate will be updated -- that's what `$set` does
     .findByIdAndUpdate(eventId, { $set: toUpdate })
     .then(event => res.status(204).end())
     .catch(err => {
@@ -94,7 +136,18 @@ module.exports.putTastingEventData = (req, res) => {
 };
 
 module.exports.deleteEvent = (req, res) => {
+
+  // NOTE: Don't need to find User using req.user._id b/c user
+  //       was already verified by jwtStrategy.  The Event(s) can
+  //       be found via the eventId.
   const eventId = req.params.eventId;
+
+  // make sure eventId is in url.
+  if ( !req.params.eventId ) {
+    const message = `Missing eventId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
 
   Event
     .findByIdAndRemove(eventId)

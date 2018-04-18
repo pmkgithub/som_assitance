@@ -29,6 +29,10 @@ const tastingNoteSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'tasting_events'
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  }
 });
 
 tastingNoteSchema.methods.serialize = function() {

@@ -1,17 +1,22 @@
 'use strict';
 
-// NOTE: This was already declared in tasting_event_delete.js
-// const TASTING_EVENTS_URL = `/events`;
+// NOTE: "const TASTING_EVENTS_URL = `/events`"
+//        was already declared in tasting_event_delete.js
+//        thus don't need to re-declare it in this file.
 // ************************************************************************* //
 // API DELETE - BEGIN
 // ************************************************************************* //
 
 function deleteTastingNoteFromApi(url, callback) {
+
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'DELETE',
     contentType: 'application/json; charset=utf-8',
-    // data: JSON.stringify(options),
+    headers: {"authorization": token},
+    // data: JSON.stringify(options), // Don't need this LOC for delete.
     dataType: 'json',
     success: callback,
     error: function(err) { console.log('something went wrong', err); },

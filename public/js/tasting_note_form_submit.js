@@ -6,10 +6,14 @@ const TASTING_EVENTS_LIST_URL = `/events`;
 // ************************************************************************* //
 
 function postDataToApi(url, options, callback) {
+
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'POST',
     contentType: 'application/json; charset=utf-8',
+    headers: {"authorization": token},
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,
@@ -29,6 +33,13 @@ function handleFormSubmit(e) {
   console.log('handleFormSubmit ran');
   e.preventDefault();
 
+  const convertPrice = (num) => {
+    // converts 23.5, 23.50 to 2350
+    // converts 23, 23.00 to 2300
+
+
+  };
+
   // FOR PRODUCTION
   let eventHost = localStorage.getItem('eventHost');
   let eventName = localStorage.getItem('eventName');
@@ -42,14 +53,22 @@ function handleFormSubmit(e) {
   let primaryGrape = $('#js-primary-grape-select').val();
   let rating = $('#js-rating-select').val();
   let pricing1Desc = $('#js-pricing1-select').val();
-  let pricing1Price = $('#js-pricing1-input').val();
+  let pricing1Price = $('#js-pricing1-input').val(); // old
+  // let pricing1Price = Number( $('#js-pricing1-input').val() ).toFixed(2); // new
   let pricing2Desc = $('#js-pricing2-select').val();
-  let pricing2Price = $('#js-pricing2-input').val();
+  let pricing2Price = $('#js-pricing2-input').val(); // old
+  // let pricing2Price = Number( $('#js-pricing2-input').val() ).toFixed(2); // new
   let pricing3Desc = $('#js-pricing3-select').val();
-  let pricing3Price = $('#js-pricing3-input').val();
+  let pricing3Price = $('#js-pricing3-input').val(); // old
+  // let pricing3Price = Number( $('#js-pricing3-input').val() ).toFixed(2); // new
   let pricing4Desc = $('#js-pricing4-select').val();
-  let pricing4Price = $('#js-pricing4-input').val();
+  let pricing4Price = $('#js-pricing4-input').val(); // old
+  // let pricing4Price = Number( $('#js-pricing4-input').val() ).toFixed(2); // new
   let tastingNotes = $('#js-tasting-note-ta').val();
+
+  console.log('pricing1Price = ', pricing1Price);
+  console.log('typeof pricing1Price = ', typeof pricing1Price);
+
 
   // TODO - code Server-side Validation.
   // Server-side Validation

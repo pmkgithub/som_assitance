@@ -28,8 +28,7 @@ const jwtOptions = {
 
 // Create JWT Strategy.
 const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
-  console.log('payload = ', payload);
-  // "payload" is the "decoded" JWT token.
+  console.log('passport.js payload = ', payload);
   // "payload" is the "decoded" JWT token => {sub: <user.id>, expiresIn: <timestamp> }
   //
   // See if the User ID in the payload exists in our database.
@@ -93,6 +92,7 @@ const localStrategy = new LocalStrategy(localOptions, (email, password, done) =>
         });
       }
       // NOTE: passport's done assigns "user" to req.user here.
+      //       and req gets passed onto the route handler.
       return done(null, user);
     })
     .catch(err => {

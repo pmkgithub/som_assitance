@@ -12,9 +12,13 @@ const TASTING_NOTE_API_URL = `/api/tastings/edit/${tastingId}`;
 // API GET - BEGIN
 // ************************************************************************* //
 function getOneTastingFromApi(url, options, callback) {
+
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     type: 'GET',
+    headers: {"authorization": token},
     dataType: 'json',
     data: options,
     success: callback,

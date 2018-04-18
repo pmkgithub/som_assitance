@@ -6,11 +6,15 @@ const TASTING_EVENTS_URL = `/events`;
 // ************************************************************************* //
 
 function deleteEventFromApi(url, callback) {
+
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'DELETE',
     contentType: 'application/json; charset=utf-8',
-    // data: JSON.stringify(options),
+    headers: {"authorization": token},
+    // data: JSON.stringify(options), // this not needed for deletes.
     dataType: 'json',
     success: callback,
     error: function(err) { console.log('something went wrong', err); },

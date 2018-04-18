@@ -698,10 +698,14 @@ const buildPrimaryGrapesSelectInput = () => {
 // ************************************************************************* //
 
 function postDataToApi(url, options, callback) {
+
+  const token = localStorage.getItem('token');
+
   $.ajax({
     url: url,
     method: 'POST',
     contentType: 'application/json; charset=utf-8',
+    headers: {"authorization": token},
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,
@@ -775,6 +779,7 @@ const getLowestPrice = (result) => {
     prices.push(Number(price4))
   }
 
+  console.log('prices = ', prices);
   // Find lowest price
   const lowestPrice = String(Math.min(...prices));
   lowest.lowestPrice = lowestPrice;
@@ -792,7 +797,7 @@ const getLowestPrice = (result) => {
   if ( result.pricing4Price === lowestPrice ) {
     lowest.lowestPriceDesc = result.pricing4Desc;
   }
-   return lowest;
+  return lowest;
 };
 // ************************************************************************* //
 // Get Lowest Price - END
@@ -816,7 +821,7 @@ const renderSearchResults = (searchResults) => {
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
-`<li class="result-li js-result-li">
+      `<li class="result-li js-result-li">
 
   <div class="result-desc">
     <span class="result-desc-span js-result-desc-span">

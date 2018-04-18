@@ -15,28 +15,26 @@ const requireAuth = passport.authenticate('jwt', { session: false} );       // j
 const requireSignin = passport.authenticate('local', { session: false } );  // localStrategyu
 // passport - END
 
-// events
-// router.get('/events', ctrlEvents.getAllTastingEvents); // without auth, without User Id
-router.get('/events/:userId', ctrlEvents.getAllTastingEvents); // without auth, with User Id
-// router.get('/events', requireAuth, ctrlEvents.getAllTastingEvents); // with auth - not working
-router.post('/events', ctrlEvents.postTastingEventData);
-router.delete('/events/:eventId', ctrlEvents.deleteEvent);
-router.get('/events/edit/:eventId', ctrlEvents.getOneTastingEvent);
-router.put('/events/edit/:eventId', ctrlEvents.putTastingEventData); // disregard Webstorm's error.
-
-// tastings
-router.get('/tastings/:eventId', ctrlTastings.getTastingNotes);
-router.post('/tastings/:eventId', ctrlTastings.postTastingNoteData);
-router.delete('/tastings/:tastingId', ctrlTastings.deleteTastingNote);
-router.get('/tastings/edit/:tastingId', ctrlTastings.getOneTastingNote);
-router.put('/tastings/edit/:tastingId', ctrlTastings.putTastingNoteData); // disregard Webstorm's error.
-
-// search
-router.post('/search', ctrlSearch.postTastingNotesSearchData);
-
 // authentication
 router.post('/signup', ctrlAuth.signup);
 router.post('/signin', requireSignin, ctrlAuth.signin);
+
+// events
+router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
+router.post('/events', requireAuth, ctrlEvents.postTastingEventData);
+router.delete('/events/:eventId', requireAuth, ctrlEvents.deleteEvent);
+router.get('/events/edit/:eventId', requireAuth, ctrlEvents.getOneTastingEvent); // for Edit Event Form.
+router.put('/events/edit/:eventId', requireAuth, ctrlEvents.putTastingEventData); // for Edit Event Form.
+
+// tastings
+router.get('/tastings/:eventId', requireAuth, ctrlTastings.getTastingNotes);
+router.post('/tastings/:eventId', requireAuth, ctrlTastings.postTastingNoteData);
+router.delete('/tastings/:tastingId', requireAuth, ctrlTastings.deleteTastingNote);
+router.get('/tastings/edit/:tastingId', requireAuth, ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
+router.put('/tastings/edit/:tastingId', requireAuth, ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
+
+// search
+router.post('/search', requireAuth, ctrlSearch.postTastingNotesSearchData);
 
 
 module.exports = router;
