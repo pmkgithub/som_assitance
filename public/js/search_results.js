@@ -822,6 +822,10 @@ const renderSearchResults = (searchResults) => {
     $('.js-no-search-results').show();
   }
 
+  const convertCentsToDollars = (cents) => {
+    return cents === "000" ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+  };
+
   for (let i = 0; i < searchResults.length ; i++) {
 
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');

@@ -180,7 +180,7 @@ const populatePricing = () => {
 
   // PRICE 1
   if ( STATE.pricing1Desc === 'Not Applicable' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+    $price1Select.val("Not Applicable");
   } else {
     $price1Select.attr({'disabled': false});
     $price1Select.val( STATE.pricing1Desc);
@@ -194,7 +194,7 @@ const populatePricing = () => {
 
   // PRICE 2
   if ( STATE.pricing2Desc === 'Not Applicable' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+    $price2Select.val("Not Applicable");
   } else {
     $price2Select.attr({'disabled': false});
     $price2Select.val(STATE.pricing2Desc);
@@ -208,7 +208,7 @@ const populatePricing = () => {
 
   // PRICE 3
   if ( STATE.pricing3Desc === 'Not Applicable' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+    $price3Select.val("Not Applicable");
   } else {
     $price3Select.attr({'disabled': false});
     $price3Select.val(STATE.pricing3Desc);
@@ -222,7 +222,7 @@ const populatePricing = () => {
 
   // PRICE 4
   if ( STATE.pricing4Desc === 'Not Applicable' ) {
-    // do nothing, let Pricing Selects / Inputs default to original state when html loads.
+    $price4Select.val("Not Applicable");
   } else {
     $price4Select.attr({'disabled': false});
     $price4Select.val(STATE.pricing4Desc);
