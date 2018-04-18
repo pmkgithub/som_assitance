@@ -9,30 +9,13 @@ const $primaryGrapeSelect = $('#js-search-primary-grape-select');
 const $ratingSelectInput = $('#js-search-rating-select');
 const $priceInput = $('#js-search-price');
 
-// TODO - is this code needed?
-// // ************************************************************************* //
-// // Get LOCALSTORAGE Values on Page Load - BEGIN
-// // ************************************************************************* //
-// const getLocalstorage = () => {
-//   const searchGrape = localStorage.getItem('searchGrape');
-//   const searchRating = localStorage.getItem('searchRating');
-//   const searchPrice = localStorage.getItem('searchPrice');
-//   console.log('queryGrape', searchGrape);
-//   console.log('queryRating', searchRating);
-//   console.log('queryPrice', searchPrice);
-// };
-//
-// // ************************************************************************* //
-// // Get LOCALSTORAGE Values on Page Load - END
-// // ************************************************************************* //
-
 // ************************************************************************* //
 // doOnPageLoad - BEGIN
 // ************************************************************************* //
 const doOnPageLoad = () => {
   const searchGrape = localStorage.getItem('searchGrape');
   const searchRating = localStorage.getItem('searchRating');
-  let searchPrice = localStorage.getItem('searchPrice'); // searchPrice was stored as cents
+  let searchPrice = localStorage.getItem('searchPrice'); // searchPrice is stored as cents
 
   $('.js-no-search-results').hide();
 
@@ -61,8 +44,8 @@ const doOnPageLoad = () => {
 // ************************************************************************* //
 const populateSearchFormOnPageLoad = (searchGrape, searchRating, searchPrice) => {
 
-  const convertCentsToDollars = (searchPrice) => {
-    return Number(searchPrice/100).toFixed(2);
+  const displaySearchPriceInputAsDollars = (searchPrice) => {
+    return Number(searchPrice).toFixed(2);
   };
 
   buildPrimaryGrapesSelectInput();
@@ -81,7 +64,7 @@ const populateSearchFormOnPageLoad = (searchGrape, searchRating, searchPrice) =>
   if ( !searchPrice ) {
     // do nothing.
   } else {
-    $priceInput.val(convertCentsToDollars(searchPrice));
+    $priceInput.val(displaySearchPriceInputAsDollars(searchPrice));
   }
 
 };
@@ -745,11 +728,8 @@ function handleFormSubmit(e) {
   // set up OPTION for ajax POST.
   const searchGrape = $primaryGrapeSelect.val();
   const searchRating = $ratingSelectInput.val();
-  // const searchPrice =  $priceInput.val(); //old
-  let searchPrice =  $priceInput.val(); // new
-  console.log('searchPrice before converting to cents= ', searchPrice);
-
-  searchPrice = Number(searchPrice).toFixed(2).split(".").join("");
+  // NOTE: searchPrice is converted to cents and Integer in searchController.js
+  const searchPrice =  $priceInput.val();
 
   const options = {
     searchGrape,
@@ -768,11 +748,6 @@ function handleFormSubmit(e) {
 // Get Lowest Price - BEGIN
 // ************************************************************************* //
 const getLowestPrice = (result) => {
-  console.log('result.pricing1Price = ', result.pricing1Price);
-  console.log('result.pricing2Price = ', result.pricing2Price);
-  console.log('result.pricing3Price = ', result.pricing3Price);
-  console.log('result.pricing4Price = ', result.pricing4Price);
-
 
   let price1 = result.pricing1Price;
   let price2 = result.pricing2Price;
@@ -781,26 +756,23 @@ const getLowestPrice = (result) => {
   let prices = [];
   let lowest = {};
 
-  // Handle the text strings "No Price Entered"
-  if ( !(price1 === "000") ) {
+  // Build "prices" array, excluding prices where pricing is 0.
+  if ( !(price1 === 0 ) ) {
     prices.push(Number(price1))
   }
-  if ( !(price2 === "000") ) {
+  if ( !(price2 === 0 ) ) {
     prices.push(Number(price2))
   }
-  if ( !(price3 === "000") ) {
+  if ( !(price3 === 0 ) ) {
     prices.push(Number(price3))
   }
-  if ( !(price4 === "000") ) {
+  if ( !(price4 === 0 ) ) {
     prices.push(Number(price4))
   }
 
-  console.log('prices = ', prices);
   // Find lowest price
-  const lowestPrice = String(Math.min(...prices));
+  const lowestPrice = Math.min(...prices);
   lowest.lowestPrice = lowestPrice;
-
-  console.log('lowestPrice = ', lowestPrice);
 
   // set lowestPriceDesc
   if ( result.pricing1Price === lowestPrice ) {
@@ -831,14 +803,13 @@ const renderSearchResults = (searchResults) => {
     $('.js-no-search-results').show();
   }
 
-  const convertCentsToDollars = (cents) => {
-    return cents === "000" ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
+  const displayCentsAsDollars = (cents) => {
+    return cents === 0 ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
   };
 
   for (let i = 0; i < searchResults.length ; i++) {
 
     const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
-    // TODO - LOC below: used when "lowestPrice", "lowestPriceDesc" added to "result-desc-span"
     // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
@@ -848,7 +819,7 @@ const renderSearchResults = (searchResults) => {
   <div class="result-desc">
     <span class="result-desc-span js-result-desc-span">
         <span class="result-desc-winename-span">${searchResults[i].wineName}</span>
-        <span class="result-desc-pricing-span">$${lowestPrice} at ${lowestPriceDesc}</span>
+        <span class="result-desc-pricing-span">${ displayCentsAsDollars(lowestPrice) } at ${lowestPriceDesc}</span>
     </span>
     <span class="result-date-span">${mDate}</span>
   </div>  
@@ -871,19 +842,19 @@ const renderSearchResults = (searchResults) => {
     </div>
     <div class="pricing1-wrapper">
         Pricing 1:
-        <span class="pricing1-span">${searchResults[i].pricing1Desc} - ${convertCentsToDollars(searchResults[i].pricing1Price)}</span>
+        <span class="pricing1-span">${searchResults[i].pricing1Desc} - ${displayCentsAsDollars(searchResults[i].pricing1Price)}</span>
     </div>
     <div class="pricing2-wrapper">
         Pricing 2:
-        <span class="pricing2-span">${searchResults[i].pricing2Desc} - ${convertCentsToDollars(searchResults[i].pricing2Price)}</span>
+        <span class="pricing2-span">${searchResults[i].pricing2Desc} - ${displayCentsAsDollars(searchResults[i].pricing2Price)}</span>
     </div>
     <div class="pricing3-wrapper">
         Pricing 3:
-        <span class="pricing3-span">${searchResults[i].pricing3Desc} - ${convertCentsToDollars(searchResults[i].pricing3Price)}</span>
+        <span class="pricing3-span">${searchResults[i].pricing3Desc} - ${displayCentsAsDollars(searchResults[i].pricing3Price)}</span>
     </div>       
     <div class="pricing4-wrapper">
         Pricing 4:
-        <span class="pricing4-span">${searchResults[i].pricing4Desc} - ${convertCentsToDollars(searchResults[i].pricing4Price)}</span>
+        <span class="pricing4-span">${searchResults[i].pricing4Desc} - ${displayCentsAsDollars(searchResults[i].pricing4Price)}</span>
     </div>                         
     <div class="tasting-note">Tasting Notes:</div>
     <textarea class="tn-textarea" name="" id="" cols="30" rows="10">${searchResults[i].tastingNotes}</textarea>

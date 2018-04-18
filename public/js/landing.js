@@ -61,16 +61,6 @@ const handleFormSubmit = (e) => {
 // Redirect to Events List - BEGIN
 // ************************************************************************* //
 const redirectToEventsList = (response) => {
-  console.log('redirectToEventsListOnAuth ran');
-  console.log('response = ', response);
-
-  // TODO - set USER to localstorage
-  // on tasting_events_list.js list page grab the userId from ls
-  // on backend, getAllTastingEvents endpoint, modify url to 'events/:userId'
-  // in Event/TastingNote models, add userId property.
-  // when creating a new Event on frontend, get userId from ls, and pass it with the POST request to backend
-  //    so the Event MODEL will store the userId.
-  localStorage.setItem('userId', response.userId);
 
   // set localstorage token
   localStorage.setItem('token', response.token);

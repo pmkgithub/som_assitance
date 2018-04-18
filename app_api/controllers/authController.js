@@ -139,7 +139,6 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   console.log('authController signin ran');
 
-  // TODO - send USER id back with the token - BEGIN
   const userId = req.user._id;
 
   // At signin, User has already had their email and password auth'd.

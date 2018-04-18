@@ -650,14 +650,10 @@ function handleFormSubmit(e) {
   e.stopPropagation(); // keeps URL clean, no querystring characters will display.
   e.preventDefault();
 
-  const convertToCents = (entry) => {
-    return Number(entry).toFixed(2).split(".").join(""); // localstorage only stores Strings.
-  };
-
   // set localstorage.
   localStorage.setItem('searchGrape', $primaryGrapeSelect.val());
   localStorage.setItem('searchRating', $ratingSelectInput.val());
-  localStorage.setItem('searchPrice', convertToCents($priceInput.val()));
+  localStorage.setItem('searchPrice', $priceInput.val());
 
   // load the SEARCH tastings page.
   window.location = SEARCH_RESULTS_PAGE_URL;
@@ -673,10 +669,7 @@ $(function() {
   buildPrimaryGrapesSelectInput();
 
   // LISTENERS
-  // const $searchFormInEventsListPage = $('.search-form');
   const $searchFormInEventsListPage = $('.events-list-page-wrapper .search-form');  // works, but best to stop "submit event" at the form.
-  // $searchFormInEventsListPage.on('click', function() {
-  //   console.log('button clicked');});
   $searchFormInEventsListPage.on('submit', handleFormSubmit);
 
 });

@@ -125,8 +125,6 @@ function getAndDisplayTastingNotes(e) {
 
     // NOTE: In the DB, cents are stored as Number.
     const displayCentsAsDollars = (cents) => {
-      console.log('cents = ', cents);
-      console.log('typeof cents = ', typeof cents);
       return cents === 0 ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
     };
 

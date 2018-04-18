@@ -1987,7 +1987,7 @@ const getSecondaryAppellations = () => {
   if ( !APPS[countryKey].primary_appellations[primAppKey]) {
     // handles "Other", "Don't Know" or bogus Primary Appellation
     // "countryKey" already handled in getPrimaryAppellations().
-    setNoSecondaryAppellationLabel(primAppWithCapitalLetters); // TODO - is this needed? dont think so
+    setNoSecondaryAppellationLabel(primAppWithCapitalLetters); // TODO - is this needed? Remove if not needed.
     return false;
   }
 
