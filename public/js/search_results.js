@@ -758,48 +758,37 @@ function handleFormSubmit(e) {
 // Get Lowest Price - BEGIN
 // ************************************************************************* //
 const getLowestPrice = (result) => {
-  console.log('search_results.js getLowestPrice result = ', result);
   let price1 = result.pricing1Price;
   let price2 = result.pricing2Price;
   let price3 = result.pricing3Price;
   let price4 = result.pricing4Price;
-  // "prices" array of Numbers, not Strings for Math.min() to work.
   let prices = [];
   let lowest = {};
 
   // Handle the text strings "No Price Entered"
-  if ( !(price1 === "0.00") ) {
-    prices.push(Number(price1).toFixed(2) )
+  if ( !(price1 === "No Price Entered") ) {
+    prices.push(Number(price1))
   }
-  if ( !(price2 === "0.00") ) {
-    prices.push(Number(price2).toFixed(2) )
+  if ( !(price2 === "No Price Entered") ) {
+    prices.push(Number(price2))
   }
-  if ( !(price3 === "0.00") ) {
-    prices.push(Number(price3).toFixed(2) )
+  if ( !(price3 === "No Price Entered") ) {
+    prices.push(Number(price3))
   }
-  if ( !(price4 === "0.00") ) {
-    prices.push(Number(price4).toFixed(2) )
+  if ( !(price4 === "No Price Entered") ) {
+    prices.push(Number(price4))
   }
 
   console.log('prices = ', prices);
-  console.log('Math.min(...prices).toFixed(2) = ', Math.min(...prices).toFixed(2));
   // Find lowest price
-  const lowestPrice = String( Math.min(...prices).toFixed(2) );
+  const lowestPrice = String(Math.min(...prices));
   lowest.lowestPrice = lowestPrice;
 
-  console.log('typeof lowestPrice', typeof lowestPrice);
-  console.log('lowestPrice = ', lowestPrice);
-  console.log('typeof result.pricing2Price = ', typeof result.pricing2Price);
-  console.log('result.pricing2Price = ', result.pricing2Price);
-
-
-  // Set lowestPriceDesc.
+  // set lowestPriceDesc
   if ( result.pricing1Price === lowestPrice ) {
     lowest.lowestPriceDesc = result.pricing1Desc;
   }
   if ( result.pricing2Price === lowestPrice ) {
-    console.log('if ( result.pricing2Price === lowestPrice ) ran');
-    console.log('result.pricing2Desc = ', result.pricing2Desc);
     lowest.lowestPriceDesc = result.pricing2Desc;
   }
   if ( result.pricing3Price === lowestPrice ) {
@@ -808,8 +797,7 @@ const getLowestPrice = (result) => {
   if ( result.pricing4Price === lowestPrice ) {
     lowest.lowestPriceDesc = result.pricing4Desc;
   }
-  console.log('search_results.js getLowestPrice lowest = ', lowest);
-   return lowest;
+  return lowest;
 };
 // ************************************************************************* //
 // Get Lowest Price - END
@@ -819,7 +807,6 @@ const getLowestPrice = (result) => {
 // Render Search Results - BEGIN
 // ************************************************************************* //
 const renderSearchResults = (searchResults) => {
-  console.log('search_result.js renderSearchResults searchResults = ', searchResults);
 
   // display "No Results" if API query returns an empty array
   if ( searchResults.length < 1 ) {
@@ -832,11 +819,9 @@ const renderSearchResults = (searchResults) => {
     // TODO - LOC below: used when "lowestPrice", "lowestPriceDesc" added to "result-desc-span"
     // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
-    console.log('renderSearchResults lowestPrice = ', lowestPrice);
-    console.log('renderSearchResults lowestPriceDesc = ', lowestPriceDesc);
 
     $('ul.js-search-results-ul').append(
-`<li class="result-li js-result-li">
+      `<li class="result-li js-result-li">
 
   <div class="result-desc">
     <span class="result-desc-span js-result-desc-span">
@@ -894,6 +879,8 @@ const renderSearchResults = (searchResults) => {
 // Toggles - BEGIN
 // ************************************************************************* //
 function toggleResultDetail(e) {
+  console.log('toggleResultDetail ran');
+  console.log('e.target', e.target);
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
   $resultHeaderSpan.parent().parent().siblings('.js-result-detail-wrapper').toggle();

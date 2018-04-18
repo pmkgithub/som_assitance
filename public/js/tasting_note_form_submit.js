@@ -81,14 +81,14 @@ function handleFormSubmit(e) {
   if ( !secondaryAppellationMapSrc ) { secondaryAppellationMapSrc = ''; }
   if ( !primaryGrape ) { primaryGrape = 'No Primary Grape Selected'; }
   if ( !rating ) { rating = 'No Rating Selected'; }
-  // if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
-  // if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
-  // if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
-  // if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
-  // if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
-  // if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
-  // if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
-  // if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
+  if ( !pricing1Desc ) { pricing1Desc = 'No Price 1 Selected'; }
+  if ( !pricing1Price ) { pricing1Price = 'No Price Entered'; }
+  if ( !pricing2Desc ) { pricing2Desc = 'No Price 2 Selected'; }
+  if ( !pricing2Price ) { pricing2Price = 'No Price Entered'; }
+  if ( !pricing3Desc ) { pricing3Desc = 'No Price 3 Selected'; }
+  if ( !pricing3Price ) { pricing3Price = 'No Price Entered'; }
+  if ( !pricing4Desc ) { pricing4Desc = 'No Price 4 Selected'; }
+  if ( !pricing4Price ) { pricing4Price = 'No Price Entered'; }
 
   const options = {
     eventHost,
