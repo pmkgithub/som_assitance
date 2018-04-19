@@ -132,7 +132,6 @@ $(function() {
   $('.js-signup-conf-password-input').val('');
 
   // Listeners
-  // const $jsSigninButton = $('.js-signin-button');
   const $signupForm = $('.signup-form');
   $signupForm.on('submit', handleFormSubmit);
 
