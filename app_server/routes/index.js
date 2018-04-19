@@ -5,7 +5,7 @@ const router = require('express').Router();
 
 // signin
 router.get('/', (req, res) => {
-  res.sendFile('landing.html', {"root": "./app_server/views"}); // yes
+  res.sendFile('splash.html', {"root": "./app_server/views"}); // yes
 });
 // signup
 router.get('/signup', (req, res) => {

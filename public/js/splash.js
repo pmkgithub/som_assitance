@@ -13,7 +13,8 @@ function postDataToApi(url, options, callback) {
     data: JSON.stringify(options),
     dataType: 'json',
     success: callback,
-    error: function(err) { console.log('something went wrong', err); },
+    // error: function(err) { console.log('something went wrong', err); },
+    error: handlePostError,
   });
 
 }
@@ -55,6 +56,31 @@ const handleFormSubmit = (e) => {
 
 // ************************************************************************* //
 // Handle Submit - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Handle Ajax Error - BEGIN
+// ************************************************************************* //
+const handlePostError = (err) => {
+  const $invalidSigninMessage = $('.js-invalid-signin');
+  const $signinEmail = $('#signin-email');
+  const $signinPassword = $('#signin-password');
+
+  if ( err.status === 401) {
+
+    $invalidSigninMessage.show();
+
+    setTimeout(function() {
+      $invalidSigninMessage.hide();
+      $signinEmail.val("");
+      $signinEmail.focus();
+      $signinPassword.val("");
+    }, 3000);
+
+  }
+};
+// ************************************************************************* //
+// Handle Ajax Error - END
 // ************************************************************************* //
 
 // ************************************************************************* //
