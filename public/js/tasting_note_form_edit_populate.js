@@ -181,6 +181,7 @@ const populatePricing = () => {
     return `${ (cents/100).toFixed(2) }`;
   };
 
+  // TODO - refactor with a function.
   // PRICE 1 - Select
   if ( STATE.pricing1Desc === 'Not Applicable' ) {
     $price1Select.val("Not Applicable");
@@ -195,6 +196,7 @@ const populatePricing = () => {
   } else {
     console.log('tasting_note_form_edit_populate.js populatePricing p1 else');
     $price1Input.prop('disabled', false);
+    console.log('$price1Input = ', $price1Input.prop('disabled', false));
     // $price1Input.removeAttr('disabled');
     $price1Input.val( convertCentsToDollars(STATE.pricing1Price) );
   }
@@ -208,7 +210,7 @@ const populatePricing = () => {
   }
   // PRICE 2 - Input
   if ( STATE.pricing2Price === 0 ) {
-    $price1Input.prop('disabled', true);
+    $price2Input.prop('disabled', true);
   } else {
     $price2Input.prop('disabled', false);
     $price2Input.val( convertCentsToDollars(STATE.pricing2Price) );
@@ -223,7 +225,7 @@ const populatePricing = () => {
   }
   // PRICE 3 - Input
   if ( STATE.pricing3Price === 0 ) {
-    $price1Input.prop('disabled', true);
+    $price3Input.prop('disabled', true);
   } else {
     $price3Input.prop('disabled', false);
     $price3Input.val( convertCentsToDollars(STATE.pricing3Price) );
@@ -238,7 +240,7 @@ const populatePricing = () => {
   }
   // PRICE 4 - Input
   if ( STATE.pricing4Price === 0 ) {
-    $price1Input.prop('disabled', true);
+    $price4Input.prop('disabled', true);
   } else {
     $price4Input.prop('disabled', false);
     $price4Input.val( convertCentsToDollars(STATE.pricing4Price) );
