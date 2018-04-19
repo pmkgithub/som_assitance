@@ -260,10 +260,34 @@ footer .info {
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
+.event-header-wrapper {
+  /* for positioning new event button */
+  position: relative;
+  margin-top: 1rem;
+}
+h2.event-header,
+a.new-tasting-event-button {
+  display: inline-block;
+}
+a.new-tasting-event-button {
+  /* for positioning new event button */
+  position: absolute;
+  top: 1rem;
+  right: 0rem;
+
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  color: white;
+  background-color: cornflowerblue;
+}
+a.new-tasting-event-button:hover {
+  /*cursor: pointer;*/
+}
 .events-list-wrapper .event-span {
   cursor: pointer;
 }
-
 .events-list-wrapper .tasting-span {
   cursor: pointer;
 }

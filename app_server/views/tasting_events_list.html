@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/modal.css">
 </head>
 <body>
 <div class="events-list-page-wrapper">
@@ -48,24 +47,20 @@
         </fieldset>
     </form>
 
+    <!-- Events Header and New Event Button -->
+    <div class="event-header-wrapper">
+        <h2 class="event-header">Events:</h2>
+        <a class="new-tasting-event-button" href="/events/new">New Event</a>
+        <!--<div class="new-tasting-event-wrapper js-new-tasting-event-wrapper">-->
+            <!---->
+        <!--</div>-->
+    </div>
+
     <!-- events list -->
-    <h2>Events:</h2>
     <div class="events-list-wrapper js-events-list-wrapper">
         <ul class="$events-ul js-events-ul"></ul>
     </div>
-    <div class="new-tasting-event-link-wrapper js-new-tasting-event-link-wrapper">
-        <a href="/events/new">Add Tasting Event</a>
-    </div>
 
-</div>
-
-<!-- modal -->
-<div class="open-modal js-open-modal">Open Modal</div>
-<div id="modal">
-    <div class="modal-content">
-        <span class="close-modal-icon js-close-modal-icon">X</span>
-        <div class="modal-message"></div>
-    </div>
 
 </div>
 
