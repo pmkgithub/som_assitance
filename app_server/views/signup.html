@@ -10,31 +10,36 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body class="signup-page">
-<!--<div class="landing-page-header-wrapper">-->
-<!--<div class="landing-page-header">som assistance</div>-->
-<!--</div>-->
-<div class="signup-page-header">som assistance</div>
+<div class="signup-page-wrapper">
+    <!--<div class="landing-page-header-wrapper">-->
+    <!--<div class="landing-page-header">som assistance</div>-->
+    <!--</div>-->
+    <div class="signup-page-header">som assistance</div>
 
-<form class="signup-form" role="form">
-    <fieldset>
-        <legend>Signup</legend>
+    <div class="invalid-signup js-invalid-signup">
+        <span class="invalid-signup-message">User Account Already Exists</span>
+    </div>
+    <form class="signup-form" role="form">
+        <fieldset>
+            <legend>Signup</legend>
 
-        <label for="signup-email" class="signup-label">Email</label>
-        <input id="signup-email" class="signup-email-input js-signup-email-input" type="email" name="email" placeholder="me@example.com" required>
+            <label for="signup-email" class="signup-label">Email</label>
+            <input id="signup-email" class="signup-email-input js-signup-email-input" type="email" name="email" placeholder="me@example.com" required>
 
-        <label for="signup-password" class="signup-label" >Password</label>
-        <input id="signup-password" class="signup-password-input js-signup-password-input" type="password" name="password" placeholder="password" required>
+            <label for="signup-password" class="signup-label" >Password</label>
+            <input id="signup-password" class="signup-password-input js-signup-password-input" type="password" name="password" placeholder="password" required>
 
-        <label for="signup-conf-password" class="signup-label" >Confirm Password</label>
-        <input id="signup-conf-password" class="signup-conf-password-input js-signup-conf-password-input" type="password" name="password" placeholder="confirm password" required>
+            <label for="signup-conf-password" class="signup-label" >Confirm Password</label>
+            <input id="signup-conf-password" class="signup-conf-password-input js-signup-conf-password-input" type="password" name="password" placeholder="confirm password" required>
 
-        <button class="signup-button js-signup-button" type="submit">Signup</button>
-    </fieldset>
-</form>
-<p class="signin-link">Already have an account?  <a href="/">Signin</a></p>
-<footer>
-    <div class="info"></div>
-</footer>
+            <button class="signup-button js-signup-button" type="submit">Signup</button>
+        </fieldset>
+    </form>
+    <p class="signin-link">Already have an account?  <a href="/">Signin</a></p>
+    <!--<footer>-->
+        <!--<div class="info"></div>-->
+    <!--</footer>-->
+</div>
 
 <script src="//code.jquery.com/jquery-2.2.1.min.js"
         integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
