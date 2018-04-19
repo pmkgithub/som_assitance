@@ -18,7 +18,7 @@ router.get('/events', (req, res) => {
   res.sendFile('tasting_events_list.html', {"root": "./app_server/views"});
 });
 router.get('/events/new', (req, res) => {
-  res.sendFile('tasting_event_form.html', {"root": "./app_server/views"});
+  res.sendFile('tasting_event_form_new.html', {"root": "./app_server/views"});
 });
 router.get('/events/edit', (req, res) => {
   res.sendFile('tasting_event_form_edit.html', {"root": "./app_server/views"});
@@ -27,7 +27,7 @@ router.get('/events/edit', (req, res) => {
 
 // tastings
 router.get('/tastings/new', (req, res) => {
-  res.sendFile('tasting_note_form.html', {"root": "./app_server/views"});
+  res.sendFile('tasting_note_form_new.html', {"root": "./app_server/views"});
 });
 router.get('/tastings/edit', (req, res) => {
   res.sendFile('tasting_note_form_edit.html', {"root": "./app_server/views"});

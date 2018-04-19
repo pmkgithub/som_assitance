@@ -94,11 +94,11 @@ html {
   /*width: 50%;*/
 /*}*/
 .search-results-page-wrapper,
-.event-form-new-page-wrapper,
 .event-form-edit-page-wrapper,
+.event-form-new-page-wrapper,
 .events-list-page-wrapper,
-.tasting-form-new-page-wrapper,
-.tasting-form-edit-page-wrapper {
+.tasting-form-edit-page-wrapper,
+.tasting-form-new-page-wrapper {
   margin: 30px auto 30px auto;
   width: 50%;
 }

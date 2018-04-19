@@ -27,10 +27,10 @@
 
 /* place spacing under nav bar */
 .search-results-page-wrapper .search-form,
-.event-form-new-page-wrapper .event-form,
 .event-form-edit-page-wrapper .event-form,
+.event-form-new-page-wrapper .event-form,
 .events-list-page-wrapper .search-form,
-.tasting-form-new-page-wrapper .tasting-form,
-.tasting-form-edit-page-wrapper .tasting-form {
+.tasting-form-edit-page-wrapper .tasting-form,
+.tasting-form-new-page-wrapper .tasting-form {
   margin-top: 6rem;
 }
