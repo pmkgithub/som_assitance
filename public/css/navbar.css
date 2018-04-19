@@ -1,0 +1,36 @@
+/* The navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: cornflowerblue;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: inherit; /* inherit parent div's width  */
+
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: right;
+  display: block;
+  font-size: 1.25rem;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+/* place spacing under nav bar */
+.search-results-page-wrapper .search-form,
+.event-form-new-page-wrapper .event-form,
+.event-form-edit-page-wrapper .event-form,
+.events-list-page-wrapper .search-form,
+.tasting-form-new-page-wrapper .tasting-form,
+.tasting-form-edit-page-wrapper .tasting-form {
+  margin-top: 6rem;
+}

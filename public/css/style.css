@@ -87,15 +87,18 @@
 html {
   font-family: 'Lato', sans-serif;
 }
-.events-list-page-wrapper,
-.search-results-page-wrapper {
-  margin: 30px auto 30px auto;
-  width: 60%;
-}
-.tasting-form-new-page-wrapper,
-.tasting-form-edit-page-wrapper,
+/* TODO - delete when refact done */
+/*.events-list-page-wrapper,*/
+/*.search-results-page-wrapper {*/
+  /*margin: 30px auto 30px auto;*/
+  /*width: 50%;*/
+/*}*/
+.search-results-page-wrapper,
 .event-form-new-page-wrapper,
-.event-form-edit-page-wrapper {
+.event-form-edit-page-wrapper,
+.events-list-page-wrapper,
+.tasting-form-new-page-wrapper,
+.tasting-form-edit-page-wrapper {
   margin: 30px auto 30px auto;
   width: 50%;
 }
@@ -285,7 +288,6 @@ footer .info {
 .events-list-wrapper .secondary-appellation-map {
   display: none;
 }
-/*TODO - event-li*/
 li.event-li {
   list-style: none;
   margin-left: -40px;
@@ -539,8 +541,8 @@ li .tasting-desc {
   /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
   /*font-size: 0.8em;*/
   width: 100%;
-  padding: 1em;
   border: 1px solid #ccc;
+  padding: 1em;
 }
 
 .search-form fieldset {
