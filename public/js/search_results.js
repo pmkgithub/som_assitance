@@ -1,9 +1,4 @@
 'use strict';
-// search_results.js
-//  retrieve search terms from localstorage
-//  send ajax POST request /api/search
-//  POST success sends data to search_results.html
-//  loop over data, render HTML in search_results.html
 
 const $primaryGrapeSelect = $('#js-search-primary-grape-select');
 const $ratingSelectInput = $('#js-search-rating-select');
