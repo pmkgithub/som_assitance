@@ -124,7 +124,6 @@ module.exports.putTastingEventData = (req, res) => {
   }
 
   Event
-    // all key/value pairs in toUpdate will be updated -- that's what `$set` does
     .findByIdAndUpdate(eventId, { $set: toUpdate })
     .then(event => res.status(204).end())
     .catch(err => {
@@ -132,7 +131,14 @@ module.exports.putTastingEventData = (req, res) => {
       res.status(500).json({ message: 'Internal server error' })
     });
 
-  // TODO - update Tasting Notes for a particular Event when the Event is updated.
+  // Update all associated Tasting Notes.
+  TastingNote
+    .updateMany({eventId: eventId}, { $set: toUpdate })
+    .then(tastingNotes => { res.status(204).end(); })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' })
+    });
 };
 
 module.exports.deleteEvent = (req, res) => {
