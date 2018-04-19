@@ -2246,10 +2246,10 @@ const handlePricing1Selection = () => {
 
   if ( $pricing1SelectVal === "Not Applicable" ) {
     $pricing1PriceInput.val("");
-    $pricing1PriceInput.attr({'disabled': true});
+    $pricing1PriceInput.prop('disabled', true);
   } else {
     console.log('tasting_note_form.js handlePricing1Selection $pricing1PriceInput', $pricing1PriceInput);
-    $pricing1PriceInput.removeAttr('disabled');
+    $pricing1PriceInput.prop('disabled', false);
   }
 };
 const handlePricing2Selection = () => {
@@ -2258,9 +2258,9 @@ const handlePricing2Selection = () => {
 
   if ( $pricing2SelectVal === "Not Applicable" ) {
     $pricing2PriceInput.val("");
-    $pricing2PriceInput.attr({'disabled': true});
+    $pricing2PriceInput.prop('disabled', true);
   } else {
-    $pricing2PriceInput.removeAttr('disabled');
+    $pricing2PriceInput.prop('disabled', false);
   }
 };
 const handlePricing3Selection = () => {
@@ -2269,9 +2269,9 @@ const handlePricing3Selection = () => {
 
   if ( $pricing3SelectVal === "Not Applicable" ) {
     $pricing3PriceInput.val("");
-    $pricing3PriceInput.attr({'disabled': true});
+    $pricing3PriceInput.prop('disabled', true);
   } else {
-    $pricing3PriceInput.removeAttr('disabled');
+    $pricing3PriceInput.prop('disabled', false);
   }
 };
 const handlePricing4Selection = () => {
@@ -2280,9 +2280,9 @@ const handlePricing4Selection = () => {
 
   if ( $pricing4SelectVal === "Not Applicable" ) {
     $pricing4PriceInput.val("");
-    $pricing4PriceInput.attr({'disabled': true});
+    $pricing4PriceInput.prop('disabled', true);
   } else {
-    $pricing4PriceInput.removeAttr('disabled');
+    $pricing4PriceInput.prop('disabled', false);
   }
 };
 // ************************************************************************* //
