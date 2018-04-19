@@ -526,7 +526,6 @@ const addWineTypeText = () => {
 // Pricing Select Inputs - BEGIN
 // ************************************************************************* //
 const handlePricing1Selection = () => {
-  console.log('tasting_note_form.js handlePricing1Selection ran');
   const $pricing1SelectVal = $('#js-pricing1-select').val();
   const $pricing1PriceInput = $('#js-pricing1-input');
 
@@ -534,7 +533,6 @@ const handlePricing1Selection = () => {
     $pricing1PriceInput.val("");
     $pricing1PriceInput.prop('disabled', true);
   } else {
-    console.log('tasting_note_form.js handlePricing1Selection $pricing1PriceInput', $pricing1PriceInput);
     $pricing1PriceInput.prop('disabled', false);
   }
 };
