@@ -4,12 +4,6 @@ const TASTING_EVENTS_URL = `/events`;
 const $passwordInput = $('.js-signup-password-input');
 const $confPasswordInput = $('.js-signup-conf-password-input');
 
-// TODO - finish coding.
-const handleAjaxError = (err) => {
-  // sniff error and handle
-  console.log('frontend err =', err.responseJSON.message);
-
-};
 // ************************************************************************* //
 // API POST - BEGIN
 // ************************************************************************* //
@@ -23,7 +17,7 @@ function postDataToApi(url, options, callback) {
     dataType: 'json',
     success: callback,
     // error: function(err) { console.log('something went wrong', err); },
-    error: handleAjaxError,
+    error: handlePostError,
   });
 
 }
@@ -38,7 +32,6 @@ function postDataToApi(url, options, callback) {
 const handleFormSubmit = (e) => {
   e.preventDefault();
 
-  // FOR PRODUCTION
   let email = $('.js-signup-email-input').val();
   let password = $passwordInput.val();
   let confPassword = $confPasswordInput.val();
@@ -66,6 +59,33 @@ const handleFormSubmit = (e) => {
 
 // ************************************************************************* //
 // Handle Submit - END
+// ************************************************************************* //
+
+// ************************************************************************* //
+// Handle Existing User on Signup - BEGIN
+// ************************************************************************* //
+const handlePostError = (err) => {
+  const $invalidSignupMessage = $('.js-invalid-signup');
+  const $signupEmail = $('#signup-email');
+  const $signupPassword = $('#signup-password');
+  const $signupConfPassword = $('#signup-conf-password');
+
+  if ( err.status === 422) {
+
+    $invalidSignupMessage.show();
+
+    setTimeout(() => {
+      $invalidSignupMessage.hide();
+      $signupEmail.val("");
+      $signupEmail.focus();
+      $signupPassword.val("");
+      $signupConfPassword.val("");
+    }, 3000);
+
+  }
+};
+// ************************************************************************* //
+// Handle Existing User on Signup - END
 // ************************************************************************* //
 
 // ************************************************************************* //

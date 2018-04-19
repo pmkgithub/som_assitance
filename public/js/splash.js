@@ -28,28 +28,24 @@ function postDataToApi(url, options, callback) {
 // ************************************************************************* //
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  console.log('handleSubmit ran');
 
-  // FOR PRODUCTION
   let email = $('.js-signin-email-input').val();
   let password = $('.js-signin-password-input').val();
-
-  console.log('email ', email);
-  console.log('password ', password);
 
   // TODO - code Server-side Validation.
   // Server-side Validation
 
+  // Frontend Validation.
+  // Invalid email format handled by HTML Form.
+  // Invalid user handled by handlePostError callback.
   if ( !email ) {  }
   if ( !password ) {  }
-
 
   const options = {
     email,
     password
   };
 
-  // const eventId = localStorage.getItem('eventId');
   postDataToApi(`/api/signin`, options, redirectToEventsList);
 
 };
@@ -59,7 +55,7 @@ const handleFormSubmit = (e) => {
 // ************************************************************************* //
 
 // ************************************************************************* //
-// Handle Ajax Error - BEGIN
+// Handle Invalid User on Signin - BEGIN
 // ************************************************************************* //
 const handlePostError = (err) => {
   const $invalidSigninMessage = $('.js-invalid-signin');
@@ -70,7 +66,7 @@ const handlePostError = (err) => {
 
     $invalidSigninMessage.show();
 
-    setTimeout(function() {
+    setTimeout(() => {
       $invalidSigninMessage.hide();
       $signinEmail.val("");
       $signinEmail.focus();
@@ -80,7 +76,7 @@ const handlePostError = (err) => {
   }
 };
 // ************************************************************************* //
-// Handle Ajax Error - END
+// Handle Invalid User on Signin - END
 // ************************************************************************* //
 
 // ************************************************************************* //
