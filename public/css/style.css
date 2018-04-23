@@ -139,7 +139,7 @@ body.signup-page {
   margin: 0;
   padding: 0;
   width: 100%;
-  /* height rule introduces white space - remove rule below */
+  /* height rule introduces white space - remove height rule below */
   /*height: 100%;*/
   position: relative;
   display: block;
