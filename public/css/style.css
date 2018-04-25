@@ -305,6 +305,12 @@ footer .info-wrapper {
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
+.events-wrapper {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-top: 2em;
+}
+
 .event-header-wrapper {
   /* for positioning new event button */
   position: relative;
@@ -484,8 +490,8 @@ li .tasting-desc {
 /******************************************************************************/
 .event-form,
 .tasting-form {
-  /*margin: 30px auto 30px auto;*/
-  /*width: 50%;*/
+  border: 1px solid #ccc;
+  padding: 20px;
 }
 
 .event-form fieldset,
