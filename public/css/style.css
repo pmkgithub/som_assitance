@@ -614,72 +614,62 @@ li .tasting-desc {
   /*width: 100%;*/
   min-width: 400px;
   border: 1px solid #ccc;
-  padding: 1em;
-  margin: 0 auto;
+  padding: 20px;
+
 }
-/* flexbox */
-.search-inputs-wrapper {
-  /*float: left;*/
-  width: 100%;
-}
+/* form inputs - BEGIN */
+/*.search-inputs-wrapper {*/
+  /*!*float: left;*!*/
+  /*width: 100%;*/
+/*}*/
 .search-form fieldset {
   border: none;
   padding: 0;
 }
-.search-form legend {
-  font-size: 1.25rem;
-  padding: 0;
-  font-weight: bold;
-}
+.search-form legend,
 .search-form label {
-  /*text-align: left;*/
+  font-size: 1.3rem;
+  font-weight: bold;
   padding: 0;
 }
+/*.search-form label {*/
+  /*!*text-align: left;*!*/
+  /*padding: 0;*/
+/*}*/
 .search-form input[type="number"],
 .search-form select              {
-  /*float: right;*/
-  /*width: 60%;*/
-  /*border: 1px solid #ccc;*/
-  /*!*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*!*/
-  /*font-size: 0.9em;*/
-  /*padding: 0.3em;*/
-
-  /*float: right;*/
   display: block;
   width: 100%;
   border: 1px solid #ccc;
   font-size: 1.1rem;
   padding: 0.4em;
 }
+/* form inputs - BEGIN */
 
-/* flex-box */
-.search-button-wrapper {
-  /*float: left;*/
-  width: 100%
+/* buttons css - BEGIN */
+/*.search-button-wrapper {*/
+  /*!*float: left;*!*/
+  /*width: 100%*/
+/*}*/
+.search-form .buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 .search-form button {
-  /*padding: 1em;*/
-  /*background: #eee;*/
-  /*border: none;*/
-  /*font-weight: bold;*/
-  /*margin-left: 40%;*/
-  /*margin-top: 2em;*/
-  /*margin-left: 40%;*/
   background: #ccc;
   color: white;
   padding: 0.5rem;
   font-size:  1rem;
   border: none;
   font-weight: bold;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
-
 
 .search-form button.search-button:hover {
   cursor: pointer;
   background: cornflowerblue;
 }
-
+/* buttons css - END */
 /******************************************************************************/
 /*  SEARCH FORM - END */
 /******************************************************************************/
