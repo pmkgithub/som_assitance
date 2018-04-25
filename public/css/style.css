@@ -87,6 +87,7 @@
 html {
   font-family: 'Lato', sans-serif;
 }
+/* TODO - all page wrappers */
 .search-results-page-wrapper,
 .event-form-edit-page-wrapper,
 .event-form-new-page-wrapper,
@@ -94,7 +95,7 @@ html {
 .tasting-form-edit-page-wrapper,
 .tasting-form-new-page-wrapper {
   margin: 30px auto 30px auto;
-  width: 60%;
+  width: 80%;
 }
 /******************************************************************************/
 /*  ALL PAGES - END */
@@ -171,6 +172,7 @@ body.signup-page::after {
   padding-top: 1.5em;
   padding-bottom: 0.5em;
 }
+/* TODO - signin form */
 .signin-form,
 .signup-form {
   width: 400px;
@@ -488,18 +490,19 @@ li .tasting-desc {
 /******************************************************************************/
 /*  EVENT / TASTING FORM - BEGIN */
 /******************************************************************************/
+/* TODO - event tasting note form */
 .event-form,
 .tasting-form {
+  min-width: 400px;
   border: 1px solid #ccc;
   padding: 20px;
 }
-
+/* form inputs - BEGIN */
 .event-form fieldset,
 .tasting-form fieldset {
   border: none;
   padding: 0;
 }
-
 .event-form legend,
 .event-form label,
 .tasting-form legend,
@@ -522,10 +525,14 @@ li .tasting-desc {
   font-size: 1.1em;
   padding: 0.4em;
 }
+/* form inputs - BEGIN */
 
+/* buttons css - BEGIN */
 .event-form .buttons,
 .tasting-form .buttons {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+
 }
 .event-form button,
 .tasting-form button {
@@ -537,7 +544,6 @@ li .tasting-desc {
   font-weight: bold;
   margin-top: 1em;
 }
-
 .event-form .button-cancel,
 .event-form .button-save,
 .tasting-form .button-cancel,
@@ -548,14 +554,10 @@ li .tasting-desc {
 .tasting-form button.cancel {
   margin-right: 10px;
 }
-
 .event-form button.cancel:hover,
 .tasting-form button.cancel:hover {
   background-color: red;
 }
-/*.event-form button.save {*/
-  /*background: green;*/
-/*}*/
 .event-form button.save:hover,
 .tasting-form button.save:hover {
   background: green;
@@ -564,6 +566,7 @@ li .tasting-desc {
 .tasting-form button:hover {
   cursor: pointer;
 }
+/* buttons css - END */
 /******************************************************************************/
 /*  EVENT / TASTING FORM - END */
 /******************************************************************************/
@@ -604,22 +607,21 @@ li .tasting-desc {
 /******************************************************************************/
 /*  SEARCH FORM - BEGIN */
 /******************************************************************************/
-.search-inputs-wrapper {
-  float: left;
-  width: 70%;
-}
-.search-button-wrapper {
-  float: left;
-  width: 30%
-}
+/* TODO - search form */
 .search-form {
   /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
   /*font-size: 0.8em;*/
-  width: 100%;
+  /*width: 100%;*/
+  min-width: 400px;
   border: 1px solid #ccc;
   padding: 1em;
+  margin: 0 auto;
 }
-
+/* flexbox */
+.search-inputs-wrapper {
+  /*float: left;*/
+  width: 100%;
+}
 .search-form fieldset {
   border: none;
   padding: 0;
@@ -630,11 +632,9 @@ li .tasting-desc {
   font-weight: bold;
 }
 .search-form label {
-  text-align: left;
+  /*text-align: left;*/
   padding: 0;
 }
-
-
 .search-form input[type="number"],
 .search-form select              {
   /*float: right;*/
@@ -644,14 +644,19 @@ li .tasting-desc {
   /*font-size: 0.9em;*/
   /*padding: 0.3em;*/
 
-  float: right;
+  /*float: right;*/
   display: block;
-  width: 60%;
+  width: 100%;
   border: 1px solid #ccc;
   font-size: 1.1rem;
   padding: 0.4em;
 }
 
+/* flex-box */
+.search-button-wrapper {
+  /*float: left;*/
+  width: 100%
+}
 .search-form button {
   /*padding: 1em;*/
   /*background: #eee;*/
@@ -659,7 +664,7 @@ li .tasting-desc {
   /*font-weight: bold;*/
   /*margin-left: 40%;*/
   /*margin-top: 2em;*/
-  margin-left: 40%;
+  /*margin-left: 40%;*/
   background: #ccc;
   color: white;
   padding: 0.5rem;
@@ -678,7 +683,7 @@ li .tasting-desc {
 /******************************************************************************/
 /*  SEARCH FORM - END */
 /******************************************************************************/
-/*TODO-search-results*/
+
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
@@ -710,7 +715,6 @@ li .result-date-span {
 /* result desc - END */
 
 /* result detail - BEGIN */
-/* TODO - wip */
 .result-detail-wrapper {
   background-color: blanchedalmond;
   padding: 10px;
@@ -762,24 +766,3 @@ li .result-date-span {
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
-
-
-/* Misc Hold - BEGIN */
-/*.event-form input[type=button],*/
-/*.event-form input[type=submit] {*/
-  /*color: white;*/
-  /*padding: 0.5rem;*/
-  /*font-size:  1rem;*/
-  /*border: none;*/
-  /*font-weight: bold;*/
-  /*cursor: pointer;*/
-  /*margin-top: 1em;*/
-/*}*/
-/*.event-form input[type=button] {*/
-  /*background-color: red;*/
-/*}*/
-/*.event-form input[type=submit] {*/
-  /*background-color: green;*/
-/*}*/
-
-/* Misc Hold - END */
