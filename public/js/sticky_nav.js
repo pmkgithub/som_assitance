@@ -5,7 +5,7 @@ const $eventForm = $('form.event-form');
 const $tastingForm = $('form.tasting-form');
 
 const resizeStickyNav = () => {
-  console.log('resizeStickyNav ran');
+
   if ( $searchForm.outerWidth() ) {
     $navbar.width($searchForm.outerWidth())
   }
@@ -15,6 +15,7 @@ const resizeStickyNav = () => {
   if ( $tastingForm.outerWidth() ) {
     $navbar.width($tastingForm.outerWidth())
   }
+
 };
 
 

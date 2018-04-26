@@ -706,13 +706,13 @@ function postDataToApi(url, options, callback) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  // // DEV - for testing CSS changes.
-  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
-  // const options = {
-  //   searchGrape: "Barbera",
-  //   searchRating: "3",
-  //   searchPrice: "25",
-  // };
+  // DEV - for testing CSS changes.
+  // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
+  const options = {
+    searchGrape: "Barbera",
+    searchRating: "3",
+    searchPrice: "25",
+  };
 
   // PRODUCTION
   // clear Results list HTML.
@@ -720,17 +720,17 @@ function handleFormSubmit(e) {
   $('.js-no-search-results').hide();
 
 
-  // set up OPTION for ajax POST.
-  const searchGrape = $primaryGrapeSelect.val();
-  const searchRating = $ratingSelectInput.val();
-  // NOTE: searchPrice is converted to cents and Integer in searchController.js
-  const searchPrice =  $priceInput.val();
-
-  const options = {
-    searchGrape,
-    searchRating,
-    searchPrice,
-  };
+  // // set up OPTION for ajax POST.
+  // const searchGrape = $primaryGrapeSelect.val();
+  // const searchRating = $ratingSelectInput.val();
+  // // NOTE: searchPrice is converted to cents and Integer in searchController.js
+  // const searchPrice =  $priceInput.val();
+  //
+  // const options = {
+  //   searchGrape,
+  //   searchRating,
+  //   searchPrice,
+  // };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
@@ -804,20 +804,18 @@ const renderSearchResults = (searchResults) => {
 
   for (let i = 0; i < searchResults.length ; i++) {
 
-    const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
+    const mDate = moment(searchResults[i].timestamp).format('MM/D/YY');
     // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
-      `<li class="result-li js-result-li">
+`<li class="result-li js-result-li">
 
   <div class="result-desc">
-    <span class="result-desc-span js-result-desc-span">
-        <span class="result-desc-winename-span">${searchResults[i].wineName}</span>
-        <span class="result-desc-pricing-span">${ displayCentsAsDollars(lowestPrice) } at ${lowestPriceDesc}</span>
-    </span>
+    <span class="result-desc-winename-span js-result-desc-winename-span">${searchResults[i].wineName}</span>
+    <span class="result-desc-pricing-span">${ displayCentsAsDollars(lowestPrice) } at ${lowestPriceDesc}</span>
     <span class="result-date-span">${mDate}</span>
-  </div>  
+  </div>
 
   <div class="result-detail-wrapper js-result-detail-wrapper">  
     
@@ -869,7 +867,7 @@ const renderSearchResults = (searchResults) => {
 function toggleResultDetail(e) {
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
-  $resultHeaderSpan.parent().parent().siblings('.js-result-detail-wrapper').toggle();
+  $resultHeaderSpan.parent().siblings('.js-result-detail-wrapper').toggle();
 }
 // ************************************************************************* //
 // Toggles - END
@@ -882,6 +880,7 @@ $(function() {
   const $searchFormInSearchResultsPage = $('.search-form');
   const $searchResultsList = $('.js-search-results-ul');
   $searchFormInSearchResultsPage.on('submit', handleFormSubmit);
-  $searchResultsList.on('click', '.js-result-desc-span', toggleResultDetail);
+  // $searchResultsList.on('click', '.js-result-desc-span', toggleResultDetail);
+  $searchResultsList.on('click', '.js-result-desc-winename-span', toggleResultDetail);
 
 });
