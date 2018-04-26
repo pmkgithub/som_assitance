@@ -706,13 +706,13 @@ function postDataToApi(url, options, callback) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  // // DEV - for testing CSS changes.
-  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
-  // const options = {
-  //   searchGrape: "Barbera",
-  //   searchRating: "3",
-  //   searchPrice: "25",
-  // };
+  // DEV - for testing CSS changes.
+  // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
+  const options = {
+    searchGrape: "Barbera",
+    searchRating: "3",
+    searchPrice: "25",
+  };
 
   // PRODUCTION
   // clear Results list HTML.
@@ -720,17 +720,17 @@ function handleFormSubmit(e) {
   $('.js-no-search-results').hide();
 
 
-  // set up OPTION for ajax POST.
-  const searchGrape = $primaryGrapeSelect.val();
-  const searchRating = $ratingSelectInput.val();
-  // NOTE: searchPrice is converted to cents and Integer in searchController.js
-  const searchPrice =  $priceInput.val();
-
-  const options = {
-    searchGrape,
-    searchRating,
-    searchPrice,
-  };
+  // // set up OPTION for ajax POST.
+  // const searchGrape = $primaryGrapeSelect.val();
+  // const searchRating = $ratingSelectInput.val();
+  // // NOTE: searchPrice is converted to cents and Integer in searchController.js
+  // const searchPrice =  $priceInput.val();
+  //
+  // const options = {
+  //   searchGrape,
+  //   searchRating,
+  //   searchPrice,
+  // };
 
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
@@ -804,7 +804,7 @@ const renderSearchResults = (searchResults) => {
 
   for (let i = 0; i < searchResults.length ; i++) {
 
-    const mDate = moment(searchResults[i].timestamp).format('MMMM D, YYYY');
+    const mDate = moment(searchResults[i].timestamp).format('MM/D/YY');
     // TODO - maybe put Rating, Pricing in a popup when "result-desc-span" hovered.
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 

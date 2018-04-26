@@ -88,6 +88,7 @@ html {
   font-family: 'Lato', sans-serif;
 }
 /* TODO - all page wrappers */
+/* Mobile CSS */
 .search-results-page-wrapper,
 .event-form-edit-page-wrapper,
 .event-form-new-page-wrapper,
@@ -95,7 +96,20 @@ html {
 .tasting-form-edit-page-wrapper,
 .tasting-form-new-page-wrapper {
   margin: 30px auto 30px auto;
-  width: 80%;
+  width: 100%;
+}
+/* TODO - mobile first - @screen */
+/* Non-mobile CSS */
+@media only screen and (min-width: 640px) {
+  .search-results-page-wrapper,
+  .event-form-edit-page-wrapper,
+  .event-form-new-page-wrapper,
+  .events-list-page-wrapper,
+  .tasting-form-edit-page-wrapper,
+  .tasting-form-new-page-wrapper {
+    margin: 30px auto 30px auto;
+    width: 80%;
+  }
 }
 /******************************************************************************/
 /*  ALL PAGES - END */
@@ -146,7 +160,6 @@ body.signup-page::after {
   /*background-image: url("/images/vineyard01_sven_wilhelm_359306_unsplash.jpg");*/
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /*background-size: 100%;*/
   background-size: cover;
   opacity: 0.75;
   top: 0;
@@ -158,12 +171,6 @@ body.signup-page::after {
 }
 /* set background image - END */
 
-/* temp events link css - delete when link is removed from page */
-.events-link {
-  padding-left: 20px;
-}
-/* temp events link css - delete when link is removed from page */
-
 .splash-page-header,
 .signup-page-header   {
   font-size: 3.25em;
@@ -172,7 +179,6 @@ body.signup-page::after {
   padding-top: 1.5em;
   padding-bottom: 0.5em;
 }
-/* TODO - signin form */
 .signin-form,
 .signup-form {
   width: 400px;
@@ -235,7 +241,6 @@ body.signup-page::after {
   color: white;
   margin-top: 1em;
   margin-bottom: 3em;
-  /*color: black;*/
 }
 /* signup link is on the signin page */
 .signup-link a,
@@ -289,6 +294,7 @@ footer .info-wrapper {
 .info-inner-copy {
   font-size: 1.2rem;
   color: white;
+  color: rgba(255,251,244);
   padding-bottom: 10px;
 }
 .info-inner-copy a {
@@ -307,6 +313,7 @@ footer .info-wrapper {
 /******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
+/* TODO - events lists CSS */
 .events-wrapper {
   padding: 20px;
   border: 1px solid #ccc;
@@ -490,7 +497,6 @@ li .tasting-desc {
 /******************************************************************************/
 /*  EVENT / TASTING FORM - BEGIN */
 /******************************************************************************/
-/* TODO - event tasting note form */
 .event-form,
 .tasting-form {
   min-width: 400px;
@@ -607,7 +613,6 @@ li .tasting-desc {
 /******************************************************************************/
 /*  SEARCH FORM - BEGIN */
 /******************************************************************************/
-/* TODO - search form */
 .search-form {
   /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
   /*font-size: 0.8em;*/
@@ -677,6 +682,12 @@ li .tasting-desc {
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
+/* TODO - search results list CSS */
+.search-results-wrapper {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 2em;
+}
 li.result-li {
   list-style: none;
   margin-left: -40px;
