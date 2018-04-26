@@ -5,11 +5,12 @@ const router = require('express').Router();
 
 // signin
 router.get('/', (req, res) => {
-  res.sendFile('splash.html', {"root": "./app_server/views"}); // yes
+  // res.sendFile('splash.html', {"root": "./app_server/views"});
+  res.sendFile('index.html', {"root": "./app_server/views"});
 });
 // signup
 router.get('/signup', (req, res) => {
-  res.sendFile('signup.html', {"root": "./app_server/views"}); // yes
+  res.sendFile('signup.html', {"root": "./app_server/views"});
 });
 
 
