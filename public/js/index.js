@@ -1,14 +1,19 @@
 'use strict';
 
-const TASTING_EVENTS_URL = `/events`;
+const SIGNIN_URL = `/signin`;
 // ************************************************************************* //
 // BLAH - BEGIN
 // ************************************************************************* //
 
+const redirectToSignin = () => {
+  console.log('redirectToSignin ran');
+  window.location = SIGNIN_URL;
+};
+
 $(function() {
 
   // Listeners
-  const $signinForm = $('.signin-form');
-  $signinForm.on('submit', handleFormSubmit);
+  const $signinButton = $('.js-overlay-signin-button');
+  $signinButton.on('click', redirectToSignin);
 
 });

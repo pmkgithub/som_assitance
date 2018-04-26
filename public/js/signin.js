@@ -66,12 +66,12 @@ const handlePostError = (err) => {
 
     $invalidSigninMessage.show();
 
-    setTimeout(() => {
-      $invalidSigninMessage.hide();
-      $signinEmail.val("");
-      $signinEmail.focus();
-      $signinPassword.val("");
-    }, 3000);
+    // setTimeout(() => {
+    //   $invalidSigninMessage.hide();
+    //   $signinEmail.val("");
+    //   $signinEmail.focus();
+    //   $signinPassword.val("");
+    // }, 3000);
 
   }
 };

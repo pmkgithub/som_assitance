@@ -3,10 +3,13 @@
 
 const router = require('express').Router();
 
-// signin
+// splash
 router.get('/', (req, res) => {
-  // res.sendFile('splash.html', {"root": "./app_server/views"});
   res.sendFile('index.html', {"root": "./app_server/views"});
+});
+// signin
+router.get('/signin', (req, res) => {
+  res.sendFile('signin.html', {"root": "./app_server/views"});
 });
 // signup
 router.get('/signup', (req, res) => {

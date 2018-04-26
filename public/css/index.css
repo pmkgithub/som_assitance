@@ -1,10 +1,12 @@
+/* TODO - Photoshop background image to contain overlay layer effect */
+/* TODO - Doing so will greatly simplify the Overlay HTML and CSS */
+
 * {
   box-sizing: border-box;
 }
 
-
 /******************************************************************************/
-/*  BLAH - BEGIN */
+/*  BACKGROUND IMAGE / OVERLAY  - BEGIN */
 /******************************************************************************/
 /* set background image - BEGIN */
 html {
@@ -12,8 +14,7 @@ html {
   width: 100%;
   height: 100%;
 }
-body.splash-page,
-body.signup-page {
+body.index-page {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -22,8 +23,7 @@ body.signup-page {
   position: relative;
   display: block;
 }
-body.splash-page::after,
-body.signup-page::after {
+body.index-page::after {
   content: "";
   background-image: url("/images/corks01_john_murzaku_269690_unsplash.jpg");
   /*background-image: url("/images/vineyard01_sven_wilhelm_359306_unsplash.jpg");*/
@@ -39,15 +39,6 @@ body.signup-page::after {
   z-index: -1;
 }
 /* set background image - END */
-
-/*.splash-page-header {*/
-  /*font-size: 3.25em;*/
-  /*color: white;*/
-  /*text-align: center;*/
-  /*padding-top: 1.5em;*/
-  /*padding-bottom: 0.5em;*/
-  /*z-index: 10;*/
-/*}*/
 
 /* set background overlay - BEGIN */
 .overlay {
@@ -73,14 +64,14 @@ body.signup-page::after {
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 }
-.overlay-header.first {
-  /*top: 25%;*/
-  /*left: 40%;*/
-}
-.overlay-header.second {
-  /*top: 35%;*/
-  /*left: 55%;*/
-}
+/*.overlay-header.first {*/
+  /*!*top: 25%;*!*/
+  /*!*left: 40%;*!*/
+/*}*/
+/*.overlay-header.second {*/
+  /*!*top: 35%;*!*/
+  /*!*left: 55%;*!*/
+/*}*/
 .overlay-caption {
   /*position: absolute;*/
   position: relative;
@@ -100,9 +91,12 @@ body.signup-page::after {
   left: 50%;
 }
 .overlay-signin-button {
-  position: absolute;
-  /*position: relative;*/
-  top: 65%;
+  /* don't use position: absolute*/
+  /*position: absolute;*/
+  position: relative;
+  text-align: center;
+  width: 4em;
+  top: 35%;
   left: 50%;
   font-size: 1.5rem;
   font-weight: 200;
@@ -119,6 +113,8 @@ body.signup-page::after {
 }
 .overlay-signin-button:hover {
   background-color: rgb(100,149,237);
-
   cursor: pointer;
 }
+/******************************************************************************/
+/*  BACKGROUND IMAGE / OVERLAY  - BEGIN */
+/******************************************************************************/
