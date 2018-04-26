@@ -382,7 +382,7 @@ li .event-desc {
   /* contains Event Date, Name, Distributor, Edit, Delete icons */
   /* position:relative for <span> placement */
   position: relative;
-  font-size: 1.3em;
+  font-size: 1.2rem;
   color: white;
   padding: 0.5em;
   background-color: cornflowerblue;
@@ -442,7 +442,7 @@ li .tasting-desc {
   /* contains Wine Name, Edit, Delete icons */
   /* position:relative for <span> placement */
   position: relative;
-  font-size: 1.3em;
+  font-size: 1.2rem;
   color: white;
   padding: 0.5em;
   background-color: cornflowerblue;
@@ -513,7 +513,7 @@ li .tasting-desc {
 .event-form label,
 .tasting-form legend,
 .tasting-form label {
-  font-size: 1.3em;
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 0;
 }
@@ -633,7 +633,7 @@ li .tasting-desc {
 }
 .search-form legend,
 .search-form label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 0;
 }
@@ -696,23 +696,39 @@ li.result-li {
 }
 /* result desc - BEGIN */
 li div.result-desc {
-  position: relative;
-  font-size: 1.3em;
+  display: flex;
+  justify-content: space-between;
+  background-color: cornflowerblue;
   color: white;
   padding: 0.5em;
-  background-color: cornflowerblue;
 }
-.result-desc-span {
+/* Mobile */
+.result-desc-winename-span,
+.result-desc-pricing-span,
+.result-date-span {
+  display: inline-block;
+  font-size: 0.9em;
+}
+/* Non-mobile */
+@media only screen and (min-width: 640px) {
+  .result-desc-winename-span,
+  .result-desc-pricing-span,
+  .result-date-span {
+    display: inline-block;
+    font-size: 1.2em;
+  }
+}
+.result-desc-winename-span {
   cursor: pointer;
 }
-li .result-desc-pricing-span {
-  position: absolute;
-  left: 15em;
-}
-li .result-date-span {
-  position: absolute;
-  right: 1.0rem
-}
+/*li .result-desc-pricing-span {*/
+  /*position: absolute;*/
+  /*left: 15em;*/
+/*}*/
+/*li .result-date-span {*/
+  /*position: absolute;*/
+  /*right: 1.0rem*/
+/*}*/
 /* result desc - END */
 
 /* result detail - BEGIN */
@@ -726,7 +742,17 @@ li .result-date-span {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
 }
-
+/* Mobile */
+.result-detail-wrapper div {
+  font-size: 0.9rem;
+}
+/* Non-mobile */
+@media only screen and (min-width: 640px) {
+  .result-detail-wrapper div {
+    font-size: 1.2rem;
+  }
+}
+/* result detail - BEGIN */
 .result-li .eventhost-wrapper,
 .result-li .eventname-wrapper,
 .result-li .rating-wrapper,

@@ -809,15 +809,13 @@ const renderSearchResults = (searchResults) => {
     const {lowestPrice, lowestPriceDesc} = getLowestPrice(searchResults[i]);
 
     $('ul.js-search-results-ul').append(
-      `<li class="result-li js-result-li">
+`<li class="result-li js-result-li">
 
   <div class="result-desc">
-    <span class="result-desc-span js-result-desc-span">
-        <span class="result-desc-winename-span">${searchResults[i].wineName}</span>
-        <span class="result-desc-pricing-span">${ displayCentsAsDollars(lowestPrice) } at ${lowestPriceDesc}</span>
-    </span>
+    <span class="result-desc-winename-span js-result-desc-winename-span">${searchResults[i].wineName}</span>
+    <span class="result-desc-pricing-span">${ displayCentsAsDollars(lowestPrice) } at ${lowestPriceDesc}</span>
     <span class="result-date-span">${mDate}</span>
-  </div>  
+  </div>
 
   <div class="result-detail-wrapper js-result-detail-wrapper">  
     
@@ -869,7 +867,7 @@ const renderSearchResults = (searchResults) => {
 function toggleResultDetail(e) {
   e.stopPropagation();
   const $resultHeaderSpan = $(e.target);
-  $resultHeaderSpan.parent().parent().siblings('.js-result-detail-wrapper').toggle();
+  $resultHeaderSpan.parent().siblings('.js-result-detail-wrapper').toggle();
 }
 // ************************************************************************* //
 // Toggles - END
@@ -882,6 +880,7 @@ $(function() {
   const $searchFormInSearchResultsPage = $('.search-form');
   const $searchResultsList = $('.js-search-results-ul');
   $searchFormInSearchResultsPage.on('submit', handleFormSubmit);
-  $searchResultsList.on('click', '.js-result-desc-span', toggleResultDetail);
+  // $searchResultsList.on('click', '.js-result-desc-span', toggleResultDetail);
+  $searchResultsList.on('click', '.js-result-desc-winename-span', toggleResultDetail);
 
 });
