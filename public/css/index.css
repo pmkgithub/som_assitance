@@ -6,9 +6,8 @@
 }
 
 /******************************************************************************/
-/*  BACKGROUND IMAGE / OVERLAY  - BEGIN */
+/*  BACKGROUND IMAGE  - BEGIN */
 /******************************************************************************/
-/* set background image - BEGIN */
 html {
   font-family: 'Lato', sans-serif;
   width: 100%;
@@ -38,10 +37,17 @@ body.index-page::after {
   position: absolute;
   z-index: -1;
 }
-/* set background image - END */
+/******************************************************************************/
+/*  BACKGROUND IMAGE  - END */
+/******************************************************************************/
 
+
+/******************************************************************************/
+/*  OVERLAY - BEGIN */
+/******************************************************************************/
 /* set background overlay - BEGIN */
 .overlay {
+  /* adds black overlay to base image */
   /*display: flex;*/
   /*justify-content: center;*/
   background-color: rgba(0,0,0, 0.6);
@@ -52,69 +58,54 @@ body.index-page::after {
   height: 100%;
   z-index: 1;
 }
-.overlay-header {
+/******************************************************************************/
+/*  OVERLAY - END */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  CONTENT - BEGIN */
+/******************************************************************************/
+.header-wrapper {
   position: relative;
   text-align: center;
-  top: 25%;
-  left: 50%;
   font-size: 4rem;
   font-weight: 200;
   letter-spacing: 6px;
   color: white;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
+  /* note: margin-top adds whitespace to design, use padding. */
+  padding-top: 2em;
+  z-index: 2;
 }
-/*.overlay-header.first {*/
-  /*!*top: 25%;*!*/
-  /*!*left: 40%;*!*/
-/*}*/
-/*.overlay-header.second {*/
-  /*!*top: 35%;*!*/
-  /*!*left: 55%;*!*/
-/*}*/
-.overlay-caption {
-  /*position: absolute;*/
+.caption {
   position: relative;
   text-align: center;
   font-size: 1rem;
   letter-spacing: 5px;
   color: white;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
+  z-index: 2;
 }
-.overlay-caption.first {
-  top: 26%;
-  left: 50%;
+.caption.first {
+  padding-top: 3em;
+  padding-bottom: 2em;
 }
-.overlay-caption.second {
-  top: 29%;
-  left: 50%;
-}
-.overlay-signin-button {
-  /* don't use position: absolute*/
-  /*position: absolute;*/
+.signin-button {
+  display: block;
   position: relative;
-  text-align: center;
-  width: 4em;
-  top: 35%;
-  left: 50%;
+  margin: 4em auto 0 auto;
+  width: 4.5em;
   font-size: 1.5rem;
   font-weight: 200;
   letter-spacing: 2px;
   color: white;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-
-  /*background-color: #823102;*/
-  /*background-color: #3F192B;*/
   background-color: rgba(100,149,237, 0.8);
   border: none;
   padding: 10px;
+  z-index: 2;
 }
-.overlay-signin-button:hover {
+.signin-button:hover {
   background-color: rgb(100,149,237);
   cursor: pointer;
 }
 /******************************************************************************/
-/*  BACKGROUND IMAGE / OVERLAY  - BEGIN */
+/*  CONTENT - END */
 /******************************************************************************/
