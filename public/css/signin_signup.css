@@ -65,8 +65,8 @@ body.signup-page {
   color: red;
   font-weight: bold;
   width: 100%;
-  margin-top: -25px;
-  z-index: 1;
+  margin-top: 45px;
+  z-index: 10;
 }
 /******************************************************************************/
 /*  INVALID SIGNIN / SIGNUP  - BEGIN */
@@ -76,13 +76,11 @@ body.signup-page {
 /*  SIGNIN / SIGNUP FORM - BEGIN */
 /******************************************************************************/
 .signin-form-wrapper {
-  position: relative;
   padding-top: 2em;
   padding-bottom: 3rem;
   z-index: 2;
 }
 .signup-form-wrapper {
-  position: relative;
   padding-top: 2em;
   padding-bottom: 3rem;
   z-index: 2;
