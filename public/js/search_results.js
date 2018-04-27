@@ -706,32 +706,31 @@ function postDataToApi(url, options, callback) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  // DEV - for testing CSS changes.
-  // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
-  const options = {
-    searchGrape: "Barbera",
-    searchRating: "3",
-    searchPrice: "25",
-  };
+  // // DEV - for testing CSS changes.
+  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
+  // const options = {
+  //   searchGrape: "Barbera",
+  //   searchRating: "3",
+  //   searchPrice: "25",
+  // };
 
   // PRODUCTION
   // clear Results list HTML.
   $('.js-search-results-ul').empty();
   $('.js-no-search-results').hide();
 
+  // set up OPTION for ajax POST.
+  const searchGrape = $primaryGrapeSelect.val();
+  const searchRating = $ratingSelectInput.val();
+  // NOTE: searchPrice is converted to cents and Integer in searchController.js
+  const searchPrice =  $priceInput.val();
 
-  // // set up OPTION for ajax POST.
-  // const searchGrape = $primaryGrapeSelect.val();
-  // const searchRating = $ratingSelectInput.val();
-  // // NOTE: searchPrice is converted to cents and Integer in searchController.js
-  // const searchPrice =  $priceInput.val();
-  //
-  // const options = {
-  //   searchGrape,
-  //   searchRating,
-  //   searchPrice,
-  // };
-
+  const options = {
+    searchGrape,
+    searchRating,
+    searchPrice,
+  };
+  console.log('options=', options);
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
 
