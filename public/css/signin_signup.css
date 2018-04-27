@@ -75,14 +75,11 @@ body.signup-page {
 /******************************************************************************/
 /*  SIGNIN / SIGNUP FORM - BEGIN */
 /******************************************************************************/
-.signin-form-wrapper {
-  padding-top: 2em;
-  padding-bottom: 3rem;
-  z-index: 2;
-}
+.signin-form-wrapper,
 .signup-form-wrapper {
   padding-top: 2em;
-  padding-bottom: 3rem;
+  /* loc below creates spacing under form/link */
+  padding-bottom: 10rem;
   z-index: 2;
 }
 .signin-form,
