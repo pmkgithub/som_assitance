@@ -1,9 +1,13 @@
-/******************************************************************************/
-/*  FLEXIBLE GRID  - BEGIN */
-/******************************************************************************/
+html {
+  font-family: 'Lato', sans-serif;
+}
 * {
   box-sizing: border-box;
 }
+
+/******************************************************************************/
+/*  FLEXIBLE GRID  - BEGIN */
+/******************************************************************************/
 
 /* Grid measurements:
  *
@@ -84,10 +88,6 @@
 /******************************************************************************/
 /*  ALL PAGES - BEGIN */
 /******************************************************************************/
-html {
-  font-family: 'Lato', sans-serif;
-}
-/* TODO - all page wrappers */
 /* Mobile CSS */
 .search-results-page-wrapper,
 .event-form-edit-page-wrapper,
@@ -98,7 +98,6 @@ html {
   margin: 30px auto 30px auto;
   width: 100%;
 }
-/* TODO - mobile first - @screen */
 /* Non-mobile CSS */
 @media only screen and (min-width: 640px) {
   .search-results-page-wrapper,
@@ -116,210 +115,13 @@ html {
 /******************************************************************************/
 
 /******************************************************************************/
-/*  SPLASH / SIGNUP PAGE- BEGIN */
-/******************************************************************************/
-.invalid-signin,
-.invalid-signup {
-  position: absolute;
-  display:  none;
-  text-align: center;
-  font-size: 1.25rem;
-  color: red;
-  font-weight: bold;
-  width: 100%;
-  padding-top: 1rem;
-  z-index: 1;
-}
-
-/******************************************************************************/
-/*  SPLASH / SIGNUP PAGE- BEGIN */
-/******************************************************************************/
-
-/******************************************************************************/
-/*  SIGNIN / SIGNUP FORM - BEGIN */
-/******************************************************************************/
-/* set background image - BEGIN */
-html {
-  width: 100%;
-  height: 100%;
-}
-body.splash-page,
-body.signup-page {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  /* height rule introduces white space - don't use height rule below */
-  /*height: 100%;*/
-  position: relative;
-  display: block;
-}
-body.splash-page::after,
-body.signup-page::after {
-  content: "";
-  background-image: url("/images/corks01_john_murzaku_269690_unsplash.jpg");
-  /*background-image: url("/images/vineyard01_sven_wilhelm_359306_unsplash.jpg");*/
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  opacity: 0.75;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
-/* set background image - END */
-
-.splash-page-header,
-.signup-page-header   {
-  font-size: 3.25em;
-  color: white;
-  text-align: center;
-  padding-top: 1.5em;
-  padding-bottom: 0.5em;
-}
-.signin-form,
-.signup-form {
-  width: 400px;
-  background-color: white;
-  margin: auto;
-  padding: 40px;
-}
-.signin-form fieldset,
-.signup-form fieldset {
-  border-style: none;
-}
-.signin-form legend,
-.signup-form legend {
-  text-align: center;
-  font-size: 40px;
-  font-weight: 400;
-  margin-bottom: 20px;
-}
-.signin-label,
-.signup-label {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-.signin-email-input,
-.signin-password-input,
-.signin-button,
-.signup-email-input,
-.signup-password-input,
-.signup-conf-password-input,
-.signup-button {
-  height: 55px;
-  font-size: 1.25rem;
-  width: 100%;
-  border: 2px solid #dddddd;
-  padding: 15px;
-}
-.signin-email-input,
-.signin-password-input,
-.signup-email-input,
-.signup-password-input,
-.signup-conf-password-input {
-  margin-bottom: 20px;
-}
-.signin-button,
-.signup-button {
-  background-color: rgb(21, 205, 114);
-  color: white;
-}
-.signin-button:hover,
-.signup-button:hover {
-  background-color: rgb(21, 175, 96);
-  cursor: pointer;
-}
-/* signup link is on the signin page */
-.signup-link,
-.signin-link {
-  font-size: 1.25em;
-  text-align: center;
-  color: white;
-  margin-top: 1em;
-  margin-bottom: 3em;
-}
-/* signup link is on the signin page */
-.signup-link a,
-.signin-link a {
-  color: white;
-  text-decoration: underline;
-  margin-left: 10px;
-}
-
-/* Information - how to use som assistance - BEGIN */
-footer .info-wrapper {
-  background-color: cornflowerblue;
-  width: 60%;
-  min-width: 400px;
-  padding-bottom: 2rem;
-  margin: 0 auto;
-}
-.info-desc-wrapper {
-  display: flex;
-  justify-content: center;
-}
-.info-desc {
-  flex-basis: content;
-  font-size: 1.5em;
-  color: white;
-  padding: 20px 40px 0 40px;
-}
-.info-box-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin: 0 20px;
-}
-.info-box {
-  flex-basis: auto;
-  /*flex-basis: 30em;*/
-  /*flex-basis: content;*/
-  width: 300px;
-  min-width: 300px;
-  flex-grow: 1;
-  background-color: darkkhaki;
-  padding: 20px 20px 0 20px;
-  margin: 20px;
-}
-.info-inner-header {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  padding-bottom: 0.5rem;
-}
-.info-inner-copy {
-  font-size: 1.2rem;
-  color: white;
-  color: rgba(255,251,244);
-  padding-bottom: 10px;
-}
-.info-inner-copy a {
-  text-decoration: underline;
-  color: inherit;
-}
-.footer-spacer {
-  height: 3em;
-}
-/* information - how to use som assistance - END */
-
-/******************************************************************************/
-/*  SIGNIN / SIGNUP FORM - BEGIN */
-/******************************************************************************/
-
-/******************************************************************************/
 /*  EVENTS LIST - BEGIN */
 /******************************************************************************/
-/* TODO - events lists CSS */
 .events-wrapper {
   padding: 20px;
   border: 1px solid #ccc;
   margin-top: 2em;
 }
-
 .event-header-wrapper {
   /* for positioning new event button */
   position: relative;
@@ -405,12 +207,14 @@ li .event-desc {
 .events-list-wrapper .edit-tasting-span {
   cursor: pointer;
 }
+/* tasting icons styling and positioning - END */
+
+/* icons styling and positioning - BEGIN */
 .add-new-tasting-note-span {
   display: inline-block;
   position: absolute;
   right: 5.25em;
 }
-
 .edit-event-span,
 .edit-tasting-span {
   display: inline-block;
@@ -614,19 +418,12 @@ li .tasting-desc {
 /*  SEARCH FORM - BEGIN */
 /******************************************************************************/
 .search-form {
-  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-  /*font-size: 0.8em;*/
-  /*width: 100%;*/
   min-width: 400px;
   border: 1px solid #ccc;
   padding: 20px;
 
 }
 /* form inputs - BEGIN */
-/*.search-inputs-wrapper {*/
-  /*!*float: left;*!*/
-  /*width: 100%;*/
-/*}*/
 .search-form fieldset {
   border: none;
   padding: 0;
@@ -637,10 +434,6 @@ li .tasting-desc {
   font-weight: bold;
   padding: 0;
 }
-/*.search-form label {*/
-  /*!*text-align: left;*!*/
-  /*padding: 0;*/
-/*}*/
 .search-form input[type="number"],
 .search-form select              {
   display: block;
@@ -649,13 +442,9 @@ li .tasting-desc {
   font-size: 1.1rem;
   padding: 0.4em;
 }
-/* form inputs - BEGIN */
+/* form inputs - END */
 
 /* buttons css - BEGIN */
-/*.search-button-wrapper {*/
-  /*!*float: left;*!*/
-  /*width: 100%*/
-/*}*/
 .search-form .buttons {
   display: flex;
   justify-content: flex-end;
@@ -721,14 +510,6 @@ li div.result-desc {
 .result-desc-winename-span {
   cursor: pointer;
 }
-/*li .result-desc-pricing-span {*/
-  /*position: absolute;*/
-  /*left: 15em;*/
-/*}*/
-/*li .result-date-span {*/
-  /*position: absolute;*/
-  /*right: 1.0rem*/
-/*}*/
 /* result desc - END */
 
 /* result detail - BEGIN */
