@@ -13,14 +13,19 @@ module.exports.postTastingNotesSearchData = (req, res) => {
   const searchGrape = req.body.searchGrape;
   const searchRating = req.body.searchRating;
   let searchPrice = req.body.searchPrice;
+  console.log('searchGrape = ', searchGrape);
 
   searchPrice = Number(searchPrice).toFixed(2).split(".").join(""); // convert searchPrice to Cents.
   searchPrice = parseInt(searchPrice);                              // convert searchPrice to Integer.
-
+// TODO - fix search "Barbera" and "Bordeaux Blend searchController"
   TastingNote
     .find({
       'userId': userId,
-      'primaryGrape': searchGrape,
+      // 'primaryGrape': searchGrape, // finds "Barbera", but not "Bordeaux Blend"
+      // $text: {'primaryGrape': searchGrape}, // mongoose crashes - bad syntax???
+      // 'primaryGrape': { $text: searchGrape}, // mongoose crashes - bad syntax???
+      // 'primaryGrape': {$text: {$search: searchGrape}}, // mongoose crashes - bad syntax???'primaryGrape': {$text: {$search: searchGrape}}, // mongoose crashes - bad syntax???
+      $text: {$search: searchGrape}, // finds "Barbera", but not "Bordeaux Blend"
       'rating': {$gte: searchRating},
       $or:[
             {'pricing1Price': { $lte: searchPrice, $gt: 0 }},
