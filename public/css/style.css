@@ -406,8 +406,8 @@ li .tasting-desc {
   cursor: pointer;
 }
 .tasting-form .country-map-img,
-.tasting-form .primary-appellation-map-img,
-.tasting-form .secondary-appellation-map-img {
+.tasting-form .primary-app-map-img,
+.tasting-form .secondary-app-map-img {
   width: 100%;
 }
 /******************************************************************************/

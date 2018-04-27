@@ -66,6 +66,7 @@ const populateTastingNoteEditForm = (tastingNote) => {
 // ************************************************************************* //
 const populateCountrySelect = () => {
 
+  // NOTE: function found in tasting_note_form.js
   buildCountrySelectInput();
 
   // populate Country Select Input
@@ -73,6 +74,8 @@ const populateCountrySelect = () => {
     // do nothing, let Country Select Input default to original state when html loads.
   } else {
     $('#js-country-select').val(STATE.country);
+
+    // NOTE: function found in tasting_note_form.js
     getCountryMapAndDisplay();
   }
 };
@@ -88,12 +91,15 @@ const populatePrimaryAppellationSelect = () => {
   if ( STATE.primaryAppellation === 'Not Selected' ) {
     // do nothing, let Primary Appellation Select default to original state when html loads.
   } else {
+
+    // NOTE: function found in tasting_note_form.js
     buildPrimaryAppellationSelectInput();
 
     const $primaryAppellationSelctInput = $('#js-primary-appellation-select');
     $primaryAppellationSelctInput.attr({'disabled': false});
     $primaryAppellationSelctInput.val(STATE.primaryAppellation);
 
+    // NOTE: function found in tasting_note_form.js
     getPrimaryAppellationMapAndDisplay();
   }
 };
@@ -110,12 +116,14 @@ const populateSecondaryAppellationSelect = () => {
     // do nothing, let Secondary Appellation Select Input default to original state when html loads.
   } else {
 
+    // NOTE: function found in tasting_note_form.js
     buildSecondaryAppellationSelectInput();
 
     const $secondaryAppellationSelectInput = $('#js-secondary-appellation-select');
     $secondaryAppellationSelectInput.attr({'disabled': false});
     $secondaryAppellationSelectInput.val(STATE.secondaryAppellation);
 
+    // NOTE: function found in tasting_note_form.js
     getSecondaryAppellationMapAndDisplay();
   }
 };
@@ -128,6 +136,7 @@ const populateSecondaryAppellationSelect = () => {
 // ************************************************************************* //
 const populatePrimaryGrapeSelect = () => {
 
+  // NOTE: function found in tasting_note_form.js
   buildPrimaryGrapesSelectInput();
 
   if ( STATE.primaryGrape === 'Not Selected' ) {
