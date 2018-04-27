@@ -85,9 +85,12 @@ const getCountryMapAndDisplay = () => {
     // handles countries that exist which don't have country maps.
     html = `No Country Map for ${countryWithCapitalLetters}`;
   } else {
+
     // country exists in data object, and it has a map.
     html = `<div class="country-map js-country-map">
-              <span class="country-map-span js-country-map-span">Show/Hide Country Map</span>
+              <div>
+                <span class="country-map-span js-country-map-span">Show/Hide Country Map</span>
+              </div>
               <img class="country-map-img js-country-map-img" src="${APPS[countryKey].map}">
             </div>`;
   }
@@ -100,7 +103,7 @@ const getCountryMapAndDisplay = () => {
 const toggleCountryMap = (e) => {
   e.stopPropagation();
   const $countryMapSpan = $(e.target);
-  $countryMapSpan.siblings('.js-country-map-img').toggle();
+  $countryMapSpan.parent().siblings('.js-country-map-img').toggle();
 };
 // ************************************************************************* //
 // Country Map - END
@@ -226,9 +229,12 @@ const getPrimaryAppellationMapAndDisplay = () => {
     $primAppMapWrapper.html(html);
     $primAppMapWrapper.show();
   } else {
-    // country exists in data object, and it has a map.
+
+    // primary appellation exists in data object, and it has a map.
     html = `<div class="primary-app-map js-primary-app-map">
-              <span class="primary-app-map-span js-primary-app-map-span">Show/Hide Primary Appellation Map for ${primAppWithCapitalLetters}</span>
+              <div>
+                <span class="primary-app-map-span js-primary-app-map-span">Show/Hide Primary Appellation Map for ${primAppWithCapitalLetters}</span>
+              </div>
               <img class="primary-app-map-img js-primary-app-map-img" src="${APPS[countryKey].primary_appellations[primAppKey].map}">
             </div>`;
     $primAppMapWrapper.html(html);
@@ -240,7 +246,7 @@ const getPrimaryAppellationMapAndDisplay = () => {
 const togglePrimAppMap = (e) => {
   e.stopPropagation();
   const $primAppMapSpan = $(e.target);
-  $primAppMapSpan.siblings('.js-primary-app-map-img').toggle();
+  $primAppMapSpan.parent().siblings('.js-primary-app-map-img').toggle();
 };
 // ************************************************************************* //
 // Primary Appellation Map - END
@@ -383,9 +389,12 @@ const getSecondaryAppellationMapAndDisplay = () => {
     $secAppMapWrapper.html(html);
     $secAppMapWrapper.show();
   } else {
-    // country exists in data object, and it has a map.
+
+    // secondary appellation exists in data object, and it has a map.
     html = `<div class="secondary-app-map js-secondary-app-map">
-              <span class="secondary-app-map-span js-secondary-app-map-span">Show/Hide Secondary Appellation Map for ${secAppWithCapitalLetters}</span>
+              <div>
+                <span class="secondary-app-map-span js-secondary-app-map-span">Show/Hide Secondary Appellation Map for ${secAppWithCapitalLetters}</span>
+              </div>
               <img class="secondary-app-map-img js-secondary-app-map-img" src="${APPS[countryKey].primary_appellations[primAppKey].secondary_appellations[secAppKey].map}">
             </div>`;
     $secAppMapWrapper.html(html);
@@ -398,7 +407,7 @@ const getSecondaryAppellationMapAndDisplay = () => {
 const toggleSecAppMap = (e) => {
   e.stopPropagation();
   const $secAppMapSpan = $(e.target);
-  $secAppMapSpan.siblings('.js-secondary-app-map-img').toggle();
+  $secAppMapSpan.parent().siblings('.js-secondary-app-map-img').toggle();
 };
 // ************************************************************************* //
 // Secondary Appellation Map - END
