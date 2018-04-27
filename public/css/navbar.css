@@ -1,4 +1,6 @@
-/* The navigation bar */
+/******************************************************************************/
+/*  NAVBAR - BEGIN */
+/******************************************************************************/
 .navbar {
   overflow: hidden;
   background-color: cornflowerblue;
@@ -8,7 +10,6 @@
   z-index: 100;
 
 }
-
 /* Links inside the navbar */
 .navbar a {
   float: right;
@@ -25,8 +26,16 @@
   background: #ddd;
   color: black;
 }
+/******************************************************************************/
+/*  NAVBAR - END */
+/******************************************************************************/
 
-/* place spacing under nav bar */
+/******************************************************************************/
+/*  UNDER NAVBAR SPACING - BEGIN */
+/******************************************************************************/
+/* Place spacing under nav bar.
+   Because navbar is fixed, spacing must be controlled by the elements
+   under it.  */
 .search-results-page-wrapper .search-form,
 .event-form-edit-page-wrapper .event-form,
 .event-form-new-page-wrapper .event-form,
@@ -35,3 +44,6 @@
 .tasting-form-new-page-wrapper .tasting-form {
   margin-top: 5rem;
 }
+/******************************************************************************/
+/*  UNDER NAVBAR SPACING - END */
+/******************************************************************************/
