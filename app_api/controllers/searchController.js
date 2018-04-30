@@ -21,11 +21,8 @@ module.exports.postTastingNotesSearchData = (req, res) => {
   TastingNote
     .find({
       'userId': userId,
-      // 'primaryGrape': searchGrape, // finds "Barbera", but not "Bordeaux Blend"
-      // $text: {'primaryGrape': searchGrape}, // mongoose crashes - bad syntax???
-      // 'primaryGrape': { $text: searchGrape}, // mongoose crashes - bad syntax???
-      // 'primaryGrape': {$text: {$search: searchGrape}}, // mongoose crashes - bad syntax???'primaryGrape': {$text: {$search: searchGrape}}, // mongoose crashes - bad syntax???
-      $text: {$search: searchGrape}, // finds "Barbera", but not "Bordeaux Blend"
+      // 'primaryGrape': searchGrape, // non-indexed search.
+      $text: {$search: searchGrape},  // indexed search.
       'rating': {$gte: searchRating},
       $or:[
             {'pricing1Price': { $lte: searchPrice, $gt: 0 }},
