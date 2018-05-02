@@ -13,11 +13,10 @@ module.exports.postTastingNotesSearchData = (req, res) => {
   const searchGrape = req.body.searchGrape;
   const searchRating = req.body.searchRating;
   let searchPrice = req.body.searchPrice;
-  console.log('searchGrape = ', searchGrape);
 
   searchPrice = Number(searchPrice).toFixed(2).split(".").join(""); // convert searchPrice to Cents.
   searchPrice = parseInt(searchPrice);                              // convert searchPrice to Integer.
-// TODO - fix search "Barbera" and "Bordeaux Blend searchController"
+
   TastingNote
     .find({
       'userId': userId,

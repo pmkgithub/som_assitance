@@ -34,8 +34,9 @@ const tastingNoteSchema = Schema({
     ref: 'user'
   }
 });
-// TODO - fix search "Barbera" and "Bordeaux Blend model"
+
 tastingNoteSchema.index({primaryGrape: 'text'});
+
 // // setters - stub
 // tastingNoteSchema.path('pricing1Price').set(function(num) {
 //   // do stuff with num

@@ -145,7 +145,6 @@ div.events-header {
 button.new-tasting-event-button {
   display: inline-block;
 }
-/* TODO - on hover - new event button */
 button.new-tasting-event-button {
   text-align: center;
   text-decoration: none;
@@ -208,7 +207,6 @@ li div.event-desc-icon-wrapper {
 }
 
 /* event desc and icons - on-hover */
-/* TODO - icon onhover - events desc */
 .events-list-wrapper .event-desc-span {
   cursor: pointer;
 }
@@ -272,7 +270,6 @@ li div.tasting-desc-icon-wrapper {
   }
 }
 
-/* TODO - icon onhover - tasting note desc */
 /* tastings desc/icons - on-hover */
 .events-list-wrapper .tasting-desc-span {
   cursor: pointer;
@@ -420,7 +417,7 @@ li div.tasting-desc-icon-wrapper {
 .tasting-form .button-save{
   display: inline-block;
 }
-/* TODO - on hover - new event, new tasting note forms */
+
 .event-form button.cancel,
 .tasting-form button.cancel {
   /*background-color: red;*/
@@ -445,7 +442,6 @@ li div.tasting-desc-icon-wrapper {
   color: black;
   cursor: pointer;
 }
-
 /* new event, new tasting note form buttons - END */
 /******************************************************************************/
 /*  EVENT / TASTING FORM - END */
@@ -516,7 +512,6 @@ li div.tasting-desc-icon-wrapper {
   display: flex;
   justify-content: flex-end;
 }
-/* TODO - on hover - new event button */
 .search-form button {
   background-color: rgb(100,149,237);
   color: white;
@@ -528,7 +523,6 @@ li div.tasting-desc-icon-wrapper {
   /*font-weight: bold;*/
   margin-top: 1rem;
 }
-
 .search-form button.search-button:hover {
   background: #ddd;
   color: black;
@@ -572,7 +566,7 @@ li div.result-desc {
 @media only screen and (min-width: 640px) {
   .result-desc-winename-span,
   .result-desc-pricing-span,
-  .result-date-span {
+  .result-desc-date-span {
     display: inline-block;
     font-size: 1.2em;
   }
