@@ -131,14 +131,14 @@ function getAndDisplayTastingNotes(e) {
     const displayCentsAsDollars = (cents) => {
       return cents === 0 ? "No Price Entered" : `$${ (cents/100).toFixed(2) }`;
     };
-
+    // old - before refact
     for (let i = 0; i < tastings.length ; i++) {
       console.log('tastings[i] = ', tastings[i]);
       // Render Tasting Note Header and append DOM.
       // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
       $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
-            
+
             <div class="tasting-desc-icon-wrapper">
               <span class="tasting-desc-span js-tasting-desc-span">${tastings[i].wineName}</span>
               <span class="tasting-icons-wrapper">
@@ -150,7 +150,7 @@ function getAndDisplayTastingNotes(e) {
                     >
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </span> 
-                           
+
                 <span 
                     class="delete-tasting-span js-delete-tasting-span" 
                     data-tastingid="${tastings[i]._id}"
@@ -160,9 +160,9 @@ function getAndDisplayTastingNotes(e) {
               </span>
             </div>
 
-            
+
             <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
-            
+
                 <div class="country-map-wrapper js-country-map-wrapper">
                   Country:
                   <span class="country-map-span js-country-map-span">
@@ -174,7 +174,7 @@ function getAndDisplayTastingNotes(e) {
                     `<div class="no-country-map" >No Country Map</div>`}
                   </div>
                 </div>
-                
+
                 <div class="primary-appellation-wrapper js-primary-appellation-wrapper">
                   Primary Appellation:
                   <span class="primary-appellation-map-span js-primary-appellation-map-span">
@@ -186,7 +186,7 @@ function getAndDisplayTastingNotes(e) {
                     `<div class="no-primary-appellation-map" >No Primary Appellation Map</div>`}
                   </div>
                 </div>
-                
+
                 <div class="secondary-appellation-wrapper js-secondary-appellation-wrapper">
                   Secondary Appellation:
                   <span class="secondary-appellation-map-span js-secondary-appellation-map-span">
@@ -208,14 +208,98 @@ function getAndDisplayTastingNotes(e) {
                 <div>Pricing 3: ${tastings[i].pricing3Desc} - ${ displayCentsAsDollars(tastings[i].pricing3Price) }</div>       
                 <div>Pricing 4: ${tastings[i].pricing4Desc} - ${ displayCentsAsDollars(tastings[i].pricing4Price) }</div> 
                 <div class="tasting-note">Tasting Notes:</div>                        
-                  
+
                 <textarea class="tn-textarea" name="" id="" cols="30" rows="10" disabled>${tastings[i].tastingNotes}</textarea>
-                 
+
             </div>
          </li>`);
     }
 
+    // new - refact for mobile
+    // for (let i = 0; i < tastings.length ; i++) {
+    //   console.log('tastings[i] = ', tastings[i]);
+    //   // Render Tasting Note Header and append DOM.
+    //   // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
+    //   $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
+    //     `<li class="tasting-li js-tasting-li">` +
+    //
+    //         `<div class="tasting-desc-icon-wrapper">
+    //           <span class="tasting-desc-span js-tasting-desc-span">${tastings[i].wineName}</span>
+    //           <span class="tasting-icons-wrapper">
+    //             <span
+    //                 class="edit-tasting-span js-edit-tasting-span"
+    //                 data-tastingid="${tastings[i]._id}"
+    //                 data-eventname="${eventName}"
+    //                 data-eventhost="${eventHost}"
+    //                 >
+    //                 <i class="fa fa-pencil" aria-hidden="true"></i>
+    //             </span>
+    //
+    //             <span
+    //                 class="delete-tasting-span js-delete-tasting-span"
+    //                 data-tastingid="${tastings[i]._id}"
+    //                 >
+    //                 <i class="fa fa-trash" aria-hidden="true"></i>
+    //             </span>
+    //           </span>
+    //         </div>` +
+    //
+    //
+    //         <div class="tasting-detail-wrapper js-tasting-detail-wrapper">
+    //
+    //             <div class="country-map-wrapper js-country-map-wrapper">
+    //               Country:
+    //               <span class="country-map-span js-country-map-span">
+    //                  ${tastings[i].country}
+    //               </span>
+    //               <div class="country-map js-country-map">
+    //                  ${tastings[i].countryMapSrc !== '' ?
+    //       `<img class="country-map-img js-country-map-img" src="${tastings[i].countryMapSrc}">`:
+    //       `<div class="no-country-map" >No Country Map</div>`}
+    //               </div>
+    //             </div>
+    //
+    //             <div class="primary-appellation-wrapper js-primary-appellation-wrapper">
+    //               Primary Appellation:
+    //               <span class="primary-appellation-map-span js-primary-appellation-map-span">
+    //                 ${tastings[i].primaryAppellation}
+    //               </span>
+    //               <div class="primary-appellation-map js-primary-appellation-map">
+    //                 ${tastings[i].primaryAppellationMapSrc !== '' ?
+    //       `<img class="primary-appellation-map-img js-primary-appellation-map-img" src="${tastings[i].primaryAppellationMapSrc}">`:
+    //       `<div class="no-primary-appellation-map" >No Primary Appellation Map</div>`}
+    //               </div>
+    //             </div>
+    //
+    //             <div class="secondary-appellation-wrapper js-secondary-appellation-wrapper">
+    //               Secondary Appellation:
+    //               <span class="secondary-appellation-map-span js-secondary-appellation-map-span">
+    //                 ${tastings[i].secondaryAppellation}
+    //               </span>
+    //               <div class="secondary-appellation-map js-secondary-appellation-map">
+    //                 ${tastings[i].secondaryAppellationMapSrc !== '' ?
+    //       `<img class="secondary-appellation-map-img js-secondary-appellation-map-img" src="${tastings[i].secondaryAppellationMapSrc}">`:
+    //       '<div class="no-secondary-appellation-map">No Secondary Appellation Map</div>'}
+    //               </div>
+    //             </div>
+    //             <div class="primary-grape-wrapper">
+    //               Primary Grape:
+    //               <span class="primary-grape-span">${tastings[i].primaryGrape}</span>
+    //             </div>
+    //             <div class="rating-wrapper">Rating:<span class="rating-span"> ${tastings[i].rating}</span></div>
+    //             <div>Pricing 1: ${tastings[i].pricing1Desc} - ${ displayCentsAsDollars(tastings[i].pricing1Price) }</div>
+    //             <div>Pricing 2: ${tastings[i].pricing2Desc} - ${ displayCentsAsDollars(tastings[i].pricing2Price) }</div>
+    //             <div>Pricing 3: ${tastings[i].pricing3Desc} - ${ displayCentsAsDollars(tastings[i].pricing3Price) }</div>
+    //             <div>Pricing 4: ${tastings[i].pricing4Desc} - ${ displayCentsAsDollars(tastings[i].pricing4Price) }</div>
+    //             <div class="tasting-note">Tasting Notes:</div>
+    //
+    //             <textarea class="tn-textarea" name="" id="" cols="30" rows="10" disabled>${tastings[i].tastingNotes}</textarea>
+    //
+    //         </div>
+    //      </li>`);
+    // }
   }
+
 
 }
 // ************************************************************************* //
