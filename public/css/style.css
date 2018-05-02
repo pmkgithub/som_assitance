@@ -122,21 +122,45 @@ html {
   border: 1px solid #ccc;
   margin-top: 2em;
 }
-.event-header-wrapper {
+/* old - b/f refact */
+/*.events-header-wrapper {*/
+  /*!* for positioning new event button *!*/
+  /*position: relative;*/
+  /*margin-top: 1rem;*/
+/*}*/
+/*h2.events-header,*/
+/*a.new-tasting-event-button {*/
+  /*display: inline-block;*/
+/*}*/
+/*a.new-tasting-event-button {*/
+  /*!* for positioning new event button *!*/
+  /*position: absolute;*/
+  /*top: 1rem;*/
+  /*right: 0rem;*/
+
+  /*text-align: center;*/
+  /*text-decoration: none;*/
+  /*padding: 0.5rem;*/
+  /*font-size: 1.25rem;*/
+  /*color: white;*/
+  /*background-color: cornflowerblue;*/
+/*}*/
+/* new - refact*/
+.events-header-wrapper {
   /* for positioning new event button */
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   margin-top: 1rem;
 }
-h2.event-header,
-a.new-tasting-event-button {
+div.events-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  align-self: flex-end;
+}
+button.new-tasting-event-button {
   display: inline-block;
 }
-a.new-tasting-event-button {
-  /* for positioning new event button */
-  position: absolute;
-  top: 1rem;
-  right: 0rem;
-
+button.new-tasting-event-button {
   text-align: center;
   text-decoration: none;
   padding: 0.5rem;
@@ -482,7 +506,6 @@ li div.tasting-desc-icon-wrapper {
 /******************************************************************************/
 /*  SEARCH RESULTS - BEGIN */
 /******************************************************************************/
-/* TODO - search results list CSS */
 .search-results-wrapper {
   border: 1px solid #ccc;
   padding: 20px;
