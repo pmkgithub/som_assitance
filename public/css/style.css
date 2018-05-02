@@ -332,7 +332,6 @@ li div.tasting-desc-icon-wrapper {
 /*  TASTING NOTE  - END */
 /******************************************************************************/
 
-
 /******************************************************************************/
 /*  EVENT / TASTING FORM - BEGIN */
 /******************************************************************************/
@@ -607,15 +606,24 @@ li div.result-desc {
 /* new/edit Tasting Note Form */
 /* Tasting Note List */
 /* Tasting Note Search Results */
+
+/* mobile */
 .tasting-form textarea,
 .tasting-li .tn-textarea,
 .result-li .tn-textarea {
   width: 100%;
   height: 200px;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   background-color: lightgray;
 }
-
+/* non-mobile */
+@media only screen and (min-width: 640px) {
+  .tasting-form textarea,
+  .tasting-li .tn-textarea,
+  .result-li .tn-textarea {
+    font-size: 1.1rem;
+  }
+}
 /******************************************************************************/
 /*  TASTING NOTE - TEXTAREA: NEW/EDIT TA FORM, LIST, SEARCH RESULTS - BEGIN */
 /******************************************************************************/
