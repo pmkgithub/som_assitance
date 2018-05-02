@@ -129,14 +129,6 @@ function postDataToApi(url, options, callback) {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  // // DEV - for testing CSS changes.
-  // // Also comment/uncomment postDataToApi(`/api/search`, options, renderSearchResults);
-  // const options = {
-  //   searchGrape: "Barbera",
-  //   searchRating: "3",
-  //   searchPrice: "25",
-  // };
-
   // PRODUCTION
   // clear Results list HTML.
   $('.js-search-results-ul').empty();
@@ -153,7 +145,7 @@ function handleFormSubmit(e) {
     searchRating,
     searchPrice,
   };
-  console.log('options=', options);
+
   postDataToApi(`/api/search`, options, renderSearchResults);
 }
 
