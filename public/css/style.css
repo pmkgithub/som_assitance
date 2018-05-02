@@ -145,13 +145,21 @@ div.events-header {
 button.new-tasting-event-button {
   display: inline-block;
 }
+/* TODO - on hover - new event button */
 button.new-tasting-event-button {
   text-align: center;
   text-decoration: none;
   padding: 0.5rem;
   font-size: 1.25rem;
   color: white;
-  background-color: cornflowerblue;
+  background-color: rgb(100,149,237);
+}
+button.new-tasting-event-button:hover {
+  /*color: rgb(192,192,192);*/
+  /*color: white;*/
+  /*background-color: rgba(100,149,237, 0.8);*/
+  background: #ddd;
+  color: black;
   cursor: pointer;
 }
 /* events header - END */
@@ -200,10 +208,19 @@ li div.event-desc-icon-wrapper {
 }
 
 /* event desc and icons - on-hover */
-.events-list-wrapper .event-desc-span,
+/* TODO - icon onhover - events desc */
+.events-list-wrapper .event-desc-span {
+  cursor: pointer;
+}
 .events-list-wrapper .add-new-tasting-note-span,
 .events-list-wrapper .delete-event-span,
 .events-list-wrapper .edit-event-span {
+  transition: all .2s ease;
+}
+.events-list-wrapper .add-new-tasting-note-span:hover,
+.events-list-wrapper .edit-event-span:hover,
+.events-list-wrapper .delete-event-span:hover {
+  transform: scale(1.4);
   cursor: pointer;
 }
 /* events desc/icons - END */
@@ -255,10 +272,18 @@ li div.tasting-desc-icon-wrapper {
   }
 }
 
+/* TODO - icon onhover - tasting note desc */
 /* tastings desc/icons - on-hover */
-.events-list-wrapper .tasting-desc-span,
+.events-list-wrapper .tasting-desc-span {
+  cursor: pointer;
+}
 .events-list-wrapper .delete-tasting-span,
 .events-list-wrapper .edit-tasting-span {
+  transition: all .2s ease;
+}
+.events-list-wrapper .delete-tasting-span:hover,
+.events-list-wrapper .edit-tasting-span:hover {
+  transform: scale(1.4);
   cursor: pointer;
 }
 /* tasting note desc/icon - END */
@@ -372,7 +397,7 @@ li div.tasting-desc-icon-wrapper {
 }
 /* form inputs - BEGIN */
 
-/* buttons css - BEGIN */
+/* new event, new tasting note form button - BEGIN */
 .event-form .buttons,
 .tasting-form .buttons {
   display: flex;
@@ -381,8 +406,8 @@ li div.tasting-desc-icon-wrapper {
 }
 .event-form button,
 .tasting-form button {
-  background: #ccc;
-  color: white;
+  /*background: #ccc;*/
+  /*color: white;*/
   padding: 0.5rem;
   font-size:  1rem;
   border: none;
@@ -395,23 +420,33 @@ li div.tasting-desc-icon-wrapper {
 .tasting-form .button-save{
   display: inline-block;
 }
+/* TODO - on hover - new event, new tasting note forms */
 .event-form button.cancel,
 .tasting-form button.cancel {
+  /*background-color: red;*/
+  background-color: rgba(255,0,0, 0.7);
+  color: white;
   margin-right: 10px;
 }
 .event-form button.cancel:hover,
 .tasting-form button.cancel:hover {
-  background-color: red;
+  background: #ddd;
+  color: black;
+  cursor: pointer;
+}
+.event-form button.save,
+.tasting-form button.save {
+  background-color: rgb(100,149,237);
+  color: white;
 }
 .event-form button.save:hover,
 .tasting-form button.save:hover {
-  background: green;
-}
-.event-form button:hover,
-.tasting-form button:hover {
+  background: #ddd;
+  color: black;
   cursor: pointer;
 }
-/* buttons css - END */
+
+/* new event, new tasting note form buttons - END */
 /******************************************************************************/
 /*  EVENT / TASTING FORM - END */
 /******************************************************************************/
@@ -481,19 +516,23 @@ li div.tasting-desc-icon-wrapper {
   display: flex;
   justify-content: flex-end;
 }
+/* TODO - on hover - new event button */
 .search-form button {
-  background: #ccc;
+  background-color: rgb(100,149,237);
   color: white;
+  /*padding: 0.5rem;*/
+  /*font-size:  1rem;*/
   padding: 0.5rem;
-  font-size:  1rem;
+  font-size: 1.25rem;
   border: none;
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin-top: 1rem;
 }
 
 .search-form button.search-button:hover {
+  background: #ddd;
+  color: black;
   cursor: pointer;
-  background: cornflowerblue;
 }
 /* buttons css - END */
 /******************************************************************************/

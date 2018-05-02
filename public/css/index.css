@@ -75,12 +75,16 @@ body.index-page {
   color: white;
   border: none;
   padding: 10px;
-  background-color: rgba(100,149,237, 0.8);
+  background-color: rgb(100,149,237);
+  /*background-color: rgba(100,149,237, 0.8);*/
   z-index: 2;
 }
 .signin-button:hover,
 .signup-button:hover {
-  background-color: rgb(100,149,237);
+  background-color: rgba(100,149,237, 0.8);
+  /*background-color: rgb(100,149,237);*/
+  /*background: #ddd;*/
+  /*color: black;*/
   cursor: pointer;
 }
 .signin-button {
