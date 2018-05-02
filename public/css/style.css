@@ -144,14 +144,119 @@ a.new-tasting-event-button {
   color: white;
   background-color: cornflowerblue;
 }
-a.new-tasting-event-button:hover {
-  /*cursor: pointer;*/
+
+li.event-li {
+  list-style: none;
+  margin-left: -40px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
-.events-list-wrapper .event-span {
+
+li div.event-desc-icon-wrapper {
+  /* contains Event Date, Event Name and Add Tasting Note, Edit, Delete icons */
+  /* flex parent of event desc and event icon wrapper */
+  /* icons inside the event-icon-wrapper are also "space-between" */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  color: white;
+  padding: 0.5rem;
+  background-color: cornflowerblue;
+}
+
+.add-new-tasting-note-span,
+.edit-event-span,
+.delete-event-span
+{
+  display: inline-block;
+  padding: 0 0.25rem;
+}
+
+/* mobile */
+.event-desc-span,
+.event-icons-wrapper {
+  display: inline-block;
+  font-size: 0.9rem
+}
+/* Non-mobile */
+@media only screen and (min-width: 640px) {
+  .event-desc-span,
+  .event-icons-wrapper {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
+}
+
+/* event desc and icons - on-hover */
+.events-list-wrapper .event-desc-span,
+.events-list-wrapper .add-new-tasting-note-span,
+.events-list-wrapper .delete-event-span,
+.events-list-wrapper .edit-event-span {
   cursor: pointer;
 }
-.events-list-wrapper .tasting-span {
+/******************************************************************************/
+/*  EVENTS LIST - END */
+/******************************************************************************/
+
+/******************************************************************************/
+/*  TASTING NOTE  - BEGIN */
+/******************************************************************************/
+li.tasting-li {
+  list-style: none;
+  margin-left: -20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+li div.tasting-desc-icon-wrapper {
+  /* contains Wine Name and Edit, Delete icons */
+  /* flex parent of tasting desc and tasting icon wrapper */
+  /* icons inside the tasting-icon-wrapper are also "space-between" */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  color: white;
+  padding: 0.5rem;
+  background-color: cornflowerblue;
+}
+
+.edit-tasting-span,
+.delete-tasting-span
+{
+  display: inline-block;
+  padding: 0 0.25rem;
+}
+
+/* mobile */
+.tasting-desc-span,
+.tasting-icons-wrapper {
+  display: inline-block;
+  font-size: 0.9rem
+}
+/* Non-mobile */
+@media only screen and (min-width: 640px) {
+  .tasting-desc-span,
+  .tasting-icons-wrapper {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
+}
+
+/* tastings desc and icons - on-hover */
+.events-list-wrapper .tasting-desc-span,
+.events-list-wrapper .delete-tasting-span,
+.events-list-wrapper .edit-tasting-span {
   cursor: pointer;
+}
+
+/* tasting note detail - BEGIN */
+.tasting-detail-wrapper {
+  background-color: blanchedalmond;
+  padding: 10px;
+}
+.tasting-detail-wrapper div {
+  font-size: 1.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 .events-list-wrapper .tasting-detail-wrapper {
   display: none;
@@ -173,93 +278,6 @@ a.new-tasting-event-button:hover {
 }
 .events-list-wrapper .secondary-appellation-map {
   display: none;
-}
-li.event-li {
-  list-style: none;
-  margin-left: -40px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-}
-li .event-desc {
-  /* contains Event Date, Name, Distributor, Edit, Delete icons */
-  /* position:relative for <span> placement */
-  position: relative;
-  font-size: 1.2rem;
-  color: white;
-  padding: 0.5em;
-  background-color: cornflowerblue;
-
-}
-/******************************************************************************/
-/*  EVENTS LIST - END */
-/******************************************************************************/
-
-/******************************************************************************/
-/*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
-/******************************************************************************/
-/* tasting icons styling and positioning - BEGIN */
-.events-list-wrapper .add-new-tasting-note-span,
-.events-list-wrapper .delete-event-span,
-.events-list-wrapper .edit-event-span {
-  cursor: pointer;
-}
-.events-list-wrapper .delete-tasting-span,
-.events-list-wrapper .edit-tasting-span {
-  cursor: pointer;
-}
-/* tasting icons styling and positioning - END */
-
-/* icons styling and positioning - BEGIN */
-.add-new-tasting-note-span {
-  display: inline-block;
-  position: absolute;
-  right: 5.25em;
-}
-.edit-event-span,
-.edit-tasting-span {
-  display: inline-block;
-  position: absolute;
-  /*right: 70px;*/
-  right: 3.25em;
-}
-.delete-event-span,
-.delete-tasting-span {
-  display: inline-block;
-  position: absolute;
-  right: 1.25em;
-}
-/* icons styling and positioning - END */
-/******************************************************************************/
-/*  BOTH EVENT LIST AND TASTING NOTE  - BEGIN */
-/******************************************************************************/
-
-/******************************************************************************/
-/*  TASTING NOTE  - BEGIN */
-/******************************************************************************/
-li.tasting-li {
-  list-style: none;
-  margin-left: -20px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-}
-li .tasting-desc {
-  /* contains Wine Name, Edit, Delete icons */
-  /* position:relative for <span> placement */
-  position: relative;
-  font-size: 1.2rem;
-  color: white;
-  padding: 0.5em;
-  background-color: cornflowerblue;
-}
-.tasting-detail-wrapper {
-  background-color: blanchedalmond;
-  padding: 10px;
-}
-
-.tasting-detail-wrapper div {
-  font-size: 1.2rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
 }
 .tasting-li .country-map-wrapper,
 .tasting-li .primary-appellation-wrapper,
@@ -288,6 +306,7 @@ li .tasting-desc {
 .tasting-li .tasting-note {
   margin-top: 0.5rem;
 }
+/* tasting note detail - END */
 
 /******************************************************************************/
 /*  TASTING NOTE  - END */
@@ -486,7 +505,7 @@ li div.result-desc {
 /* Mobile */
 .result-desc-winename-span,
 .result-desc-pricing-span,
-.result-date-span {
+.result-desc-date-span {
   display: inline-block;
   font-size: 0.9em;
 }

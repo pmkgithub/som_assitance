@@ -45,42 +45,46 @@ function renderTastingEventsList(events) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
     STATE.tastingsFetched[events[i]._id] = false;
 
-    const mDate = moment(events[i].timestamp).format('MMMM D, YYYY');
+    // const mDate = moment(events[i].timestamp).format('MMMM D, YYYY');
+    const mDate = moment(events[i].timestamp).format('MM/DD/YY');
     // render EVENTS.
     $('.js-events-ul').append(
       `<li class="event-li js-event-li">
-         <div class="event-desc">
+         <div class="event-desc-icon-wrapper">
             <span
-              class="event-span js-event-span"
+              class="event-desc-span js-event-desc-span"
               data-eventid="${events[i]._id}" 
               data-eventhost="${events[i].eventHost}" 
               data-eventname="${events[i].eventName}" 
               >
-              ${mDate} - ${events[i].eventName} - ${events[i].eventHost}
+              ${mDate} - ${events[i].eventName}
             </span>
             
-            <span
-              class="add-new-tasting-note-span js-add-new-tasting-note-span" 
-              data-eventid="${events[i]._id}"
-              data-eventname="${events[i].eventName}"
-              data-eventhost="${events[i].eventHost}"
-              >
-              <i class="fa fa-plus"></i>
-            </span>
-            
-            <span 
-              class="edit-event-span js-edit-event-span"
-              data-eventid="${events[i]._id}" 
-              >
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </span>
-            <span 
-              class="delete-event-span js-delete-event-span"
-              data-eventid="${events[i]._id}" 
-              >
-              <i class="fa fa-trash" aria-hidden="true"></i>
+            <span class="event-icons-wrapper">
+              <span
+                class="add-new-tasting-note-span js-add-new-tasting-note-span" 
+                data-eventid="${events[i]._id}"
+                data-eventname="${events[i].eventName}"
+                data-eventhost="${events[i].eventHost}"
+                >
+                <i class="fa fa-plus"></i>
+              </span>
+              
+              <span 
+                class="edit-event-span js-edit-event-span"
+                data-eventid="${events[i]._id}" 
+                >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </span>
+              <span 
+                class="delete-event-span js-delete-event-span"
+                data-eventid="${events[i]._id}" 
+                >
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </span>
             </span>
          </div>
+         
          <ul class="tastings-ul js-tastings-ul"></ul>
        </li>
        `);
@@ -135,22 +139,24 @@ function getAndDisplayTastingNotes(e) {
       $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
         `<li class="tasting-li js-tasting-li">
             
-            <div class="tasting-desc">
-              <span class="tasting-span js-tasting-span">${tastings[i].wineName}</span>
-              <span 
-                  class="edit-tasting-span js-edit-tasting-span" 
-                  data-tastingid="${tastings[i]._id}"
-                  data-eventname="${eventName}"
-                  data-eventhost="${eventHost}"
-                  >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-              </span> 
-                         
-              <span 
-                  class="delete-tasting-span js-delete-tasting-span" 
-                  data-tastingid="${tastings[i]._id}"
-                  >
-                  <i class="fa fa-trash" aria-hidden="true"></i>
+            <div class="tasting-desc-icon-wrapper">
+              <span class="tasting-desc-span js-tasting-desc-span">${tastings[i].wineName}</span>
+              <span class="tasting-icons-wrapper">
+                <span 
+                    class="edit-tasting-span js-edit-tasting-span" 
+                    data-tastingid="${tastings[i]._id}"
+                    data-eventname="${eventName}"
+                    data-eventhost="${eventHost}"
+                    >
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </span> 
+                           
+                <span 
+                    class="delete-tasting-span js-delete-tasting-span" 
+                    data-tastingid="${tastings[i]._id}"
+                    >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </span>
               </span>
             </div>
 
@@ -292,8 +298,8 @@ $(function() {
 
   // listeners
   const $tastingEventsAndTastingNotesWrapper = $('.js-events-list-wrapper');
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-span', getAndDisplayTastingNotes);
-  $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-span', toggleTastingNote);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-desc-span', getAndDisplayTastingNotes);
+  $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-desc-span', toggleTastingNote);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-country-map-span', toggleCountryMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-primary-appellation-map-span', togglePrimaryAppellationMap);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-secondary-appellation-map-span', toggleSecondaryAppellationMap);
