@@ -2,6 +2,7 @@
 
 const TASTING_EVENTS_API_URL = `/api/events/`;
 const TASTING_NOTES_API_URL = `/api/tastings/`;
+const TASTING_EVENT_NEW_FORM_URL = '/events/new';
 const TASTING_EVENT_EDIT_FORM_URL = '/events/edit';
 const TASTING_NOTE_EDIT_FORM_URL = '/tastings/edit';
 const TASTING_NOTE_NEW_FORM_URL = '/tastings/new';
@@ -133,7 +134,6 @@ function getAndDisplayTastingNotes(e) {
     };
     // old - before refact
     for (let i = 0; i < tastings.length ; i++) {
-      console.log('tastings[i] = ', tastings[i]);
       // Render Tasting Note Header and append DOM.
       // $tastingEventSpan.siblings('ul.js-tastings-ul').append(
       $tastingEventSpan.parent().siblings('ul.js-tastings-ul').append(
@@ -309,6 +309,12 @@ function getAndDisplayTastingNotes(e) {
 // ************************************************************************* //
 // LOAD FORMS - BEGIN
 // ************************************************************************* //
+const loadNewEventForm = (e) => {
+  // load form via "New Tasting Event" button.
+  e.preventDefault();
+  window.location = TASTING_EVENT_NEW_FORM_URL;
+};
+
 const loadNewTastingNoteForm = (e) => {
   // form "loaded" via "+" icon.
   const $newTastingFormIcon = $(e.target);
@@ -381,6 +387,7 @@ $(function() {
   getDataFromApi(TASTING_EVENTS_API_URL, options, renderTastingEventsList);
 
   // listeners
+  $('.events-wrapper').on('click', '.js-new-tasting-event-button', loadNewEventForm);
   const $tastingEventsAndTastingNotesWrapper = $('.js-events-list-wrapper');
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-event-desc-span', getAndDisplayTastingNotes);
   $tastingEventsAndTastingNotesWrapper.on('click', '.js-tasting-desc-span', toggleTastingNote);
