@@ -574,6 +574,7 @@ li div.result-desc {
 /* result detail - BEGIN */
 .result-detail-wrapper {
   background-color: rgba(100,149,237, 0.05);
+  border: 1px solid #ccc;
   padding: 10px;
   display: none;
 }
