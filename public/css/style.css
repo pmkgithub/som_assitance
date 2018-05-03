@@ -154,9 +154,6 @@ button.new-tasting-event-button {
   background-color: rgb(100,149,237);
 }
 button.new-tasting-event-button:hover {
-  /*color: rgb(192,192,192);*/
-  /*color: white;*/
-  /*background-color: rgba(100,149,237, 0.8);*/
   background: #ddd;
   color: black;
   cursor: pointer;
@@ -170,7 +167,7 @@ li.event-li {
   margin-top: 3px;
   margin-bottom: 3px;
 }
-
+/* TODO - fix color shades - events list */
 li div.event-desc-icon-wrapper {
   /* contains Event Date, Event Name and Add Tasting Note, Edit, Delete icons */
   /* flex parent of event desc and event icon wrapper */
@@ -180,7 +177,7 @@ li div.event-desc-icon-wrapper {
   font-size: 1.2rem;
   color: white;
   padding: 0.5rem;
-  background-color: cornflowerblue;
+  background-color: rgb(100,149,237);
 }
 
 .add-new-tasting-note-span,
@@ -235,6 +232,7 @@ li.tasting-li {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+/* TODO - fix color shades - tasting notes list */
 /* tasting note desc/icon - BEGIN */
 li div.tasting-desc-icon-wrapper {
   /* contains Wine Name and Edit, Delete icons */
@@ -245,7 +243,7 @@ li div.tasting-desc-icon-wrapper {
   font-size: 1.2rem;
   color: white;
   padding: 0.5rem;
-  background-color: cornflowerblue;
+  background-color: rgba(100,149,237, 1);
 }
 
 .edit-tasting-span,
@@ -285,9 +283,11 @@ li div.tasting-desc-icon-wrapper {
 }
 /* tasting note desc/icon - END */
 
+/* TODO - fix color shades - tasting detail */
 /* tasting note detail - BEGIN */
 .tasting-detail-wrapper {
-  background-color: blanchedalmond;
+  /*background-color: blanchedalmond;*/
+  background-color: rgba(100,149,237, 0.05);
   padding: 10px;
 }
 /* mobile */
@@ -420,7 +420,6 @@ li div.tasting-desc-icon-wrapper {
 
 .event-form button.cancel,
 .tasting-form button.cancel {
-  /*background-color: red;*/
   background-color: rgba(255,0,0, 0.7);
   color: white;
   margin-right: 10px;
@@ -515,12 +514,9 @@ li div.tasting-desc-icon-wrapper {
 .search-form button {
   background-color: rgb(100,149,237);
   color: white;
-  /*padding: 0.5rem;*/
-  /*font-size:  1rem;*/
   padding: 0.5rem;
   font-size: 1.25rem;
   border: none;
-  /*font-weight: bold;*/
   margin-top: 1rem;
 }
 .search-form button.search-button:hover {
@@ -547,11 +543,13 @@ li.result-li {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+
+/* TODO - fix color shades - search results list */
 /* result desc - BEGIN */
 li div.result-desc {
   display: flex;
   justify-content: space-between;
-  background-color: cornflowerblue;
+  background-color: rgba(100,149,237, 1);
   color: white;
   padding: 0.5em;
 }
@@ -576,9 +574,10 @@ li div.result-desc {
 }
 /* result desc - END */
 
+/* TODO - fix color shades - search result detail */
 /* result detail - BEGIN */
 .result-detail-wrapper {
-  background-color: blanchedalmond;
+  background-color: rgba(100,149,237, 0.05);
   padding: 10px;
   display: none;
 }
@@ -642,6 +641,7 @@ li div.result-desc {
 /* Tasting Note List */
 /* Tasting Note Search Results */
 
+/* TODO - fix color shades - textareas */
 /* mobile */
 .tasting-form textarea,
 .tasting-li .tn-textarea,
@@ -649,7 +649,11 @@ li div.result-desc {
   width: 100%;
   height: 200px;
   font-size: 0.9rem;
-  background-color: lightgray;
+  /* NOTE: textarea background-color get enhanced by the underlying tasting/result background-color */
+  /* soft blue */
+  background-color: rgba(100,149,237, 0.05);
+  /* warmer beige */
+  /*background-color: blanchedalmond;*/
 }
 /* non-mobile */
 @media only screen and (min-width: 640px) {
