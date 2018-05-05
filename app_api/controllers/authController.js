@@ -18,7 +18,6 @@ const tokenForUser = (user) => {
 // ************************************************************************* //
 exports.signup = (req, res) => {
 
-  console.log('req.body = ', req.body);
   // check for required fields - BEGIN
   const requiredFields = ['email', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -86,7 +85,6 @@ exports.signup = (req, res) => {
     .count()
     .then((count) => {
       if ( count > 0 ) {
-        console.log('in count if ran');
         // If User with email DOES exist, return an error.
         // There is an existing user with the same email.
         return Promise.reject({
@@ -108,7 +106,6 @@ exports.signup = (req, res) => {
       });
     })
     .then((user) => {
-      console.log('user.id = ', user._id);
       // // Grider workflow: create a jwt here and send it back in the response.
       return res.status(201).json({
         token: tokenForUser(user),
@@ -137,7 +134,6 @@ exports.signup = (req, res) => {
 // signin - BEGIN
 // ************************************************************************* //
 exports.signin = (req, res) => {
-  console.log('authController signin ran');
 
   const userId = req.user._id;
 
