@@ -67,6 +67,8 @@ module.exports.postTastingEventData = (req, res) => {
     }
   }
 
+  //  Each Event has a userId so that only a particular user will be able
+  //  to see his/her Tasting Notes.
   User
     .findById({ "_id": userId })
     .then(user => {
@@ -80,7 +82,7 @@ module.exports.postTastingEventData = (req, res) => {
           eventHost: req.body.eventHost
         })
         .then(event => {
-          res.status(200).json(event.serialize())
+          res.status(201).json(event.serialize())
         })
         // event model error.
         .catch(err => {
