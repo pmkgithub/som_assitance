@@ -3,32 +3,32 @@ Wine tasting notes made simple.
 * Taste and save Tasting Notes.
 * Search Tasting Notes
 
-### Landing Page:
+## Landing Page:
 From the landing page, either Sign in or Sign up.
 ![alt text](https://github.com/pmkgithub/som_assitance/blob/master/readmeImages/somm_assitance_splash.png)
 
-### Tastings List Page:
+## Tastings List Page:
 All Tastings and related Tasting Notes for a particular User are listed.
 ![alt text](https://github.com/pmkgithub/som_assitance/blob/master/readmeImages/somm_assistance_events_list_01.png)
 
-By clicking on a Tasting, the User can expose all Tasting notes
+By clicking on a Tasting, the User can expose all Tasting Notes
 associated with a particular Tasting.
 ![alt text](https://github.com/pmkgithub/som_assitance/blob/master/readmeImages/somm_assistance_events_list_02.png)
 
 Click on a Tasting Note to expand Tasting Note details.  Clicking a County, Primary, Secondary or Teritiary Appellation will expand an area map.
 ![alt text](https://github.com/pmkgithub/som_assitance/blob/master/readmeImages/somm_assistance_events_list_03.png)
 
-### Create, Edit and Delete Tasting:
+## Create, Edit and Delete Tasting:
 * Create Tasting - click "Add Tasting" to create a new Tasting.
 * Edit Tasting - click the "Edit" icon on a Tasting.
 * Delete Tasting - Click the "Delete" icon on a Tasting.  This action will also delete all associated Tasting Notes.
 
-### Create, Edit and Delete Tasting Note:
+## Create, Edit and Delete Tasting Note:
 * Create Tasting Note - click the "+" icon to create a new Tasting Note.
 * Edit Tasting Note - click the "Edit" icon on a Tasting Note.
 * Delete Tasting Note - Click the "Delete" icon on a Tasting Note.
 
-### Search Tasting Notes:
+## Search Tasting Notes:
 Search may be initiated from the Tastings List page.
 ![alt text](https://github.com/pmkgithub/som_assitance/blob/master/readmeImages/somm_assistance_search_01.png)
 
