@@ -24,7 +24,7 @@ Click on a Tasting Note to expand Tasting Note details.  Clicking a County, Prim
 * Delete Tasting - Click the "Delete" icon on a Tasting.  This action will also delete all associated Tasting Notes.
 
 ## Create, Edit and Delete Tasting Note:
-* Create Tasting Note - click the "+" icon to create a new Tasting Note.
+* Create Tasting Note - click the "+" icon on a Tasting to create a new Tasting Note.
 * Edit Tasting Note - click the "Edit" icon on a Tasting Note.
 * Delete Tasting Note - Click the "Delete" icon on a Tasting Note.
 
