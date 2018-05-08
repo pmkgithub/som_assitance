@@ -2,7 +2,7 @@
 Wine tasting notes made simple.
 * Taste and save Tasting Notes.
 * Search Tasting Notes
-![alt text](https://github.com/pmkgithub/som_assitance/readmeImages/somm_assitance_splash.png)
+![alt text](https://github.com/pmkgithub/som_assitance/blob/master/readmeImages/somm_assitance_splash.png)
 ### Landing Page:
 From the landing page, either Sign in or Sign up.
 
