@@ -205,7 +205,7 @@ describe('API Server', () => {
 
 
   // Make GET request to '/api/events'
-  it.only('should return list of tasting events on GET to /api/events', function() {
+  it('should return list of tasting events on GET to /api/events', function() {
 
     const newUser = createUser();
     const newEvent = createTastingEvent();
