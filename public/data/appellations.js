@@ -6,7 +6,8 @@ const APPS = {
   },
   argentina: {
     name: "Argentina",
-    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_1024x1024.jpg?v=1504901310',
+    // map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_1024x1024.jpg?v=1504901310',
+    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_78e5f34d-e354-46a7-a9db-c8a03667e72d_1024x1024.jpg',
     primary_appellations: {
       salta: {
         name: "Salta",
@@ -83,7 +84,7 @@ const APPS = {
   },
   austria: {
     name: "austria",
-    map: null,
+    map: 'https://winefolly-wpengine.netdna-ssl.com/wp-content/uploads/2014/02/Austria-Map-by-Wine-Folly1.png',
     primary_appellations: {
       burgenland: {
         name: "Bergenland",
@@ -349,7 +350,8 @@ const APPS = {
   },
   italy: {
     name: "italy",
-    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-wine-map2_1024x1024.jpg',
+    // map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-wine-map2_1024x1024.jpg',
+    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-All-wine-map2_1024x1024.jpg',
     primary_appellations: {
       valle_daosta: {
         name: "Valle dAosta",
@@ -441,7 +443,8 @@ const APPS = {
   },
   new_zealand: {
     name: "New Zealand",
-    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-New-Zealand-wine-map2_1024x1024.jpg?v=1504901586',
+    // map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-New-Zealand-wine-map2_1024x1024.jpg?v=1504901586',
+    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-NewZealand-wine-map2_1024x1024.jpg',
     primary_appellations: {
       northland: {
         name: "Northland",
@@ -578,12 +581,14 @@ const APPS = {
   },
   sardinia: {
     name: "Sardinia",
-    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-wine-map2_1024x1024.jpg',
+    // map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-wine-map2_1024x1024.jpg',
+    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-All-wine-map2_1024x1024.jpg',
     primary_appellations: null,
   },
   sicily: {
     name: "Sicily",
-    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-wine-map2_1024x1024.jpg',
+    // map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-wine-map2_1024x1024.jpg',
+    map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Italy-All-wine-map2_1024x1024.jpg',
     primary_appellations: null,
   },
   slovakia: {
