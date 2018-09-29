@@ -25,6 +25,7 @@ describe('APP Server', () => {
   // there's a possibility of a race condition where our tests start
   // running before our server has started.
   before(function() {
+    console.log('APP Server tests => TEST_DATABASE_URL = ', TEST_DATABASE_URL);
     return runServer(TEST_DATABASE_URL);
   });
 
