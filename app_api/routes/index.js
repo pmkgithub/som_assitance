@@ -1,8 +1,8 @@
 'use strict';
 // API SERVER ROUTES
 
-
 const router = require('express').Router();
+
 const ctrlEvents = require('../controllers/eventsController');
 const ctrlTastings = require('../controllers/tastingsController');
 const ctrlSearch = require('../controllers/searchController');

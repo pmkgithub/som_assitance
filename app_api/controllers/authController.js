@@ -79,6 +79,7 @@ exports.signup = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  // TODO - refact: change findOne() to find()
   // See if User with the given email exists.
   User
     .findOne({email: email})

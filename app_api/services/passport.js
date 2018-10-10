@@ -34,6 +34,7 @@ const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
   // payload.subject is the User's ID.
 
   User.findById(payload.sub, function(err, user) {
+
     if(err) return done(err, false);
 
     if(user) {
@@ -68,6 +69,7 @@ const localOptions = { usernameField: 'email' };
 const localStrategy = new LocalStrategy(localOptions, (email, password, done) => {
   let user;
 
+  // TODO - refact: change _user to just user.
   User
     .findOne({ email: email })
     .then(_user => {
