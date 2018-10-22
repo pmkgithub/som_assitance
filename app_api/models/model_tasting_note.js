@@ -48,7 +48,6 @@ tastingNoteSchema.index({primaryGrape: 'text'});
 // });
 
 
-
 tastingNoteSchema.methods.serialize = function() {
 
   return {
