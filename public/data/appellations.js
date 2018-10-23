@@ -6,7 +6,6 @@ const APPS = {
   },
   argentina: {
     name: "Argentina",
-    // map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_1024x1024.jpg?v=1504901310',
     map: 'http://cdn.shopify.com/s/files/1/0203/1210/products/12x16-Argentina-wine-map2_78e5f34d-e354-46a7-a9db-c8a03667e72d_1024x1024.jpg',
     primary_appellations: {
       salta: {
@@ -220,7 +219,7 @@ const APPS = {
             name: "Entre Deaux Mers",
             map: null,
             tertiary_appellations: null,
-          },
+          }
         }
       },
       burgundy: {
@@ -762,12 +761,11 @@ const APPS = {
             map: "https://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-CA-Napa-Valley-wine-map2_1024x1024.jpg?v=1504901708",
             tertiary_appellations: null
           }
-        },
-
+        }
       },
       central_coast_california: {
         name: "Central Coast California",
-        map: "https://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-CA-Central-Coast-wine-map2_1024x1024.jpg?v=1504901673",
+        map: "https://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-CA-CentralCoast-wine-map2_1024x1024.jpg?v=1537311288",
         secondary_appellations: {
           livermore_valley: {
             name: "Livermore Valley",
@@ -790,7 +788,7 @@ const APPS = {
             tertiary_appellations: null
           },
           lime_kiln_valley: {
-            name: "Lime_Kiln Valley",
+            name: "Lime Kiln Valley",
             map: null,
             tertiary_appellations: null
           },
@@ -820,7 +818,7 @@ const APPS = {
             tertiary_appellations: null
           },
           harnes_valley: {
-            name: "harnes Valley",
+            name: "Harnes Valley",
             map: null,
             tertiary_appellations: null
           },
@@ -850,7 +848,7 @@ const APPS = {
             tertiary_appellations: null
           },
           santa_ynez_valley: {
-            name: "santa Ynez Valley",
+            name: "Santa Ynez Valley",
             map: null,
             tertiary_appellations: null
           },
@@ -935,7 +933,7 @@ const APPS = {
             map: null,
             tertiary_appellations: null
           }
-        },
+        }
       },
       sierra_foothills_california: {
         name: "Sierra Foothills California",
@@ -966,7 +964,7 @@ const APPS = {
             map: null,
             tertiary_appellations: null
           }
-        },
+        }
       },
       inland_valleys_california: {
         name: "Inland Valleys California",
@@ -997,11 +995,11 @@ const APPS = {
             map: null,
             tertiary_appellations: null
           }
-        },
+        }
       },
       // northwest
-      columbia_valley: {
-        name: "Columbia Valley",
+      columbia_valley_washington: {
+        name: "Columbia Valley Washington",
         map: "https://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-Washington-wine-map2_1024x1024.jpg?v=1504901195",
         secondary_appellations: {
           lake_chelan: {
@@ -1059,7 +1057,33 @@ const APPS = {
             map: null,
             tertiary_appellations: null
           }
-        },
+        }
+      },
+      columbia_valley_oregon: {
+        name: "Columbia Valley Oregon",
+        map: "https://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-Oregon-wine-map2_1024x1024.jpg?v=1504901166",
+        secondary_appellations: {
+          columbia_gorge: {
+            name: "Columbia Gorge",
+            map: null,
+            tertiary_appellations: null
+          },
+          columbia_valley_proper: {
+            name: "Columbia Valley Proper",
+            map: null,
+            tertiary_appellations: null
+          },
+          the_rocks_district: {
+            name: "The Rocks District",
+            map: null,
+            tertiary_appellations: null
+          },
+          walla_walla: {
+            name: "Walla Walla",
+            map: null,
+            tertiary_appellations: null
+          }
+        }
       },
       willamette_valley: {
         name: "Willamette Valley",
@@ -1096,10 +1120,10 @@ const APPS = {
             tertiary_appellations: null
           }
 
-        },
+        }
       },
       southern_oregon: {
-        name: "Columbia Valleys",
+        name: "Southern Oregon",
         map: "https://cdn.shopify.com/s/files/1/0203/1210/products/12x16-USA-Oregon-wine-map2_1024x1024.jpg?v=1504901166",
         secondary_appellations: {
           elkton: {
@@ -1128,7 +1152,7 @@ const APPS = {
             tertiary_appellations: null
           }
         }
-      },
+      }
     }
   }
 };
