@@ -36,8 +36,8 @@ somm assistance's powerful search capabilities makes any somm's life easier.
 * mocha
 * chai
 * faker
-
-### Using the App
+***
+# Using the App
 
 ## Landing Page
 From the landing page, either Sign in or Sign up.
