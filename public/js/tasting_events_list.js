@@ -44,6 +44,9 @@ function getDataFromApi(url, options, callback) {
 function renderTastingEventsList(events) {
   for (let i = 0; i < events.length ; i++) {
     // populate STATE object "tastingsFetched" object for each TASTING EVENT.
+
+    // only fetch TASTING NOTES when TASTING EVENT is clicked, thus initially set tastingsFetched to false.
+    // if first time clicking a TASTING EVENT, fetch TASTING NOTE for a particular TASTING EVENT.
     STATE.tastingsFetched[events[i]._id] = false;
 
     // const mDate = moment(events[i].timestamp).format('MMMM D, YYYY');
