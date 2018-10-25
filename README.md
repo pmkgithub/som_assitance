@@ -36,6 +36,12 @@ somm assistance's powerful search capabilities makes any somm's life easier.
 * mocha
 * chai
 * faker
+
+### API
+* User Credentials are persisted on sign-up.
+* User Passwords in database are encrypted via bcrypt.
+* Tasting Notes are persisted as associated documents, and not as sub-documents to its corresponding Tasting. This was done for performance considerations.
+* If a Tasting is deleted, so are all related Tasting Notes documents.
 ***
 # Using the App
 
