@@ -228,7 +228,7 @@ const renderSearchResults = (searchResults) => {
   <div class="result-desc">
     <span class="result-desc-winename-span js-result-desc-winename-span">${searchResults[i].wineName}</span>
     <span class="result-desc-pricing-span">${ displayCentsAsDollars(lowestPrice) } at ${lowestPriceDesc}</span>
-    <span class="result-desc-date-span">${mDate}</span>
+    <!--<span class="result-desc-date-span">${mDate}</span>-->
   </div>
 
   <div class="result-detail-wrapper js-result-detail-wrapper">  
